@@ -7,11 +7,9 @@ Game::Game()
 	//Junshen
 }
 
-/// <summary>
-/// AUTHOR: KAYDEN
-/// 
-/// Displays the world view on the console
-/// </summary>
+
+//KAYDEN
+//Displays the world view on the console
 void Game::DisplayWorld()
 {
 	//Characters to be displayed in the world content
