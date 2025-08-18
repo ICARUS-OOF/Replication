@@ -4,7 +4,7 @@
 
 Game::Game()
 {
-
+	//Junshen
 }
 
 /// <summary>
