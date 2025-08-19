@@ -17,10 +17,14 @@ private:
 	// An array of prop pointers
 	Prop* propArray[MAX_PROPS];
 
+	int propSpawnIndex = 0;
+
 public:
 	Game();
 	void GameLoop();
 	void DisplayWorld();
 	void GetInputs();
+
+	void SpawnProp(Prop* propPtr);
 };
 
