@@ -18,8 +18,8 @@ Game::Game()
 		props[i] = nullptr;
 
 	// Creating prop in index of prop array
-	props[0] = new Prop(screenPtr, Vector2(30, 10));
-	props[1] = new Prop(screenPtr, Vector2(20, 7));
+	props[0] = new Prop(screenPtr, Vector2(30, 10), Vector2(3, 3));
+	props[1] = new Prop(screenPtr, Vector2(20, 7), Vector2(3, 3));
 }
 
 /// <summary>
@@ -94,5 +94,22 @@ void Game::DisplayWorld()
 /// </summary>
 void Game::GetInputs()
 {
-	worldPlayerPtr->Move();
+	Vector2 desiredPlayerPos = worldPlayerPtr->GetPlayerDesiredPosition();
+
+	bool isPlayerOverlappingWithWall = false;
+
+	for (int i = 0; i < MAX_PROPS; i++)
+	{
+		if (props[i] != nullptr) {
+			if (props[i]->IsOverlapping(desiredPlayerPos)) {
+				isPlayerOverlappingWithWall = true;
+				break;
+			}
+		}
+	}
+
+	if (!isPlayerOverlappingWithWall)
+	{
+		worldPlayerPtr->MovePlayer(desiredPlayerPos);
+	}
 }

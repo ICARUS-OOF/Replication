@@ -5,11 +5,16 @@
 
 class Prop : WorldEntity
 {
+private:
+	Vector2 boundingBox;
+
 public:
-	Prop(Screen* screenPtr, Vector2 position);
+	Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox);
 
 	~Prop();
 
 	void RenderCharacterDisplay();
+
+	bool IsOverlapping(Vector2 otherPosition);
 };
 
