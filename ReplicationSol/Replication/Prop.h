@@ -8,7 +8,9 @@ class Prop : WorldEntity
 {
 public:
 	enum PROPTYPE {
-		WALL
+		WALL,
+		VERTICAL_WALL,
+		HORIZONTAL_WALL
 	};
 private:
 

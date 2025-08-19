@@ -13,13 +13,12 @@ Game::Game()
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr);
 
-	// insitlise all props to Nullptr at first
+	// Initialize all props to Nullptr at first
 	for (int i = 0; i < MAX_PROPS; i++)
 		propArray[i] = nullptr;
 
 	// Creating prop in index of prop array
-	propArray[0] = new Prop(screenPtr, Vector2(30, 10), Vector2(8, 3), Prop::PROPTYPE::WALL);
-	propArray[1] = new Prop(screenPtr, Vector2(20, 7), Vector2(3, 3), Prop::PROPTYPE::WALL);
+	propArray[0] = new Prop(screenPtr, Vector2(30, 10), Vector2(2, 8), Prop::PROPTYPE::VERTICAL_WALL);
 }
 
 /// <summary>

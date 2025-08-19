@@ -1,5 +1,6 @@
 #include "Prop.h"
 #include "Screen.h"
+#include <iostream>
 
 Prop::Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox, PROPTYPE propType)
 {
@@ -50,6 +51,35 @@ void Prop::RenderCharacterDisplay()
 			screenPtr->RenderCharacter('|', left, i);
 
 		break;
+
+	case PROPTYPE::HORIZONTAL_WALL:
+		if (top != bottom) {
+			std::cout << "HORIZONTAL WALL HEIGHT NOT 1" << std::endl;
+			break;
+		}
+
+		screenPtr->RenderCharacter('+', left, top);
+		for (int i = left + 1; i < right; i++)
+			screenPtr->RenderCharacter('-', i, top);
+		screenPtr->RenderCharacter('+', right, top);
+
+		break;
+
+	case PROPTYPE::VERTICAL_WALL:
+		if (left != right) {
+			std::cout << "VERTICAL WALL WIDTH NOT 1" << std::endl;
+			break;
+		}
+
+		screenPtr->RenderCharacter('+', left, top);
+		for (int i = top + 1; i < bottom; i++)
+			screenPtr->RenderCharacter('|', left, i);
+		screenPtr->RenderCharacter('+', left, bottom);
+
+		break;
+
+
+
 	default:
 		break;
 	}
