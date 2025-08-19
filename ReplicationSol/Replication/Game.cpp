@@ -12,6 +12,14 @@ Game::Game()
 	screenPtr = new Screen(pageRows, pageCols);
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr);
+
+	// insitlise all props to Nullptr at first
+	for (int i = 0; i < MAX_PROPS; i++)
+		props[i] = nullptr;
+
+	// Creating prop in index of prop array
+	props[0] = new Prop(screenPtr, Vector2(30, 10));
+	props[1] = new Prop(screenPtr, Vector2(20, 7));
 }
 
 /// <summary>
@@ -37,6 +45,12 @@ void Game::DisplayWorld()
 	screenPtr->ClearScreen();
 
 	worldPlayerPtr->RenderCharacterDisplay();
+	
+	for (int i = 0; i < MAX_PROPS; i++)
+	{
+		if (props[i] != nullptr)
+			props[i]->RenderCharacterDisplay();
+	}
 
 	//Top Border
 	std::cout << '+';

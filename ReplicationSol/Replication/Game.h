@@ -3,6 +3,7 @@
 #include <iostream>
 #include "WorldPlayer.h"
 #include "Screen.h"
+#include "Prop.h"
 
 class Game
 {
@@ -11,6 +12,10 @@ private:
 
 	WorldPlayer* worldPlayerPtr;
 	Screen* screenPtr;
+
+	static const int MAX_PROPS = 10;
+	// An array of prop pointers
+	Prop* props[MAX_PROPS];
 
 public:
 	Game();

@@ -32,7 +32,7 @@ std::string WorldPlayer::DEBUG_GETPLAYERPOSITIONSTRING()
 /// <summary>
 /// KAYDEN
 /// 
-/// Character's Design
+/// Rendering the Character's Design
 /// </summary>
 void WorldPlayer::RenderCharacterDisplay()
 {
