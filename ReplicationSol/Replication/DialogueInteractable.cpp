@@ -4,14 +4,17 @@
 #include <conio.h>
 
 
-DialogueInteractable::DialogueInteractable(std::string dialogue, Screen* screenPtr)
+DialogueInteractable::DialogueInteractable(std::string* dialogue, Screen* screenPtr, int  NumberOfLines)
 {
-	this->dialogue = dialogue;
+	this->dialogueArray = dialogue;
 	this->screenPtr = screenPtr;
+	this->NumberOfLines = NumberOfLines;
 }
 
 void DialogueInteractable::Interaction()
 {
+
+	static int currentInteractionIndex = 0;
 	const int left = 4;
 	const int right = 76 - 1;
 	const int top = 19;
@@ -40,7 +43,14 @@ void DialogueInteractable::Interaction()
 	const int dialogueStartTop = 20;
 	const int dialogueStartLeft = 6;
 
-	for (int i = 0; i < dialogue.length(); i++)
-		screenPtr->RenderCharacter(dialogue.at(i), dialogueStartLeft + i, dialogueStartTop);
+	for (int j = 0; j < dialogueArray[currentInteractionIndex].length(); j++)
+			screenPtr->RenderCharacter(dialogueArray[currentInteractionIndex].at(j), dialogueStartLeft + j, dialogueStartTop);
 	//DISPLAY DIALOGUE
+
+	currentInteractionIndex++;
+	if (currentInteractionIndex >= NumberOfLines)
+		currentInteractionIndex = 0;
+
+		
+	
 }

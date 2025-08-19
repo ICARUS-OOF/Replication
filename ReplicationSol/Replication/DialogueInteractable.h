@@ -7,12 +7,14 @@
 class DialogueInteractable : public Interactable
 {
 private:
-	std::string dialogue;
+	std::string* dialogueArray;
 
 	Screen* screenPtr;
 
+	int  NumberOfLines;
+
 public:
-	DialogueInteractable(std::string dialogue, Screen* screenPtr);
+	DialogueInteractable(std::string* dialogue, Screen* screenPtr, int  NumberOfLines);
 
 	void Interaction();
 };

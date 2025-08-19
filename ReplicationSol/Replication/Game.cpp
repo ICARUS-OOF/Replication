@@ -7,6 +7,7 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
+#include <conio.h>
 
 
 Game::Game()
@@ -50,7 +51,7 @@ Game::Game()
 	SpawnProp(new Prop(screenPtr, Vector2(0, 9), Vector2(11, 1), Prop::PROPTYPE::RIGHT_WALL));
 
 
-	SpawnProp(new Prop(screenPtr, Vector2(55, 5), Vector2(5, 3), Prop::PROPTYPE::WALL, new DialogueInteractable("What happened?", screenPtr)));
+	SpawnProp(new Prop(screenPtr, Vector2(55, 5), Vector2(5, 3), Prop::PROPTYPE::WALL, new DialogueInteractable(new std::string[2]{"What happen?", "s"}, screenPtr, 2)));
 }
 
 /// <summary>
@@ -128,6 +129,11 @@ void Game::DisplayWorld()
 /// </summary>
 void Game::GetInputs()
 {
+	if (currentInteractable != nullptr) {
+
+		_getch();
+		return;
+	}
 	//Get the player's desired position based on input
 	WorldPlayer::PLAYERDECISION playerDecision = worldPlayerPtr->GetPlayerInput();
 
