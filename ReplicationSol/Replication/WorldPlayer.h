@@ -10,7 +10,7 @@ public:
 
 	static const int PLAYER_POINTS_SIZE = 6;
 
-	WorldPlayer(Screen* screenPtr);
+	WorldPlayer(Screen* screenPtr, Vector2 startPosition);
 
 	~WorldPlayer();
 

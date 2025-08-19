@@ -11,14 +11,20 @@ Game::Game()
 	//Create the screen with rows and cols
 	screenPtr = new Screen(pageRows, pageCols);
 	//Create player
-	worldPlayerPtr = new WorldPlayer(screenPtr);
+	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(70, 17));
 
 	// Initialize all props to Nullptr at first
 	for (int i = 0; i < MAX_PROPS; i++)
 		propArray[i] = nullptr;
 
-	// Creating prop in index of prop array
-	propArray[0] = new Prop(screenPtr, Vector2(30, 10), Vector2(2, 8), Prop::PROPTYPE::VERTICAL_WALL);
+	// Creating prop Wall in index of prop array
+	propArray[0] = new Prop(screenPtr, Vector2(0, 0), Vector2(80, 1), Prop::PROPTYPE::RIGHT_WALL);
+	propArray[1] = new Prop(screenPtr, Vector2(79, 0), Vector2(1, 10), Prop::PROPTYPE::DOWN_WALL);
+	propArray[2] = new Prop(screenPtr, Vector2(69, 9), Vector2(11, 1), Prop::PROPTYPE::RIGHT_WALL);
+	propArray[3] = new Prop(screenPtr, Vector2(69, 9), Vector2(1, 4), Prop::PROPTYPE::DOWN_WALL);
+	propArray[4] = new Prop(screenPtr, Vector2(69, 12), Vector2(6, 1), Prop::PROPTYPE::RIGHT_WALL);
+	propArray[5] = new Prop(screenPtr, Vector2(74, 12), Vector2(1, 6), Prop::PROPTYPE::DOWN_WALL);
+	propArray[6] = new Prop(screenPtr, Vector2(74, 12), Vector2(1, 6), Prop::PROPTYPE::DOWN_WALL);
 }
 
 /// <summary>

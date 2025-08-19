@@ -9,9 +9,10 @@
 /// 
 /// </summary>
 /// <param name="screenPtr"></param>
-WorldPlayer::WorldPlayer(Screen* screenPtr)
+WorldPlayer::WorldPlayer(Screen* screenPtr, Vector2 startPosition)
 {
 	this->screenPtr = screenPtr;
+	this->position = startPosition;
 }
 
 WorldPlayer::~WorldPlayer()

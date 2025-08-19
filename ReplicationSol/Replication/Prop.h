@@ -9,8 +9,8 @@ class Prop : WorldEntity
 public:
 	enum PROPTYPE {
 		WALL,
-		VERTICAL_WALL,
-		HORIZONTAL_WALL
+		DOWN_WALL,
+		RIGHT_WALL
 	};
 private:
 

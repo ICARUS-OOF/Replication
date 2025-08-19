@@ -52,7 +52,7 @@ void Prop::RenderCharacterDisplay()
 
 		break;
 
-	case PROPTYPE::HORIZONTAL_WALL:
+	case PROPTYPE::RIGHT_WALL:
 		if (top != bottom) {
 			std::cout << "HORIZONTAL WALL HEIGHT NOT 1" << std::endl;
 			break;
@@ -65,7 +65,7 @@ void Prop::RenderCharacterDisplay()
 
 		break;
 
-	case PROPTYPE::VERTICAL_WALL:
+	case PROPTYPE::DOWN_WALL:
 		if (left != right) {
 			std::cout << "VERTICAL WALL WIDTH NOT 1" << std::endl;
 			break;

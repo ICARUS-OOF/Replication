@@ -13,7 +13,7 @@ private:
 	WorldPlayer* worldPlayerPtr;
 	Screen* screenPtr;
 
-	static const int MAX_PROPS = 10;
+	static const int MAX_PROPS = 100;
 	// An array of prop pointers
 	Prop* propArray[MAX_PROPS];
 
