@@ -3,5 +3,6 @@ class Interactable
 {
 public:
 	virtual void Interaction() = 0;
+	virtual void Render() = 0;
 };
 

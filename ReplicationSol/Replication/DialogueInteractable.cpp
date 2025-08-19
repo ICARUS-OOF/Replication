@@ -1,20 +1,31 @@
 #include "DialogueInteractable.h"
 #include "Screen.h"
+#include "Interactable.h"
 
 #include <conio.h>
 
 
-DialogueInteractable::DialogueInteractable(std::string* dialogue, Screen* screenPtr, int  NumberOfLines)
+DialogueInteractable::DialogueInteractable(std::string* dialogue, Screen* screenPtr, Interactable** gameInteractablePtr, int NumberOfLines)
 {
 	this->dialogueArray = dialogue;
 	this->screenPtr = screenPtr;
+	this->gameInteractablePtr = gameInteractablePtr;
 	this->NumberOfLines = NumberOfLines;
+	this->currentInteractionIndex = 0;
 }
 
 void DialogueInteractable::Interaction()
 {
+	currentInteractionIndex++;
+	if (currentInteractionIndex >= NumberOfLines) {
+		currentInteractionIndex = 0;
+		*gameInteractablePtr = nullptr;
+	}
+	_getch();
+}
 
-	static int currentInteractionIndex = 0;
+void DialogueInteractable::Render()
+{
 	const int left = 4;
 	const int right = 76 - 1;
 	const int top = 19;
@@ -39,18 +50,9 @@ void DialogueInteractable::Interaction()
 	for (int i = bottom - 1; i > top; i--)
 		screenPtr->RenderCharacter('|', left, i);
 
-
 	const int dialogueStartTop = 20;
 	const int dialogueStartLeft = 6;
 
 	for (int j = 0; j < dialogueArray[currentInteractionIndex].length(); j++)
-			screenPtr->RenderCharacter(dialogueArray[currentInteractionIndex].at(j), dialogueStartLeft + j, dialogueStartTop);
-	//DISPLAY DIALOGUE
-
-	currentInteractionIndex++;
-	if (currentInteractionIndex >= NumberOfLines)
-		currentInteractionIndex = 0;
-
-		
-	
+		screenPtr->RenderCharacter(dialogueArray[currentInteractionIndex].at(j), dialogueStartLeft + j, dialogueStartTop);
 }
