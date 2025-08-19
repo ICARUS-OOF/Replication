@@ -52,7 +52,13 @@ Game::Game()
 
 	
 
-	SpawnProp(new Prop(screenPtr, Vector2(55, 5), Vector2(5, 3), Prop::PROPTYPE::WALL, new DialogueInteractable(new std::string[2]{ "What happen?", "s" }, screenPtr, &currentInteractable, 2)));
+	SpawnProp(new Prop(screenPtr, Vector2(55, 5), Vector2(6, 3), Prop::PROPTYPE::WALL, new DialogueInteractable(
+		new std::string[3]
+		{
+			"Looks like a cave-in", "Hope nothing falls on me.", "akajaijawjakjn dahdka"
+		},
+		screenPtr, &currentInteractable, 
+	3)));
 }
 
 /// <summary>
@@ -166,15 +172,21 @@ void Game::GetInputs()
 			}
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
+			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
+			bool hasFoundInteractable = false;
 
 			//Loop thru all props
-			for (int i = 0; i < MAX_PROPS; i++)
+			for (int i = 0; i < MAX_PROPS && !hasFoundInteractable; i++)
 			{
 				if (propArray[i] != nullptr) {
 					if (propArray[i]->GetInteractable() != nullptr) {
-						if (worldPlayerPtr->GetPosition().DistanceToOther(propArray[i]->GetPosition()) <= worldPlayerPtr->interactionRange) {
-							currentInteractable = propArray[i]->GetInteractable();
-							break;
+						for (int j = 0; j < worldPlayerPtr->INTERACTIVE_POINTS_SIZE; j++)
+						{
+							if (propArray[i]->IsOverlapping(playerInteractivePoints[j])) {
+								currentInteractable = propArray[i]->GetInteractable();
+								hasFoundInteractable = true;
+								break;
+							}
 						}
 					}
 				}

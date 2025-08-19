@@ -31,6 +31,7 @@ std::string WorldPlayer::DEBUG_GETPLAYERPOSITIONSTRING()
 	return std::to_string(position.Getx()) + ", " + std::to_string(position.Gety());
 }
 
+
 /// <summary>
 /// KAYDEN
 /// 
@@ -79,12 +80,12 @@ WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 			break;
 		case 'a':
 		case 'A':
-			targetPosition = Vector2(position.Getx() - 2, position.Gety());
+			targetPosition = Vector2(position.Getx() - 1, position.Gety());
 			currentDecision = PLAYERDECISION::MOVE;
 			break;
 		case 'd':
 		case 'D':
-			targetPosition = Vector2(position.Getx() + 2, position.Gety());
+			targetPosition = Vector2(position.Getx() + 1, position.Gety());
 			currentDecision = PLAYERDECISION::MOVE;
 			break;
 
@@ -122,6 +123,27 @@ Vector2* WorldPlayer::GetPlayerPoints(Vector2 playerTargetPivot)
 	points[3] = playerTargetPivot.AddToVector2(Vector2(1, 0));
 	points[4] = playerTargetPivot.AddToVector2(Vector2(-1, 1));
 	points[5] = playerTargetPivot.AddToVector2(Vector2(1, 1));
+
+	return points;
+}
+
+Vector2* WorldPlayer::GetInteractivePoints(Vector2 suppliedPosition)
+{
+	Vector2 points[INTERACTIVE_POINTS_SIZE];
+
+	points[0] = suppliedPosition.AddToVector2(Vector2(0, -2));
+	points[1] = suppliedPosition.AddToVector2(Vector2(-1, -1));
+	points[2] = suppliedPosition.AddToVector2(Vector2(-2, -1));
+	points[3] = suppliedPosition.AddToVector2(Vector2(-2, 0));
+	points[4] = suppliedPosition.AddToVector2(Vector2(-2, 1));
+	points[5] = suppliedPosition.AddToVector2(Vector2(-1, -2));
+	points[6] = suppliedPosition.AddToVector2(Vector2(0, 1));
+	points[7] = suppliedPosition.AddToVector2(Vector2(1, 2));
+	points[8] = suppliedPosition.AddToVector2(Vector2(2, 1));
+	points[9] = suppliedPosition.AddToVector2(Vector2(2, 0));
+	points[10] = suppliedPosition.AddToVector2(Vector2(2, -1));
+	points[11] = suppliedPosition.AddToVector2(Vector2(1, -1));
+	points[12] = suppliedPosition.AddToVector2(Vector2(0, 2));
 
 	return points;
 }
