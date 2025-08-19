@@ -4,10 +4,13 @@
 #include <conio.h>
 #include <string>
 
-
-WorldPlayer::WorldPlayer()
+/// <summary>
+/// 
+/// </summary>
+/// <param name="screenPtr"></param>
+WorldPlayer::WorldPlayer(Screen* screenPtr)
 {
-	
+	this->screenPtr = screenPtr;
 }
 
 WorldPlayer::~WorldPlayer()
@@ -15,16 +18,38 @@ WorldPlayer::~WorldPlayer()
 
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// FOR DEBUGGING PLAYER POSITION
+/// </summary>
+/// <returns></returns>
 std::string WorldPlayer::DEBUG_GETPLAYERPOSITIONSTRING()
 {
 	return std::to_string(position.Getx()) + ", " + std::to_string(position.Gety());
 }
 
-char WorldPlayer::GetCharacterDisplay()
+/// <summary>
+/// KAYDEN
+/// 
+/// Character's Design
+/// </summary>
+void WorldPlayer::RenderCharacterDisplay()
 {
-	return 'p';
+	screenPtr->RenderCharacter('|', position.Getx(), position.Gety());
+	screenPtr->RenderCharacter('O', position.Getx(), position.Gety() - 1);
+	screenPtr->RenderCharacter('/', position.Getx() - 1, position.Gety());
+	screenPtr->RenderCharacter('\\', position.Getx() + 1, position.Gety());
+	screenPtr->RenderCharacter('/', position.Getx() - 1, position.Gety() + 1);
+	screenPtr->RenderCharacter('\\', position.Getx() + 1, position.Gety() + 1);
 }
 
+
+/// <summary>
+/// AHMAD
+/// 
+/// Gets user input and moves according to supplied position change
+/// </summary>
 void WorldPlayer::Move()
 {
 	char UserInput;
@@ -53,5 +78,6 @@ void WorldPlayer::Move()
 		break;
 	}
 
+	//FOR DEBUGGING THE PLAYER POSITION
 	std::cout << DEBUG_GETPLAYERPOSITIONSTRING();
 }

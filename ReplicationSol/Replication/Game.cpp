@@ -5,13 +5,20 @@
 #include <iostream>
 #include <thread>
 
+
 Game::Game()
 {
-	//Junshen
-
-	worldPlayerPtr = new WorldPlayer;
+	//Create the screen with rows and cols
+	screenPtr = new Screen(pageRows, pageCols);
+	//Create player
+	worldPlayerPtr = new WorldPlayer(screenPtr);
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// The main game loop, clear console and display screen
+/// </summary>
 void Game::GameLoop()
 {
 	while (true) {
@@ -26,15 +33,10 @@ void Game::GameLoop()
 //Displays the world view on the console
 void Game::DisplayWorld()
 {
-	//Characters to be displayed in the world content
-	char chars[pageRows][pageCols]{};
-	//Initialize all characters within this array to empty characters
-	for (int i = 0; i < pageRows; i++)
-		for (int j = 0; j < pageCols; j++)
-			chars[i][j] = ' ';
+	//Clear the previous screen
+	screenPtr->ClearScreen();
 
-	//---TEST---
-	chars[worldPlayerPtr->GetPosition().Gety()][worldPlayerPtr->GetPosition().Getx()] = 'P';
+	worldPlayerPtr->RenderCharacterDisplay();
 
 	//Top Border
 	std::cout << '+';
@@ -53,7 +55,7 @@ void Game::DisplayWorld()
 
 		//Display each character
 		for (int j = 0; j < pageCols; j++)
-			std::cout << chars[i][j];
+			std::cout << screenPtr->GetChars()[i][j];
 
 		//Right Border
 		std::cout << '|';
@@ -71,7 +73,11 @@ void Game::DisplayWorld()
 	std::cout << std::endl;
 }
 
-
+/// <summary>
+/// KAYDEN
+/// 
+/// Gets all inputs from the player
+/// </summary>
 void Game::GetInputs()
 {
 	worldPlayerPtr->Move();

@@ -9,11 +9,12 @@ class WorldPlayer : public WorldEntity
 public:
 	void Move();
 
-	WorldPlayer();
+	WorldPlayer(Screen* screenPtr);
+
 	~WorldPlayer();
 
-	std::string DEBUG_GETPLAYERPOSITIONSTRING();
+	void RenderCharacterDisplay();
 
-	char GetCharacterDisplay();
+	std::string DEBUG_GETPLAYERPOSITIONSTRING();
 };
 
