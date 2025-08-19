@@ -81,12 +81,12 @@ Vector2 WorldPlayer::GetPlayerDesiredPosition()
 			break;
 		case 'a':
 		case 'A':
-			targetPosition = Vector2(position.Getx() - 1, position.Gety());
+			targetPosition = Vector2(position.Getx() - 2, position.Gety());
 			isValidInput = true;
 			break;
 		case 'd':
 		case 'D':
-			targetPosition = Vector2(position.Getx() + 1, position.Gety());
+			targetPosition = Vector2(position.Getx() + 2, position.Gety());
 			isValidInput = true;
 			break;
 		default:
