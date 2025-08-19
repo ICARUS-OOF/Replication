@@ -4,6 +4,8 @@
 #include "WorldPlayer.h"
 #include "Screen.h"
 #include "Prop.h"
+#include "Interactable.h";
+#include "DialogueInteractable.h";
 
 class Game
 {
@@ -19,11 +21,14 @@ private:
 
 	int propSpawnIndex = 0;
 
+	Interactable* currentInteractable;
+
 public:
 	Game();
 	void GameLoop();
 	void DisplayWorld();
 	void GetInputs();
+	void RenderUI();
 
 	void SpawnProp(Prop* propPtr);
 };

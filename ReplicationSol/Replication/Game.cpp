@@ -1,5 +1,8 @@
 #include "Game.h"
 
+#include "Interactable.h";
+#include "DialogueInteractable.h";
+
 #include <windows.h>
 #include <chrono>
 #include <iostream>
@@ -45,6 +48,9 @@ Game::Game()
 	SpawnProp(new Prop(screenPtr, Vector2(5, 12), Vector2(6, 1), Prop::PROPTYPE::RIGHT_WALL));
 	SpawnProp(new Prop(screenPtr, Vector2(10, 9), Vector2(1, 4), Prop::PROPTYPE::DOWN_WALL));
 	SpawnProp(new Prop(screenPtr, Vector2(0, 9), Vector2(11, 1), Prop::PROPTYPE::RIGHT_WALL));
+
+
+	SpawnProp(new Prop(screenPtr, Vector2(55, 5), Vector2(5, 3), Prop::PROPTYPE::WALL, new DialogueInteractable("What happened?", screenPtr)));
 }
 
 /// <summary>
@@ -55,7 +61,6 @@ Game::Game()
 void Game::GameLoop()
 {
 	while (true) {
-		system("cls");
 		DisplayWorld();
 		GetInputs();
 	}
@@ -66,6 +71,8 @@ void Game::GameLoop()
 //Displays the world view on the console
 void Game::DisplayWorld()
 {
+	system("cls");
+
 	//Clear the previous screen
 	screenPtr->ClearScreen();
 
@@ -76,6 +83,8 @@ void Game::DisplayWorld()
 		if (propArray[i] != nullptr)
 			propArray[i]->RenderCharacterDisplay();
 	}
+
+	RenderUI();
 
 	//Top Border
 	std::cout << '+';
@@ -120,34 +129,58 @@ void Game::DisplayWorld()
 void Game::GetInputs()
 {
 	//Get the player's desired position based on input
-	Vector2 desiredPlayerPos = worldPlayerPtr->GetPlayerDesiredPosition();
+	WorldPlayer::PLAYERDECISION playerDecision = worldPlayerPtr->GetPlayerInput();
 
-	//The boolean that checks if player overlapped with a prop
-	bool isPlayerOverlappingWithProp = false;
-	//An array of all player's body part positions
-	Vector2* playerPoints = worldPlayerPtr->GetPlayerPoints(desiredPlayerPos);
+	if (playerDecision == WorldPlayer::PLAYERDECISION::MOVE) {
+		Vector2 desiredPlayerPos = worldPlayerPtr->targetPosition;
 
-	//Loop thru all props
-	for (int i = 0; i < MAX_PROPS && !isPlayerOverlappingWithProp; i++)
-	{
-		if (propArray[i] != nullptr) {
-			//Loop thru all player body part positions
-			for (int j = 0; j < worldPlayerPtr->PLAYER_POINTS_SIZE; j++)
-			{
-				//Check if each body part is overlapping with the wall
-				if (propArray[i]->IsOverlapping(playerPoints[j])) {
-					//If yes, then break and mark player has overlapped
-					isPlayerOverlappingWithProp = true;
+		//The boolean that checks if player overlapped with a prop
+		bool isPlayerOverlappingWithProp = false;
+		//An array of all player's body part positions
+		Vector2* playerPoints = worldPlayerPtr->GetPlayerPoints(desiredPlayerPos);
+
+		//Loop thru all props
+		for (int i = 0; i < MAX_PROPS && !isPlayerOverlappingWithProp; i++)
+		{
+			if (propArray[i] != nullptr) {
+				//Loop thru all player body part positions
+				for (int j = 0; j < worldPlayerPtr->PLAYER_POINTS_SIZE; j++)
+				{
+					//Check if each body part is overlapping with the wall
+					if (propArray[i]->IsOverlapping(playerPoints[j])) {
+						//If yes, then break and mark player has overlapped
+						isPlayerOverlappingWithProp = true;
+						break;
+					}
+				}
+			}
+		}
+
+		//If no overlap, then player move
+		if (!isPlayerOverlappingWithProp)
+		{
+			worldPlayerPtr->MovePlayer(desiredPlayerPos);
+		}
+	}
+	else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
+
+		//Loop thru all props
+		for (int i = 0; i < MAX_PROPS; i++)
+		{
+			if (propArray[i] != nullptr) {
+				if (propArray[i]->GetInteractable() != nullptr) {
+					currentInteractable = propArray[i]->GetInteractable();
 					break;
 				}
 			}
 		}
 	}
+}
 
-	//If no overlap, then player move
-	if (!isPlayerOverlappingWithProp)
-	{
-		worldPlayerPtr->MovePlayer(desiredPlayerPos);
+void Game::RenderUI()
+{
+	if (currentInteractable != nullptr) {
+		currentInteractable->Interaction();
 	}
 }
 

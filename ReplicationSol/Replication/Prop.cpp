@@ -2,12 +2,13 @@
 #include "Screen.h"
 #include <iostream>
 
-Prop::Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox, PROPTYPE propType)
+Prop::Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox, PROPTYPE propType, Interactable* interactable)
 {
 	this->screenPtr = screenPtr;
 	this->position = position;
 	this->boundingBox = boundingBox;
 	this->propType = propType;
+	this->interactable = interactable;
 }
 
 Prop::~Prop()
@@ -91,4 +92,9 @@ bool Prop::IsOverlapping(Vector2 otherPosition)
 	bool isOverlappingY = otherPosition.Gety() >= position.Gety() && otherPosition.Gety() <= (position.Gety() + boundingBox.Gety() - 1);
 
 	return isOverlappingX && isOverlappingY;
+}
+
+Interactable* Prop::GetInteractable() const
+{
+	return interactable;
 }

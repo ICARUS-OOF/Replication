@@ -7,6 +7,13 @@ class WorldPlayer : public WorldEntity
 {
 
 public:
+	enum PLAYERDECISION {
+		NONE,
+		MOVE,
+		INTERACT
+	};
+
+	Vector2 targetPosition;
 
 	static const int PLAYER_POINTS_SIZE = 6;
 
@@ -17,7 +24,8 @@ public:
 	void RenderCharacterDisplay();
 
 	void MovePlayer(Vector2 targetPosition);
-	Vector2 GetPlayerDesiredPosition();
+
+	PLAYERDECISION GetPlayerInput();
 
 	Vector2* GetPlayerPoints(Vector2 suppliedPosition);
 

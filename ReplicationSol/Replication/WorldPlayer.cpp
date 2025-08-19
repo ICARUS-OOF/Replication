@@ -57,11 +57,9 @@ void WorldPlayer::MovePlayer(Vector2 targetPosition)
 /// 
 /// Gets user input and moves according to supplied position change
 /// </summary>
-Vector2 WorldPlayer::GetPlayerDesiredPosition()
+WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 {
-
-	Vector2 targetPosition;
-	bool isValidInput = false;
+	PLAYERDECISION currentDecision = PLAYERDECISION::NONE;
 
 	do {
 		char UserInput;
@@ -72,34 +70,39 @@ Vector2 WorldPlayer::GetPlayerDesiredPosition()
 		case 'w':
 		case 'W':
 			targetPosition = Vector2(position.Getx(), position.Gety() - 1);
-			isValidInput = true;
+			currentDecision = PLAYERDECISION::MOVE;
 			break;
 		case 's':
 		case 'S':
 			targetPosition = Vector2(position.Getx(), position.Gety() + 1);
-			isValidInput = true;
+			currentDecision = PLAYERDECISION::MOVE;
 			break;
 		case 'a':
 		case 'A':
 			targetPosition = Vector2(position.Getx() - 2, position.Gety());
-			isValidInput = true;
+			currentDecision = PLAYERDECISION::MOVE;
 			break;
 		case 'd':
 		case 'D':
 			targetPosition = Vector2(position.Getx() + 2, position.Gety());
-			isValidInput = true;
+			currentDecision = PLAYERDECISION::MOVE;
 			break;
+
+		case ' ':
+			currentDecision = PLAYERDECISION::INTERACT;
+			break;
+
+
 		default:
 			std::cout << "Invalid input!" << std::endl;
-			isValidInput = false;
+			currentDecision = PLAYERDECISION::NONE;
 			break;
 		}
-	} while (!isValidInput);
+	} while (currentDecision == PLAYERDECISION::NONE);
 
 	//FOR DEBUGGING THE PLAYER POSITION
 	//std::cout << DEBUG_GETPLAYERPOSITIONSTRING();
-
-	return targetPosition;
+	return currentDecision;
 }
 
 /// <summary>
