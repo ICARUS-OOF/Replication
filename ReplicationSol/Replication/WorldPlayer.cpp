@@ -1,4 +1,5 @@
 #include "WorldPlayer.h"
+#include "WorldEntity.h"
 #include <iostream>
 #include <conio.h>
 #include <string>
@@ -19,10 +20,14 @@ std::string WorldPlayer::DEBUG_GETPLAYERPOSITIONSTRING()
 	return std::to_string(position.Getx()) + ", " + std::to_string(position.Gety());
 }
 
+char WorldPlayer::GetCharacterDisplay()
+{
+	return 'p';
+}
+
 void WorldPlayer::Move()
 {
 	char UserInput;
-	std::cout << "Enter WASD: " << std::endl;
 	UserInput = _getch();
 
 	switch (UserInput)

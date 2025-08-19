@@ -15,10 +15,9 @@ Game::Game()
 void Game::GameLoop()
 {
 	while (true) {
-		DisplayWorld();
 		system("cls");
+		DisplayWorld();
 		GetInputs();
-		Sleep(1000);
 	}
 }
 
@@ -35,7 +34,7 @@ void Game::DisplayWorld()
 			chars[i][j] = ' ';
 
 	//---TEST---
-	chars[12][40] = 'P';
+	chars[worldPlayerPtr->GetPosition().Gety()][worldPlayerPtr->GetPosition().Getx()] = 'P';
 
 	//Top Border
 	std::cout << '+';

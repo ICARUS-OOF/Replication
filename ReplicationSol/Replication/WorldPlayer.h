@@ -1,11 +1,10 @@
 #pragma once
 #include"Vector2.h"
 #include <string>
+#include "WorldEntity.h"
 
-class WorldPlayer
+class WorldPlayer : public WorldEntity
 {
-private:
-	Vector2 position;
 
 public:
 	void Move();
@@ -14,5 +13,7 @@ public:
 	~WorldPlayer();
 
 	std::string DEBUG_GETPLAYERPOSITIONSTRING();
+
+	char GetCharacterDisplay();
 };
 

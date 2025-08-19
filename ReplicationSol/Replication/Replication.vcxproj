@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="WorldEntity.cpp" />
     <ClCompile Include="WorldPlayer.cpp" />
     <ClCompile Include="SHIZECODE.cpp" />
     <ClCompile Include="source.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="WorldEntity.h" />
     <ClInclude Include="WorldPlayer.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
