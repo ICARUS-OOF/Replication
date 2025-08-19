@@ -1,19 +1,25 @@
-#include "Player.h"
+#include "WorldPlayer.h"
 #include <iostream>
 #include <conio.h>
+#include <string>
 
 
-Player::Player()
+WorldPlayer::WorldPlayer()
 {
 	
 }
 
-Player::~Player()
+WorldPlayer::~WorldPlayer()
 {
 
 }
 
-void Player::move()
+std::string WorldPlayer::DEBUG_GETPLAYERPOSITIONSTRING()
+{
+	return std::to_string(position.Getx()) + ", " + std::to_string(position.Gety());
+}
+
+void WorldPlayer::Move()
 {
 	char UserInput;
 	std::cout << "Enter WASD: " << std::endl;
@@ -23,7 +29,6 @@ void Player::move()
 	{
 	case 'w':
 	case 'W':
-		std::cout << "Moving Up" << std::endl;
 		position.Sety(position.Gety() - 1);
 		break;
 	case 's':
@@ -32,14 +37,16 @@ void Player::move()
 		break;
 	case 'a':
 	case 'A':
-		position.Sety(position.Getx() - 1);
+		position.Setx(position.Getx() - 1);
 		break;
 	case 'd':
 	case 'D':
-		position.Sety(position.Getx() + 1);
+		position.Setx(position.Getx() + 1);
 		break;
 	default:
 		std::cout << "invalid input" << std::endl;
 		break;
 	}
+
+	std::cout << DEBUG_GETPLAYERPOSITIONSTRING();
 }

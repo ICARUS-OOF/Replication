@@ -1,4 +1,6 @@
+#include <windows.h>
 #include <iostream>
+#include <thread>
 #include <string>
 
 #include "Game.h"
@@ -35,9 +37,9 @@ void PrintCharacter(std::string yourCharacter, int num)
 */
 
 int main(void) {
-	Game game;
+    Game game;
 
-	game.DisplayWorld();
+	game.GameLoop();
 
 	return 0;
 }

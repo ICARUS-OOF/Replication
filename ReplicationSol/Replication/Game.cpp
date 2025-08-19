@@ -1,10 +1,25 @@
 #include "Game.h"
 
+#include <windows.h>
+#include <chrono>
 #include <iostream>
+#include <thread>
 
 Game::Game()
 {
 	//Junshen
+
+	worldPlayerPtr = new WorldPlayer;
+}
+
+void Game::GameLoop()
+{
+	while (true) {
+		DisplayWorld();
+		system("cls");
+		GetInputs();
+		Sleep(1000);
+	}
 }
 
 
@@ -53,4 +68,12 @@ void Game::DisplayWorld()
 	for (int i = 0; i < pageCols; i++)
 		std::cout << '-';
 	std::cout << '+';
+
+	std::cout << std::endl;
+}
+
+
+void Game::GetInputs()
+{
+	worldPlayerPtr->Move();
 }

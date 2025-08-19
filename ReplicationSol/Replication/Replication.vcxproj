@@ -128,14 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="WorldPlayer.cpp" />
     <ClCompile Include="SHIZECODE.cpp" />
     <ClCompile Include="source.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="WorldPlayer.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
