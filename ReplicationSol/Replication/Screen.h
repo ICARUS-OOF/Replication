@@ -12,6 +12,6 @@ public:
 	~Screen();
 	void ClearScreen();
 	char** GetChars();
-	void SetCharacter(const char targetChar, const int targetRow, const int targetCol);
+	void RenderCharacter(const char targetChar, const int targetRow, const int targetCol);
 };
 
