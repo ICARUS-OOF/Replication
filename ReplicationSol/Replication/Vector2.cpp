@@ -11,6 +11,11 @@ void Vector2::Sety(int y)
     this->y = y;
 }
 
+Vector2 Vector2::AddToVector2(Vector2 add)
+{
+	return Vector2(x + add.x, y + add.y);
+}
+
 Vector2::Vector2()
 {
 	x = 0;

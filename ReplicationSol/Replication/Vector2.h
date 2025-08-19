@@ -14,5 +14,7 @@ public:
 	void Setx(int x);
 	void Sety(int y);
 
+	Vector2 AddToVector2(Vector2 add);
+
 };
 

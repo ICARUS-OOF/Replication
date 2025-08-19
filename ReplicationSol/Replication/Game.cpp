@@ -15,11 +15,11 @@ Game::Game()
 
 	// insitlise all props to Nullptr at first
 	for (int i = 0; i < MAX_PROPS; i++)
-		props[i] = nullptr;
+		propArray[i] = nullptr;
 
 	// Creating prop in index of prop array
-	props[0] = new Prop(screenPtr, Vector2(30, 10), Vector2(3, 3));
-	props[1] = new Prop(screenPtr, Vector2(20, 7), Vector2(3, 3));
+	propArray[0] = new Prop(screenPtr, Vector2(30, 10), Vector2(8, 3), Prop::PROPTYPE::WALL);
+	propArray[1] = new Prop(screenPtr, Vector2(20, 7), Vector2(3, 3), Prop::PROPTYPE::WALL);
 }
 
 /// <summary>
@@ -48,8 +48,8 @@ void Game::DisplayWorld()
 	
 	for (int i = 0; i < MAX_PROPS; i++)
 	{
-		if (props[i] != nullptr)
-			props[i]->RenderCharacterDisplay();
+		if (propArray[i] != nullptr)
+			propArray[i]->RenderCharacterDisplay();
 	}
 
 	//Top Border
@@ -94,21 +94,33 @@ void Game::DisplayWorld()
 /// </summary>
 void Game::GetInputs()
 {
+	//Get the player's desired position based on input
 	Vector2 desiredPlayerPos = worldPlayerPtr->GetPlayerDesiredPosition();
 
-	bool isPlayerOverlappingWithWall = false;
+	//The boolean that checks if player overlapped with a prop
+	bool isPlayerOverlappingWithProp = false;
+	//An array of all player's body part positions
+	Vector2* playerPoints = worldPlayerPtr->GetPlayerPoints(desiredPlayerPos);
 
-	for (int i = 0; i < MAX_PROPS; i++)
+	//Loop thru all props
+	for (int i = 0; i < MAX_PROPS && !isPlayerOverlappingWithProp; i++)
 	{
-		if (props[i] != nullptr) {
-			if (props[i]->IsOverlapping(desiredPlayerPos)) {
-				isPlayerOverlappingWithWall = true;
-				break;
+		if (propArray[i] != nullptr) {
+			//Loop thru all player body part positions
+			for (int j = 0; j < worldPlayerPtr->PLAYER_POINTS_SIZE; j++)
+			{
+				//Check if each body part is overlapping with the wall
+				if (propArray[i]->IsOverlapping(playerPoints[j])) {
+					//If yes, then break and mark player has overlapped
+					isPlayerOverlappingWithProp = true;
+					break;
+				}
 			}
 		}
 	}
 
-	if (!isPlayerOverlappingWithWall)
+	//If no overlap, then player move
+	if (!isPlayerOverlappingWithProp)
 	{
 		worldPlayerPtr->MovePlayer(desiredPlayerPos);
 	}

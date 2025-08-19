@@ -101,10 +101,23 @@ Vector2 WorldPlayer::GetPlayerDesiredPosition()
 	return targetPosition;
 }
 
-Vector2* WorldPlayer::GetPlayerPoints()
+/// <summary>
+/// KAYDEN
+/// 
+/// Get an array of player body part positions FROM a player target position
+/// </summary>
+/// <param name="suppliedPosition"></param>
+/// <returns></returns>
+Vector2* WorldPlayer::GetPlayerPoints(Vector2 playerTargetPivot)
 {
 	Vector2 points[PLAYER_POINTS_SIZE];
 
-	points[0] = Vector2(0, 0);
-	points[0] = Vector2(0, 0);
+	points[0] = playerTargetPivot.AddToVector2(Vector2(0, 0));
+	points[1] = playerTargetPivot.AddToVector2(Vector2(0, -1));
+	points[2] = playerTargetPivot.AddToVector2(Vector2(-1, 0));
+	points[3] = playerTargetPivot.AddToVector2(Vector2(1, 0));
+	points[4] = playerTargetPivot.AddToVector2(Vector2(-1, 1));
+	points[5] = playerTargetPivot.AddToVector2(Vector2(1, 1));
+
+	return points;
 }

@@ -15,7 +15,7 @@ private:
 
 	static const int MAX_PROPS = 10;
 	// An array of prop pointers
-	Prop* props[MAX_PROPS];
+	Prop* propArray[MAX_PROPS];
 
 public:
 	Game();

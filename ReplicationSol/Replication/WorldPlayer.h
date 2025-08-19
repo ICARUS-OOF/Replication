@@ -19,7 +19,7 @@ public:
 	void MovePlayer(Vector2 targetPosition);
 	Vector2 GetPlayerDesiredPosition();
 
-	Vector2* GetPlayerPoints();
+	Vector2* GetPlayerPoints(Vector2 suppliedPosition);
 
 	std::string DEBUG_GETPLAYERPOSITIONSTRING();
 };
