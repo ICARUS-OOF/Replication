@@ -16,6 +16,8 @@ private:
 
 	Interactable** gameInteractablePtr;
 
+	
+
 public:
 	DialogueInteractable(std::string* dialogue, Screen* screenPtr, Interactable** gameInteractablePtr, int NumberOfLines);
 

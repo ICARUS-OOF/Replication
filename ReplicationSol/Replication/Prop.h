@@ -32,5 +32,7 @@ public:
 	bool IsOverlapping(Vector2 otherPosition);
 
 	Interactable* GetInteractable() const;
+
+	Vector2 GetPosition() const;
 };
 

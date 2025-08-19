@@ -17,6 +17,8 @@ public:
 
 	static const int PLAYER_POINTS_SIZE = 6;
 
+	float interactionRange = 2.0f;
+
 	WorldPlayer(Screen* screenPtr, Vector2 startPosition);
 
 	~WorldPlayer();

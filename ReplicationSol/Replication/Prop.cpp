@@ -98,3 +98,8 @@ Interactable* Prop::GetInteractable() const
 {
 	return interactable;
 }
+
+Vector2 Prop::GetPosition() const
+{
+	return position;
+}

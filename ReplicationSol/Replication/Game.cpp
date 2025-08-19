@@ -172,8 +172,10 @@ void Game::GetInputs()
 			{
 				if (propArray[i] != nullptr) {
 					if (propArray[i]->GetInteractable() != nullptr) {
-						currentInteractable = propArray[i]->GetInteractable();
-						break;
+						if (worldPlayerPtr->GetPosition().DistanceToOther(propArray[i]->GetPosition()) <= worldPlayerPtr->interactionRange) {
+							currentInteractable = propArray[i]->GetInteractable();
+							break;
+						}
 					}
 				}
 			}

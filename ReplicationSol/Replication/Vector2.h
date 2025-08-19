@@ -15,6 +15,10 @@ public:
 	void Sety(int y);
 
 	Vector2 AddToVector2(Vector2 add);
+	Vector2 SubtractToVector2(Vector2 Subtract);
+
+	float DistanceToOther(Vector2 Other);
+
 
 };
 
