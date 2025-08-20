@@ -52,6 +52,12 @@ void DialogueInteractable::Render()
 
 	const int dialogueStartTop = 20;
 	const int dialogueStartLeft = 6;
+	const int dialogueStartRight = 75;
+	const int dialogueStartDown = 25;
+
+	for (int i = dialogueStartTop; i < dialogueStartDown - 1; i++)
+		for (int j = dialogueStartLeft - 1; j < dialogueStartRight; j++)
+			screenPtr->RenderCharacter(' ', j, i);
 
 	for (int j = 0; j < dialogueArray[currentInteractionIndex].length(); j++)
 		screenPtr->RenderCharacter(dialogueArray[currentInteractionIndex].at(j), dialogueStartLeft + j, dialogueStartTop);

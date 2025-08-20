@@ -25,28 +25,20 @@ GameStateWorld::GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValue
 	for (int i = 0; i < MAX_PROPS; i++)
 		propArray[i] = nullptr;
 
-	std::string akawkd =
-R"(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                                                                   |       /   X
-                              _________                            |      |    X
-                             |        |                            |      |    X
-                              |        |                           |   __ |    X
-                               |        |                           \ |  \|    X
-                                |        |                           \|   \    X
-                                 |________|                           |    \   X
-                                                                      |     \  X
-XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
-          X        X               X        X               X        X          
-          X        X               X        X               X        X          
-     XXXXXX        XXXXXX     XXXXXX        XXXXXX     XXXXXX        XXXXXX     
-     X                  X     X                  X     X                  X     
-     X                  X     X                  X     X                  X     
-     X                  X     X                  X     X                  X     
-     X                  X     X                  X     X                  X     
-     XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX
+	std::string rubble =
+R"(|       /
+|      |
+|      |
+|   __ |
+|  \|
+|   \
+|    \
+|     \
 )";
 
-	SpawnProp(new Prop(screenPtr, Vector2(5, 0), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT, nullptr, &akawkd));
+	SpawnProp(new Prop(screenPtr, Vector2(34, 15), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT, 
+		new DialogueInteractable(new std::string[2]{"2212", "asaaasf"}, screenPtr, &currentInteractable, 2),
+	&rubble));
 
 	/*
 	{
@@ -152,10 +144,13 @@ void GameStateWorld::GetInputs()
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
 
+			
 			*gameStateValuePtr = GAMESTATEVALUE::BATTLESTATE;
 			gameData->SetCurrentBattleData(new BattleData(EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT)));
 
 			return;
+			
+
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
 			bool hasFoundInteractable = false;
 

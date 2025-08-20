@@ -15,7 +15,6 @@ public:
 		DOWN_WALL,
 		RIGHT_WALL,
 		MAP_LAYOUT,
-		CUSTOM_PROP
 	};
 private:
 
