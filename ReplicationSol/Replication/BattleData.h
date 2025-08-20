@@ -11,6 +11,9 @@ public:
 	BattleData(EnemyData singleEnemy);
 	BattleData(EnemyData firstEnemy, EnemyData secondEnemy);
 
+	EnemyData* GetFirstEnemy();
+	EnemyData* GetSecondEnemy();
+
 	bool IsSingleBattle();
 };
 

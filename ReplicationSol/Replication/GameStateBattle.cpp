@@ -170,6 +170,42 @@ void GameStateBattle::RenderUI()
 		else
 			screenPtr->RenderDrawing(Vector2(75, 3), pedro);
 	}
+
+	//-----------------------------------------------------------------------------------------------
+
+	// Mutant Stats bar
+	for (int i = 7; i < 23; i++)
+		screenPtr->RenderCharacter('-', i, 18);
+	for (int i = 19; i < 22; i++)
+		screenPtr->RenderCharacter('|', 6, i);
+	for (int i = 19; i < 22; i++)
+		screenPtr->RenderCharacter('|', 23, i);
+	for (int i = 7; i < 23; i++)
+		screenPtr->RenderCharacter('-', i, 22);
+
+	screenPtr->RenderText(Vector2(9, 19), "Mutant");
+	screenPtr->RenderText(Vector2(9, 20), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
+	screenPtr->RenderText(Vector2(9, 21), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
+	
+	// Healer Stats bar
+	for (int i = 38; i < 54; i++)
+		screenPtr->RenderCharacter('-', i, 18);
+	for (int i = 19; i < 22; i++)
+		screenPtr->RenderCharacter('|',37, i);
+	for (int i = 19; i < 22; i++)
+		screenPtr->RenderCharacter('|', 54, i);
+	for (int i = 38; i < 54; i++)
+		screenPtr->RenderCharacter('-', i, 22);
+
+	screenPtr->RenderText(Vector2(40, 19), "Healer");
+	screenPtr->RenderText(Vector2(40, 20), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
+	screenPtr->RenderText(Vector2(40, 21), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
+
+
+
+
+
+
 }
 
 GAMESTATEVALUE GameStateBattle::GetGameStateValue()

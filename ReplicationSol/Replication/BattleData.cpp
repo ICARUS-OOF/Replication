@@ -16,6 +16,16 @@ BattleData::BattleData(EnemyData firstEnemy, EnemyData secondEnemy) : BattleData
 	this->secondEnemy = &secondEnemy;
 }
 
+EnemyData* BattleData::GetFirstEnemy()
+{
+	return firstEnemy;
+}
+
+EnemyData* BattleData::GetSecondEnemy()
+{
+	return secondEnemy;
+}
+
 bool BattleData::IsSingleBattle()
 {
 	return this->secondEnemy == nullptr;
