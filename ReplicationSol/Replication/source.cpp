@@ -37,9 +37,11 @@ void PrintCharacter(std::string yourCharacter, int num)
 */
 
 int main(void) {
-    Game game;
+    Game* game = new Game();
 
-	game.GameLoop();
+	game->GameLoop();
+
+	delete game;
 
 	return 0;
 }

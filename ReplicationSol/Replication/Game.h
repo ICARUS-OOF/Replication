@@ -6,30 +6,25 @@
 #include "Prop.h"
 #include "Interactable.h";
 #include "DialogueInteractable.h";
+#include "GameState.h"
+#include "GameStateBattle.h"
+#include "GameStateWorld.h"
 
 class Game
 {
 private:
 	static const int pageRows = 25, pageCols = 80;
 
-	WorldPlayer* worldPlayerPtr;
 	Screen* screenPtr;
 
-	static const int MAX_PROPS = 100;
-	// An array of prop pointers
-	Prop* propArray[MAX_PROPS];
-
-	int propSpawnIndex = 0;
-
-	Interactable* currentInteractable;
+	GameState* currentGameState;
+	GameStateWorld gameStateWorld;
+	GameStateBattle gameStateBattle;
 
 public:
 	Game();
+
 	void GameLoop();
 	void DisplayWorld();
-	void GetInputs();
-	void RenderUI();
-
-	void SpawnProp(Prop* propPtr);
 };
 
