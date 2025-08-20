@@ -42,6 +42,11 @@ void Screen::ResizeScreen(Vector2 targetSize)
 	this->rows = targetSize.Gety();
 	this->cols = targetSize.Getx();
 
+
+	for (int i = 0; i < rows; i++)
+		delete[] chars[i];
+	delete[] chars;
+
 	chars = new char* [rows];
 	for (int i = 0; i < rows; i++)
 		chars[i] = new char[cols];
