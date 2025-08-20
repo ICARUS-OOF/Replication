@@ -186,6 +186,8 @@ void GameStateBattle::RenderUI()
 	screenPtr->RenderText(Vector2(9, 19), "Mutant");
 	screenPtr->RenderText(Vector2(9, 20), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
 	screenPtr->RenderText(Vector2(9, 21), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
+	screenPtr->RenderText(Vector2(6, 23), "ABT: 25% Chance to");
+	screenPtr->RenderText(Vector2(6, 24), "poison the player");
 	
 	// Healer Stats bar
 	for (int i = 38; i < 54; i++)
@@ -200,7 +202,8 @@ void GameStateBattle::RenderUI()
 	screenPtr->RenderText(Vector2(40, 19), "Healer");
 	screenPtr->RenderText(Vector2(40, 20), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
 	screenPtr->RenderText(Vector2(40, 21), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
-
+	screenPtr->RenderText(Vector2(37, 23), "ABT: Heals 3 hp to lowest");
+	screenPtr->RenderText(Vector2(37, 24), "enemy hp every turn");
 
 
 
