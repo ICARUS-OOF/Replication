@@ -18,5 +18,6 @@ public:
 	void RenderCharacter(const char targetChar, const int targetX, const int targetY);
 	void RenderText(Vector2 StartingPos, std::string Text);
 	Vector2 GetScreenSize() const;
+	void RenderDrawing(Vector2 StartingPos, const std::string text);
 };
 

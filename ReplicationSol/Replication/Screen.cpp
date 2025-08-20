@@ -1,6 +1,9 @@
 #include "Screen.h"
 
 #include <iostream>
+#include <vector>
+#include <sstream>
+#include <string>
 
 /// <summary>
 /// KAYDEN
@@ -84,4 +87,27 @@ void Screen::RenderText(Vector2 StartingPos, std::string Text)
 Vector2 Screen::GetScreenSize() const
 {
 	return Vector2(cols, rows);
+}
+
+/// <summary>
+/// KAYDEN
+/// 
+/// Render a drawing onto the screen
+/// </summary>
+/// <param name="StartingPos"></param>
+/// <param name="text"></param>
+void Screen::RenderDrawing(Vector2 StartingPos, const std::string text)
+{
+	std::vector<std::string> lines;
+	std::stringstream ss(text);
+	std::string line;
+
+	while (std::getline(ss, line, '\n')) {
+		lines.push_back(line);
+	}
+
+	for (int i = 0; i < lines.size(); i++)
+	{
+		RenderText(Vector2(StartingPos.Getx(), StartingPos.Gety() + i), lines.at(i));
+	}
 }
