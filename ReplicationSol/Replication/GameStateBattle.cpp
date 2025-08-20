@@ -27,7 +27,7 @@ void GameStateBattle::GetInputs()
 	{
 	//Attack
 	case '1':
-
+		currentBattleData->GetFirstEnemy()->DamageEnemy(2);
 		break;
 
 	//Abilities
@@ -42,7 +42,7 @@ void GameStateBattle::GetInputs()
 
 	//Flee
 	case '4':
-
+		std::cout << "Player Flee the battle" << std::endl;
 		break;
 
 

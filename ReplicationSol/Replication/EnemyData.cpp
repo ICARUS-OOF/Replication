@@ -24,6 +24,11 @@ int EnemyData::GetMaxHealth()
 	return maxhealth;
 }
 
+void EnemyData::DamageEnemy(int amt)
+{
+	health -= amt;
+}
+
 EnemyData::ENEMYTYPE EnemyData::GetEnemyType()
 {
 	return enemyType;
