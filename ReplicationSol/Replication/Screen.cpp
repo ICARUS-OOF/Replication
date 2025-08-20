@@ -1,5 +1,7 @@
 #include "Screen.h"
 
+#include <iostream>
+
 /// <summary>
 /// KAYDEN
 /// 
@@ -67,6 +69,12 @@ void Screen::RenderCharacter(const char targetChar, const int targetX, const int
 		return;
 
 	chars[targetY][targetX] = targetChar;
+}
+
+void Screen::RenderText(Vector2 StartingPos, std::string Text)
+{
+	for (int i = 0; i < Text.length(); i++)
+		RenderCharacter(Text.at(i), StartingPos.Getx() + i, StartingPos.Gety());
 }
 
 /// <summary>

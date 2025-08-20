@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include <string>
 
 class Screen
 {
@@ -14,7 +15,8 @@ public:
 	~Screen();
 	void ClearScreen();
 	char** GetChars();
-	void RenderCharacter(const char targetChar, const int targetRow, const int targetCol);
+	void RenderCharacter(const char targetChar, const int targetX, const int targetY);
+	void RenderText(Vector2 StartingPos, std::string Text);
 	Vector2 GetScreenSize() const;
 };
 

@@ -17,7 +17,7 @@ Game::Game() :
 screenPtr(new Screen(pageRows, pageCols)),
 gameStateWorld(screenPtr),
 gameStateBattle(screenPtr),
-currentGameState(&gameStateWorld)
+currentGameState(&gameStateBattle)
 
 
 {
