@@ -54,3 +54,23 @@ void PlayerStats::AddDefence(int amt)
 {
 	defence += amt;
 }
+
+int PlayerStats::GetHealth() const
+{
+	return health;
+}
+
+int PlayerStats::GetAttack() const
+{
+	return attack;
+}
+
+int PlayerStats::GetDefence() const
+{
+	return defence;
+}
+
+int PlayerStats::GetMaxHealth() const
+{
+	return maxhealth;
+}

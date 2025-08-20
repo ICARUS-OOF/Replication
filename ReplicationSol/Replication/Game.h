@@ -9,11 +9,15 @@
 #include "GameState.h"
 #include "GameStateBattle.h"
 #include "GameStateWorld.h"
+#include "PlayerStats.h"
 
 class Game
 {
 private:
 	Screen* screenPtr;
+
+
+	PlayerStats* playerStatsPtr;
 
 	GameState* currentGameState;
 	GameStateWorld gameStateWorld;

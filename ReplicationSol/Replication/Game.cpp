@@ -11,14 +11,11 @@
 
 
 
-Game::Game() : 
-
-
-screenPtr(new Screen(80, 25)),
-gameStateWorld(screenPtr),
-gameStateBattle(screenPtr)
-
-
+Game::Game() :
+	screenPtr(new Screen(80, 25)),
+	playerStatsPtr(new PlayerStats(20, 0, 0)),
+	gameStateWorld(GameStateWorld(screenPtr)),
+	gameStateBattle(GameStateBattle(screenPtr, playerStatsPtr))
 {
 	ChangeGameState(&gameStateBattle);
 }

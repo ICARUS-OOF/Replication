@@ -1,11 +1,13 @@
 #include "GameStateBattle.h"
 #include <conio.h>
 #include <iostream>
+#include <string>
 
-GameStateBattle::GameStateBattle(Screen* screenPtr)
+GameStateBattle::GameStateBattle(Screen* screenPtr, PlayerStats* playerStatsPtr)
 {
 	this->screenPtr = screenPtr;
 	this->gameStateScreenSize = Vector2(110, 35);
+	this->playerStatsPtr = playerStatsPtr;
 }
 
 void GameStateBattle::OnStateEnter()
@@ -15,7 +17,34 @@ void GameStateBattle::OnStateEnter()
 
 void GameStateBattle::GetInputs()
 {
-	_getch();
+	int option = _getch();
+	switch (option)
+	{
+	//Attack
+	case '1':
+
+		break;
+
+	//Abilities
+	case '2':
+
+		break;
+
+	//Items
+	case '3':
+
+		break;
+
+	//Flee
+	case '4':
+
+		break;
+
+
+
+	default:
+		break;
+	}
 }
 
 void GameStateBattle::RenderObjects()
@@ -66,14 +95,14 @@ void GameStateBattle::RenderUI()
 	for (int i = 65; i < 65 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 34);
 
-	// Player Health bar
+	// Player Stats bar
 	for (int i = 80; i < 110; i++)
 		screenPtr->RenderCharacter('-', i, 24);
 	for (int i = 25; i < 28; i++)
 		screenPtr->RenderCharacter('|', 80, i);
-	screenPtr->RenderText(Vector2(87, 25), "Health: ");
-	screenPtr->RenderText(Vector2(87, 26), "Attack: ");
-	screenPtr->RenderText(Vector2(87, 27), "Defense: ");
+	screenPtr->RenderText(Vector2(87, 25), "Health:  " + std::to_string(playerStatsPtr->GetHealth()) + " / " + std::to_string(playerStatsPtr->GetMaxHealth()));
+	screenPtr->RenderText(Vector2(87, 26), "Attack:  " + std::to_string(playerStatsPtr->GetAttack()));
+	screenPtr->RenderText(Vector2(87, 27), "Defense: " + std::to_string(playerStatsPtr->GetDefence()));
 
 	//JUNSHEN - Pedro DISPLAY ASCII Art
 	{
