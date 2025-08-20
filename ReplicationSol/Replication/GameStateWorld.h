@@ -22,21 +22,8 @@ public:
 	GameStateWorld(Screen* screenPtr);
 	void SpawnProp(Prop* propPtr);
 
+	void OnStateEnter();
 	void GetInputs();
 	void RenderObjects();
 	void RenderUI();
 };
-
-/*
-* ---GAME---
-* GameState currentGameState
-* WorldGameState worldState
-* BattleGameState battleState
-* 
-* 
-* class GameState {
-* 
-* 
-* currentGameState = worldState
-
-*/

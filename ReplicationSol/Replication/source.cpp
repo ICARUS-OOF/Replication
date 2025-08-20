@@ -37,6 +37,7 @@ void PrintCharacter(std::string yourCharacter, int num)
 */
 
 int main(void) {
+
     Game* game = new Game();
 
 	game->GameLoop();

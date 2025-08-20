@@ -4,6 +4,12 @@
 GameStateBattle::GameStateBattle(Screen* screenPtr)
 {
 	this->screenPtr = screenPtr;
+	this->gameStateScreenSize = Vector2(110, 35);
+}
+
+void GameStateBattle::OnStateEnter()
+{
+	screenPtr->ResizeScreen(gameStateScreenSize);
 }
 
 void GameStateBattle::GetInputs()

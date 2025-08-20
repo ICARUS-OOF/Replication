@@ -37,6 +37,16 @@ Screen::~Screen()
 	delete[] chars;
 }
 
+void Screen::ResizeScreen(Vector2 targetSize)
+{
+	this->rows = targetSize.Gety();
+	this->cols = targetSize.Getx();
+
+	chars = new char* [rows];
+	for (int i = 0; i < rows; i++)
+		chars[i] = new char[cols];
+}
+
 /// <summary>
 /// KAYDEN
 /// 

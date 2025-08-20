@@ -11,6 +11,8 @@ GameStateWorld::GameStateWorld(Screen* screenPtr)
 {
 	this->screenPtr = screenPtr;
 
+	gameStateScreenSize = Vector2(80, 25);
+
 
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(65, 14));
@@ -73,6 +75,11 @@ void GameStateWorld::SpawnProp(Prop* propPtr)
 
 	propArray[propSpawnIndex] = propPtr;
 	propSpawnIndex++;
+}
+
+void GameStateWorld::OnStateEnter()
+{
+	screenPtr->ResizeScreen(gameStateScreenSize);
 }
 
 void GameStateWorld::GetInputs()

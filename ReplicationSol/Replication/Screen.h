@@ -13,6 +13,7 @@ private:
 public:
 	Screen(const int rows, const int cols);
 	~Screen();
+	void ResizeScreen(Vector2 targetSize);
 	void ClearScreen();
 	char** GetChars();
 	void RenderCharacter(const char targetChar, const int targetX, const int targetY);

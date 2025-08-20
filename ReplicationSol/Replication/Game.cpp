@@ -14,14 +14,13 @@
 Game::Game() : 
 
 
-screenPtr(new Screen(pageRows, pageCols)),
+screenPtr(new Screen(80, 25)),
 gameStateWorld(screenPtr),
-gameStateBattle(screenPtr),
-currentGameState(&gameStateBattle)
+gameStateBattle(screenPtr)
 
 
 {
-
+	ChangeGameState(&gameStateBattle);
 }
 
 /// <summary>
@@ -50,14 +49,18 @@ void Game::DisplayWorld()
 	currentGameState->RenderObjects();
 	currentGameState->RenderUI();
 
+	Vector2 screenSize = screenPtr->GetScreenSize();
+	int cols = screenSize.Getx();
+	int rows = screenSize.Gety();
+
 	//Top Border
 	std::cout << '+';
-	for (int i = 0; i < pageCols; i++)
+	for (int i = 0; i < cols; i++)
 		std::cout << '-';
 	std::cout << '+';
 
 	//World Content
-	for (int i = 0; i < pageRows; i++)
+	for (int i = 0; i < rows; i++)
 	{
 		//Leave a new line
 		std::cout << std::endl;
@@ -66,7 +69,7 @@ void Game::DisplayWorld()
 		std::cout << '|';
 
 		//Display each character
-		for (int j = 0; j < pageCols; j++)
+		for (int j = 0; j < cols; j++)
 			std::cout << screenPtr->GetChars()[i][j];
 
 		//Right Border
@@ -78,9 +81,15 @@ void Game::DisplayWorld()
 
 	//Bottom border
 	std::cout << '+';
-	for (int i = 0; i < pageCols; i++)
+	for (int i = 0; i < cols; i++)
 		std::cout << '-';
 	std::cout << '+';
 
 	std::cout << std::endl;
+}
+
+void Game::ChangeGameState(GameState* targetState)
+{
+	currentGameState = targetState;
+	currentGameState->OnStateEnter();
 }
