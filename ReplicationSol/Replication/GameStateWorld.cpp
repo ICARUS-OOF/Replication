@@ -25,6 +25,30 @@ GameStateWorld::GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValue
 	for (int i = 0; i < MAX_PROPS; i++)
 		propArray[i] = nullptr;
 
+	std::string akawkd =
+R"(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                                                   |       /   X
+                              _________                            |      |    X
+                             |        |                            |      |    X
+                              |        |                           |   __ |    X
+                               |        |                           \ |  \|    X
+                                |        |                           \|   \    X
+                                 |________|                           |    \   X
+                                                                      |     \  X
+XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
+          X        X               X        X               X        X          
+          X        X               X        X               X        X          
+     XXXXXX        XXXXXX     XXXXXX        XXXXXX     XXXXXX        XXXXXX     
+     X                  X     X                  X     X                  X     
+     X                  X     X                  X     X                  X     
+     X                  X     X                  X     X                  X     
+     X                  X     X                  X     X                  X     
+     XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX
+)";
+
+	SpawnProp(new Prop(screenPtr, Vector2(0, 0), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT, nullptr, &akawkd));
+
+	/*
 	{
 		// Creating prop Wall in index of prop array
 		SpawnProp(new Prop(screenPtr, Vector2(0, 0), Vector2(80, 1), Prop::PROPTYPE::RIGHT_WALL));
@@ -65,6 +89,7 @@ GameStateWorld::GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValue
 			screenPtr, &currentInteractable,
 			3)));
 	}
+	*/
 }
 
 
@@ -161,13 +186,13 @@ void GameStateWorld::GetInputs()
 
 void GameStateWorld::RenderObjects()
 {
-	worldPlayerPtr->RenderCharacterDisplay();
-
 	for (int i = 0; i < MAX_PROPS; i++)
 	{
 		if (propArray[i] != nullptr)
 			propArray[i]->RenderCharacterDisplay();
 	}
+
+	worldPlayerPtr->RenderCharacterDisplay();
 }
 
 void GameStateWorld::RenderUI()

@@ -78,8 +78,14 @@ void Game::DisplayWorld()
 		std::cout << '|';
 
 		//Display each character
-		for (int j = 0; j < cols; j++)
-			std::cout << screenPtr->GetChars()[i][j];
+		for (int j = 0; j < cols; j++) {
+			if ((int)screenPtr->GetChars()[i][j] != 9) {
+				std::cout << screenPtr->GetChars()[i][j];
+			}
+			else {
+				std::cout << ' ';
+			}
+		}
 
 		//Right Border
 		std::cout << '|';

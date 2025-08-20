@@ -1,14 +1,26 @@
 #include "Prop.h"
 #include "Screen.h"
 #include <iostream>
+#include <sstream>
+#include <vector>
 
-Prop::Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox, PROPTYPE propType, Interactable* interactable)
+Prop::Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox, PROPTYPE propType, Interactable* interactable, std::string* mapLayoutString)
 {
 	this->screenPtr = screenPtr;
 	this->position = position;
 	this->boundingBox = boundingBox;
 	this->propType = propType;
 	this->interactable = interactable;
+	this->mapLayoutString = *mapLayoutString;
+
+	if (mapLayoutString != nullptr) {
+		std::stringstream ss(*mapLayoutString);
+		std::string line;
+
+		while (std::getline(ss, line, '\n')) {
+			mapLayoutStringLines.push_back(line);
+		}
+	}
 }
 
 Prop::~Prop()
@@ -79,6 +91,9 @@ void Prop::RenderCharacterDisplay()
 
 		break;
 
+	case PROPTYPE::MAP_LAYOUT:
+		screenPtr->RenderDrawing(Vector2(0,0), mapLayoutString);
+		break;
 
 
 	default:
@@ -88,10 +103,30 @@ void Prop::RenderCharacterDisplay()
 
 bool Prop::IsOverlapping(Vector2 otherPosition)
 {
-	bool isOverlappingX = otherPosition.Getx() >= position.Getx() && otherPosition.Getx() <= (position.Getx() + boundingBox.Getx() - 1);
-	bool isOverlappingY = otherPosition.Gety() >= position.Gety() && otherPosition.Gety() <= (position.Gety() + boundingBox.Gety() - 1);
+	bool isOverlappingX = false;
+	bool isOverlappingY = false;
+	switch (propType)
+	{
+	case Prop::WALL:
+	case Prop::DOWN_WALL:
+	case Prop::RIGHT_WALL:
+		isOverlappingX = otherPosition.Getx() >= position.Getx() && otherPosition.Getx() <= (position.Getx() + boundingBox.Getx() - 1);
+		isOverlappingY = otherPosition.Gety() >= position.Gety() && otherPosition.Gety() <= (position.Gety() + boundingBox.Gety() - 1);
 
-	return isOverlappingX && isOverlappingY;
+		return isOverlappingX && isOverlappingY;
+	case Prop::MAP_LAYOUT:
+		for (int i = 0; i < mapLayoutStringLines.size(); i++)
+			for (int j = 0; j < mapLayoutStringLines[i].size(); j++)
+				if (otherPosition.IsEqualTo(Vector2(position.Getx() + j, position.Gety() + i)))
+					if (mapLayoutStringLines[i][j] != ' ')
+						return true;
+		break;
+
+	default:
+		return true;
+	}
+
+	return false;
 }
 
 Interactable* Prop::GetInteractable() const

@@ -11,6 +11,11 @@ void Vector2::Sety(int y)
     this->y = y;
 }
 
+bool Vector2::IsEqualTo(Vector2 other)
+{
+	return other.x == x && other.y == y;
+}
+
 Vector2 Vector2::AddToVector2(Vector2 add)
 {
 	return Vector2(x + add.x, y + add.y);
