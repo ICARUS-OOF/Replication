@@ -31,39 +31,39 @@ void GameStateBattle::RenderUI()
 	for (int i = 0; i < screenSize.Getx(); i++)
 		screenPtr->RenderCharacter('_', i, 28);
 	// Attack
-	for (int i = 38; i < 38 + optionBoxLength; i++)
+	for (int i = 34; i < 34 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 29);
-	screenPtr->RenderCharacter('|', 37, 29+1);
-	screenPtr->RenderText(Vector2(39, 30), "1:ATTACK");
-	screenPtr->RenderCharacter('|', 49, 29+1);
-	for (int i = 38; i < 38 + optionBoxLength; i++)
+	screenPtr->RenderCharacter('|', 33, 29+1);
+	screenPtr->RenderText(Vector2(35, 30), "1:ATTACK");
+	screenPtr->RenderCharacter('|', 45, 29+1);
+	for (int i = 34; i < 34 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 31);
 
 	// Item
-	for (int i = 38; i < 38 + optionBoxLength; i++)
+	for (int i = 34; i < 34 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 32);
-	screenPtr->RenderCharacter('|', 37, 32+1);
-	screenPtr->RenderText(Vector2(39, 33), "3:ITEM");
-	screenPtr->RenderCharacter('|', 49, 32+1);
-	for (int i = 38; i < 38 + optionBoxLength; i++)
+	screenPtr->RenderCharacter('|', 33, 32+1);
+	screenPtr->RenderText(Vector2(35, 33), "3:ITEM");
+	screenPtr->RenderCharacter('|', 45, 32+1);
+	for (int i = 34; i < 34 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 34);
 
 	// Ability
-	for (int i = 72; i < 72 + optionBoxLength; i++)
+	for (int i = 65; i < 65 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 29);
-	screenPtr->RenderCharacter('|', 71, 29+1);
-	screenPtr->RenderText(Vector2(73, 30), "2:ABILITY");
-	screenPtr->RenderCharacter('|', 83, 29+1);
-	for (int i = 72; i < 72 + optionBoxLength; i++)
+	screenPtr->RenderCharacter('|', 64, 29+1);
+	screenPtr->RenderText(Vector2(66, 30), "2:ABILITY");
+	screenPtr->RenderCharacter('|', 76, 29+1);
+	for (int i = 65; i < 65 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 31);
 
 	// Flee
-	for (int i = 72; i < 72 + optionBoxLength; i++)
+	for (int i = 65; i < 65 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 32);
-	screenPtr->RenderCharacter('|', 71, 32 + 1);
-	screenPtr->RenderText(Vector2(73, 33), "4:FLEE");
-	screenPtr->RenderCharacter('|', 83, 32 + 1);
-	for (int i = 72; i < 72 + optionBoxLength; i++)
+	screenPtr->RenderCharacter('|', 64, 32 + 1);
+	screenPtr->RenderText(Vector2(66, 33), "4:FLEE");
+	screenPtr->RenderCharacter('|', 76, 32 + 1);
+	for (int i = 65; i < 65 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 34);
 
 	// Player Health bar
