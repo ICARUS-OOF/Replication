@@ -68,3 +68,12 @@ void Screen::RenderCharacter(const char targetChar, const int targetX, const int
 
 	chars[targetY][targetX] = targetChar;
 }
+
+/// <summary>
+/// Gets screen size in the form of a vector2
+/// </summary>
+/// <returns></returns>
+Vector2 Screen::GetScreenSize() const
+{
+	return Vector2(cols, rows);
+}

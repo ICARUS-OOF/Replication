@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Vector2.h"
+
 class Screen
 {
 private:
@@ -13,5 +15,6 @@ public:
 	void ClearScreen();
 	char** GetChars();
 	void RenderCharacter(const char targetChar, const int targetRow, const int targetCol);
+	Vector2 GetScreenSize() const;
 };
 

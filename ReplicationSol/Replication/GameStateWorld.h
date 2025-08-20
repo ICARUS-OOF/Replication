@@ -34,7 +34,8 @@ public:
 * BattleGameState battleState
 * 
 * 
-* GameState
+* class GameState {
+* 
 * 
 * currentGameState = worldState
 
