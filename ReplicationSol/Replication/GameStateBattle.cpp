@@ -1,5 +1,6 @@
 #include "GameStateBattle.h"
 #include <conio.h>
+#include <iostream>
 
 GameStateBattle::GameStateBattle(Screen* screenPtr)
 {
@@ -28,7 +29,7 @@ void GameStateBattle::RenderUI()
 	const int optionBoxLength = 11;
 
 	for (int i = 0; i < screenSize.Getx(); i++)
-		screenPtr->RenderCharacter('_', i, 17);
+		screenPtr->RenderCharacter('_', i, 18);
 	// Attack
 	for (int i = 19; i < 19 + optionBoxLength; i++)
 		screenPtr->RenderCharacter('-', i, 19);
@@ -49,12 +50,12 @@ void GameStateBattle::RenderUI()
 
 	// Ability
 	for (int i = 47; i < 47 + optionBoxLength; i++)
-		screenPtr->RenderCharacter('-', i, 18);
-	screenPtr->RenderCharacter('|', 46, 18+1);
-	screenPtr->RenderText(Vector2(48, 19), "2:ABILITY");
-	screenPtr->RenderCharacter('|', 58, 18+1);
+		screenPtr->RenderCharacter('-', i, 19);
+	screenPtr->RenderCharacter('|', 46, 19+1);
+	screenPtr->RenderText(Vector2(48, 20), "2:ABILITY");
+	screenPtr->RenderCharacter('|', 58, 19+1);
 	for (int i = 47; i < 47 + optionBoxLength; i++)
-		screenPtr->RenderCharacter('-', i, 20);
+		screenPtr->RenderCharacter('-', i, 21);
 
 	// Flee
 	for (int i = 47; i < 47 + optionBoxLength; i++)
@@ -66,13 +67,39 @@ void GameStateBattle::RenderUI()
 		screenPtr->RenderCharacter('-', i, 24);
 
 	// Player Health bar
-	for (int i = 46; i < 78; i++)
-		screenPtr->RenderCharacter('-', i, 12);
-	for (int i = 13; i < 16; i++)
-		screenPtr->RenderCharacter('|', 46, i);
-	for (int i = 46; i < 78; i++)
-		screenPtr->RenderCharacter('-', i, 16);
-	screenPtr->RenderText(Vector2(57, 13), "Health: ");
-	screenPtr->RenderText(Vector2(57, 14), "Attack: ");
-	screenPtr->RenderText(Vector2(57, 15), "Defense: ");
+	for (int i = 48; i < 80; i++)
+		screenPtr->RenderCharacter('-', i, 14);
+	for (int i = 15; i < 18; i++)
+		screenPtr->RenderCharacter('|', 48, i);
+	screenPtr->RenderText(Vector2(57, 15), "Health: ");
+	screenPtr->RenderText(Vector2(57, 16), "Attack: ");
+	screenPtr->RenderText(Vector2(57, 17), "Defense: ");
+
+
+	screenPtr->RenderDrawing(Vector2(0, 0),
+
+		std::string("&&&") + "\n" +
+		"      && &&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "\n" +
+		"&&&&&&&&&&&.... && &&&......&&&&&&&&&&&&" + "\n" +
+		"&&&&..&............&&&........ && &&&.. && &&" + "\n" +
+		"&&.... && &.. && &&&&&&.. && &&&&&&&.. && &.... &&" + "\n" +
+		"&&......&......&&.... & ..&&......&......&&" + "\n" +
+		"&&......&......&&..&....&&......&......&&" + "\n" +
+		"&&&&....&..........&............&.... && &&" + "\n" +
+		"&&&&..&.......... && &..........&...&&&&" + "\n" +
+		"&&&&....................... && &&" + "\n" +
+		"&&....................... &&" + "\n" +
+		"&&&&........ && &........ && &&" + "\n" +
+		"&&&&..&&....... && .. && &&" + "\n" +
+		"&&&&&&.... & .. && &&&&" + "\n" +
+		"&&&&&&&&&&&"
+	);
 }
