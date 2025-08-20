@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Screen.h"
+#include "GAMESTATEVALUE.h"
 
 class GameState
 {
@@ -13,5 +14,6 @@ public:
 	virtual void GetInputs() = 0;
 	virtual void RenderObjects() = 0;
 	virtual void RenderUI() = 0;
+	virtual GAMESTATEVALUE GetGameStateValue() = 0;
 };
 

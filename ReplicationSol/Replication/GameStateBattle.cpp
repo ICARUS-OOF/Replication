@@ -1,18 +1,23 @@
 #include "GameStateBattle.h"
+#include "GameData.h"
 #include <conio.h>
 #include <iostream>
 #include <string>
 
-GameStateBattle::GameStateBattle(Screen* screenPtr, PlayerStats* playerStatsPtr)
+GameStateBattle::GameStateBattle(Screen* screenPtr, PlayerStats* playerStatsPtr, GAMESTATEVALUE* gameStateValuePtr, GameData* gameData)
 {
 	this->screenPtr = screenPtr;
 	this->gameStateScreenSize = Vector2(110, 35);
 	this->playerStatsPtr = playerStatsPtr;
+	this->gameStateValuePtr = gameStateValuePtr;
+	this->gameData = gameData;
 }
 
 void GameStateBattle::OnStateEnter()
 {
 	screenPtr->ResizeScreen(gameStateScreenSize);
+
+	currentBattleData = gameData->GetCurrentBattleData();
 }
 
 void GameStateBattle::GetInputs()
@@ -165,4 +170,9 @@ void GameStateBattle::RenderUI()
 		else
 			screenPtr->RenderDrawing(Vector2(75, 3), pedro);
 	}
+}
+
+GAMESTATEVALUE GameStateBattle::GetGameStateValue()
+{
+	return GAMESTATEVALUE::BATTLESTATE;
 }

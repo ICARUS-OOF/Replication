@@ -13,11 +13,19 @@
 
 Game::Game() :
 	screenPtr(new Screen(80, 25)),
+	gameData(new GameData()),
 	playerStatsPtr(new PlayerStats(20, 0, 0)),
-	gameStateWorld(GameStateWorld(screenPtr)),
-	gameStateBattle(GameStateBattle(screenPtr, playerStatsPtr))
+	gameStateWorld(GameStateWorld(screenPtr, &gameStateValue, gameData)),
+	gameStateBattle(GameStateBattle(screenPtr, playerStatsPtr, &gameStateValue, gameData))
 {
-	ChangeGameState(&gameStateBattle);
+	UpdateGameStateValue();
+}
+
+Game::~Game()
+{
+	delete screenPtr;
+	delete playerStatsPtr;
+	delete gameData;
 }
 
 /// <summary>
@@ -30,6 +38,10 @@ void Game::GameLoop()
 	while (true) {
 		DisplayWorld();
 		currentGameState->GetInputs();
+
+		if (currentGameState->GetGameStateValue() != gameStateValue) {
+			UpdateGameStateValue();
+		}
 	}
 }
 
@@ -85,8 +97,23 @@ void Game::DisplayWorld()
 	std::cout << std::endl;
 }
 
-void Game::ChangeGameState(GameState* targetState)
+void Game::UpdateGameStateValue()
 {
+	GameState* targetState;
+
+	switch (gameStateValue)
+	{
+	case WORLDSTATE:
+		targetState = &gameStateWorld;
+		break;
+	case BATTLESTATE:
+		targetState = &gameStateBattle;
+		break;
+	default:
+		targetState = &gameStateWorld;
+		break;
+	}
+
 	currentGameState = targetState;
 	currentGameState->OnStateEnter();
 }

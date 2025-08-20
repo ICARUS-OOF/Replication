@@ -10,14 +10,18 @@
 #include "GameStateBattle.h"
 #include "GameStateWorld.h"
 #include "PlayerStats.h"
+#include "GameData.h"
+#include "GAMESTATEVALUE.h"
 
 class Game
 {
 private:
 	Screen* screenPtr;
 
-
+	GAMESTATEVALUE gameStateValue;
 	PlayerStats* playerStatsPtr;
+
+	GameData* gameData;
 
 	GameState* currentGameState;
 	GameStateWorld gameStateWorld;
@@ -25,9 +29,10 @@ private:
 
 public:
 	Game();
+	~Game();
 
 	void GameLoop();
 	void DisplayWorld();
-	void ChangeGameState(GameState* targetState);
+	void UpdateGameStateValue();
 };
 

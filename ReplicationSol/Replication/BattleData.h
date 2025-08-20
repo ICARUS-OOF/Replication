@@ -2,9 +2,15 @@
 #include "EnemyData.h"
 class BattleData
 {
-public:
-	BattleData(EnemyData* enemyArray);
+private:
+	EnemyData* firstEnemy;
+	EnemyData* secondEnemy;
 
-	EnemyData* enemyArray;
+public:
+	BattleData();
+	BattleData(EnemyData singleEnemy);
+	BattleData(EnemyData firstEnemy, EnemyData secondEnemy);
+
+	bool IsSingleBattle();
 };
 

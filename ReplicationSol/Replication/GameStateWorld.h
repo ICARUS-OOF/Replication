@@ -5,6 +5,8 @@
 #include "GameState.h"
 #include "Prop.h"
 #include "WorldPlayer.h"
+#include "GAMESTATEVALUE.h"
+#include "GameData.h"
 
 class GameStateWorld : public GameState
 {
@@ -18,12 +20,18 @@ private:
 	int propSpawnIndex = 0;
 
 	Interactable* currentInteractable;
+	GameData* gameData;
+
+	GAMESTATEVALUE* gameStateValuePtr;
+
 public:
-	GameStateWorld(Screen* screenPtr);
+	GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValuePtr, GameData* gameData);
 	void SpawnProp(Prop* propPtr);
 
 	void OnStateEnter();
 	void GetInputs();
 	void RenderObjects();
 	void RenderUI();
+
+	GAMESTATEVALUE GetGameStateValue();
 };
