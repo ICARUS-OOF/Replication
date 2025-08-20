@@ -117,6 +117,7 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 	{ "This is lne 1!", "This is line 2!", "This is line 3!"}, //Step 5. Define the lines
 	screenPtr, &currentInteractable,
 	3), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
 	&rubble)); //Step 7. Include the string in step 1 here
 }
 
