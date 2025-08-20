@@ -30,7 +30,7 @@ GameStateWorld::GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValue
 
 
 
-
+	SetLevelData();
 
 
 
@@ -128,20 +128,7 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 ///OFFICIAL SETTING OF LEVEL PROP DATA
 void GameStateWorld::SetLevelData()
 {
-	std::string rubble =
-R"(|       /
-|      |
-|      |
-|   __ |
-|  \|
-|   \
-|    \
-|     \
-)";
 
-	SpawnProp(new Prop(screenPtr, Vector2(34, 15), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT,
-		new DialogueInteractable(new std::string[2]{ "2212", "asaaasf" }, screenPtr, &currentInteractable, 2),
-		&rubble));
 }
 
 
@@ -204,11 +191,11 @@ void GameStateWorld::GetInputs()
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
 
-			
+			/*
 			*gameStateValuePtr = GAMESTATEVALUE::BATTLESTATE;
 			gameData->SetCurrentBattleData(new BattleData(EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT)));
 
-			return;
+			return;*/
 			
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
