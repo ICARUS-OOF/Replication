@@ -92,7 +92,7 @@ void Prop::RenderCharacterDisplay()
 		break;
 
 	case PROPTYPE::MAP_LAYOUT:
-		screenPtr->RenderDrawing(Vector2(0,0), mapLayoutString);
+		screenPtr->RenderDrawing(position, mapLayoutString);
 		break;
 
 

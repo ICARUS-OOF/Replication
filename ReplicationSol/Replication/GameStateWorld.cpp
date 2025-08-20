@@ -46,7 +46,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
      XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX
 )";
 
-	SpawnProp(new Prop(screenPtr, Vector2(0, 0), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT, nullptr, &akawkd));
+	SpawnProp(new Prop(screenPtr, Vector2(5, 0), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT, nullptr, &akawkd));
 
 	/*
 	{
