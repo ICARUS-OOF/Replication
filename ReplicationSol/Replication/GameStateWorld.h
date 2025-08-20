@@ -26,6 +26,8 @@ private:
 
 public:
 	GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValuePtr, GameData* gameData);
+	void DOCUMENTATION_DO_NOT_CALL();
+	void SetLevelData();
 	void SpawnProp(Prop* propPtr);
 
 	void OnStateEnter();

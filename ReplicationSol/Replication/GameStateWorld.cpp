@@ -25,20 +25,19 @@ GameStateWorld::GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValue
 	for (int i = 0; i < MAX_PROPS; i++)
 		propArray[i] = nullptr;
 
-	std::string rubble =
-R"(|       /
-|      |
-|      |
-|   __ |
-|  \|
-|   \
-|    \
-|     \
-)";
 
-	SpawnProp(new Prop(screenPtr, Vector2(34, 15), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT, 
-		new DialogueInteractable(new std::string[2]{"2212", "asaaasf"}, screenPtr, &currentInteractable, 2),
-	&rubble));
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/*
 	{
@@ -82,6 +81,66 @@ R"(|       /
 			3)));
 	}
 	*/
+}
+
+/// <summary>
+/// KAYDEN
+/// 
+/// TUTORIAL ON HOW TO CREATE A LEVEL PROPS
+/// </summary>
+void GameStateWorld::DOCUMENTATION_DONOTCALL()
+{
+	//-----------------PROP WITH DIALOGUE OR NO  DIALOGUE-------------
+	//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+	//        And define the string in this format
+	std::string rubble =
+		R"(|       /
+|      |
+|      |
+|   __ |
+|  \|
+|   \
+|    \
+|     \
+)";
+
+	//Step 2. Spawn in the prop
+	SpawnProp(                
+	new Prop(screenPtr,
+		Vector2(34, 15), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+		Vector2(1, 1),
+		Prop::PROPTYPE::MAP_LAYOUT,
+
+	//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+	new DialogueInteractable(
+	new std::string[3] //Step 4. Define the NUMBER OF LINES in []
+	{ "This is lne 1!", "This is line 2!", "This is line 3!"}, //Step 5. Define the lines
+	screenPtr, &currentInteractable,
+	3), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+	&rubble)); //Step 7. Include the string in step 1 here
+}
+
+
+/// <summary>
+/// KAYDEN
+/// 
+///OFFICIAL SETTING OF LEVEL PROP DATA
+void GameStateWorld::SetLevelData()
+{
+	std::string rubble =
+R"(|       /
+|      |
+|      |
+|   __ |
+|  \|
+|   \
+|    \
+|     \
+)";
+
+	SpawnProp(new Prop(screenPtr, Vector2(34, 15), Vector2(1, 1), Prop::PROPTYPE::MAP_LAYOUT,
+		new DialogueInteractable(new std::string[2]{ "2212", "asaaasf" }, screenPtr, &currentInteractable, 2),
+		&rubble));
 }
 
 
