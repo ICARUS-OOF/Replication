@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 class Vector2
 {
 private:
@@ -21,6 +23,6 @@ public:
 
 	float DistanceToOther(Vector2 Other);
 
-
+	std::string Vector2ToString() const;
 };
 

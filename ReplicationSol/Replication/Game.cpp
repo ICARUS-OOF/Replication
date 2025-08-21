@@ -16,7 +16,8 @@ Game::Game() :
 	screenPtr(new Screen(80, 25)),
 	gameData(new GameData(screenPtr, GAMESTATEVALUE::WORLDSTATE, new PlayerStats(20, 0, 0, 9))),
 	gameStateWorld(GameStateWorld(gameData)),
-	gameStateBattle(GameStateBattle(gameData))
+	gameStateBattle(GameStateBattle(gameData)),
+	lastScreenSize(screenPtr->GetScreenSize())
 {
 	//hide the cursor
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -24,6 +25,8 @@ Game::Game() :
 	GetConsoleCursorInfo(hOut, &cursorInfo);
 	cursorInfo.bVisible = FALSE;
 	SetConsoleCursorInfo(hOut, &cursorInfo);
+
+	lastViewportSize = GetConsoleViewportSize();
 
 	UpdateGameStateValue();
 }
@@ -51,6 +54,7 @@ void Game::GameLoop()
 	}
 }
 
+
 //KAYDEN
 //Displays the world view on the console
 void Game::DisplayWorld()
@@ -65,6 +69,15 @@ void Game::DisplayWorld()
 	Vector2 screenSize = screenPtr->GetScreenSize();
 	int cols = screenSize.Getx();
 	int rows = screenSize.Gety();
+
+	if (!lastScreenSize.IsEqualTo(screenSize))
+		system("cls");
+	lastScreenSize = screenSize;
+
+	Vector2 currentViewportSize = GetConsoleViewportSize();
+	if (!lastViewportSize.IsEqualTo(currentViewportSize))
+		system("cls");
+	lastViewportSize = currentViewportSize;
 
 	/*
 	{
@@ -110,6 +123,7 @@ void Game::DisplayWorld()
 	}
 	*/
 	{
+		//String stream to collate all character data into a single string to print efficiently
 		std::stringstream ss;
 		//Top Border
 		ss << '+';
@@ -151,7 +165,6 @@ void Game::DisplayWorld()
 
 		ss << std::endl;
 
-
 		HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleCursorPosition(hOut, { 0, 0 });
 		std::cout << ss.str();
@@ -177,4 +190,33 @@ void Game::UpdateGameStateValue()
 
 	currentGameState = targetState;
 	currentGameState->OnStateEnter();
+}
+
+
+/// <summary>
+/// KAYDEN
+/// 
+/// Gets the actual console's window viewport size, not the game's
+/// </summary>
+/// <returns></returns>
+Vector2 Game::GetConsoleViewportSize()
+{
+	//Get standard ouput handler
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//Contains info about the console screen
+	CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
+
+	//If successful in obtaining the csbi
+	if (GetConsoleScreenBufferInfo(hOut, &bufferInfo))
+	{
+		//Obtain the width and height of window
+		int windowWidth = bufferInfo.srWindow.Right - bufferInfo.srWindow.Left + 1; //Difference from left ro right - 1 unit
+		int windowHeight = bufferInfo.srWindow.Bottom - bufferInfo.srWindow.Top + 1; //Difference from top to bottom - 1 unit
+
+		//Return a vector containing these 2
+		return Vector2(windowWidth, windowHeight);
+	}
+
+	//If could not obtain buffer Info, return 0,0 failure
+	return Vector2(0, 0);
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <thread>
 #include <string>
+#include <conio.h>
 
 #include "Game.h"
 
@@ -36,9 +37,32 @@ void PrintCharacter(std::string yourCharacter, int num)
 -----------------------------------------------------------
 */
 
+
+
+
+
+/// <summary>
+/// KAYDEN
+/// 
+/// Maximise console window
+/// </summary>
+void MaximiseConsole() {
+	//Get the "Handle to a Window" (Basically getting a pointer to the window
+	HWND hwnd = GetConsoleWindow();
+	HWND owner = GetWindow(hwnd, GW_OWNER); //Get the woner of the handler cuz of visual studio security
+	if (owner == NULL)
+		ShowWindow(hwnd, SW_MAXIMIZE); //If cannot get owner, try maximising using handle
+	else
+		ShowWindow(owner, SW_MAXIMIZE); //If owner is authorised, maximise using owner
+}
+
 int main(void) {
 
+	MaximiseConsole();
+
     Game* game = new Game();
+
+
 
 	game->GameLoop();
 

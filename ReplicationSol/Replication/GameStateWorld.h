@@ -40,4 +40,6 @@ public:
 	void RenderUI();
 
 	GAMESTATEVALUE GetGameStateValue();
+
+	void DEBUG_BATTLETEST();
 };

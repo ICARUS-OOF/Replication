@@ -836,23 +836,8 @@ void GameStateWorld::GetInputs()
 			}
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
-
-			/*
-			{
-				if (currentRoomIndex == 0)
-					currentRoomIndex = 1;
-				else
-					currentRoomIndex = 0;
-
-				return;
-			}*/
-			/*
-			{
-				gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
-				gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT), Vector2(8, 4)));
-
-				return;
-			}*/
+			
+			DEBUG_BATTLETEST();
 			
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
@@ -913,4 +898,10 @@ void GameStateWorld::RenderUI()
 GAMESTATEVALUE GameStateWorld::GetGameStateValue()
 {
 	return GAMESTATEVALUE::WORLDSTATE;
+}
+
+void GameStateWorld::DEBUG_BATTLETEST()
+{
+	gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
+	gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT), Vector2(8, 4)));
 }

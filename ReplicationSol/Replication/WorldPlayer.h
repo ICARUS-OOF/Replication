@@ -34,9 +34,10 @@ public:
 	PLAYERDECISION GetPlayerInput();
 
 	Vector2* GetPlayerPoints(Vector2 suppliedPosition);
+	Vector2* GetInteractivePoints(Vector2 suppliedPosition);
+
+
 
 	std::string DEBUG_GETPLAYERPOSITIONSTRING();
-
-	Vector2* GetInteractivePoints(Vector2 suppliedPosition);
 };
 

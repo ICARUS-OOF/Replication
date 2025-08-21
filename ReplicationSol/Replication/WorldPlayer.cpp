@@ -116,6 +116,8 @@ WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 /// <returns></returns>
 Vector2* WorldPlayer::GetPlayerPoints(Vector2 playerTargetPivot)
 {
+	delete[] solidPoints;
+
 	solidPoints = new Vector2[PLAYER_POINTS_SIZE];
 
 	solidPoints[0] = playerTargetPivot.AddToVector2(Vector2(0, 0));
@@ -130,6 +132,8 @@ Vector2* WorldPlayer::GetPlayerPoints(Vector2 playerTargetPivot)
 
 Vector2* WorldPlayer::GetInteractivePoints(Vector2 suppliedPosition)
 {
+	delete[] interactivePoints;
+
 	interactivePoints = new Vector2[INTERACTIVE_POINTS_SIZE];
 
 	interactivePoints[0] = suppliedPosition.AddToVector2(Vector2(0, -2));
