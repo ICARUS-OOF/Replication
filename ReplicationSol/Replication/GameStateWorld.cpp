@@ -111,7 +111,7 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 		0, //Step 2. Define which Room the prop will be in
 		Vector2(34, 15), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
 		Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-		Prop::PROPTYPE::MAP_LAYOUT, //OR THIS
+		Prop::PROPTYPE::MAP_LAYOUT_NONSOLID, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 		//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 		new DialogueInteractable(
@@ -124,11 +124,12 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 		nullptr));
 	}
 
-
-
-	//																position top-left	scale																//player emerging position
-	Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(5, 5), Vector2(4, 4), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
-	levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(1); // Target room to go to
+	{
+		//FOR LEVEL TRANSITIONS
+		//																position top-left	scale																//player emerging position
+		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(5, 5), Vector2(4, 4), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
+		levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(1); // Target room to go to
+	}
 
 
 }
@@ -169,7 +170,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				0, //Step 2. Define which Room the prop will be in
 				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
 				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-				Prop::PROPTYPE::MAP_LAYOUT, //OR THIS
+				Prop::PROPTYPE::MAP_LAYOUT_NONSOLID, //OR THIS
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				nullptr,

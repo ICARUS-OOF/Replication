@@ -101,6 +101,7 @@ void Prop::RenderCharacterDisplay()
 		break;
 
 	case PROPTYPE::MAP_LAYOUT:
+	case PROPTYPE::MAP_LAYOUT_NONSOLID:
 		screenPtr->RenderDrawing(position, mapLayoutString);
 		break;
 
@@ -150,11 +151,17 @@ bool Prop::IsOverlapping(Vector2 otherPosition)
 				if (otherPosition.IsEqualTo(Vector2(position.Getx() + j, position.Gety() + i)))
 					if (mapLayoutStringLines[i][j] != ' ')
 						return true;
+
+
+	case Prop::MAP_LAYOUT_NONSOLID:
+		return false;
+
 	case Prop::LEVEL_TRANSITION_TRIGGER:
 		isOverlappingX = otherPosition.Getx() >= position.Getx() && otherPosition.Getx() <= (position.Getx() + boundingBox.Getx() - 1);
 		isOverlappingY = otherPosition.Gety() >= position.Gety() && otherPosition.Gety() <= (position.Gety() + boundingBox.Gety() - 1);
 
 		return isOverlappingX && isOverlappingY;
+
 
 	default:
 		return true;
