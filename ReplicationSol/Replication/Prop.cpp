@@ -4,14 +4,23 @@
 #include <sstream>
 #include <vector>
 
-Prop::Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox, PROPTYPE propType, Interactable* interactable, std::string* mapLayoutString)
+Prop::Prop(Screen* screenPtr, int roomIndex, 
+	Vector2 position, 
+	Vector2 boundingBox, 
+	PROPTYPE propType, 
+	Interactable* interactable = nullptr, 
+	std::string* mapLayoutString = nullptr,
+	Vector2* roomIndexOtherPointPosition = nullptr)
 {
 	this->screenPtr = screenPtr;
+	this->roomIndex = roomIndex;
 	this->position = position;
 	this->boundingBox = boundingBox;
 	this->propType = propType;
 	this->interactable = interactable;
-	this->mapLayoutString = *mapLayoutString;
+	if (mapLayoutString != nullptr)
+		this->mapLayoutString = *mapLayoutString;
+	this->roomIndexOtherPointPosition = roomIndexOtherPointPosition;
 
 	if (mapLayoutString != nullptr) {
 		std::stringstream ss(*mapLayoutString);
@@ -95,6 +104,27 @@ void Prop::RenderCharacterDisplay()
 		screenPtr->RenderDrawing(position, mapLayoutString);
 		break;
 
+	case PROPTYPE::LEVEL_TRANSITION_TRIGGER:
+		screenPtr->RenderCharacter('+', left, top);
+
+		for (int i = left + 1; i < right; i++)
+			screenPtr->RenderCharacter('-', i, top);
+		screenPtr->RenderCharacter('+', right, top);
+
+
+		for (int i = top + 1; i < bottom; i++)
+			screenPtr->RenderCharacter('|', right, i);
+		screenPtr->RenderCharacter('+', right, bottom);
+
+
+		for (int i = right - 1; i > left; i--)
+			screenPtr->RenderCharacter('-', i, bottom);
+		screenPtr->RenderCharacter('+', left, bottom);
+
+		for (int i = bottom - 1; i > top; i--)
+			screenPtr->RenderCharacter('|', left, i);
+		break;
+
 
 	default:
 		break;
@@ -120,7 +150,11 @@ bool Prop::IsOverlapping(Vector2 otherPosition)
 				if (otherPosition.IsEqualTo(Vector2(position.Getx() + j, position.Gety() + i)))
 					if (mapLayoutStringLines[i][j] != ' ')
 						return true;
-		break;
+	case Prop::LEVEL_TRANSITION_TRIGGER:
+		isOverlappingX = otherPosition.Getx() >= position.Getx() && otherPosition.Getx() <= (position.Getx() + boundingBox.Getx() - 1);
+		isOverlappingY = otherPosition.Gety() >= position.Gety() && otherPosition.Gety() <= (position.Gety() + boundingBox.Gety() - 1);
+
+		return isOverlappingX && isOverlappingY;
 
 	default:
 		return true;
@@ -128,6 +162,7 @@ bool Prop::IsOverlapping(Vector2 otherPosition)
 
 	return false;
 }
+
 
 Interactable* Prop::GetInteractable() const
 {
@@ -137,4 +172,29 @@ Interactable* Prop::GetInteractable() const
 Vector2 Prop::GetPosition() const
 {
 	return position;
+}
+
+int Prop::GetRoomIndex() const
+{
+	return roomIndex;
+}
+
+Prop::PROPTYPE Prop::GetPropType() const
+{
+	return propType;
+}
+
+int Prop::GetRoomTargetLevelTransitionTriggerIndex()
+{
+	return roomTargetLevelTransitionTriggerIndex;
+}
+
+void Prop::SetRoomTargetLevelTransitionTriggerIndex(int targetTransitionRoomIndex)
+{
+	this->roomTargetLevelTransitionTriggerIndex = targetTransitionRoomIndex;
+}
+
+Vector2 Prop::GetRoomIndexOtherPointPosition()
+{
+	return *roomIndexOtherPointPosition;
 }

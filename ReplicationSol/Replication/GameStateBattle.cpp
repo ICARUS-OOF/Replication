@@ -4,13 +4,13 @@
 #include <iostream>
 #include <string>
 
-GameStateBattle::GameStateBattle(Screen* screenPtr, PlayerStats* playerStatsPtr, GAMESTATEVALUE* gameStateValuePtr, GameData* gameData)
+
+GameStateBattle::GameStateBattle(GameData* gameData)
 {
-	this->screenPtr = screenPtr;
-	this->gameStateScreenSize = Vector2(110, 35);
-	this->playerStatsPtr = playerStatsPtr;
-	this->gameStateValuePtr = gameStateValuePtr;
 	this->gameData = gameData;
+	this->screenPtr = gameData->GetScreenPtr();
+	this->gameStateScreenSize = Vector2(110, 35);
+	this->playerStatsPtr = gameData->GetPlayerStats();
 }
 
 void GameStateBattle::OnStateEnter()

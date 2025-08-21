@@ -18,9 +18,6 @@ class Game
 private:
 	Screen* screenPtr;
 
-	GAMESTATEVALUE gameStateValue;
-	PlayerStats* playerStatsPtr;
-
 	GameData* gameData;
 
 	GameState* currentGameState;

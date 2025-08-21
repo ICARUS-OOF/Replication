@@ -13,10 +13,9 @@
 
 Game::Game() :
 	screenPtr(new Screen(80, 25)),
-	gameData(new GameData()),
-	playerStatsPtr(new PlayerStats(20, 0, 0)),
-	gameStateWorld(GameStateWorld(screenPtr, &gameStateValue, gameData)),
-	gameStateBattle(GameStateBattle(screenPtr, playerStatsPtr, &gameStateValue, gameData))
+	gameData(new GameData(screenPtr, GAMESTATEVALUE::WORLDSTATE, new PlayerStats(20, 0, 0))),
+	gameStateWorld(GameStateWorld(gameData)),
+	gameStateBattle(GameStateBattle(gameData))
 {
 	UpdateGameStateValue();
 }
@@ -24,7 +23,6 @@ Game::Game() :
 Game::~Game()
 {
 	delete screenPtr;
-	delete playerStatsPtr;
 	delete gameData;
 }
 
@@ -39,7 +37,7 @@ void Game::GameLoop()
 		DisplayWorld();
 		currentGameState->GetInputs();
 
-		if (currentGameState->GetGameStateValue() != gameStateValue) {
+		if (currentGameState->GetGameStateValue() != gameData->GetGameStateValue()) {
 			UpdateGameStateValue();
 		}
 	}
@@ -107,7 +105,7 @@ void Game::UpdateGameStateValue()
 {
 	GameState* targetState;
 
-	switch (gameStateValue)
+	switch (gameData->GetGameStateValue())
 	{
 	case WORLDSTATE:
 		targetState = &gameStateWorld;

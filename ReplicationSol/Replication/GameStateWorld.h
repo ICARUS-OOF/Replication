@@ -18,17 +18,16 @@ private:
 	Prop* propArray[MAX_PROPS];
 
 	int propSpawnIndex = 0;
+	int currentRoomIndex;
 
 	Interactable* currentInteractable;
 	GameData* gameData;
 
-	GAMESTATEVALUE* gameStateValuePtr;
-
 public:
-	GameStateWorld(Screen* screenPtr, GAMESTATEVALUE* gameStateValuePtr, GameData* gameData);
+	GameStateWorld(GameData* gameData);
 	void DOCUMENTATION_DONOTCALL();
 	void SetLevelData();
-	void SpawnProp(Prop* propPtr);
+	Prop* SpawnProp(Prop* propPtr);
 
 	void OnStateEnter();
 	void GetInputs();

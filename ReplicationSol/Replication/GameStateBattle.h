@@ -11,12 +11,11 @@ class GameStateBattle : public GameState
 private:
 	PlayerStats* playerStatsPtr;
 
-	GAMESTATEVALUE* gameStateValuePtr;
 	GameData* gameData;
 
 	BattleData* currentBattleData;
 public:
-	GameStateBattle(Screen* screenPtr, PlayerStats* playerStatsPtr, GAMESTATEVALUE* gameStateValuePtr, GameData* gameData);
+	GameStateBattle(GameData* gameData);
 
 	void OnStateEnter();
 	void GetInputs();

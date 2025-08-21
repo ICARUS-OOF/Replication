@@ -15,6 +15,7 @@ public:
 		DOWN_WALL,
 		RIGHT_WALL,
 		MAP_LAYOUT,
+		LEVEL_TRANSITION_TRIGGER,
 	};
 private:
 
@@ -27,9 +28,15 @@ private:
 	std::string mapLayoutString;
 	std::vector<std::string> mapLayoutStringLines;
 
+	int roomIndex;
+
+	Vector2* roomIndexOtherPointPosition;
+
+	int roomTargetLevelTransitionTriggerIndex = 0;
+
 public:
 
-	Prop(Screen* screenPtr, Vector2 position, Vector2 boundingBox, PROPTYPE propType, Interactable* interactable = nullptr, std::string* mapLayoutString = nullptr);
+	Prop(Screen* screenPtr, int roomIndex, Vector2 position, Vector2 boundingBox, PROPTYPE propType, Interactable* interactable, std::string* mapLayoutString, Vector2* roomIndexOtherPointPosition);
 
 	~Prop();
 
@@ -40,5 +47,14 @@ public:
 	Interactable* GetInteractable() const;
 
 	Vector2 GetPosition() const;
+
+	int GetRoomIndex() const;
+
+	PROPTYPE GetPropType() const;
+
+	int GetRoomTargetLevelTransitionTriggerIndex();
+	void SetRoomTargetLevelTransitionTriggerIndex(int targetTransitionRoomIndex);
+
+	Vector2 GetRoomIndexOtherPointPosition();
 };
 
