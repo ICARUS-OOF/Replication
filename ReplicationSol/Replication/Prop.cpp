@@ -21,6 +21,7 @@ Prop::Prop(Screen* screenPtr, int roomIndex,
 	if (mapLayoutString != nullptr)
 		this->mapLayoutString = *mapLayoutString;
 	this->roomIndexOtherPointPosition = roomIndexOtherPointPosition;
+	this->battleIndex = battleIndex;
 
 	if (mapLayoutString != nullptr) {
 		std::stringstream ss(*mapLayoutString);
@@ -105,6 +106,7 @@ void Prop::RenderCharacterDisplay()
 		screenPtr->RenderDrawing(position, mapLayoutString);
 		break;
 
+	case PROPTYPE::BATTLE_TRIGGER:
 	case PROPTYPE::LEVEL_TRANSITION_TRIGGER:
 		screenPtr->RenderCharacter('+', left, top);
 
@@ -138,22 +140,27 @@ bool Prop::IsOverlapping(Vector2 otherPosition, bool isPlayerDirectCollision)
 	bool isOverlappingY = false;
 	switch (propType)
 	{
-	case Prop::WALL:
-	case Prop::DOWN_WALL:
-	case Prop::RIGHT_WALL:
+	case PROPTYPE::WALL:
+	case PROPTYPE::DOWN_WALL:
+	case PROPTYPE::RIGHT_WALL:
 		isOverlappingX = otherPosition.Getx() >= position.Getx() && otherPosition.Getx() <= (position.Getx() + boundingBox.Getx() - 1);
 		isOverlappingY = otherPosition.Gety() >= position.Gety() && otherPosition.Gety() <= (position.Gety() + boundingBox.Gety() - 1);
 
 		return isOverlappingX && isOverlappingY;
-	case Prop::MAP_LAYOUT:
+		break;
+
+	case PROPTYPE::MAP_LAYOUT:
 		for (int i = 0; i < mapLayoutStringLines.size(); i++)
 			for (int j = 0; j < mapLayoutStringLines[i].size(); j++)
 				if (otherPosition.IsEqualTo(Vector2(position.Getx() + j, position.Gety() + i)))
 					if (mapLayoutStringLines[i][j] != ' ')
 						return true;
 
+		return false;
+		break;
 
-	case Prop::MAP_LAYOUT_NONSOLID:
+
+	case PROPTYPE::MAP_LAYOUT_NONSOLID:
 		if (!isPlayerDirectCollision) {
 			for (int i = 0; i < mapLayoutStringLines.size(); i++)
 				for (int j = 0; j < mapLayoutStringLines[i].size(); j++)
@@ -166,13 +173,15 @@ bool Prop::IsOverlapping(Vector2 otherPosition, bool isPlayerDirectCollision)
 		else {
 			return false;
 		}
+		break;
 
-	case Prop::LEVEL_TRANSITION_TRIGGER:
+	case PROPTYPE::BATTLE_TRIGGER:
+	case PROPTYPE::LEVEL_TRANSITION_TRIGGER:
 		isOverlappingX = otherPosition.Getx() >= position.Getx() && otherPosition.Getx() <= (position.Getx() + boundingBox.Getx() - 1);
 		isOverlappingY = otherPosition.Gety() >= position.Gety() && otherPosition.Gety() <= (position.Gety() + boundingBox.Gety() - 1);
 
 		return isOverlappingX && isOverlappingY;
-
+		break;
 
 	default:
 		return true;
@@ -210,6 +219,16 @@ int Prop::GetRoomTargetLevelTransitionTriggerIndex()
 void Prop::SetRoomTargetLevelTransitionTriggerIndex(int targetTransitionRoomIndex)
 {
 	this->roomTargetLevelTransitionTriggerIndex = targetTransitionRoomIndex;
+}
+
+void Prop::SetBattleIndex(int battleIndex)
+{
+	this->battleIndex = battleIndex;
+}
+
+int Prop::GetBattleIndex()
+{
+	return battleIndex;
 }
 
 Vector2 Prop::GetRoomIndexOtherPointPosition()

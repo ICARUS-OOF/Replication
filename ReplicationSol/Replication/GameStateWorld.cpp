@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <chrono>
+#include <conio.h>
+#include <windows.h>
 #include <thread>
 #include "GameData.h"
 
@@ -18,13 +20,15 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	gameStateScreenSize = Vector2(80, 25);
 	
-	this->currentRoomIndex = 2;
+	this->currentRoomIndex = 0;
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 
 	// Initialize all props to Nullptr at first
 	for (int i = 0; i < MAX_PROPS; i++)
 		propArray[i] = nullptr;
+	for (int i = 0; i < MAX_BATTLES; i++)
+		battleDataArray[i] = nullptr;
 
 
 
@@ -132,6 +136,15 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 	}
 
 
+	{
+		//------------------FOR BATTLE TRIGGERS-----------------
+		//                                                          health atk                 EnemyType              Player FLEE POINTS
+		battleDataArray[battleSetIndex] = new BattleData(new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT), nullptr, Vector2(0, 1));
+		//													      room | top-left position | scale
+		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(15, 5), Vector2(5, 5), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
+		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
+		battleSetIndex++;
+	}
 }
 
 
@@ -141,6 +154,8 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 ///OFFICIAL SETTING OF LEVEL PROP DATA
 void GameStateWorld::SetLevelData()
 {
+
+
 	{
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
@@ -668,9 +683,9 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 			SpawnProp(new Prop(screenPtr,
 				4, //Step 2. Define which Room the prop will be in
-				Vector2(0, 9), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(0, 14), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
 				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+				Prop::PROPTYPE::MAP_LAYOUT_NONSOLID,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
@@ -726,6 +741,8 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(4); // Target room to go to
 		}
 	}
+
+
 }
 
 
@@ -737,6 +754,7 @@ Prop* GameStateWorld::SpawnProp(Prop* propPtr)
 {
 	if (propSpawnIndex >= MAX_PROPS) {
 		std::cout << "MAX PROPS REACHED! PLEASE INCREASE MAX_PROP ARRAY SIZE!!!" << std::endl;
+		_getch();
 		return nullptr;
 	}
 
@@ -780,19 +798,32 @@ void GameStateWorld::GetInputs()
 					{
 						//Check if each body part is overlapping with the wall
 						if (propArray[i]->IsOverlapping(playerPoints[j], true)) {
-							//If yes, then break and mark player has overlapped
-							isPlayerOverlappingWithProp = true;
+
+							Prop::PROPTYPE propType = propArray[i]->GetPropType();
 
 							//If colliding with a level transition trigger
-							if (propArray[i]->GetPropType() == Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER) {
+							if (propType == Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER) {
 								//Load the target room
 								currentRoomIndex = propArray[i]->GetRoomTargetLevelTransitionTriggerIndex();
 								//Teleport player to the position
 								worldPlayerPtr->MovePlayer(propArray[i]->GetRoomIndexOtherPointPosition());
+
 								return;
 							}
+							else if (propType == Prop::PROPTYPE::BATTLE_TRIGGER) {
 
-							break;
+								if (battleDataArray[propArray[i]->GetBattleIndex()]->GetBattleEndState() != BattleData::BATTLEEND::WON) {
+									gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
+									gameData->SetCurrentBattleData(battleDataArray[propArray[i]->GetBattleIndex()]);
+
+									return;
+								}
+							}
+							else {
+								isPlayerOverlappingWithProp = true;
+
+								break;
+							}
 						}
 					}
 				}
@@ -825,6 +856,14 @@ void GameStateWorld::GetInputs()
 			
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
+
+			/*
+			for (int j = 0; j < worldPlayerPtr->INTERACTIVE_POINTS_SIZE; j++) {
+				std::cout << playerInteractivePoints[j].Getx() << "," << playerInteractivePoints[j].Gety() << ", ";
+			}
+			_getch();
+			*/
+
 			bool hasFoundInteractable = false;
 
 			//Loop thru all props

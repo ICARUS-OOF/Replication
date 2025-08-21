@@ -17,7 +17,8 @@ WorldPlayer::WorldPlayer(Screen* screenPtr, Vector2 startPosition)
 
 WorldPlayer::~WorldPlayer()
 {
-
+	delete[] solidPoints;
+	delete[] interactivePoints;
 }
 
 /// <summary>
@@ -115,35 +116,37 @@ WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 /// <returns></returns>
 Vector2* WorldPlayer::GetPlayerPoints(Vector2 playerTargetPivot)
 {
-	Vector2 points[PLAYER_POINTS_SIZE];
+	solidPoints = new Vector2[PLAYER_POINTS_SIZE];
 
-	points[0] = playerTargetPivot.AddToVector2(Vector2(0, 0));
-	points[1] = playerTargetPivot.AddToVector2(Vector2(0, -1));
-	points[2] = playerTargetPivot.AddToVector2(Vector2(-1, 0));
-	points[3] = playerTargetPivot.AddToVector2(Vector2(1, 0));
-	points[4] = playerTargetPivot.AddToVector2(Vector2(-1, 1));
-	points[5] = playerTargetPivot.AddToVector2(Vector2(1, 1));
+	solidPoints[0] = playerTargetPivot.AddToVector2(Vector2(0, 0));
+	solidPoints[1] = playerTargetPivot.AddToVector2(Vector2(0, -1));
+	solidPoints[2] = playerTargetPivot.AddToVector2(Vector2(-1, 0));
+	solidPoints[3] = playerTargetPivot.AddToVector2(Vector2(1, 0));
+	solidPoints[4] = playerTargetPivot.AddToVector2(Vector2(-1, 1));
+	solidPoints[5] = playerTargetPivot.AddToVector2(Vector2(1, 1));
 
-	return points;
+	return solidPoints;
 }
 
 Vector2* WorldPlayer::GetInteractivePoints(Vector2 suppliedPosition)
 {
-	Vector2 points[INTERACTIVE_POINTS_SIZE];
+	interactivePoints = new Vector2[INTERACTIVE_POINTS_SIZE];
 
-	points[0] = suppliedPosition.AddToVector2(Vector2(0, -2));
-	points[1] = suppliedPosition.AddToVector2(Vector2(-1, -1));
-	points[2] = suppliedPosition.AddToVector2(Vector2(-2, -1));
-	points[3] = suppliedPosition.AddToVector2(Vector2(-2, 0));
-	points[4] = suppliedPosition.AddToVector2(Vector2(-2, 1));
-	points[5] = suppliedPosition.AddToVector2(Vector2(-1, -2));
-	points[6] = suppliedPosition.AddToVector2(Vector2(0, 1));
-	points[7] = suppliedPosition.AddToVector2(Vector2(1, 2));
-	points[8] = suppliedPosition.AddToVector2(Vector2(2, 1));
-	points[9] = suppliedPosition.AddToVector2(Vector2(2, 0));
-	points[10] = suppliedPosition.AddToVector2(Vector2(2, -1));
-	points[11] = suppliedPosition.AddToVector2(Vector2(1, -1));
-	points[12] = suppliedPosition.AddToVector2(Vector2(0, 2));
+	interactivePoints[0] = suppliedPosition.AddToVector2(Vector2(0, -2));
+	interactivePoints[1] = suppliedPosition.AddToVector2(Vector2(-1, -1));
+	interactivePoints[2] = suppliedPosition.AddToVector2(Vector2(-2, -1));
+	interactivePoints[3] = suppliedPosition.AddToVector2(Vector2(-2, 0));
+	interactivePoints[4] = suppliedPosition.AddToVector2(Vector2(-2, 1));
+	interactivePoints[5] = suppliedPosition.AddToVector2(Vector2(-1, -2));
+	interactivePoints[6] = suppliedPosition.AddToVector2(Vector2(0, 1));
+	interactivePoints[7] = suppliedPosition.AddToVector2(Vector2(1, 2));
+	interactivePoints[8] = suppliedPosition.AddToVector2(Vector2(2, 1));
+	interactivePoints[9] = suppliedPosition.AddToVector2(Vector2(2, 0));
+	interactivePoints[10] = suppliedPosition.AddToVector2(Vector2(2, -1));
+	interactivePoints[11] = suppliedPosition.AddToVector2(Vector2(1, -1));
+	interactivePoints[12] = suppliedPosition.AddToVector2(Vector2(0, 2));
+	interactivePoints[13] = suppliedPosition.AddToVector2(Vector2(-1, 2));
+	interactivePoints[14] = suppliedPosition.AddToVector2(Vector2(1, -2));
 
-	return points;
+	return interactivePoints;
 }

@@ -17,6 +17,7 @@ public:
 		MAP_LAYOUT,
 		MAP_LAYOUT_NONSOLID,
 		LEVEL_TRANSITION_TRIGGER,
+		BATTLE_TRIGGER,
 	};
 private:
 
@@ -34,6 +35,7 @@ private:
 	Vector2* roomIndexOtherPointPosition;
 
 	int roomTargetLevelTransitionTriggerIndex = 0;
+	int battleIndex = 0;
 
 public:
 
@@ -55,6 +57,8 @@ public:
 
 	int GetRoomTargetLevelTransitionTriggerIndex();
 	void SetRoomTargetLevelTransitionTriggerIndex(int targetTransitionRoomIndex);
+	void SetBattleIndex(int battleIndex);
+	int GetBattleIndex();
 
 	Vector2 GetRoomIndexOtherPointPosition();
 };

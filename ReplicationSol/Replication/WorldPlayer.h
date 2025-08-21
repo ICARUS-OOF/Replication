@@ -5,6 +5,9 @@
 
 class WorldPlayer : public WorldEntity
 {
+private:
+	Vector2* solidPoints;
+	Vector2* interactivePoints;
 
 public:
 	enum PLAYERDECISION {
@@ -16,7 +19,7 @@ public:
 	Vector2 targetPosition;
 
 	static const int PLAYER_POINTS_SIZE = 6;
-	static const int INTERACTIVE_POINTS_SIZE = 13;
+	static const int INTERACTIVE_POINTS_SIZE = 15;
 
 	float interactionRange = 2.0f;
 
