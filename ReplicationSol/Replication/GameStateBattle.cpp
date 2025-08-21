@@ -235,8 +235,26 @@ void GameStateBattle::RenderUI()
 	{
 		Item currentItem = gameData->GetInventoryItem(currentItemSelected);
 		
+		std::string LeftArrow = R"(   __ 
+  / / 
+ / /  
+ \ \  
+  \_\ 
+      )";
+		screenPtr->RenderDrawing(Vector2(92, 29), LeftArrow);
 
-		screenPtr->RenderText(Vector2(87, 27), "Item Name: " + currentItem.GetItemName());
+		screenPtr->RenderText(Vector2(2, 30), std::to_string(currentItemSelected + 1) + " / " + std::to_string(gameData->GetInventorySize()));
+		screenPtr->RenderText(Vector2(9, 30), currentItem.GetItemName());
+		screenPtr->RenderText(Vector2(2, 31), currentItem.GetDescription());
+
+		std::string RightArrow = R"( __   
+ \ \  
+  \ \ 
+  / / 
+ /_/
+	)";
+		screenPtr->RenderDrawing(Vector2(102, 29), RightArrow);
+
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE)
 	{
