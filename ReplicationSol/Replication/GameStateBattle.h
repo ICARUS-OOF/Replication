@@ -36,6 +36,7 @@ private:
 	std::string currentConsoleText;
 
 	int currentFrame;
+	int currentItemSelected;
 public:
 	GameStateBattle(GameData* gameData);
 

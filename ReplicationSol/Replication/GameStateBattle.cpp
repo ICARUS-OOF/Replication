@@ -1,5 +1,6 @@
 #include "GameStateBattle.h"
 #include "GameData.h"
+#include "Item.h"
 #include <conio.h>
 #include <iostream>
 #include <string>
@@ -16,6 +17,7 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
 	this->currentFrame = 0;
+	this->currentItemSelected = 0;
 }
 
 void GameStateBattle::OnStateEnter()
@@ -26,6 +28,7 @@ void GameStateBattle::OnStateEnter()
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
 	this->currentFrame = 0;
+	this->currentItemSelected = 0;
 }
 
 void GameStateBattle::GetInputs()
@@ -70,9 +73,10 @@ void GameStateBattle::GetInputs()
 				hasSelectedValidOption = true;
 			}
 
-			//DEFEND
+			//ITEMS
 			else if (option == '3')
 			{
+				this->currentItemSelected = 0;
 				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ITEMS);
 				hasSelectedValidOption = true;
 			}
@@ -105,6 +109,34 @@ void GameStateBattle::GetInputs()
 			ClearConsole();
 		}
 	}
+
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) {
+		bool validOptionSelected = false;
+
+
+		//ClearConsole();
+
+		do {
+			int option = _getch();
+
+			if (option == 'a' || option == 'A') {
+				currentItemSelected--;
+
+				if (currentItemSelected < 0)
+					currentItemSelected = gameData->GetInventorySize() - 1;
+
+				validOptionSelected = true;
+			}
+			else if (option == 'd' || option == 'D') {
+				currentItemSelected++;
+
+				if (currentItemSelected >= gameData->GetInventorySize())
+					currentItemSelected = 0;
+
+				validOptionSelected = true;
+			}
+		} while (!validOptionSelected);
+	}
 	
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE) {
 		if (currentFrame == 1) {
@@ -118,6 +150,7 @@ void GameStateBattle::GetInputs()
 			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
 		}
 	}
+
 	else if (currentEvent == BATTLEEVENT::GAME_WON) {
 		if (currentFrame == 1) {
 			SetConsoleText("Enemies have been defeated! Pedro is victorious!");
@@ -200,7 +233,10 @@ void GameStateBattle::RenderUI()
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) 
 	{
+		Item currentItem = gameData->GetInventoryItem(currentItemSelected);
+		
 
+		screenPtr->RenderText(Vector2(87, 27), "Item Name: " + currentItem.GetItemName());
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE)
 	{

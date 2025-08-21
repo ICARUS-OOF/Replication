@@ -4,6 +4,9 @@
 #include "Screen.h"
 #include "GAMESTATEVALUE.h"
 #include "PlayerStats.h"
+#include "Item.h"
+
+#include <vector>
 
 class GameData
 {
@@ -13,6 +16,8 @@ private:
 	PlayerStats* playerStats;
 
 	BattleData* currentBattleData;
+
+	std::vector<Item> inventory;
 public:
 	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats);
 
@@ -25,5 +30,12 @@ public:
 	void SetCurrentBattleData(BattleData* currentBattleData);
 
 	PlayerStats* GetPlayerStats();
+
+	void AddItem(Item item);
+	void RemoveItem(std::string itemName);
+	bool HasItem(std::string itemName);
+	std::vector<Item> GetInventory();
+	Item GetInventoryItem(int i);
+	int GetInventorySize();
 };
 
