@@ -27,6 +27,8 @@ int EnemyData::GetMaxHealth()
 void EnemyData::DamageEnemy(int amt)
 {
 	health -= amt;
+	if (health <= 0)
+		health = 0;
 }
 
 EnemyData::ENEMYTYPE EnemyData::GetEnemyType()

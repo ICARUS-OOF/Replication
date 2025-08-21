@@ -8,8 +8,8 @@ private:
 
 public:
 	BattleData();
-	BattleData(EnemyData singleEnemy);
-	BattleData(EnemyData firstEnemy, EnemyData secondEnemy);
+	BattleData(EnemyData* singleEnemy);
+	BattleData(EnemyData* firstEnemy, EnemyData* secondEnemy);
 
 	EnemyData* GetFirstEnemy();
 	EnemyData* GetSecondEnemy();

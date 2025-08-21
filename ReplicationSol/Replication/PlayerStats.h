@@ -5,10 +5,11 @@ private:
 	int health;
 	int attack;
 	int defence;
+	int baseDamage;
 
 	int maxhealth;
 public:
-	PlayerStats(int health, int attack, int defence);
+	PlayerStats(int health, int attack, int defence, int baseDamage);
 	void HealPlayer(int amt);
 	void DamagePlayer(int amt);
 	void AddAttack(int amt);
@@ -18,5 +19,6 @@ public:
 	int GetAttack() const;
 	int GetDefence() const;
 	int GetMaxHealth() const;
+	int GetBaseDamage() const;
 };
 

@@ -1,11 +1,12 @@
 #include "PlayerStats.h"
 
-PlayerStats::PlayerStats(int health, int attack, int defence)
+PlayerStats::PlayerStats(int health, int attack, int defence, int baseDamage)
 {
 	this->health = health;
 	this->maxhealth = health;
 	this->attack = attack;
 	this->defence = defence;
+	this->baseDamage = baseDamage;
 }
 
 /// <summary>
@@ -73,4 +74,9 @@ int PlayerStats::GetDefence() const
 int PlayerStats::GetMaxHealth() const
 {
 	return maxhealth;
+}
+
+int PlayerStats::GetBaseDamage() const
+{
+	return baseDamage;
 }

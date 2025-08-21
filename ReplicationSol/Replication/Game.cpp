@@ -13,7 +13,7 @@
 
 Game::Game() :
 	screenPtr(new Screen(80, 25)),
-	gameData(new GameData(screenPtr, GAMESTATEVALUE::WORLDSTATE, new PlayerStats(20, 0, 0))),
+	gameData(new GameData(screenPtr, GAMESTATEVALUE::WORLDSTATE, new PlayerStats(20, 0, 0, 9))),
 	gameStateWorld(GameStateWorld(gameData)),
 	gameStateBattle(GameStateBattle(gameData))
 {

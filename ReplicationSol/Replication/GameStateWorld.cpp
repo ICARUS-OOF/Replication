@@ -483,14 +483,14 @@ void GameStateWorld::GetInputs()
 
 				return;
 			}*/
-			/*
+			
 			{
 				gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
-				gameData->SetCurrentBattleData(new BattleData(EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT)));
+				gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT)));
 
 				return;
 			}
-			*/
+			
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
 			bool hasFoundInteractable = false;
