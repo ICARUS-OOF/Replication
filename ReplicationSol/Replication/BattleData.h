@@ -1,19 +1,36 @@
 #pragma once
 #include "EnemyData.h"
+#include "Vector2.h"
 class BattleData
 {
+public:
+	enum BATTLEEND {
+		NONE,
+		WON,
+		FLED
+	};
+
 private:
 	EnemyData* firstEnemy;
 	EnemyData* secondEnemy;
 
+	Vector2 playerFleePoint;
+
+	BATTLEEND battleEndState;
+
 public:
 	BattleData();
-	BattleData(EnemyData* singleEnemy);
-	BattleData(EnemyData* firstEnemy, EnemyData* secondEnemy);
+	BattleData(EnemyData* singleEnemy, Vector2 playerFleePoint);
+	BattleData(EnemyData* firstEnemy, EnemyData* secondEnemy, Vector2 playerFleePoint);
 
 	EnemyData* GetFirstEnemy();
 	EnemyData* GetSecondEnemy();
 
 	bool IsSingleBattle();
+
+	void SetBattleEndState(BATTLEEND targetBattleEndState);
+	BATTLEEND GetBattleEndState();
+
+	Vector2 GetPlayerFleePoint();
 };
 

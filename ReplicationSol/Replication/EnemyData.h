@@ -20,7 +20,8 @@ public:
 	int GetHealth();
 	int GetAttack();
 	int GetMaxHealth();
-	void DamageEnemy(int amt);
+	bool DamageEnemy(int amt);
 	ENEMYTYPE GetEnemyType();
+	bool IsDead();
 };
 

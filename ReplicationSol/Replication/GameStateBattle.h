@@ -18,7 +18,8 @@ public:
 		PLAYER_CHOICE_ABILITIES,
 		PLAYER_CHOICE_FLEE,
 		ENEMY_ATTACK,
-		GAME_RESTART
+		GAME_WON,
+		GAME_RESTART,
 	};
 private:
 	PlayerStats* playerStatsPtr;
@@ -27,9 +28,14 @@ private:
 
 	BattleData* currentBattleData;
 
+	/// <summary>
+	/// NO CHANGING THIS, USE "SetBattleEvent" INSTEAD!!!!!!!
+	/// </summary>
 	BATTLEEVENT currentEvent;
 
 	std::string currentConsoleText;
+
+	int currentFrame;
 public:
 	GameStateBattle(GameData* gameData);
 
@@ -39,6 +45,9 @@ public:
 	void RenderUI();
 	GAMESTATEVALUE GetGameStateValue();
 
+	void SetBattleEvent(BATTLEEVENT targetEvent);
+
+	void ClearConsole();
 	void SetConsoleText(std::string targetText);
 	std::string GetConsoleText();
 };

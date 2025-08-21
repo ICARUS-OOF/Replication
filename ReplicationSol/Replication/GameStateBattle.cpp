@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <windows.h>
 
 
 GameStateBattle::GameStateBattle(GameData* gameData)
@@ -14,6 +15,7 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->playerStatsPtr = gameData->GetPlayerStats();
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
+	this->currentFrame = 0;
 }
 
 void GameStateBattle::OnStateEnter()
@@ -21,46 +23,118 @@ void GameStateBattle::OnStateEnter()
 	screenPtr->ResizeScreen(gameStateScreenSize);
 
 	currentBattleData = gameData->GetCurrentBattleData();
+	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
+	this->currentConsoleText = "";
+	this->currentFrame = 0;
 }
 
 void GameStateBattle::GetInputs()
 {
+
 	if (currentEvent == BATTLEEVENT::PLAYER_CHOICE) {
+		ClearConsole();
 
-		int option = _getch();
-		if (option == '1')
-		{
-			currentEvent = BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM;
+		bool hasSelectedValidOption = false;
+		do {
+			int option = _getch();
 
+			//ATTACK
+			if (option == '1')
+			{
+				//SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM);
+				// 
+				// 
+				//Calculate target damage
+				int targetDamage = playerStatsPtr->GetBaseDamage() + playerStatsPtr->GetAttack();
+				//Implement the damage to the enemy
+				currentBattleData->GetFirstEnemy()->DamageEnemy(targetDamage);
+				//Display text
+				SetConsoleText("Enemy damaged by " + std::to_string(targetDamage));
 
-			int targetDamage = playerStatsPtr->GetBaseDamage();// + playerStatsPtr->GetAttack();
-			currentBattleData->GetFirstEnemy()->DamageEnemy(targetDamage);
-			int x = targetDamage;
+				//If enemy is dead, go to game won state
+				if (currentBattleData->GetFirstEnemy()->IsDead()) {
+					SetBattleEvent(BATTLEEVENT::GAME_WON);
+				}
+				//If still alive, enemy will attack
+				else {
+					SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
+				}
 
-			SetConsoleText("Enemy damaged by " + std::to_string(targetDamage));
+				hasSelectedValidOption = true;
+			}
 
+			//ABILITIES
+			else if (option == '2')
+			{
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES);
+				hasSelectedValidOption = true;
+			}
 
-			currentEvent = BATTLEEVENT::ENEMY_ATTACK;
+			//DEFEND
+			else if (option == '3')
+			{
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ITEMS);
+				hasSelectedValidOption = true;
+			}
 
+			//FLEE
+			else if (option == '4')
+			{
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_FLEE);
+				SetConsoleText("Player Fled!");
+				hasSelectedValidOption = true;
+			}
+		} while (!hasSelectedValidOption);
+	}
+	
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM) {
+
+	}
+	
+	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
+		if (currentFrame == 1) {
+			Sleep(1000);
+
+			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack();
+			playerStatsPtr->DamagePlayer(targetDamage);
+			SetConsoleText("Player damaged by " + std::to_string(targetDamage));
 		}
-		else if (option == '2')
-		{
-			currentEvent = BATTLEEVENT::PLAYER_CHOICE_ABILITIES;
-		}
-		else if (option == '3')
-		{
-			currentEvent = BATTLEEVENT::PLAYER_CHOICE_ITEMS;
-		}
-		else if (option == '4')
-		{
-			currentEvent = BATTLEEVENT::PLAYER_CHOICE_FLEE;
+		else if (currentFrame == 2) {
+			Sleep(1000);
+			SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
+			ClearConsole();
 		}
 	}
-	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM) {
+	
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE) {
+		if (currentFrame == 1) {
+
+			Sleep(1000);
+		}
+		else if (currentFrame == 2)
+		{
+			ClearConsole();
+			currentBattleData->SetBattleEndState(BattleData::BATTLEEND::FLED);
+			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
+		}
+	}
+	else if (currentEvent == BATTLEEVENT::GAME_WON) {
+		if (currentFrame == 1) {
+			SetConsoleText("Enemies have been defeated! Pedro is victorious!");
+			Sleep(2000);
+		}
+		else if (currentFrame == 2) {
+			Sleep(3000);
+			ClearConsole();
+			currentBattleData->SetBattleEndState(BattleData::BATTLEEND::WON);
+			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
+		}
 	}
 	else {
 		_getch();
 	}
+
+	currentFrame++;
 
 
 	//_getch();
@@ -116,32 +190,29 @@ void GameStateBattle::RenderUI()
 		for (int i = 65; i < 65 + optionBoxLength; i++)
 			screenPtr->RenderCharacter('-', i, 34);
 	}
-	//else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_SELECTENEMY)
-	//{
-	//	screenPtr->RenderText(Vector2(66, 33), "this is player selection which enemy");
-	//}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM)
 	{
-		screenPtr->RenderText(Vector2(66, 33), GetConsoleText());
+
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES)
 	{
-		//screenPtr->RenderText(Vector2(66, 33), "this is ability option");
+
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) 
 	{
-		//screenPtr->RenderText(Vector2(66, 33), "this is items option");
+
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE)
 	{
-		//screenPtr->RenderText(Vector2(66, 33), "this is flee option");
+
 	}
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK)
 	{
-		screenPtr->RenderText(Vector2(66, 33), GetConsoleText());
+
 	}
 
 
+	screenPtr->RenderText(Vector2(3, 30), GetConsoleText());
 
 
 
@@ -266,9 +337,20 @@ GAMESTATEVALUE GameStateBattle::GetGameStateValue()
 	return GAMESTATEVALUE::BATTLESTATE;
 }
 
+void GameStateBattle::SetBattleEvent(BATTLEEVENT targetEvent)
+{
+	currentFrame = 0;
+	currentEvent = targetEvent;
+}
+
 void GameStateBattle::SetConsoleText(std::string targetText)
 {
 	currentConsoleText = targetText;
+}
+
+void GameStateBattle::ClearConsole()
+{
+	currentConsoleText = "";
 }
 
 std::string GameStateBattle::GetConsoleText()

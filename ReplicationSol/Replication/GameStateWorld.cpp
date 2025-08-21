@@ -422,6 +422,12 @@ Prop* GameStateWorld::SpawnProp(Prop* propPtr)
 
 void GameStateWorld::OnStateEnter()
 {
+	if (gameData->GetCurrentBattleData() != nullptr) {
+		if (gameData->GetCurrentBattleData()->GetBattleEndState() == BattleData::BATTLEEND::FLED) {
+			worldPlayerPtr->MovePlayer(gameData->GetCurrentBattleData()->GetPlayerFleePoint());
+		}
+	}
+
 	screenPtr->ResizeScreen(gameStateScreenSize);
 }
 
@@ -486,7 +492,7 @@ void GameStateWorld::GetInputs()
 			
 			{
 				gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
-				gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT)));
+				gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT), Vector2(8, 4)));
 
 				return;
 			}

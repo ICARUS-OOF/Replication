@@ -24,14 +24,28 @@ int EnemyData::GetMaxHealth()
 	return maxhealth;
 }
 
-void EnemyData::DamageEnemy(int amt)
+/// <summary>
+/// Returns TRUE if player is dead
+/// </summary>
+/// <param name="amt"></param>
+/// <returns></returns>
+bool EnemyData::DamageEnemy(int amt)
 {
 	health -= amt;
-	if (health <= 0)
+	if (health <= 0) {
 		health = 0;
+		return true;
+	}
+
+	return false;
 }
 
 EnemyData::ENEMYTYPE EnemyData::GetEnemyType()
 {
 	return enemyType;
+}
+
+bool EnemyData::IsDead()
+{
+	return health <= 0;
 }
