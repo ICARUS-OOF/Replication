@@ -124,45 +124,13 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 		nullptr));
 	}
 
+
+
+	//																position top-left	scale																//player emerging position
 	Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(5, 5), Vector2(4, 4), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
-	levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(1);
+	levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(1); // Target room to go to
 
 
-
-
-	//-----------------PROP WITH DIALOGUE OR NO DIALOGUE-------------
-	//Copy and Paste all of this in the brackets INCLUDING BRACKETS (So u can collapse and organise
-	{
-		//-----------------PROP WITH DIALOGUE OR NO DIALOGUE-------------
-		//Copy and Paste all of this in the brackets INCLUDING BRACKETS (So u can collapse and organise)
-		{
-			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
-			//        And define the string in this format
-			std::string yourPropDesign =
-				R"(|       /
-|      |
-|      |
-|   __ |
-gjakfla,
-)";
-
-			SpawnProp(new Prop(screenPtr,
-				1, //Step 2. Define which Room the prop will be in
-				Vector2(34, 15), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-				Prop::PROPTYPE::MAP_LAYOUT, //OR THIS
-
-				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				new DialogueInteractable(
-					new std::string[3] //Step 4. Define the NUMBER OF LINES in []
-					{ "This is lne 1!", "This is line 2!", "This is line 3!" }, //Step 5. Define the lines
-					screenPtr, &currentInteractable,
-					3), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
-
-				&yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
-				nullptr));
-		}
-	}
 }
 
 
@@ -172,7 +140,44 @@ gjakfla,
 ///OFFICIAL SETTING OF LEVEL PROP DATA
 void GameStateWorld::SetLevelData()
 {
-	DOCUMENTATION_DONOTCALL();
+	{
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string layout_room_0 =
+				R"(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                                                   |       /   X
+                              _________                            |      |    X
+                             |        |                            |      |    X
+                              |        |                           |   __ |    X
+                               |        |                           \ |  \|    X
+                                |        |                           \|   \    X
+                                 |________|                           |    \   X
+                                                                      |     \  X
+XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
+          X        X               X        X               X        X          
+          X        X               X        X               X        X          
+     XXXXXX        XXXXXX     XXXXXX        XXXXXX     XXXXXX        XXXXXX     
+     X                  X     X                  X     X                  X     
+     X                  X     X                  X     X                  X     
+     X                  X     X                  X     X                  X     
+     X                  X     X                  X     X                  X     
+     XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX     XXXXXXXXXXXXXXXXXXXX     
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				0, //Step 2. Define which Room the prop will be in
+				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT, //OR THIS
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				nullptr,
+
+				&layout_room_0, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+	}
 }
 
 
