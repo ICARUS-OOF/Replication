@@ -126,7 +126,7 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 
 	{
 		//FOR LEVEL TRANSITIONS
-		//																position top-left	scale																//player emerging position
+		//															roomIndex  position top-left  scale														//player emerging position
 		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(5, 5), Vector2(4, 4), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
 		levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(1); // Target room to go to
 	}
@@ -147,14 +147,14 @@ void GameStateWorld::SetLevelData()
 			//        And define the string in this format
 			std::string layout_room_0 =
 				R"(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                                                                   |       /   X
-                              _________                            |      |    X
-                             |        |                            |      |    X
-                              |        |                           |   __ |    X
-                               |        |                           \ |  \|    X
-                                |        |                           \|   \    X
-                                 |________|                           |    \   X
-                                                                      |     \  X
+                                                                               X
+                                                                               X
+                                                                               X
+                                                                               X
+                                                                               X
+                                                                               X
+                                                                               X
+                                                                               X
 XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
           X        X               X        X               X        X          
           X        X               X        X               X        X          
@@ -170,13 +170,88 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				0, //Step 2. Define which Room the prop will be in
 				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
 				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-				Prop::PROPTYPE::MAP_LAYOUT_NONSOLID, //OR THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				nullptr,
 
 				&layout_room_0, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
+		}
+
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string rubble =
+				R"(|       /
+|      |
+|      |
+|   __ |
+ \ |  \|
+  \|   \
+   |    \
+   |     \
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				0, //Step 2. Define which Room the prop will be in
+				Vector2(67, 1), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Looks like a cave-in. Hope nothing falls on me."}, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&rubble, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string brkdoor =
+				R"( _________
+|        |
+ |        |	
+  |        |
+   |        |
+    |________|
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				0, //Step 2. Define which Room the prop will be in
+				Vector2(29, 2), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT_NONSOLID,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "A kicked down door. Whoever did this must be pretty strong…" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&brkdoor, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left	scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(5, 5), Vector2(4, 4), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(78, 4)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(1); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 1, Vector2(55, 4), Vector2(4, 4), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(78, 4)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(0); // Target room to go to
 		}
 	}
 }
@@ -226,7 +301,7 @@ void GameStateWorld::GetInputs()
 					for (int j = 0; j < worldPlayerPtr->PLAYER_POINTS_SIZE; j++)
 					{
 						//Check if each body part is overlapping with the wall
-						if (propArray[i]->IsOverlapping(playerPoints[j])) {
+						if (propArray[i]->IsOverlapping(playerPoints[j], true)) {
 							//If yes, then break and mark player has overlapped
 							isPlayerOverlappingWithProp = true;
 
@@ -281,7 +356,7 @@ void GameStateWorld::GetInputs()
 					if (propArray[i]->GetInteractable() != nullptr) {
 						for (int j = 0; j < worldPlayerPtr->INTERACTIVE_POINTS_SIZE; j++)
 						{
-							if (propArray[i]->IsOverlapping(playerInteractivePoints[j])) {
+							if (propArray[i]->IsOverlapping(playerInteractivePoints[j], false)) {
 
 								currentInteractable = propArray[i]->GetInteractable();
 								hasFoundInteractable = true;

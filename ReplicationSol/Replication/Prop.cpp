@@ -132,7 +132,7 @@ void Prop::RenderCharacterDisplay()
 	}
 }
 
-bool Prop::IsOverlapping(Vector2 otherPosition)
+bool Prop::IsOverlapping(Vector2 otherPosition, bool isPlayerDirectCollision)
 {
 	bool isOverlappingX = false;
 	bool isOverlappingY = false;
@@ -154,7 +154,18 @@ bool Prop::IsOverlapping(Vector2 otherPosition)
 
 
 	case Prop::MAP_LAYOUT_NONSOLID:
-		return false;
+		if (!isPlayerDirectCollision) {
+			for (int i = 0; i < mapLayoutStringLines.size(); i++)
+				for (int j = 0; j < mapLayoutStringLines[i].size(); j++)
+					if (otherPosition.IsEqualTo(Vector2(position.Getx() + j, position.Gety() + i)))
+						if (mapLayoutStringLines[i][j] != ' ')
+							return true;
+
+			return false;
+		}
+		else {
+			return false;
+		}
 
 	case Prop::LEVEL_TRANSITION_TRIGGER:
 		isOverlappingX = otherPosition.Getx() >= position.Getx() && otherPosition.Getx() <= (position.Getx() + boundingBox.Getx() - 1);

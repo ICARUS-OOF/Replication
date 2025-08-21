@@ -43,7 +43,7 @@ public:
 
 	void RenderCharacterDisplay();
 
-	bool IsOverlapping(Vector2 otherPosition);
+	bool IsOverlapping(Vector2 otherPosition, bool isPlayerDirectCollision);
 
 	Interactable* GetInteractable() const;
 
