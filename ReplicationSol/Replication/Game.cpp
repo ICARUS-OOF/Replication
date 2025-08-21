@@ -8,6 +8,7 @@
 #include <iostream>
 #include <thread>
 #include <conio.h>
+#include <sstream>
 
 
 
@@ -17,6 +18,13 @@ Game::Game() :
 	gameStateWorld(GameStateWorld(gameData)),
 	gameStateBattle(GameStateBattle(gameData))
 {
+	//hide the cursor
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(hOut, &cursorInfo);
+	cursorInfo.bVisible = FALSE;
+	SetConsoleCursorInfo(hOut, &cursorInfo);
+
 	UpdateGameStateValue();
 }
 
@@ -43,12 +51,10 @@ void Game::GameLoop()
 	}
 }
 
-
 //KAYDEN
 //Displays the world view on the console
 void Game::DisplayWorld()
 {
-	system("cls");
 
 	//Clear the previous screen
 	screenPtr->ClearScreen();
@@ -60,45 +66,96 @@ void Game::DisplayWorld()
 	int cols = screenSize.Getx();
 	int rows = screenSize.Gety();
 
-	//Top Border
-	std::cout << '+';
-	for (int i = 0; i < cols; i++)
-		std::cout << '-';
-	std::cout << '+';
-
-	//World Content
-	for (int i = 0; i < rows; i++)
+	/*
 	{
-		//Leave a new line
-		std::cout << std::endl;
+		//Top Border
+		std::cout << '+';
+		for (int i = 0; i < cols; i++)
+			std::cout << '-';
+		std::cout << '+';
 
-		//Left Border
-		std::cout << '|';
+		//World Content
+		for (int i = 0; i < rows; i++)
+		{
+			//Leave a new line
+			std::cout << std::endl;
 
-		//Display each character
-		for (int j = 0; j < cols; j++) {
-			if ((int)screenPtr->GetChars()[i][j] != 9) {
-				std::cout << screenPtr->GetChars()[i][j];
+			//Left Border
+			std::cout << '|';
+
+			//Display each character
+			for (int j = 0; j < cols; j++) {
+				if ((int)screenPtr->GetChars()[i][j] != 9) {
+					std::cout << screenPtr->GetChars()[i][j];
+				}
+				else {
+					std::cout << ' ';
+				}
 			}
-			else {
-				std::cout << ' ';
-			}
+
+			//Right Border
+			std::cout << '|';
 		}
 
-		//Right Border
-		std::cout << '|';
+		//Leave new line
+		std::cout << std::endl;
+
+		//Bottom border
+		std::cout << '+';
+		for (int i = 0; i < cols; i++)
+			std::cout << '-';
+		std::cout << '+';
+
+		std::cout << std::endl;
 	}
+	*/
+	{
+		std::stringstream ss;
+		//Top Border
+		ss << '+';
+		for (int i = 0; i < cols; i++)
+			ss << '-';
+		ss << '+';
 
-	//Leave new line
-	std::cout << std::endl;
+		//World Content
+		for (int i = 0; i < rows; i++)
+		{
+			//Leave a new line
+			ss << std::endl;
 
-	//Bottom border
-	std::cout << '+';
-	for (int i = 0; i < cols; i++)
-		std::cout << '-';
-	std::cout << '+';
+			//Left Border
+			ss << '|';
 
-	std::cout << std::endl;
+			//Display each character
+			for (int j = 0; j < cols; j++) {
+				if ((int)screenPtr->GetChars()[i][j] != 9) {
+					ss << screenPtr->GetChars()[i][j];
+				}
+				else {
+					ss << ' ';
+				}
+			}
+
+			//Right Border
+			ss << '|';
+		}
+
+		//Leave new line
+		ss << std::endl;
+
+		//Bottom border
+		ss << '+';
+		for (int i = 0; i < cols; i++)
+			ss << '-';
+		ss << '+';
+
+		ss << std::endl;
+
+
+		HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleCursorPosition(hOut, { 0, 0 });
+		std::cout << ss.str();
+	}
 }
 
 void Game::UpdateGameStateValue()
