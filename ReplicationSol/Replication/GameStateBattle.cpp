@@ -83,6 +83,7 @@ void GameStateBattle::GetInputs()
 			//ABILITIES
 			else if (option == '2')
 			{
+				currentAbilitySelected = 0;
 				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES);
 				hasSelectedValidOption = true;
 			}
@@ -143,6 +144,7 @@ void GameStateBattle::GetInputs()
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES) {
+		
 		bool validOptionSelected = false;
 
 		do {
@@ -169,14 +171,20 @@ void GameStateBattle::GetInputs()
 				validOptionSelected = true;
 			}
 
-			//----------USE ITEM----------
+			//----------USE ABILITY----------
 			else if (option == ' ')
 			{
-
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
+				SetConsoleText("Player used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
 				validOptionSelected = true;
 			}
 		} while (!validOptionSelected);
+	}
+
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE) {
+		Sleep(1000);
+		SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) {
@@ -201,7 +209,6 @@ void GameStateBattle::GetInputs()
 
 				if (currentItemSelected >= gameData->GetInventorySize())
 					currentItemSelected = 0;
-
 				validOptionSelected = true;
 			}
 			else if (option == 27) {
@@ -225,6 +232,7 @@ void GameStateBattle::GetInputs()
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS_USAGE) {
 		if (currentFrame == 1) {
 			SetConsoleText("Player used item: " + lastItemUsed.GetItemName());
+			
 		}
 		else if(currentFrame == 2) {
 			Sleep(2000);
@@ -245,13 +253,17 @@ void GameStateBattle::GetInputs()
 		}
 	}
 
-
 	else if (currentEvent == BATTLEEVENT::GAME_WON) {
 		if (currentFrame == 1) {
 			SetConsoleText("Enemies have been defeated! Pedro is victorious!");
 			Sleep(2000);
-		}
+		} 
 		else if (currentFrame == 2) {
+			ClearConsole();
+			SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
+			Sleep(2000);
+		} 
+		else if (currentFrame == 3) {
 			gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
 
 			Sleep(3000);
@@ -320,49 +332,93 @@ void GameStateBattle::RenderUI()
 		for (int i = 65; i < 65 + optionBoxLength; i++)
 			screenPtr->RenderCharacter('-', i, 34);
 	}
+
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM)
 	{
 
 	}
+
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES)
 	{
 		if (gameData->GetAbilities().size() > 0) {
 
+			screenPtr->RenderText(Vector2(2, 30), std::to_string(currentAbilitySelected + 1) + " / " + std::to_string(gameData->GetAbilities().size()));
+			const Vector2 abilityNamePosition = Vector2(8, 30);
+			const Vector2 abilityNameDesrciption = Vector2(2, 31);
+			const int maxCharactersDescriptionPerLine = 30;
+			//screenPtr->RenderText(Vector2(9, 30), std::to_string(currentAbilitySelected));
 
-			screenPtr->RenderText(Vector2(9, 30), std::to_string(currentAbilitySelected));
+			if (currentAbilitySelected == 0)
+			{
+				screenPtr->RenderText(abilityNamePosition, "Ability: Poison");
+				screenPtr->RenderText(abilityNameDesrciption, "25% chance to apply poison to the enemy (Once per Battle)");
+			}
+			else if (currentAbilitySelected == 1)
+			{
+				screenPtr->RenderText(abilityNamePosition, "Ability: Recover");
+				screenPtr->RenderText(abilityNameDesrciption, "Heal self for 6HP (Once per Battle)");
+			}
+			else if (currentAbilitySelected == 2)
+			{
+				screenPtr->RenderText(abilityNamePosition, "Ability: Armour");
+				screenPtr->RenderText(abilityNameDesrciption, "Reduce damage taken by 4 (Once per Battle)");
+			}
 		}
+		
 		else
 			screenPtr->RenderText(Vector2(9, 30), "No abilities unlocked yet!");
+
+		std::string LeftArrow = R"(   __     _    
+  / /    / \   
+ / /    / _ \  
+ \ \   / ___ \ 
+  \_\ /_/   \_\
+      )";
+		screenPtr->RenderDrawing(Vector2(79, 29), LeftArrow);
+
+		std::string RightArrow = R"(  ____   __  
+ |  _ \  \ \ 
+ | | | |  \ \
+ | |_| |  / /
+ |____/  /_/ 
+             
+	)";
+		screenPtr->RenderDrawing(Vector2(96, 29), RightArrow);
+
 	}
+
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) 
 	{
 		Item currentItem = gameData->GetInventoryItem(currentItemSelected);
 		
-		std::string LeftArrow = R"(   __ 
-  / / 
- / /  
- \ \  
-  \_\ 
+		std::string LeftArrow = R"(   __     _    
+  / /    / \   
+ / /    / _ \  
+ \ \   / ___ \ 
+  \_\ /_/   \_\
       )";
-		screenPtr->RenderDrawing(Vector2(92, 29), LeftArrow);
+		screenPtr->RenderDrawing(Vector2(79, 29), LeftArrow);
 
 		screenPtr->RenderText(Vector2(2, 30), std::to_string(currentItemSelected + 1) + " / " + std::to_string(gameData->GetInventorySize()));
-		screenPtr->RenderText(Vector2(9, 30), currentItem.GetItemName());
+		screenPtr->RenderText(Vector2(10, 30), currentItem.GetItemName());
 		screenPtr->RenderTextWrap(Vector2(2, 31), currentItem.GetDescription(), 70);
 
-		std::string RightArrow = R"( __   
- \ \  
-  \ \ 
-  / / 
- /_/
+		std::string RightArrow = R"(  ____   __  
+ |  _ \  \ \ 
+ | | | |  \ \
+ | |_| |  / /
+ |____/  /_/ 
+             
 	)";
-		screenPtr->RenderDrawing(Vector2(102, 29), RightArrow);
+		screenPtr->RenderDrawing(Vector2(96, 29), RightArrow);
 
 	}
+
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE)
 	{
 
 	}
+
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK)
 	{
 
@@ -461,7 +517,7 @@ void GameStateBattle::RenderUI()
 	for (int i = 7; i < 23; i++)
 		screenPtr->RenderCharacter('-', i, 22);
 
-	screenPtr->RenderText(Vector2(9, 19), "Mutant");
+	screenPtr->RenderText(Vector2(9, 19), currentBattleData->GetFirstEnemy()->GetEnemyName());
 	screenPtr->RenderText(Vector2(9, 20), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
 	screenPtr->RenderText(Vector2(9, 21), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
 	screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);

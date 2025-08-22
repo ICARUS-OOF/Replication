@@ -46,6 +46,11 @@ EnemyData::ENEMYTYPE EnemyData::GetEnemyType()
 	return enemyType;
 }
 
+std::string EnemyData::GetEnemyName()
+{
+	return EnemyTypeToString(enemyType);
+}
+
 bool EnemyData::IsDead()
 {
 	return health <= 0;
@@ -54,4 +59,42 @@ bool EnemyData::IsDead()
 std::string EnemyData::GetEnemyDescription()
 {
 	return enemyDescription;
+}
+
+std::string EnemyData::EnemyTypeToString(ENEMYTYPE enemyType)
+{
+	switch (enemyType)
+	{
+	case EnemyData::MUTANT:
+		return "Mutant";
+		break;
+	case EnemyData::HEALER:
+		return "Healer";
+		break;
+	case EnemyData::GUARD:
+		return "Guard";
+		break;
+	default:
+		return "ERROR";
+		break;
+	}
+}
+
+std::string EnemyData::EnemyTypeToAbilityString(ENEMYTYPE enemyType)
+{
+	switch (enemyType)
+	{
+	case EnemyData::MUTANT:
+		return "Poison";
+		break;
+	case EnemyData::HEALER:
+		return "Recover";
+		break;
+	case EnemyData::GUARD:
+		return "Armour";
+		break;
+	default:
+		return "ERROR";
+		break;
+	}
 }

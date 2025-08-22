@@ -41,5 +41,7 @@ public:
 
 	void AddAbility(EnemyData::ENEMYTYPE ability);
 	std::vector<EnemyData::ENEMYTYPE> GetAbilities();
+
+	bool RollDice(int percentage);
 };
 

@@ -9,6 +9,8 @@
 #include <thread>
 #include <conio.h>
 #include <sstream>
+#include <ctime>
+#include <cstdlib>
 
 
 
@@ -19,6 +21,8 @@ Game::Game() :
 	gameStateBattle(GameStateBattle(gameData)),
 	lastScreenSize(screenPtr->GetScreenSize())
 {
+	srand(time(0));
+
 	//hide the cursor
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO cursorInfo;

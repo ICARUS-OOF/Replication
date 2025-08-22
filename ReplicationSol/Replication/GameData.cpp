@@ -4,6 +4,7 @@
 #include "Item.h"
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
 
 GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats)
 {
@@ -109,6 +110,17 @@ void GameData::AddAbility(EnemyData::ENEMYTYPE ability)
 std::vector<EnemyData::ENEMYTYPE> GameData::GetAbilities()
 {
 	return enemyAbilitiesCopied;
+}
+
+/// <summary>
+/// "percentage" chance of being true
+/// </summary>
+/// <param name="percentage"></param>
+/// <returns></returns>
+bool GameData::RollDice(int percentage)
+{
+	int num = rand() % 101;
+	return num <= percentage;
 }
 
 Screen* GameData::GetScreenPtr()
