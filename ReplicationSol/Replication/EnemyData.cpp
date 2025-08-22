@@ -1,12 +1,13 @@
 #include "EnemyData.h"
+#include <string>
 
-EnemyData::EnemyData(int health, int attack, ENEMYTYPE enemyType)
+EnemyData::EnemyData(int health, int attack, ENEMYTYPE enemyType, std::string enemyDescription)
 {
 	this->health = health;
 	this->attack = attack;
 	this->enemyType = enemyType;
 	this->maxhealth = health;
-
+	this->enemyDescription = enemyDescription;
 }
 
 int EnemyData::GetHealth()
@@ -48,4 +49,9 @@ EnemyData::ENEMYTYPE EnemyData::GetEnemyType()
 bool EnemyData::IsDead()
 {
 	return health <= 0;
+}
+
+std::string EnemyData::GetEnemyDescription()
+{
+	return enemyDescription;
 }

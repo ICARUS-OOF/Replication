@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 class EnemyData
 {
 public:
@@ -13,9 +15,10 @@ private:
 	int attack;
 	int maxhealth;
 	ENEMYTYPE enemyType;
+	std::string enemyDescription;
 
 public:
-	EnemyData(int health, int attack, ENEMYTYPE enemyType);
+	EnemyData(int health, int attack, ENEMYTYPE enemyType, std::string enemyDescription);
 
 	int GetHealth();
 	int GetAttack();
@@ -23,5 +26,6 @@ public:
 	bool DamageEnemy(int amt);
 	ENEMYTYPE GetEnemyType();
 	bool IsDead();
+	std::string GetEnemyDescription();
 };
 

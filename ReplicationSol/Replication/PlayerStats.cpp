@@ -56,6 +56,21 @@ void PlayerStats::AddDefence(int amt)
 	defence += amt;
 }
 
+void PlayerStats::RemoveAttack(int amt)
+{
+	attack -= amt;
+
+	if (attack <= 0)
+		attack = 0;
+}
+
+void PlayerStats::RemoveDefence(int amt)
+{
+	defence -= amt;
+	if (defence <= 0)
+		defence = 0;
+}
+
 int PlayerStats::GetHealth() const
 {
 	return health;
@@ -79,4 +94,11 @@ int PlayerStats::GetMaxHealth() const
 int PlayerStats::GetBaseDamage() const
 {
 	return baseDamage;
+}
+
+void PlayerStats::ResetStats()
+{
+	health = maxhealth;
+	attack = 0;
+	defence = 0;
 }

@@ -136,6 +136,7 @@
     <ClCompile Include="GameStateBattle.cpp" />
     <ClCompile Include="GameStateWorld.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemUsage.cpp" />
     <ClCompile Include="PlayerStats.cpp" />
     <ClCompile Include="Prop.cpp" />
     <ClCompile Include="Interactable.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="GAMESTATEVALUE.h" />
     <ClInclude Include="GameStateWorld.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemUsage.h" />
     <ClInclude Include="PlayerStats.h" />
     <ClInclude Include="Prop.h" />
     <ClInclude Include="Interactable.h" />
