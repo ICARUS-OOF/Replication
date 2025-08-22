@@ -5,12 +5,13 @@ Item::Item()
 {
 }
 
-Item::Item(std::string itemName, int cost, ITEMTYPE itemType, int itemWeight, std::string description)
+Item::Item(std::string itemName, int cost, ITEMTYPE itemType, int itemWeight, int turnUsage, std::string description)
 {
 	this->itemName = itemName;
 	this->cost = cost;
 	this->itemType = itemType;
 	this->itemWeight = itemWeight;
+	this->turnUsage = turnUsage;
 	this->description = description;
 }
 
@@ -37,4 +38,9 @@ int Item::GetItemWeight() const
 std::string Item::GetDescription() const
 {
 	return description;
+}
+
+int Item::GetUsesLeft() const
+{
+	return turnUsage;
 }

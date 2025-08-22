@@ -94,7 +94,7 @@ void Screen::RenderText(Vector2 StartingPos, std::string Text)
 		RenderCharacter(Text.at(i), StartingPos.Getx() + i, StartingPos.Gety());
 }
 
-void Screen::RenderTextOverflow(Vector2 StartingPos, std::string Text, const int maxCharacters)
+void Screen::RenderTextWrap(Vector2 StartingPos, std::string Text, const int maxCharacters)
 {
 	int currentCharacterCol = 0;
 	int currentRow = 0;
@@ -104,7 +104,7 @@ void Screen::RenderTextOverflow(Vector2 StartingPos, std::string Text, const int
 		RenderCharacter(Text[i], StartingPos.Getx() + currentCharacterCol, StartingPos.Gety() + currentRow);
 		currentCharacterCol++;
 
-		if (currentCharacterCol >= maxCharacters) {
+		if (currentCharacterCol >= maxCharacters && Text[i] == ' ') {
 			currentRow++;
 			currentCharacterCol = 0;
 		}

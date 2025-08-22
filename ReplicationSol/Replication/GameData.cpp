@@ -13,18 +13,20 @@ GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats
 	this->inventory = std::vector<Item>(0);
 
 	// Player attack boost items
-	AddItem(Item("Energy Blaster", 20, Item::ITEMTYPE::ATTACK, 8, "Powerful looking piece of technology. It's even rechargeable! Too bad you don't have a charging cable… Increases attack by 8 for 3 turns."));
+	AddItem(Item("Metal Bar", 0, Item::ITEMTYPE::ATTACK, 3, 5, "A rusty metal bar. Could be useful in a fight. Increases attack by 3 for 5 turns"));
+	AddItem(Item("Pistol", 0, Item::ITEMTYPE::ATTACK, 4, 4, "A sleek, silver pistol. Doesn’t have much ammo left. Increases attack by 4 for 4 turns."));
+	AddItem(Item("Energy Blaster", 20, Item::ITEMTYPE::ATTACK, 8, 3, "Powerful looking piece of technology. It's even rechargeable! Too bad you don't have a charging cable… Increases attack by 8 for 3 turns."));
 
 	// Player Heal items
-	AddItem(Item("Banana", 4, Item::ITEMTYPE::HEALING, 6, "Nutritious. Ingest the potassium. Heals 6 hp."));
-	AddItem(Item("Slop", 0, Item::ITEMTYPE::HEALING, 2, "Unappetising food. Still edible, though. Heals 2 hp."));
-	AddItem(Item("First Aid Kit", 6, Item::ITEMTYPE::HEALING, 10, "A First Aid Kit. Only the bandage and antiseptic spray is left inside. Heals 10 hp."));
-	AddItem(Item("Pocket watch", 20, Item::ITEMTYPE::HEALING, 20, "Upon closer look, this unassuming pocket watch reverses the state of your body, bringing you back to being healthy. Heals you to maximum hp."));
+	AddItem(Item("Banana", 4, Item::ITEMTYPE::HEALING, 6, 0, "Nutritious. Ingest the potassium. Heals 6 hp."));
+	AddItem(Item("Slop", 0, Item::ITEMTYPE::HEALING, 2, 0, "Unappetising food. Still edible, though. Heals 2 hp."));
+	AddItem(Item("First Aid Kit", 6, Item::ITEMTYPE::HEALING, 10, 0,"A First Aid Kit. Only the bandage and antiseptic spray is left inside. Heals 10 hp."));
+	AddItem(Item("Pocket watch", 20, Item::ITEMTYPE::HEALING, 20, 0, "Upon closer look, this unassuming pocket watch reverses the state of your body, bringing you back to being healthy. Heals you to maximum hp."));
 
 	// Player Defence items
-	AddItem(Item("Hardening Soda", 4, Item::ITEMTYPE::DEFENCE, 2, "Concrete flavoured soda that somehow hardens your body. Take 2 less damage for 3 turns."));
-	AddItem(Item("Riot Shield", 6, Item::ITEMTYPE::DEFENCE, 4, " Shield. Might not be strong enough against your enemies. Take 4 less damage for 2 turns."));
-	AddItem(Item("Portable Barrier", 20, Item::ITEMTYPE::DEFENCE, 8, "A small device that materialises a barrier. It can't block all attacks though. Take 8 less damage for 3 turns"));
+	AddItem(Item("Hardening Soda", 4, Item::ITEMTYPE::DEFENCE, 2, 3, "Concrete flavoured soda that somehow hardens your body. Take 2 less damage for 3 turns."));
+	AddItem(Item("Riot Shield", 6, Item::ITEMTYPE::DEFENCE, 4, 2, "Shield. Might not be strong enough against your enemies. Take 4 less damage for 2 turns."));
+	AddItem(Item("Portable Barrier", 20, Item::ITEMTYPE::DEFENCE, 8, 3, "A small device that materialises a barrier. It can't block all attacks though. Take 8 less damage for 3 turns"));
 }
 
 BattleData* GameData::GetCurrentBattleData()

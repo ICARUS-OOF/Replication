@@ -1,6 +1,7 @@
 #include "GameStateBattle.h"
 #include "GameData.h"
 #include "Item.h"
+#include "ItemUsage.h"
 #include <conio.h>
 #include <iostream>
 #include <string>
@@ -18,17 +19,22 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->currentConsoleText = "";
 	this->currentFrame = 0;
 	this->currentItemSelected = 0;
+	this->itemUsages.clear();
 }
 
 void GameStateBattle::OnStateEnter()
 {
 	screenPtr->ResizeScreen(gameStateScreenSize);
 
+
 	currentBattleData = gameData->GetCurrentBattleData();
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
 	this->currentFrame = 0;
 	this->currentItemSelected = 0;
+
+	gameData->GetPlayerStats()->ResetStats();
+	this->itemUsages.clear();
 }
 
 void GameStateBattle::GetInputs()
@@ -97,9 +103,27 @@ void GameStateBattle::GetInputs()
 	
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
 		if (currentFrame == 1) {
+
+
+			
+			{
+				system("cls");
+				for (int i = 0; i < itemUsages.size(); i++)
+				{
+					std::cout << itemUsages[i].GetItem().GetItemName() << ": " << itemUsages[i].GetUsageLeft() << std::endl;
+				}
+			}
+			
+
+			UpdateItemUsages();
+
+			//_getch();
+
 			Sleep(1000);
 
-			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack();
+			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
+			if (targetDamage <= 0)
+				targetDamage = 0;
 			playerStatsPtr->DamagePlayer(targetDamage);
 			SetConsoleText("Player damaged by " + std::to_string(targetDamage));
 		}
@@ -135,7 +159,32 @@ void GameStateBattle::GetInputs()
 
 				validOptionSelected = true;
 			}
+			else if (option == 27) {
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
+				validOptionSelected = true;
+			}
+
+			//----------USE ITEM----------
+			else if (option == ' ')
+			{
+				lastItemUsed = gameData->GetInventoryItem(currentItemSelected);
+				ApplyItemUsage(lastItemUsed);
+				itemUsages.push_back(ItemUsage(lastItemUsed, lastItemUsed.GetUsesLeft()));
+				gameData->RemoveItem(gameData->GetInventoryItem(currentItemSelected).GetItemName());
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ITEMS_USAGE);
+				validOptionSelected = true;
+			}
 		} while (!validOptionSelected);
+	}
+
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS_USAGE) {
+		if (currentFrame == 1) {
+			SetConsoleText("Player used item: " + lastItemUsed.GetItemName());
+		}
+		else if(currentFrame == 2) {
+			Sleep(2000);
+			SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
+		}
 	}
 	
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE) {
@@ -245,7 +294,7 @@ void GameStateBattle::RenderUI()
 
 		screenPtr->RenderText(Vector2(2, 30), std::to_string(currentItemSelected + 1) + " / " + std::to_string(gameData->GetInventorySize()));
 		screenPtr->RenderText(Vector2(9, 30), currentItem.GetItemName());
-		screenPtr->RenderText(Vector2(2, 31), currentItem.GetDescription());
+		screenPtr->RenderTextWrap(Vector2(2, 31), currentItem.GetDescription(), 70);
 
 		std::string RightArrow = R"( __   
  \ \  
@@ -361,8 +410,9 @@ void GameStateBattle::RenderUI()
 	screenPtr->RenderText(Vector2(9, 19), "Mutant");
 	screenPtr->RenderText(Vector2(9, 20), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
 	screenPtr->RenderText(Vector2(9, 21), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
-	screenPtr->RenderText(Vector2(6, 23), "ABT: 25% Chance to");
-	screenPtr->RenderText(Vector2(6, 24), "poison the player");
+	screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
+	//screenPtr->RenderText(Vector2(6, 23), "ABT: 25% Chance to");
+	//screenPtr->RenderText(Vector2(6, 24), "poison the player");
 	
 
 	if (!currentBattleData->IsSingleBattle())
@@ -389,6 +439,42 @@ void GameStateBattle::RenderUI()
 GAMESTATEVALUE GameStateBattle::GetGameStateValue()
 {
 	return GAMESTATEVALUE::BATTLESTATE;
+}
+
+void GameStateBattle::ApplyItemUsage(Item item)
+{
+	if (item.GetItemType() == Item::ATTACK) {
+		gameData->GetPlayerStats()->AddAttack(item.GetItemWeight());
+	}
+	else if (item.GetItemType() == Item::HEALING)
+		gameData->GetPlayerStats()->HealPlayer(item.GetItemWeight());
+	else if (item.GetItemType() == Item::DEFENCE)
+		gameData->GetPlayerStats()->AddDefence(item.GetItemWeight());
+}
+
+void GameStateBattle::RemoveItemUsage(Item item)
+{
+	if (item.GetItemType() == Item::ATTACK) {
+		gameData->GetPlayerStats()->RemoveAttack(item.GetItemWeight());
+	}
+	else if (item.GetItemType() == Item::DEFENCE)
+		gameData->GetPlayerStats()->RemoveDefence(item.GetItemWeight());
+}
+
+void GameStateBattle::UpdateItemUsages()
+{
+	for (auto iterator = itemUsages.begin(); iterator != itemUsages.end();)
+	{
+		iterator->UpdateItemUsage();
+
+		if (iterator->IsUsedUp()) {
+			RemoveItemUsage(iterator->GetItem());
+			iterator = itemUsages.erase(iterator);
+		}
+		else {
+			++iterator;
+		}
+	}
 }
 
 void GameStateBattle::SetBattleEvent(BATTLEEVENT targetEvent)
