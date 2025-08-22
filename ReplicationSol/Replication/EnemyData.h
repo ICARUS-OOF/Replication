@@ -17,8 +17,11 @@ private:
 	ENEMYTYPE enemyType;
 	std::string enemyDescription;
 
+	std::string enemySprite;
+
+
 public:
-	EnemyData(int health, int attack, ENEMYTYPE enemyType, std::string enemyDescription);
+	EnemyData(int health, int attack, ENEMYTYPE enemyType, std::string enemyDescription, std::string enemySprite);
 
 	int GetHealth();
 	int GetAttack();
@@ -30,5 +33,7 @@ public:
 	std::string GetEnemyDescription();
 	static std::string EnemyTypeToString(ENEMYTYPE enemyType);
 	static std::string EnemyTypeToAbilityString(ENEMYTYPE enemyType);
+
+	std::string GetEnemySprite();
 };
 

@@ -32,6 +32,8 @@ void PlayerStats::HealPlayer(int amt)
 void PlayerStats::DamagePlayer(int amt)
 {
 	health -= amt;
+	if (health <= 0)
+		health = 0;
 }
 
 /// <summary>

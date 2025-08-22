@@ -1,13 +1,14 @@
 #include "EnemyData.h"
 #include <string>
 
-EnemyData::EnemyData(int health, int attack, ENEMYTYPE enemyType, std::string enemyDescription)
+EnemyData::EnemyData(int health, int attack, ENEMYTYPE enemyType, std::string enemyDescription, std::string enemySprite)
 {
 	this->health = health;
 	this->attack = attack;
 	this->enemyType = enemyType;
 	this->maxhealth = health;
 	this->enemyDescription = enemyDescription;
+	this->enemySprite = enemySprite;
 }
 
 int EnemyData::GetHealth()
@@ -98,3 +99,9 @@ std::string EnemyData::EnemyTypeToAbilityString(ENEMYTYPE enemyType)
 		break;
 	}
 }
+
+std::string EnemyData::GetEnemySprite()
+{
+	return enemySprite;
+}
+

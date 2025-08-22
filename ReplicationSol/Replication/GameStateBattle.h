@@ -23,6 +23,7 @@ public:
 		PLAYER_CHOICE_ABILITIES_USAGE,
 		PLAYER_CHOICE_FLEE,
 		ENEMY_ATTACK,
+		PLAYER_DEATH,
 		GAME_WON,
 		GAME_RESTART,
 	};
@@ -47,6 +48,18 @@ private:
 	Item lastItemUsed;
 
 	std::vector <ItemUsage> itemUsages;
+
+	bool abilities_hasUsedRestore;
+	int abilities_poisonTurnsLeft;
+	int abilities_armourTurnsLeft;
+
+	static const int enemyPoisonWeight = 1;
+
+	static const int poisonWeight = 1;
+	static const int armourWeight = 5;
+
+	int turnNumber;
+
 public:
 	GameStateBattle(GameData* gameData);
 
@@ -57,10 +70,11 @@ public:
 	GAMESTATEVALUE GetGameStateValue();
 
 	void ApplyItemUsage(Item item);
-
 	void RemoveItemUsage(Item item);
-
 	void UpdateItemUsages();
+
+	void UpdateAbilitiesUsage();
+
 	void SetBattleEvent(BATTLEEVENT targetEvent);
 
 	void ClearConsole();

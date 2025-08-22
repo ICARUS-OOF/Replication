@@ -13,15 +13,15 @@ public:
 private:
 	EnemyData* firstEnemy;
 	EnemyData* secondEnemy;
-
 	Vector2 playerFleePoint;
-
 	BATTLEEND battleEndState;
+
+	int AddGcoins;
 
 public:
 	BattleData();
-	BattleData(EnemyData* singleEnemy, Vector2 playerFleePoint);
-	BattleData(EnemyData* firstEnemy, EnemyData* secondEnemy, Vector2 playerFleePoint);
+	BattleData(EnemyData* singleEnemy, Vector2 playerFleePoint, int AddGcoins);
+	BattleData(EnemyData* firstEnemy, EnemyData* secondEnemy, Vector2 playerFleePoint, int AddGcoins);
 
 	EnemyData* GetFirstEnemy();
 	EnemyData* GetSecondEnemy();

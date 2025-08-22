@@ -22,6 +22,10 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->currentFrame = 0;
 	this->currentItemSelected = 0;
 	this->currentAbilitySelected = 0;
+	this->abilities_poisonTurnsLeft = -1;
+	this->abilities_armourTurnsLeft = -1;
+	this->abilities_hasUsedRestore = false;
+	this->turnNumber = 0;
 	this->itemUsages.clear();
 }
 
@@ -36,6 +40,12 @@ void GameStateBattle::OnStateEnter()
 	this->currentItemSelected = 0;
 	this->currentAbilitySelected = 0;
 	this->currentBattleData = gameData->GetCurrentBattleData();
+	this->turnNumber = 0;
+
+
+	this->abilities_poisonTurnsLeft = -1;
+	this->abilities_armourTurnsLeft = -1;
+	this->abilities_hasUsedRestore = false;
 
 	gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
 	gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
@@ -50,6 +60,8 @@ void GameStateBattle::GetInputs()
 	//----PLAYER CHOICE----
 	if (currentEvent == BATTLEEVENT::PLAYER_CHOICE) {
 		ClearConsole();
+
+
 
 		bool hasSelectedValidOption = false;
 		do {
@@ -105,14 +117,17 @@ void GameStateBattle::GetInputs()
 			}
 		} while (!hasSelectedValidOption);
 	}
+
 	//---PLAYER FIGHT ANIMATION
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM) {
 
 	}
+
 	///-------ENEMY ATTACKING------
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
+		
+		bool enemyUsePoison = true;
 		if (currentFrame == 1) {
-
 
 			/*
 			{
@@ -125,6 +140,18 @@ void GameStateBattle::GetInputs()
 			
 
 			UpdateItemUsages();
+			UpdateAbilitiesUsage();
+
+			if (abilities_poisonTurnsLeft > 0) {
+				if (currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0)
+					currentBattleData->GetFirstEnemy()->DamageEnemy(poisonWeight);
+			}
+
+			if (turnNumber > 0 && currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT) {
+				if (gameData->GetPlayerStats()->GetHealth() - poisonWeight > 0)
+					gameData->GetPlayerStats()->DamagePlayer(poisonWeight);
+			}
+
 
 			//_getch();
 
@@ -134,10 +161,17 @@ void GameStateBattle::GetInputs()
 			if (targetDamage <= 0)
 				targetDamage = 0;
 			playerStatsPtr->DamagePlayer(targetDamage);
-			SetConsoleText("Player damaged by " + std::to_string(targetDamage));
+			SetConsoleText("Player damaged by " + std::to_string(targetDamage) + " With Poison by 1");
+
+
+			if (gameData->GetPlayerStats()->GetHealth() <= 0)
+			{
+				SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
+			}
 		}
 		else if (currentFrame == 2) {
 			Sleep(1000);
+			turnNumber++;
 			SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
 			ClearConsole();
 		}
@@ -174,10 +208,48 @@ void GameStateBattle::GetInputs()
 			//----------USE ABILITY----------
 			else if (option == ' ')
 			{
-				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
-				SetConsoleText("Player used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
+				//POISON
+				if (currentAbilitySelected == 0 && abilities_poisonTurnsLeft == -1)
+				{
+					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
+					SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-				validOptionSelected = true;
+					bool usePoison = gameData->RollDice(25);
+
+					if (usePoison) {
+						SetConsoleText("Poison is Successfully applied");
+						abilities_poisonTurnsLeft = 4;
+					}
+					else {
+						SetConsoleText("Poison is Unsuccessful");
+					}
+
+					validOptionSelected = true;
+				}
+
+				//RESTORE
+				else if (currentAbilitySelected == 1 && !abilities_hasUsedRestore)
+				{
+					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
+					SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
+
+					gameData->GetPlayerStats()->HealPlayer(6);
+					abilities_hasUsedRestore = true;
+
+					validOptionSelected = true;
+				}
+
+				//ARMOUR
+				else if (currentAbilitySelected == 2 && abilities_armourTurnsLeft == -1)
+				{
+					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
+					SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
+
+					gameData->GetPlayerStats()->AddDefence(armourWeight);
+					abilities_armourTurnsLeft = 2;
+
+					validOptionSelected = true;
+				}
 			}
 		} while (!validOptionSelected);
 	}
@@ -185,12 +257,11 @@ void GameStateBattle::GetInputs()
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE) {
 		Sleep(1000);
 		SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
+
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) {
 		bool validOptionSelected = false;
-
-
 		//ClearConsole();
 
 		do {
@@ -253,6 +324,19 @@ void GameStateBattle::GetInputs()
 		}
 	}
 
+	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
+		if (currentFrame == 1) {
+
+			Sleep(1000);
+		}
+		else if (currentFrame == 2)
+		{
+			ClearConsole();
+			SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
+			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
+		}
+	}
+
 	else if (currentEvent == BATTLEEVENT::GAME_WON) {
 		if (currentFrame == 1) {
 			SetConsoleText("Enemies have been defeated! Pedro is victorious!");
@@ -272,6 +356,7 @@ void GameStateBattle::GetInputs()
 			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
 		}
 	}
+
 	else {
 		_getch();
 	}
@@ -344,24 +429,37 @@ void GameStateBattle::RenderUI()
 
 			screenPtr->RenderText(Vector2(2, 30), std::to_string(currentAbilitySelected + 1) + " / " + std::to_string(gameData->GetAbilities().size()));
 			const Vector2 abilityNamePosition = Vector2(8, 30);
-			const Vector2 abilityNameDesrciption = Vector2(2, 31);
+			const Vector2 abilityDescriptionPosition = Vector2(2, 31);
+			const Vector2 abilityUsedAlrPosition = Vector2(2, 34);
 			const int maxCharactersDescriptionPerLine = 30;
 			//screenPtr->RenderText(Vector2(9, 30), std::to_string(currentAbilitySelected));
 
+			//POISON
 			if (currentAbilitySelected == 0)
 			{
 				screenPtr->RenderText(abilityNamePosition, "Ability: Poison");
-				screenPtr->RenderText(abilityNameDesrciption, "25% chance to apply poison to the enemy (Once per Battle)");
+				screenPtr->RenderTextWrap(abilityDescriptionPosition, "25% chance to apply poison to the enemy (The skill can be used repeatedly until poison is successfully applied.)", 70);
+
+				if (abilities_poisonTurnsLeft > -1)
+					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
 			}
+			//RECOVER
 			else if (currentAbilitySelected == 1)
 			{
 				screenPtr->RenderText(abilityNamePosition, "Ability: Recover");
-				screenPtr->RenderText(abilityNameDesrciption, "Heal self for 6HP (Once per Battle)");
+				screenPtr->RenderText(abilityDescriptionPosition, "Heal self for 6HP (Use once per Battle)");
+
+				if (abilities_hasUsedRestore)
+					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
 			}
+			//ARMOUR
 			else if (currentAbilitySelected == 2)
 			{
 				screenPtr->RenderText(abilityNamePosition, "Ability: Armour");
-				screenPtr->RenderText(abilityNameDesrciption, "Reduce damage taken by 4 (Once per Battle)");
+				screenPtr->RenderText(abilityDescriptionPosition, "Reduce damage taken by 4 (Use once per Battle)");
+
+				if (abilities_armourTurnsLeft > -1)
+					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
 			}
 		}
 		
@@ -424,14 +522,12 @@ void GameStateBattle::RenderUI()
 
 	}
 
+	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
+		SetConsoleText("Player has been Defeated");
+	}
+
 
 	screenPtr->RenderText(Vector2(3, 30), GetConsoleText());
-
-
-
-
-
-
 
 
 	// Player Stats bar
@@ -507,19 +603,31 @@ void GameStateBattle::RenderUI()
 
 	//-----------------------------------------------------------------------------------------------
 
+
+	screenPtr->RenderDrawing(Vector2(0, 0), currentBattleData->GetFirstEnemy()->GetEnemySprite());
+	
+
+	screenPtr->RenderCharacter('+', 6, 24);
+	//screenPtr->RenderCharacter('+', 6, 22);
+	screenPtr->RenderCharacter('+', 23, 24);
+	//screenPtr->RenderCharacter('+', 23, 22);
 	// Mutant Stats bar
 	for (int i = 7; i < 23; i++)
-		screenPtr->RenderCharacter('-', i, 18);
-	for (int i = 19; i < 22; i++)
+		screenPtr->RenderCharacter('-', i, 24);
+	for (int i = 25; i < 28; i++)
 		screenPtr->RenderCharacter('|', 6, i);
-	for (int i = 19; i < 22; i++)
+	for (int i = 25; i < 28; i++)
 		screenPtr->RenderCharacter('|', 23, i);
-	for (int i = 7; i < 23; i++)
-		screenPtr->RenderCharacter('-', i, 22);
+	//for (int i = 7; i < 23; i++)
+		//screenPtr->RenderCharacter('-', i, );
 
-	screenPtr->RenderText(Vector2(9, 19), currentBattleData->GetFirstEnemy()->GetEnemyName());
-	screenPtr->RenderText(Vector2(9, 20), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
-	screenPtr->RenderText(Vector2(9, 21), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
+	for (int i = 25; i < 28; i++)
+		for (int j = 7; j < 23; j++)
+			screenPtr->RenderCharacter(' ', j, i);
+
+	screenPtr->RenderText(Vector2(9, 25), currentBattleData->GetFirstEnemy()->GetEnemyName());
+	screenPtr->RenderText(Vector2(9, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
+	screenPtr->RenderText(Vector2(9, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
 	screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
 	//screenPtr->RenderText(Vector2(6, 23), "ABT: 25% Chance to");
 	//screenPtr->RenderText(Vector2(6, 24), "poison the player");
@@ -583,6 +691,26 @@ void GameStateBattle::UpdateItemUsages()
 		}
 		else {
 			++iterator;
+		}
+	}
+}
+
+void GameStateBattle::UpdateAbilitiesUsage()
+{
+	if (abilities_armourTurnsLeft > 0) {
+		abilities_armourTurnsLeft--;
+
+		if (abilities_armourTurnsLeft <= 0) {
+			gameData->GetPlayerStats()->RemoveDefence(armourWeight);
+			abilities_armourTurnsLeft = 0;
+		}
+	}
+
+	if (abilities_poisonTurnsLeft > 0) {
+		abilities_poisonTurnsLeft--;
+
+		if (abilities_poisonTurnsLeft <= 0) {
+			abilities_poisonTurnsLeft = 0;
 		}
 	}
 }

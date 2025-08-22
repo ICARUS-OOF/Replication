@@ -1,4 +1,4 @@
-#include "GameStateWorld.h"
+﻿#include "GameStateWorld.h"
 
 #include "WorldEntity.h"
 #include "WorldPlayer.h"
@@ -141,7 +141,7 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 	{
 		//------------------FOR BATTLE TRIGGERS-----------------
 		//                                                          health atk                 EnemyType              Player FLEE POINTS
-		battleDataArray[battleSetIndex] = new BattleData(new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, ""), nullptr, Vector2(0, 1));
+		battleDataArray[battleSetIndex] = new BattleData(new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"), nullptr, Vector2(0, 1), 2);
 		//													      room | top-left position | scale
 		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(15, 5), Vector2(5, 5), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
 		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
@@ -1620,7 +1620,7 @@ ___________|
 
 Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they've sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the "greater good".
 
-Can�t say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
+Can’t say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
 
 I just hope that this war ends before Christmas.)"),
 
@@ -1787,5 +1787,57 @@ GAMESTATEVALUE GameStateWorld::GetGameStateValue()
 void GameStateWorld::DEBUG_BATTLETEST()
 {
 	gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
-	gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT, ""), Vector2(8, 4)));
+	std::string enemySprite_Mutant = R"(             |HHHHHHHH|
+     |HHHH####H∙∙∙∙∙##H|
+    |HH#∙∙∙∙∙∙∙∙∙ ∙∙∙∙∙##|
+   |HH∙∙∙ ∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙##|
+ |##∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙##|
+|## ∙∙∙∙∙∙∙∙∙∙ ∙∙∙∙∙∙∙∙∙##|
+|# ∙∙∙∙∙∙∙∙∙∙ ∙∙∙|H####∙∙##|
+|#∙∙∙∙∙∙∙∙∙ H ∙ ∙#######∙##|
+|#∙∙∙∙∙∙∙∙#HH∙∙∙∙##   #####|
+|#####∙∙HH#HH∙∙∙∙##   #####|
+|###∙#######|∙∙∙∙|## ######|
+ |##∙ #####|∙∙∙∙∙#######∙##|
+ |H#∙∙∙∙∙∙∙∙∙∙#∙##∙∙∙∙∙####|
+ |H#∙##∙| ∙∙ ##∙##|∙∙∙##H#|
+  |H#∙## ∙∙∙∙∙∙∙∙∙∙∙ ####|
+   |#####∙∙∙∙∙∙∙∙∙ ####∙#|
+    ###################∙#|
+    |##∙###############∙#|
+     |#∙###############∙#|
+      |#∙#############∙##|
+      |##∙∙|#######∙∙∙##|
+       |##∙∙∙∙∙∙∙∙∙∙##|
+        |###########H|)";
+
+	std::string enemySprite_Healer = R"(                      HHHH                  
+        ###          H#####H                
+ ##HHH   ###         H#####H                
+#+--++#   ##          H###H                 
+#-----+#####          I+++I                 
+ #++--++++##    ##HHHHH+++HHHHHHH####       
+   #+++#       ###+++++++++++++++++++##     
+   #++++#     #+++I++++++++++++##+++++##    
+   ##++++#####+++#I++++###+++++I ##+++##    
+     #++++++++++##I++#HHHHH#++#I  #++++##   
+       ##HHHHH##  I++#HHHHH#++I   I##+--++I 
+                  I+++####H+++I I#++-------I
+                  I#++++++++++II+--++II++--I
+                   I+I++++++#I I++-+I  I+--I
+                     I+++++I    I#++#I I++#I
+                     I+++++I                
+                     I#+++#I                
+                     I#HHH#I                
+                    I#######I               
+                    I#######I               
+                     ######H 
+
+)";
+
+	gameData->SetCurrentBattleData(new BattleData(
+		new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT, "", enemySprite_Mutant),
+		new EnemyData(15, 4, EnemyData::ENEMYTYPE::HEALER, "", enemySprite_Healer),
+
+		Vector2(8, 4), 100));
 }

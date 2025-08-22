@@ -5,20 +5,22 @@ BattleData::BattleData()
 {
 }
 
-BattleData::BattleData(EnemyData* singleEnemy, Vector2 playerFleePoint) : BattleData()
+BattleData::BattleData(EnemyData* singleEnemy, Vector2 playerFleePoint, int AddGcoins) : BattleData()
 {
 	this->firstEnemy = singleEnemy;
 	this->secondEnemy = nullptr;
 	this->playerFleePoint = playerFleePoint;
+	this->AddGcoins = AddGcoins;
 	this->battleEndState = BATTLEEND::NONE;
 }
 
-BattleData::BattleData(EnemyData* firstEnemy, EnemyData* secondEnemy, Vector2 playerFleePoint) : BattleData()
+BattleData::BattleData(EnemyData* firstEnemy, EnemyData* secondEnemy, Vector2 playerFleePoint, int AddGcoins) : BattleData()
 {
 	this->firstEnemy = firstEnemy;
 	this->secondEnemy = secondEnemy;
 	this->playerFleePoint = playerFleePoint;
 	this->battleEndState = BATTLEEND::NONE;
+	this->AddGcoins = AddGcoins;
 }
 
 EnemyData* BattleData::GetFirstEnemy()
