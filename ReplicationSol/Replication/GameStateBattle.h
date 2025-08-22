@@ -20,6 +20,7 @@ public:
 		PLAYER_CHOICE_ITEMS,
 		PLAYER_CHOICE_ITEMS_USAGE,
 		PLAYER_CHOICE_ABILITIES,
+		PLAYER_CHOICE_ABILITIES_USAGE,
 		PLAYER_CHOICE_FLEE,
 		ENEMY_ATTACK,
 		GAME_WON,
@@ -41,6 +42,7 @@ private:
 
 	int currentFrame;
 	int currentItemSelected;
+	int currentAbilitySelected;
 
 	Item lastItemUsed;
 

@@ -2,6 +2,7 @@
 #include "GameData.h"
 #include "Item.h"
 #include "ItemUsage.h"
+#include "EnemyData.h"
 #include <conio.h>
 #include <iostream>
 #include <string>
@@ -12,6 +13,7 @@
 GameStateBattle::GameStateBattle(GameData* gameData)
 {
 	this->gameData = gameData;
+	this->currentBattleData = nullptr;
 	this->screenPtr = gameData->GetScreenPtr();
 	this->gameStateScreenSize = Vector2(110, 35);
 	this->playerStatsPtr = gameData->GetPlayerStats();
@@ -19,6 +21,7 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->currentConsoleText = "";
 	this->currentFrame = 0;
 	this->currentItemSelected = 0;
+	this->currentAbilitySelected = 0;
 	this->itemUsages.clear();
 }
 
@@ -27,11 +30,16 @@ void GameStateBattle::OnStateEnter()
 	screenPtr->ResizeScreen(gameStateScreenSize);
 
 
-	currentBattleData = gameData->GetCurrentBattleData();
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
 	this->currentFrame = 0;
 	this->currentItemSelected = 0;
+	this->currentAbilitySelected = 0;
+	this->currentBattleData = gameData->GetCurrentBattleData();
+
+	gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
+	gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
+	gameData->AddAbility(EnemyData::ENEMYTYPE::GUARD);
 
 	gameData->GetPlayerStats()->ResetStats();
 	this->itemUsages.clear();
@@ -39,7 +47,7 @@ void GameStateBattle::OnStateEnter()
 
 void GameStateBattle::GetInputs()
 {
-
+	//----PLAYER CHOICE----
 	if (currentEvent == BATTLEEVENT::PLAYER_CHOICE) {
 		ClearConsole();
 
@@ -96,23 +104,23 @@ void GameStateBattle::GetInputs()
 			}
 		} while (!hasSelectedValidOption);
 	}
-	
+	//---PLAYER FIGHT ANIMATION
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM) {
 
 	}
-	
+	///-------ENEMY ATTACKING------
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
 		if (currentFrame == 1) {
 
 
-			
+			/*
 			{
 				system("cls");
 				for (int i = 0; i < itemUsages.size(); i++)
 				{
 					std::cout << itemUsages[i].GetItem().GetItemName() << ": " << itemUsages[i].GetUsageLeft() << std::endl;
 				}
-			}
+			}*/
 			
 
 			UpdateItemUsages();
@@ -132,6 +140,43 @@ void GameStateBattle::GetInputs()
 			SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
 			ClearConsole();
 		}
+	}
+
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES) {
+		bool validOptionSelected = false;
+
+		do {
+			int option = _getch();
+
+			if (option == 'a' || option == 'A') {
+				currentAbilitySelected--;
+
+				if (currentAbilitySelected < 0)
+					currentAbilitySelected = gameData->GetAbilities().size() - 1;
+
+				validOptionSelected = true;
+			}
+			else if (option == 'd' || option == 'D') {
+				currentAbilitySelected++;
+
+				if (currentAbilitySelected >= gameData->GetAbilities().size())
+					currentAbilitySelected = 0;
+
+				validOptionSelected = true;
+			}
+			else if (option == 27) {
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
+				validOptionSelected = true;
+			}
+
+			//----------USE ITEM----------
+			else if (option == ' ')
+			{
+
+
+				validOptionSelected = true;
+			}
+		} while (!validOptionSelected);
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) {
@@ -200,12 +245,15 @@ void GameStateBattle::GetInputs()
 		}
 	}
 
+
 	else if (currentEvent == BATTLEEVENT::GAME_WON) {
 		if (currentFrame == 1) {
 			SetConsoleText("Enemies have been defeated! Pedro is victorious!");
 			Sleep(2000);
 		}
 		else if (currentFrame == 2) {
+			gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
+
 			Sleep(3000);
 			ClearConsole();
 			currentBattleData->SetBattleEndState(BattleData::BATTLEEND::WON);
@@ -278,7 +326,13 @@ void GameStateBattle::RenderUI()
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES)
 	{
+		if (gameData->GetAbilities().size() > 0) {
 
+
+			screenPtr->RenderText(Vector2(9, 30), std::to_string(currentAbilitySelected));
+		}
+		else
+			screenPtr->RenderText(Vector2(9, 30), "No abilities unlocked yet!");
 	}
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) 
 	{

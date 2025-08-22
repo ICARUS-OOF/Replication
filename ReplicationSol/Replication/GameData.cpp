@@ -1,5 +1,6 @@
 #include "GameData.h"
 #include "GAMESTATEVALUE.h"
+#include "EnemyData.h"
 #include "Item.h"
 #include <vector>
 #include <algorithm>
@@ -11,6 +12,7 @@ GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats
 	this->gameStateValue = gameStateValue;
 	this->playerStats = playerStats;
 	this->inventory = std::vector<Item>(0);
+	this->enemyAbilitiesCopied = std::vector<EnemyData::ENEMYTYPE>(0);
 
 	// Player attack boost items
 	AddItem(Item("Metal Bar", 0, Item::ITEMTYPE::ATTACK, 3, 5, "A rusty metal bar. Could be useful in a fight. Increases attack by 3 for 5 turns"));
@@ -86,6 +88,27 @@ Item GameData::GetInventoryItem(int i)
 int GameData::GetInventorySize()
 {
 	return inventory.size();
+}
+
+void GameData::AddAbility(EnemyData::ENEMYTYPE ability)
+{
+	bool add = true;
+	for (int i = 0; i < enemyAbilitiesCopied.size(); i++)
+	{
+		if (enemyAbilitiesCopied[i] == ability) {
+			add = false;
+			break;
+		}
+	}
+
+	if (add) {
+		enemyAbilitiesCopied.push_back(ability);
+	}
+}
+
+std::vector<EnemyData::ENEMYTYPE> GameData::GetAbilities()
+{
+	return enemyAbilitiesCopied;
 }
 
 Screen* GameData::GetScreenPtr()

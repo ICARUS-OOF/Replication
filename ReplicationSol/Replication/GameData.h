@@ -18,6 +18,7 @@ private:
 	BattleData* currentBattleData;
 
 	std::vector<Item> inventory;
+	std::vector<EnemyData::ENEMYTYPE> enemyAbilitiesCopied;
 public:
 	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats);
 
@@ -37,5 +38,8 @@ public:
 	std::vector<Item> GetInventory();
 	Item GetInventoryItem(int i);
 	int GetInventorySize();
+
+	void AddAbility(EnemyData::ENEMYTYPE ability);
+	std::vector<EnemyData::ENEMYTYPE> GetAbilities();
 };
 
