@@ -1721,7 +1721,7 @@ void GameStateWorld::GetInputs()
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
 
-			//DEBUG_BATTLETEST();
+			DEBUG_BATTLETEST();
 
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());

@@ -606,6 +606,7 @@ void GameStateBattle::RenderUI()
 
 	screenPtr->RenderDrawing(Vector2(0, 0), currentBattleData->GetFirstEnemy()->GetEnemySprite());
 	
+	screenPtr->RenderDrawing(Vector2(30, 0), currentBattleData->GetSecondEnemy()->GetEnemySprite());
 
 	screenPtr->RenderCharacter('+', 6, 24);
 	//screenPtr->RenderCharacter('+', 6, 22);
