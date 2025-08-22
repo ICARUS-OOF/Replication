@@ -20,7 +20,7 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	gameStateScreenSize = Vector2(80, 25);
 	
-	this->currentRoomIndex = 0;
+	this->currentRoomIndex = 4;
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 
@@ -683,7 +683,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 			SpawnProp(new Prop(screenPtr,
 				4, //Step 2. Define which Room the prop will be in
-				Vector2(0, 14), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(0, 8), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
 				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
 				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
@@ -695,6 +695,266 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 				&officecubiclemiddle, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string officecubiclebottomleft =
+				R"( ________________________
+| ______________________ |
+||           |          ||
+||     _____/           ||
+||    |    ___          ||
+||    |   |   |         ||
+||    |   |___|         ||
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				4, //Step 2. Define which Room the prop will be in
+				Vector2(0, 18), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
+					{ "No name", "Looks like its vacant" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&officecubiclebottomleft, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string officecubiclebottomright =
+				R"( ________________________ 
+| ______________________ |
+||          |           ||
+||           \_____     ||
+||          ___    |    ||
+||         |   |   |    ||
+||         |___|   |    ||
+||                 |____||
+||______________________||
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				4, //Step 2. Define which Room the prop will be in
+				Vector2(54, 16), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
+					{ "Sarah Berkely", "Looks like she left in a hurry, her desk is quite messy" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&officecubiclebottomright, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string officecubicletopright =
+				R"(||          |           ||
+||           \_____     ||
+||          ___    |    ||
+||         |   |   |    ||
+||         |___|   |    ||
+||                 |____||
+||______________________||
+|________________________|
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				4, //Step 2. Define which Room the prop will be in
+				Vector2(54, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
+					{ "Henry Adams", "Why does that name sound familiar?" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&officecubicletopright, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string armorylockerleft =
+				R"( ________________________________________________                
+|        |               
+|        |             
+|        |             
+|________|               
+|      | |          
+|      | |           
+|      | |           
+|      | |           
+|______|_|         
+|      | |           
+|      | |           
+|      | |          
+|      | |         
+|______|_|
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				5, //Step 2. Define which Room the prop will be in
+				Vector2(15, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Riot control gear, and some heavy firearms..."}, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&armorylockerleft, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string armorylockermiddle =
+				R"(         |          |         |        |               
+         |          |         |        |               
+_________|__________|_________|        |               
+_________|__________|_________|
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				5, //Step 2. Define which Room the prop will be in
+				Vector2(25, 6), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
+					{ "Its quite empty", "Must've been them taking all the gear they could carry" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&armorylockermiddle, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string armorylockerright =
+				R"(|________|               
+| |      |               
+| |      |               
+| |      |               
+| |      |               
+|_|______|               
+| |      |               
+| |      |               
+| |      |               
+| |      |               
+|_|______|
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				5, //Step 2. Define which Room the prop will be in
+				Vector2(55, 9), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Nothing in here" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+				&armorylockerright, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string armoryhallway =
+				R"(                         ||                          ||                         
+                         ||                          ||                         
+                         ||                          ||                         
+                         ||                          ||                         
+                         ||                          ||                          
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				5, //Step 2. Define which Room the prop will be in
+				Vector2(0, 20), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				nullptr,
+
+				&armoryhallway, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string verticalhallway =
+				R"(                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                        
+                   |                                   |                                         
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				6, //Step 2. Define which Room the prop will be in
+				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				nullptr,
+
+				&verticalhallway, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
 
@@ -739,6 +999,42 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 			//															roomIndex  position top-left  scale														//player emerging position
 			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 3, Vector2(1, 4), Vector2(1, 21), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(77, 10)));
 			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(4); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 4, Vector2(79, 8), Vector2(1, 9), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(3, 10)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(3); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 4, Vector2(26, 0), Vector2(28, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(42, 22)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(5); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 4, Vector2(26, 24), Vector2(28, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(39, 2)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(6); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 5, Vector2(27, 24), Vector2(26, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(42, 2)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(4); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 6, Vector2(20, 0), Vector2(35, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(42, 22)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(4); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 6, Vector2(20, 24), Vector2(35, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(42, 2)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(7); // Target room to go to
 		}
 	}
 
@@ -837,7 +1133,7 @@ void GameStateWorld::GetInputs()
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
 			
-			DEBUG_BATTLETEST();
+			//DEBUG_BATTLETEST();
 			
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
