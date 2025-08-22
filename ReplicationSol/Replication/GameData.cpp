@@ -14,6 +14,7 @@ GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats
 	this->playerStats = playerStats;
 	this->inventory = std::vector<Item>(0);
 	this->enemyAbilitiesCopied = std::vector<EnemyData::ENEMYTYPE>(0);
+	this->gcoins = 0;
 
 	// Player attack boost items
 	AddItem(Item("Metal Bar", 0, Item::ITEMTYPE::ATTACK, 3, 5, "A rusty metal bar. Could be useful in a fight. Increases attack by 3 for 5 turns"));
@@ -110,6 +111,24 @@ void GameData::AddAbility(EnemyData::ENEMYTYPE ability)
 std::vector<EnemyData::ENEMYTYPE> GameData::GetAbilities()
 {
 	return enemyAbilitiesCopied;
+}
+
+void GameData::AddGcoins(int amt)
+{
+	gcoins += amt;
+}
+
+void GameData::RemoveGcoins(int amt)
+{
+	gcoins -= amt;
+	if (gcoins < 0) {
+		gcoins = 0;
+	}
+}
+
+bool GameData::HasEnoughGcoins(int amt)
+{
+	return gcoins >= amt;
 }
 
 /// <summary>

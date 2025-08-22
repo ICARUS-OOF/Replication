@@ -19,6 +19,8 @@ private:
 
 	std::vector<Item> inventory;
 	std::vector<EnemyData::ENEMYTYPE> enemyAbilitiesCopied;
+
+	int gcoins;
 public:
 	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats);
 
@@ -41,6 +43,11 @@ public:
 
 	void AddAbility(EnemyData::ENEMYTYPE ability);
 	std::vector<EnemyData::ENEMYTYPE> GetAbilities();
+
+	void AddGcoins(int amt);
+	void RemoveGcoins(int amt);
+	bool HasEnoughGcoins(int amt);
+
 
 	bool RollDice(int percentage);
 };
