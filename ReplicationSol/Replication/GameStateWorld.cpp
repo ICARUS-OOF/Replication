@@ -19,8 +19,8 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 	this->screenPtr = gameData->GetScreenPtr();
 
 	gameStateScreenSize = Vector2(80, 25);
-	
-	this->currentRoomIndex = 4;
+
+	this->currentRoomIndex = 10;
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 
@@ -112,20 +112,20 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 )";
 
 		SpawnProp(new Prop(screenPtr,
-		0, //Step 2. Define which Room the prop will be in
-		Vector2(34, 15), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-		Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-		Prop::PROPTYPE::MAP_LAYOUT_NONSOLID, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+			0, //Step 2. Define which Room the prop will be in
+			Vector2(34, 15), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+			Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+			Prop::PROPTYPE::MAP_LAYOUT_NONSOLID, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
-		//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-		new DialogueInteractable(
-			new std::string[3] //Step 4. Define the NUMBER OF LINES in []
-			{ "This is lne 1!", "This is line 2!", "This is line 3!" }, //Step 5. Define the lines
-			screenPtr, &currentInteractable,
-			3), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+			new DialogueInteractable(
+				new std::string[3] //Step 4. Define the NUMBER OF LINES in []
+				{ "This is lne 1!", "This is line 2!", "This is line 3!" }, //Step 5. Define the lines
+				screenPtr, &currentInteractable,
+				3), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
-		&yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
-		nullptr));
+			&yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
+			nullptr));
 	}
 
 	{
@@ -218,7 +218,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
-					{ "Looks like a cave-in.", "Hope nothing falls on me."}, //Step 5. Define the lines
+					{ "Looks like a cave-in.", "Hope nothing falls on me." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -336,7 +336,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[4] //Step 4. Define the NUMBER OF LINES in []
-					{ "So many research papers.", "Does that one have my name on it?", "The only readable words are...", "'Supersoldier', 'clone', and 'unforseen side effects'."}, //Step 5. Define the lines
+					{ "So many research papers.", "Does that one have my name on it?", "The only readable words are...", "'Supersoldier', 'clone', and 'unforseen side effects'." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					4), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -364,7 +364,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "Test tubes with different coloured liquids in them. Smells funny."}, //Step 5. Define the lines
+					{ "Test tubes with different coloured liquids in them. Smells funny." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -388,7 +388,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "I am not going back in there."}, //Step 5. Define the lines
+					{ "I am not going back in there." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -442,7 +442,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[3] //Step 4. Define the NUMBER OF LINES in []
-					{ "Eugh, gross.", "Although I gotta take what I can get...", "Slop obtained"}, //Step 5. Define the lines
+					{ "Eugh, gross.", "Although I gotta take what I can get...", "Slop obtained" }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					3), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -497,7 +497,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 				new DialogueInteractable(
 					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
 					{ "Food everywhere.", "Looks like they left in a hurry." }, //Step 5. Define the lines
-					screenPtr, & currentInteractable,
+					screenPtr, &currentInteractable,
 					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 				&tables, //Step 7. Include the string variable name from step 1 here with the & in front
@@ -595,7 +595,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "I don't recall seeing these plants before..."}, //Step 5. Define the lines
+					{ "I don't recall seeing these plants before..." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -821,7 +821,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "Riot control gear, and some heavy firearms..."}, //Step 5. Define the lines
+					{ "Riot control gear, and some heavy firearms..." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -1010,8 +1010,8 @@ _________|__________|_________|
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "Lots of supplies, meant for the office though. Shame."}, //Step 5. Define the lines
-					screenPtr, & currentInteractable,
+					{ "Lots of supplies, meant for the office though. Shame." }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 
@@ -1041,8 +1041,8 @@ _________|__________|_________|
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "I'm not forklift certified..."}, //Step 5. Define the lines
-					screenPtr, & currentInteractable,
+					{ "I'm not forklift certified..." }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 
@@ -1073,8 +1073,8 @@ _________|__________|_________|
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
-					{ "Heavy weapons?", "Too bad I can't pry off the cover on these crates..."}, //Step 5. Define the lines
-					screenPtr, & currentInteractable,
+					{ "Heavy weapons?", "Too bad I can't pry off the cover on these crates..." }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
 					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 
@@ -1113,6 +1113,301 @@ _________|__________|_________|
 
 
 				&horizontalhallway, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string lobbyplant =
+				R"(  \|/
+   |
+/\ | /\ 
+  \|/ 
+ |---|    
+ |   |
+ |___|
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				9, //Step 2. Define which Room the prop will be in
+				Vector2(10, 1), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "This one smells nice" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+
+				&lobbyplant, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string vendingmachine2 =
+				R"( _______
+|  _____
+| |     
+| |     
+| |     
+| |     
+| |_____
+|_______
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				9, //Step 2. Define which Room the prop will be in
+				Vector2(72, 1), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				nullptr,
+
+
+				&vendingmachine2, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string trashcan =
+				R"(  __    
+ /  \   
+|    |  
+ \__/ 
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				9, //Step 2. Define which Room the prop will be in
+				Vector2(72, 17), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Nothing in here that helps me..." }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+
+				&trashcan, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string lifts =
+				R"(           ____________________________  ____________________________           
+          |             ||             ||             ||             |          
+          |             ||             ||             ||             |          
+          |             ||             ||             ||             |          
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				9, //Step 2. Define which Room the prop will be in
+				Vector2(0, 22), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
+					{ "Can't use the lifts because the power is out", "Doesn't matter anyways, it appears I'm on the top floor"}, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+
+				&lifts, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string lobbycarpet =
+				R"(-                  -                              
+|                  |
+-                  - 
+|                  |  
+-                  -  
+|                  |  
+-                  -   
+|                  |
+-                  -
+|__________________|
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				9, //Step 2. Define which Room the prop will be in
+				Vector2(30, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT_NONSOLID,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				nullptr,
+
+
+				&lobbycarpet, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string foyercarpet =
+				R"( __________________                               
+|                  |                              
+-                  -                  
+|                  |                   
+-                  -                  
+|                  |                
+-                  -            
+|                  |                 
+-                  -                
+|                  |                
+-                  -  
+|                  |
+-                  -                              
+|                  |                              
+-                  -                              
+|                  |                              
+-                  -                              
+|                  |                              
+-                  -                              
+|                  |
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				10, //Step 2. Define which Room the prop will be in
+				Vector2(30, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT_NONSOLID,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				nullptr,
+
+
+				&foyercarpet, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string foyersofas =
+				R"(___________                                                                     
+           |                                                                    
+     ______||
+    |       |
+    |       |
+    |       |
+    |       |
+    |       |
+    |______ |
+           ||
+___________|
+___________ 
+           |  
+     ______||
+    |       |
+    |       |
+    |       |
+    |       |    
+    |       |     
+    |______ |    
+           ||
+___________| 
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				10, //Step 2. Define which Room the prop will be in
+				Vector2(0, 3), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "I'm so tired, but the exit is right there..." }, //Step 5. Define the lines
+					screenPtr, & currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+
+				&foyersofas, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string receptionistdesk =
+				R"(   ________
+  /  ______
+ /  /      
+|  |    ___
+|  |   |   
+|  |   |   
+|  |   |___
+|  |       
+ \  \______
+  \________
+
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				10, //Step 2. Define which Room the prop will be in
+				Vector2(69, 7), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Papers everywhere, seems like whoever was here left in a jiffy" }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+
+				&receptionistdesk, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string exit =
+				R"(                    |                  ||                  |                    
+                    |                  ||                  |                    
+                    |__________________||__________________|                    
+
+
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				10, //Step 2. Define which Room the prop will be in
+				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Finally..." }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+
+				&exit, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
 
@@ -1218,6 +1513,24 @@ _________|__________|_________|
 			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 8, Vector2(79, 6), Vector2(1, 13), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(2, 12)));
 			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(9); // Target room to go to
 		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 9, Vector2(0, 0), Vector2(1, 25), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(77, 12)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(8); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 9, Vector2(31, 0), Vector2(18, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(40, 23)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(10); // Target room to go to
+		}
+		{
+			//FOR LEVEL TRANSITIONS
+			//															roomIndex  position top-left  scale														//player emerging position
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 10, Vector2(31, 24), Vector2(18, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(40, 2)));
+			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(9); // Target room to go to
+		}
 	}
 
 
@@ -1314,9 +1627,9 @@ void GameStateWorld::GetInputs()
 			}
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
-			
+
 			//DEBUG_BATTLETEST();
-			
+
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
 
