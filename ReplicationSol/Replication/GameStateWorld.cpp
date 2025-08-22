@@ -22,7 +22,7 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	gameStateScreenSize = Vector2(80, 25);
 
-	this->currentRoomIndex = 0;
+	this->currentRoomIndex = 5;
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 
@@ -900,6 +900,36 @@ _________|__________|_________|
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 				&armorylockerright, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string armorynote =
+				R"([]
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				5, //Step 2. Define which Room the prop will be in
+				Vector2(30, 11), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new NoteInteractable(screenPtr, &currentInteractable, R"(What the hell is up with the prisoners?!
+
+They're unusually coordinated and frenzied, they took out nearly half of the riot control units in less than 15 minutes!
+
+I've locked myself in the armory with some of the others. The higher-ups keep yelling at us to get out and deal with the riots, but like hell I'm going out there ever again! I saw a whole crowd beat a single guard to a pulp!
+
+I don't know how long it will be until they reach us. If I make it out of here alive I'm finding the lead scientist and putting a bullet in his cranium.
+
+Those Frankensteins caused this. I'm sure of it.
+
+)"),
+
+				&armorynote, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
 
