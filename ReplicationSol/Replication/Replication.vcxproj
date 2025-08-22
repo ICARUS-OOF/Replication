@@ -137,10 +137,12 @@
     <ClCompile Include="GameStateWorld.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemUsage.cpp" />
+    <ClCompile Include="NoteInteractable.cpp" />
     <ClCompile Include="PlayerStats.cpp" />
     <ClCompile Include="Prop.cpp" />
     <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="VendingMachineInteractable.cpp" />
     <ClCompile Include="WorldEntity.cpp" />
     <ClCompile Include="WorldPlayer.cpp" />
     <ClCompile Include="SHIZECODE.cpp" />
@@ -159,10 +161,12 @@
     <ClInclude Include="GameStateWorld.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemUsage.h" />
+    <ClInclude Include="NoteInteractable.h" />
     <ClInclude Include="PlayerStats.h" />
     <ClInclude Include="Prop.h" />
     <ClInclude Include="Interactable.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="VendingMachineInteractable.h" />
     <ClInclude Include="WorldEntity.h" />
     <ClInclude Include="WorldPlayer.h" />
     <ClInclude Include="Vector2.h" />

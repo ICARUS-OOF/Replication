@@ -13,12 +13,12 @@ Vector2::Vector2(int x, int y)
 	this->y = y;
 }
 
-int Vector2::Getx()
+int Vector2::Getx() const
 {
 	return x;
 }
 
-int Vector2::Gety()
+int Vector2::Gety() const
 {
 	return y;
 }

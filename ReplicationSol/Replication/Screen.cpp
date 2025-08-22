@@ -1,5 +1,6 @@
 #include "Screen.h"
 
+#include "Vector2.h"
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -88,13 +89,18 @@ void Screen::RenderCharacter(const char targetChar, const int targetX, const int
 	chars[targetY][targetX] = targetChar;
 }
 
+void Screen::RenderCharacter(const char targetChar, const Vector2 pos)
+{
+	RenderCharacter(targetChar, pos.Getx(), pos.Gety());
+}
+
 void Screen::RenderText(Vector2 StartingPos, std::string Text)
 {
 	for (int i = 0; i < Text.length(); i++)
 		RenderCharacter(Text.at(i), StartingPos.Getx() + i, StartingPos.Gety());
 }
 
-void Screen::RenderTextWrap(Vector2 StartingPos, std::string Text, const int maxCharacters)
+void Screen::RenderTextWrap(Vector2 StartingPos, std::string Text, const int maxCharactersPerLine)
 {
 	int currentCharacterCol = 0;
 	int currentRow = 0;
@@ -104,7 +110,26 @@ void Screen::RenderTextWrap(Vector2 StartingPos, std::string Text, const int max
 		RenderCharacter(Text[i], StartingPos.Getx() + currentCharacterCol, StartingPos.Gety() + currentRow);
 		currentCharacterCol++;
 
-		if (currentCharacterCol >= maxCharacters && Text[i] == ' ') {
+		if (currentCharacterCol >= maxCharactersPerLine && Text[i] == ' ') {
+			currentRow++;
+			currentCharacterCol = 0;
+		}
+	}
+}
+
+void Screen::RenderTextWrapManual(Vector2 StartingPos, std::string Text, const int maxCharactersPerLine)
+{
+	int currentCharacterCol = 0;
+	int currentRow = 0;
+
+	for (int i = 0; i < Text.length(); i++)
+	{
+		if (Text[i] != '\n') {
+			RenderCharacter(Text[i], StartingPos.Getx() + currentCharacterCol, StartingPos.Gety() + currentRow);
+			currentCharacterCol++;
+		}
+
+		if (Text[i] == '\n' || (currentCharacterCol >= maxCharactersPerLine && Text[i] == ' ')) {
 			currentRow++;
 			currentCharacterCol = 0;
 		}

@@ -3,6 +3,8 @@
 #include "WorldEntity.h"
 #include "WorldPlayer.h"
 #include "Prop.h"
+#include "VendingMachineInteractable.h"
+#include "NoteInteractable.h"
 #include "GAMESTATEVALUE.h"
 
 #include <iostream>
@@ -20,7 +22,7 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	gameStateScreenSize = Vector2(80, 25);
 
-	this->currentRoomIndex = 10;
+	this->currentRoomIndex = 0;
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 
@@ -154,7 +156,6 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 ///OFFICIAL SETTING OF LEVEL PROP DATA
 void GameStateWorld::SetLevelData()
 {
-
 
 	{
 		{
@@ -1534,6 +1535,52 @@ ___________|
 	}
 
 
+	{
+		//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+		//        And define the string in this format
+		std::string yourPropDesign =
+			R"([[[[[]]]]]]
+)";
+
+		SpawnProp(new Prop(screenPtr,
+			0, //Step 2. Define which Room the prop will be in
+			Vector2(14, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+			Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+			Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+			new VendingMachineInteractable(screenPtr, & currentInteractable),
+
+			& yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
+			nullptr));
+	}
+
+
+	{
+		//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+		//        And define the string in this format
+		std::string yourPropDesign =
+			R"(NOTE
+)";
+
+		SpawnProp(new Prop(screenPtr,
+			0, //Step 2. Define which Room the prop will be in
+			Vector2(25, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+			Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+			Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+			new NoteInteractable(screenPtr, & currentInteractable, R"(It's been roughly 84 days since war broke out. Things have only gotten worse.
+
+Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they’ve sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the “greater good”.
+
+Can’t say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
+
+I just hope that this war ends before Christmas.)"),
+
+			& yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
+			nullptr));
+	}
 }
 
 
