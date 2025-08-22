@@ -1556,6 +1556,10 @@ ___________|
 	}
 
 
+
+
+
+
 	{
 		//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 		//        And define the string in this format
@@ -1572,7 +1576,7 @@ ___________|
 			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 			new NoteInteractable(screenPtr, & currentInteractable, R"(It's been roughly 84 days since war broke out. Things have only gotten worse.
 
-Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they’ve sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the “greater good”.
+Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they've sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the "greater good".
 
 Can’t say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
 
