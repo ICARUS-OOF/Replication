@@ -542,7 +542,19 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 				Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				nullptr,
+				new NoteInteractable(screenPtr, &currentInteractable, R"(SITE STATUS: GAMMA LOCKDOWN
+
+NON-COMBATIVE PERSONNEL ARE TO HEAD TO THE NEAREST EVACUATION BAY OR LOCKDOWN SHELTER
+
+Security incident logs:
+12:47: Massive riot in B-Wing, riot control dispatched.
+13:00: Riot spreads to A-Wing, C-Wing, and D-Wing.
+13:24: Control room is overrun, GAMMA-level lockdown initiated. External security teams dispatched.
+14:02: Transformer fails, site-wide power outage occurs. Backup generators are activated.
+15:01: External security teams arrive.
+06:57: Fault in power line leading to heavy containment.
+07:00: Subject 0 breaches containment.
+)"),
 
 				&loungeTV, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
@@ -1564,7 +1576,7 @@ ___________|
 		//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 		//        And define the string in this format
 		std::string yourPropDesign =
-			R"(NOTE
+			R"([]
 )";
 
 		SpawnProp(new Prop(screenPtr,
