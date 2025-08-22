@@ -94,6 +94,23 @@ void Screen::RenderText(Vector2 StartingPos, std::string Text)
 		RenderCharacter(Text.at(i), StartingPos.Getx() + i, StartingPos.Gety());
 }
 
+void Screen::RenderTextOverflow(Vector2 StartingPos, std::string Text, const int maxCharacters)
+{
+	int currentCharacterCol = 0;
+	int currentRow = 0;
+
+	for (int i = 0; i < Text.length(); i++)
+	{
+		RenderCharacter(Text[i], StartingPos.Getx() + currentCharacterCol, StartingPos.Gety() + currentRow);
+		currentCharacterCol++;
+
+		if (currentCharacterCol >= maxCharacters) {
+			currentRow++;
+			currentCharacterCol = 0;
+		}
+	}
+}
+
 /// <summary>
 /// Gets screen size in the form of a vector2
 /// </summary>
