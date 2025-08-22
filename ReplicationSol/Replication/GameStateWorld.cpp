@@ -139,7 +139,7 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 	{
 		//------------------FOR BATTLE TRIGGERS-----------------
 		//                                                          health atk                 EnemyType              Player FLEE POINTS
-		battleDataArray[battleSetIndex] = new BattleData(new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT), nullptr, Vector2(0, 1));
+		battleDataArray[battleSetIndex] = new BattleData(new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, ""), nullptr, Vector2(0, 1));
 		//													      room | top-left position | scale
 		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(15, 5), Vector2(5, 5), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
 		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
@@ -1381,5 +1381,5 @@ GAMESTATEVALUE GameStateWorld::GetGameStateValue()
 void GameStateWorld::DEBUG_BATTLETEST()
 {
 	gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
-	gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT), Vector2(8, 4)));
+	gameData->SetCurrentBattleData(new BattleData(new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT, ""), Vector2(8, 4)));
 }
