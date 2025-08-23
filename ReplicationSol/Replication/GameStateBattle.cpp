@@ -19,7 +19,6 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->playerStatsPtr = gameData->GetPlayerStats();
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
-	this->currentFrame = 0;
 	this->currentItemSelected = 0;
 	this->currentAbilitySelected = 0;
 	this->abilities_poisonTurnsLeft = -1;
@@ -31,12 +30,8 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 
 void GameStateBattle::OnStateEnter()
 {
-	screenPtr->ResizeScreen(gameStateScreenSize);
-
-
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
-	this->currentFrame = 0;
 	this->currentItemSelected = 0;
 	this->currentAbilitySelected = 0;
 	this->currentBattleData = gameData->GetCurrentBattleData();
@@ -53,9 +48,13 @@ void GameStateBattle::OnStateEnter()
 
 	gameData->GetPlayerStats()->ResetStats();
 	this->itemUsages.clear();
+
+	screenPtr->ResizeScreen(gameStateScreenSize);
+	ClearScreen();
+	this->RenderScreen();
 }
 
-void GameStateBattle::GetInputs()
+void GameStateBattle::Loop()
 {
 	//----PLAYER CHOICE----
 	if (currentEvent == BATTLEEVENT::PLAYER_CHOICE) {
@@ -127,54 +126,53 @@ void GameStateBattle::GetInputs()
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
 		
 		bool enemyUsePoison = true;
-		if (currentFrame == 1) {
-
-			/*
+		/*
+		{
+			system("cls");
+			for (int i = 0; i < itemUsages.size(); i++)
 			{
-				system("cls");
-				for (int i = 0; i < itemUsages.size(); i++)
-				{
-					std::cout << itemUsages[i].GetItem().GetItemName() << ": " << itemUsages[i].GetUsageLeft() << std::endl;
-				}
-			}*/
+				std::cout << itemUsages[i].GetItem().GetItemName() << ": " << itemUsages[i].GetUsageLeft() << std::endl;
+			}
+		}*/
 			
 
-			UpdateItemUsages();
-			UpdateAbilitiesUsage();
+		UpdateItemUsages();
+		UpdateAbilitiesUsage();
 
-			if (abilities_poisonTurnsLeft > 0) {
-				if (currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0)
-					currentBattleData->GetFirstEnemy()->DamageEnemy(poisonWeight);
-			}
-
-			if (turnNumber > 0 && currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT) {
-				if (gameData->GetPlayerStats()->GetHealth() - poisonWeight > 0)
-					gameData->GetPlayerStats()->DamagePlayer(poisonWeight);
-			}
-
-
-			//_getch();
-
-			Sleep(1000);
-
-			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
-			if (targetDamage <= 0)
-				targetDamage = 0;
-			playerStatsPtr->DamagePlayer(targetDamage);
-			SetConsoleText("Player damaged by " + std::to_string(targetDamage) + " With Poison by 1");
-
-
-			if (gameData->GetPlayerStats()->GetHealth() <= 0)
-			{
-				SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
-			}
+		if (abilities_poisonTurnsLeft > 0) {
+			if (currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0)
+				currentBattleData->GetFirstEnemy()->DamageEnemy(poisonWeight);
 		}
-		else if (currentFrame == 2) {
-			Sleep(1000);
-			turnNumber++;
-			SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
-			ClearConsole();
+
+		if (turnNumber > 0 && currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT) {
+			if (gameData->GetPlayerStats()->GetHealth() - poisonWeight > 0)
+				gameData->GetPlayerStats()->DamagePlayer(poisonWeight);
 		}
+
+
+		//_getch();
+		this->RenderScreen();
+
+		Sleep(1000);
+
+		int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
+		if (targetDamage <= 0)
+			targetDamage = 0;
+		playerStatsPtr->DamagePlayer(targetDamage);
+		SetConsoleText("Player damaged by " + std::to_string(targetDamage) + " With Poison by 1");
+
+
+		if (gameData->GetPlayerStats()->GetHealth() <= 0)
+		{
+			SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
+		}
+
+		this->RenderScreen();
+
+		Sleep(1000);
+		turnNumber++;
+		SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
+		ClearConsole();
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES) {
@@ -301,77 +299,71 @@ void GameStateBattle::GetInputs()
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS_USAGE) {
-		if (currentFrame == 1) {
-			SetConsoleText("Player used item: " + lastItemUsed.GetItemName());
-			
-		}
-		else if(currentFrame == 2) {
-			Sleep(2000);
-			SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
-		}
+
+		SetConsoleText("Player used item: " + lastItemUsed.GetItemName());
+
+		Sleep(2000);
+		SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
+
 	}
 	
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE) {
-		if (currentFrame == 1) {
 
-			Sleep(1000);
-		}
-		else if (currentFrame == 2)
-		{
-			ClearConsole();
-			currentBattleData->SetBattleEndState(BattleData::BATTLEEND::FLED);
-			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
-		}
+		Sleep(1000);
+
+		this->RenderScreen();
+
+		ClearConsole();
+		currentBattleData->SetBattleEndState(BattleData::BATTLEEND::FLED);
+		gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
-		if (currentFrame == 1) {
 
-			Sleep(1000);
-		}
-		else if (currentFrame == 2)
-		{
-			ClearConsole();
-			SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
-			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
-		}
+		Sleep(1000);
+
+
+		ClearConsole();
+		SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
+		gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
+
 	}
 
 	else if (currentEvent == BATTLEEVENT::GAME_WON) {
-		if (currentFrame == 1) {
-			SetConsoleText("Enemies have been defeated! Pedro is victorious!");
-			Sleep(2000);
-		} 
-		else if (currentFrame == 2) {
-			ClearConsole();
-			SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
-			Sleep(2000);
-		} 
-		else if (currentFrame == 3) {
-			gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
+		SetConsoleText("Enemies have been defeated! Pedro is victorious!");
+		Sleep(2000);
 
-			Sleep(3000);
-			ClearConsole();
-			currentBattleData->SetBattleEndState(BattleData::BATTLEEND::WON);
-			gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
-		}
+		this->RenderScreen();
+
+		ClearConsole();
+		SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
+		Sleep(2000);
+
+		this->RenderScreen();
+
+		gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
+
+		Sleep(3000);
+		ClearConsole();
+		currentBattleData->SetBattleEndState(BattleData::BATTLEEND::WON);
+		gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
 	}
 
 	else {
 		_getch();
 	}
 
-	currentFrame++;
+	this->RenderScreen();
 
 
 	//_getch();
 }
 
-void GameStateBattle::RenderObjects()
+void GameStateBattle::RenderBaseObjects()
 {
 }
 
-void GameStateBattle::RenderUI()
+void GameStateBattle::RenderBaseUI()
 {
 	Vector2 screenSize = screenPtr->GetScreenSize();
 
@@ -636,6 +628,7 @@ void GameStateBattle::RenderUI()
 
 	if (!currentBattleData->IsSingleBattle())
 	{
+
 		// Healer Stats bar
 		for (int i = 38; i < 54; i++)
 			screenPtr->RenderCharacter('-', i, 18);
@@ -645,6 +638,11 @@ void GameStateBattle::RenderUI()
 			screenPtr->RenderCharacter('|', 54, i);
 		for (int i = 38; i < 54; i++)
 			screenPtr->RenderCharacter('-', i, 22);
+
+
+		for (int i = 19; i < 22; i++)
+			for (int j = 38; j < 54; j++)
+				screenPtr->RenderCharacter(' ', j, i);
 
 		screenPtr->RenderText(Vector2(40, 19), "Healer");
 		screenPtr->RenderText(Vector2(40, 20), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
@@ -718,7 +716,6 @@ void GameStateBattle::UpdateAbilitiesUsage()
 
 void GameStateBattle::SetBattleEvent(BATTLEEVENT targetEvent)
 {
-	currentFrame = 0;
 	currentEvent = targetEvent;
 }
 

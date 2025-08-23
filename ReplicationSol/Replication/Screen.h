@@ -14,6 +14,7 @@ public:
 	Screen(const int rows, const int cols);
 	~Screen();
 	void ResizeScreen(Vector2 targetSize);
+	void DisplayScreen(Vector2 lastScreenSize, Vector2 lastViewportSize);
 	void ClearScreen();
 	char** GetChars();
 	void RenderCharacter(const char targetChar, const int targetX, const int targetY);
@@ -23,5 +24,6 @@ public:
 	void RenderTextWrapManual(Vector2 StartingPos, std::string Text, const int maxCharactersPerLine);
 	Vector2 GetScreenSize() const;
 	void RenderDrawing(Vector2 StartingPos, const std::string text);
+	Vector2 GetConsoleViewportSize();
 };
 

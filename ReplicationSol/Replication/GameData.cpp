@@ -2,11 +2,12 @@
 #include "GAMESTATEVALUE.h"
 #include "EnemyData.h"
 #include "Item.h"
+#include "Vector2.h"
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
 
-GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats)
+GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize)
 {
 	this->screenPtr = screenPtr;
 	this->currentBattleData = nullptr;
@@ -15,6 +16,8 @@ GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats
 	this->inventory = std::vector<Item>(0);
 	this->enemyAbilitiesCopied = std::vector<EnemyData::ENEMYTYPE>(0);
 	this->gcoins = 0;
+	this->lastScreenSize = startingScreenSize;
+	this->lastViewportSize = startingViewportSize;
 
 	// Player attack boost items
 	AddItem(Item("Metal Bar", 0, Item::ITEMTYPE::ATTACK, 3, 5, "A rusty metal bar. Could be useful in a fight. Increases attack by 3 for 5 turns"));
@@ -140,6 +143,22 @@ bool GameData::RollDice(int percentage)
 {
 	int num = rand() % 101;
 	return num <= percentage;
+}
+
+Vector2 GameData::GetLastScreenSize() const
+{
+	return lastScreenSize;
+}
+
+Vector2 GameData::GetLastViewportSize() const
+{
+	return lastViewportSize;
+}
+
+void GameData::UpdateScreenAndViewportSizes(Vector2 lastScreenSize, Vector2 lastViewportSize)
+{
+	this->lastScreenSize = lastScreenSize;
+	this->lastViewportSize = lastViewportSize;
 }
 
 Screen* GameData::GetScreenPtr()

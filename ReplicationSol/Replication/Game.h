@@ -24,17 +24,11 @@ private:
 	GameStateWorld gameStateWorld;
 	GameStateBattle gameStateBattle;
 
-	Vector2 lastScreenSize;
-	Vector2 lastViewportSize;
-
 public:
 	Game();
 	~Game();
 
 	void GameLoop();
-	void DisplayWorld();
 	void UpdateGameStateValue();
-
-	Vector2 GetConsoleViewportSize();
 };
 

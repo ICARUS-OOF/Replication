@@ -30,8 +30,6 @@ public:
 private:
 	PlayerStats* playerStatsPtr;
 
-	GameData* gameData;
-
 	BattleData* currentBattleData;
 
 	/// <summary>
@@ -41,7 +39,6 @@ private:
 
 	std::string currentConsoleText;
 
-	int currentFrame;
 	int currentItemSelected;
 	int currentAbilitySelected;
 
@@ -64,9 +61,9 @@ public:
 	GameStateBattle(GameData* gameData);
 
 	void OnStateEnter();
-	void GetInputs();
-	void RenderObjects();
-	void RenderUI();
+	void Loop();
+	void RenderBaseObjects();
+	void RenderBaseUI();
 	GAMESTATEVALUE GetGameStateValue();
 
 	void ApplyItemUsage(Item item);

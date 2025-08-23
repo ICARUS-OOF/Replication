@@ -5,6 +5,7 @@
 #include "GAMESTATEVALUE.h"
 #include "PlayerStats.h"
 #include "Item.h"
+#include "Vector2.h"
 
 #include <vector>
 
@@ -21,8 +22,13 @@ private:
 	std::vector<EnemyData::ENEMYTYPE> enemyAbilitiesCopied;
 
 	int gcoins;
+
+
+
+	Vector2 lastScreenSize;
+	Vector2 lastViewportSize;
 public:
-	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats);
+	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize);
 
 	Screen* GetScreenPtr();
 
@@ -50,5 +56,9 @@ public:
 
 
 	bool RollDice(int percentage);
+
+	void UpdateScreenAndViewportSizes(Vector2 lastScreenSize, Vector2 lastViewportSize);
+	Vector2 GetLastScreenSize() const;
+	Vector2 GetLastViewportSize() const;
 };
 

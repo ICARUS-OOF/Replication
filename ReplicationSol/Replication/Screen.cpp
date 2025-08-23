@@ -5,6 +5,7 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#include <windows.h>
 
 /// <summary>
 /// KAYDEN
@@ -50,6 +51,72 @@ void Screen::ResizeScreen(Vector2 targetSize)
 	chars = new char* [rows];
 	for (int i = 0; i < rows; i++)
 		chars[i] = new char[cols];
+
+	system("cls");
+}
+
+void Screen::DisplayScreen(Vector2 lastScreenSize, Vector2 lastViewportSize)
+{
+	//Clear the previous screen
+
+	Vector2 screenSize = GetScreenSize();
+	int cols = screenSize.Getx();
+	int rows = screenSize.Gety();
+
+	if (!lastScreenSize.IsEqualTo(screenSize))
+		system("cls");
+
+	Vector2 currentViewportSize = GetConsoleViewportSize();
+	if (!lastViewportSize.IsEqualTo(currentViewportSize))
+		system("cls");
+
+	{
+		//String stream to collate all character data into a single string to print efficiently
+		std::stringstream ss;
+		//Top Border
+		ss << '+';
+		for (int i = 0; i < cols; i++)
+			ss << '-';
+		ss << '+';
+
+		//World Content
+		for (int i = 0; i < rows; i++)
+		{
+			//Leave a new line
+			ss << std::endl;
+
+			//Left Border
+			ss << '|';
+
+			//Display each character
+			for (int j = 0; j < cols; j++) {
+				if ((int)chars[i][j] != 9) {
+					ss << chars[i][j];
+				}
+				else {
+					ss << ' ';
+				}
+			}
+
+			//Right Border
+			ss << '|';
+		}
+
+		//Leave new line
+		ss << std::endl;
+
+		//Bottom border
+		ss << '+';
+		for (int i = 0; i < cols; i++)
+			ss << '-';
+		ss << '+';
+
+		ss << std::endl;
+
+		HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleCursorPosition(hOut, { 0, 0 });
+		std::cout << ss.str();
+	}
 }
 
 /// <summary>
@@ -63,6 +130,35 @@ void Screen::ClearScreen()
 		for (int j = 0; j < cols; j++)
 			chars[i][j] = ' ';
 }
+
+/// <summary>
+/// KAYDEN
+/// 
+/// Gets the actual console's window viewport size, not the game's
+/// </summary>
+/// <returns></returns>
+Vector2 Screen::GetConsoleViewportSize()
+{
+	//Get standard ouput handler
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//Contains info about the console screen
+	CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
+
+	//If successful in obtaining the csbi
+	if (GetConsoleScreenBufferInfo(hOut, &bufferInfo))
+	{
+		//Obtain the width and height of window
+		int windowWidth = bufferInfo.srWindow.Right - bufferInfo.srWindow.Left + 1; //Difference from left ro right - 1 unit
+		int windowHeight = bufferInfo.srWindow.Bottom - bufferInfo.srWindow.Top + 1; //Difference from top to bottom - 1 unit
+
+		//Return a vector containing these 2
+		return Vector2(windowWidth, windowHeight);
+	}
+
+	//If could not obtain buffer Info, return 0,0 failure
+	return Vector2(0, 0);
+}
+
 
 /// <summary>
 /// Returns the entire 2d array of characters

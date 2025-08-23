@@ -24,7 +24,6 @@ private:
 	int currentRoomIndex;
 
 	Interactable* currentInteractable;
-	GameData* gameData;
 
 	BattleData* battleDataArray[MAX_BATTLES];
 
@@ -35,9 +34,9 @@ public:
 	Prop* SpawnProp(Prop* propPtr);
 
 	void OnStateEnter();
-	void GetInputs();
-	void RenderObjects();
-	void RenderUI();
+	void Loop();
+	void RenderBaseObjects();
+	void RenderBaseUI();
 
 	GAMESTATEVALUE GetGameStateValue();
 
