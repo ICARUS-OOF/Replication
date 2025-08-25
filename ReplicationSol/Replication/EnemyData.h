@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 class EnemyData
 {
@@ -21,6 +22,7 @@ private:
 
 public:
 	EnemyData(int health, int attack, ENEMYTYPE enemyType);
+	void SetAnimations();
 
 	int GetHealth();
 	int GetAttack();
@@ -35,6 +37,10 @@ public:
 	static std::string EnemyTypeToString(ENEMYTYPE enemyType);
 	static std::string EnemyTypeToAbilityString(ENEMYTYPE enemyType);
 
-	std::string GetEnemySprite();
+
+	std::string currentFrame;
+
+	std::string idleFrame;
+	std::vector<std::string> enemyFrames_attack, enemyFrames_damaged, enemyFrames_ability, enemyFrames_death;
 };
 

@@ -132,6 +132,7 @@
     <ClCompile Include="BattlePlayerAnimation.cpp" />
     <ClCompile Include="ButtonInteractable.cpp" />
     <ClCompile Include="DialogueInteractable.cpp" />
+    <ClCompile Include="EnemyAnimationFrames.cpp" />
     <ClCompile Include="EnemyData.cpp" />
     <ClCompile Include="ExitInteractable.cpp" />
     <ClCompile Include="Game.cpp" />

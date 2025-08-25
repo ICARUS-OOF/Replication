@@ -93,5 +93,6 @@ public:
 
 	void SetBattleAnimations();
 	void PlayAnimationSet(std::vector<std::string> frames, bool resetToIdle);
+	void PlayEnemyAnimationSet(EnemyData* targetEnemy, std::vector<std::string> frameSet, bool resetToIdle);
 };
 

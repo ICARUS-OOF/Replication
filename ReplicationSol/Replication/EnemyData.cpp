@@ -9,6 +9,8 @@ EnemyData::EnemyData(int health, int attack, ENEMYTYPE enemyType)
 	this->maxhealth = health;
 	this->enemyDescription = "DESC";
 	this->enemySprite = "SPRITE";
+
+	SetAnimations();
 }
 
 int EnemyData::GetHealth()
@@ -111,10 +113,5 @@ std::string EnemyData::EnemyTypeToAbilityString(ENEMYTYPE enemyType)
 		return "ERROR";
 		break;
 	}
-}
-
-std::string EnemyData::GetEnemySprite()
-{
-	return enemySprite;
 }
 
