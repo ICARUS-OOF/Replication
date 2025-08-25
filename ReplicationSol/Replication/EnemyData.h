@@ -16,12 +16,11 @@ private:
 	int maxhealth;
 	ENEMYTYPE enemyType;
 	std::string enemyDescription;
-
 	std::string enemySprite;
 
 
 public:
-	EnemyData(int health, int attack, ENEMYTYPE enemyType, std::string enemyDescription, std::string enemySprite);
+	EnemyData(int health, int attack, ENEMYTYPE enemyType);
 
 	int GetHealth();
 	int GetAttack();

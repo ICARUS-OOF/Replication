@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="AudioHandler.cpp" />
     <ClCompile Include="BattleData.cpp" />
+    <ClCompile Include="BattlePlayerAnimation.cpp" />
     <ClCompile Include="ButtonInteractable.cpp" />
     <ClCompile Include="DialogueInteractable.cpp" />
     <ClCompile Include="EnemyData.cpp" />
@@ -151,6 +152,9 @@
     <ClCompile Include="VendingMachineInteractable.cpp" />
     <ClCompile Include="WorldEntity.cpp" />
     <ClCompile Include="WorldMap.cpp" />
+    <ClCompile Include="WorldMapBattles.cpp" />
+    <ClCompile Include="WorldMapItemPickups.cpp" />
+    <ClCompile Include="WorldMapOthers.cpp" />
     <ClCompile Include="WorldPlayer.cpp" />
     <ClCompile Include="SHIZECODE.cpp" />
     <ClCompile Include="source.cpp" />

@@ -31,6 +31,9 @@ public:
 	GameStateWorld(GameData* gameData);
 	void DOCUMENTATION_DONOTCALL();
 	void SetLevelData();
+	void SetLevelDataBattles();
+	void SetLevelDataOthers();
+	void SetLevelDataItemPickups();
 	Prop* SpawnProp(Prop* propPtr);
 
 	void OnStateEnter();

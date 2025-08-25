@@ -73,10 +73,10 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 		//                                                          
 		battleDataArray[battleSetIndex] = new BattleData(
 			//         health atk                 EnemyType              
-			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"),
+			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT),
 
 			//SECOND ENEMY (put nullptr for this entire line if single enemy)
-			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"), 
+			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT), 
 			
 			//Player FLEE POINT, CGOINS
 			 Vector2(0, 1),        2);
@@ -1225,34 +1225,6 @@ nullptr));
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
-			std::string vendingmachine2 =
-				R"( _______
-|  _____
-| |     
-| |     
-| |     
-| |     
-| |_____
-|_______
-)";
-
-			SpawnProp(new Prop(screenPtr,
-				9, //Step 2. Define which Room the prop will be in
-				Vector2(72, 1), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
-
-				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				new VendingMachineInteractable(screenPtr, &currentInteractable, 2, gameData),
-
-
-				&vendingmachine2, //Step 7. Include the string variable name from step 1 here with the & in front
-				nullptr));
-		}
-
-		{
-			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
-			//        And define the string in this format
 			std::string trashcan =
 				R"(  __    
  /  \   
@@ -1609,29 +1581,8 @@ ___________|
 
 			& exit, //Step 7. Include the string variable name from step 1 here with the & in front
 			nullptr));
-		}
-
-
-	{
-		//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
-		//        And define the string in this format
-		std::string yourPropDesign =
-			R"([[[[[]]]]]]
-)";
-
-		//----------VENDING FUCKING MACHINE-----------
-		SpawnProp(new Prop(screenPtr,
-			0, //Step 2. Define which Room the prop will be in
-			Vector2(50, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-			Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-			Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
-
-			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-			new VendingMachineInteractable(screenPtr, &currentInteractable, 1, gameData),
-
-			& yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
-			nullptr));
 	}
+
 
 
 
@@ -1662,77 +1613,5 @@ I just hope that this war ends before Christmas.)"),
 
 &yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
 nullptr));
-	}
-
-
-	{
-		//------------------FOR BATTLE TRIGGERS-----------------
-		//                                                          
-		battleDataArray[battleSetIndex] = new BattleData(
-			//         health atk                 EnemyType              
-			new EnemyData(1, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"),
-
-			//SECOND ENEMY (put nullptr for this entire line if single enemy)
-			new EnemyData(1, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"),
-
-			//Player FLEE POINT, CGOINS
-			Vector2(0, 1), 2);
-		//													      room | top-left position | scale
-		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(15, 5), Vector2(5, 5), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
-		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
-		battleSetIndex++;
-	}
-
-
-
-
-
-
-
-
-	std::string pickupDrawing = "[]";
-
-	SpawnProp(new Prop(screenPtr,
-		0, //Step 2. Define which Room the prop will be in
-		Vector2(2, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-		Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-		Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
-
-		//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-		new PickUpInteractable(
-			new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-			{ "You gained a.." }, //Step 5. Define the lines
-			screenPtr, & currentInteractable,
-			1, Item("Hardening Soda", 4, Item::ITEMTYPE::DEFENCE, 2, 3,
-				"Concrete flavoured soda that somehow hardens your body. Take 2 less damage for 3 turns."), gameData), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
-
-
-
-		& pickupDrawing, //Step 7. Include the string variable name from step 1 here with the & in front
-		nullptr));
-
-	//---------PICKUP-------
-	{
-
-	std::string pickupDrawing = "[]";
-
-	SpawnProp(new Prop(screenPtr,
-		1, //Step 2. Define which Room the prop will be in
-		Vector2(2, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-		Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-		Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
-
-		//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-		new PickUpInteractable(
-			new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-			{ "You gained a.." }, //Step 5. Define the lines
-			screenPtr, & currentInteractable,
-			1, Item("Hardening Soda", 4, Item::ITEMTYPE::DEFENCE, 2, 3,
-				"Concrete flavoured soda that somehow hardens your body. Take 2 less damage for 3 turns."), gameData), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
-
-
-
-		& pickupDrawing, //Step 7. Include the string variable name from step 1 here with the & in front
-		nullptr));
 	}
 }

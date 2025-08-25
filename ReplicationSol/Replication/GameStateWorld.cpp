@@ -38,6 +38,9 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 
 	SetLevelData();
+	SetLevelDataBattles();
+	SetLevelDataOthers();
+	SetLevelDataItemPickups();
 }
 
 
@@ -260,8 +263,13 @@ void GameStateWorld::DEBUG_BATTLETEST()
 )";
 
 	gameData->SetCurrentBattleData(new BattleData(
-		new EnemyData(1, 4, EnemyData::ENEMYTYPE::GUARD, "", enemySprite_Healer),
+		//           Hp atk            enemy type: GUARD MUTANT HEALER
+		new EnemyData(20, 4, EnemyData::ENEMYTYPE::GUARD),
+
+
 		//new EnemyData(6, 4, EnemyData::ENEMYTYPE::MUTANT, "", enemySprite_Mutant),
 
-		Vector2(16, 9), 100));
+		Vector2(16, 9), 
+		
+		100));
 }

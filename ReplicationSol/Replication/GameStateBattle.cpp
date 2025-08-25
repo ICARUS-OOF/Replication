@@ -29,6 +29,10 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->turnNumber = 0;
 	this->selectedEnemy = 0;
 	this->itemUsages.clear();
+
+	this->playerFrames_damaged = std::vector<std::string>(0);
+
+	SetBattleAnimations();
 }
 
 void GameStateBattle::OnStateEnter()
@@ -61,6 +65,8 @@ void GameStateBattle::OnStateEnter()
 
 void GameStateBattle::Loop()
 {
+	currentPlayerFrame = playerFrame_idle;
+
 	//----PLAYER CHOICE----
 	if (currentEvent == BATTLEEVENT::PLAYER_CHOICE) {
 		ClearConsole();
@@ -155,6 +161,9 @@ void GameStateBattle::Loop()
 
 	//---PLAYER FIGHT ANIMATION
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM) {
+
+		PlayAnimationSet(playerFrames_fight, true);
+
 		//Calculate target damage
 		int targetDamage = playerStatsPtr->GetBaseDamage() + playerStatsPtr->GetAttack();
 
@@ -222,8 +231,6 @@ void GameStateBattle::Loop()
 
 	///-------ENEMY ATTACKING------
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
-		
-		
 		/*
 		{
 			system("cls");
@@ -241,6 +248,7 @@ void GameStateBattle::Loop()
 		//-----POISONING THE ENEMY----
 		if (abilities_poisonTurnsLeft > 0) {
 			if (currentBattleData->GetFirstEnemy()->IsAlive() && currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0) {
+				PlayAnimationSet(playerFrames_poisoned, true);
 				currentBattleData->GetFirstEnemy()->DamageEnemy(poisonWeight);
 
 				SetConsoleText("Player's poison damaged " + currentBattleData->GetFirstEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight));
@@ -250,6 +258,8 @@ void GameStateBattle::Loop()
 
 			if (currentBattleData->IsDoubleBattle()) {
 				if (currentBattleData->GetSecondEnemy()->IsAlive() && currentBattleData->GetSecondEnemy()->GetHealth() - poisonWeight > 0) {
+					PlayAnimationSet(playerFrames_poisoned, true);
+
 					currentBattleData->GetSecondEnemy()->DamageEnemy(poisonWeight);
 
 					SetConsoleText("Player's poison damaged " + currentBattleData->GetSecondEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight));
@@ -265,6 +275,8 @@ void GameStateBattle::Loop()
 		//-----DAMAGING PLAYER----
 
 		if (currentBattleData->GetFirstEnemy()->IsAlive()) {
+			PlayAnimationSet(playerFrames_damaged, true);
+
 			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
 			if (targetDamage <= 0)
 				targetDamage = 0;
@@ -275,6 +287,8 @@ void GameStateBattle::Loop()
 		}
 
 		if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->IsAlive()) {
+			PlayAnimationSet(playerFrames_damaged, true);
+
 			int targetDamage = currentBattleData->GetSecondEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
 			if (targetDamage <= 0)
 				targetDamage = 0;
@@ -506,6 +520,8 @@ void GameStateBattle::Loop()
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE) {
+		PlayAnimationSet(playerFrames_abilities, true);
+
 		Sleep(1000);
 		SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
 
@@ -553,6 +569,8 @@ void GameStateBattle::Loop()
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS_USAGE) {
 
+		PlayAnimationSet(playerFrames_items, true);
+
 		SetConsoleText("Player used item: " + lastItemUsed.GetItemName());
 
 		this->RenderScreen();
@@ -563,6 +581,7 @@ void GameStateBattle::Loop()
 	}
 	
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE) {
+		PlayAnimationSet(playerFrames_flee, false);
 
 		Sleep(1000);
 
@@ -574,6 +593,8 @@ void GameStateBattle::Loop()
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
+		PlayAnimationSet(playerFrames_death, false);
+
 		SetConsoleText("Player is Dead!");
 
 		this->RenderScreen();
@@ -817,69 +838,8 @@ void GameStateBattle::RenderBaseUI()
 	{
 		screenPtr->RenderText(Vector2(104, 25), "(Ps)");
 	}
-	
 
-	//JUNSHEN - Pedro DISPLAY ASCII Art
-	{
-		bool isHurt = false;
-		isHurt = true;
-		std::string pedro =
-
-
-			R"(
-                         ##
-      ####################
-    ########################
-    #########################
-   ###########################
-   ###########################
- #############################
- #############################
-##########....####.....##########
-#....##..######..#######..##....#
-#.....#.....#....#..#.....#.....#
-#.....#.....#..#....#.....#.....#
-###...#........##.........#...###
-    ###...................###
-      #...................#  
-      ###......###......###
-       ####.#.......#.####
-            #########  )";
-
-
-
-		std::string pedrohurt =
-
-
-			R"(
-                         ##    
-         ##################    
-    ########################
-    #########################
-   ###########################
-   ###########################
- #############################
- #############################
-##########..######..#..##########
-#....##..####....#..####..##....#
-#.....###.....#..##.....###.....#
-#.....###..#...#.....#..###.....#
-###...##.......##........##...###
-    ###...................###    
-      #.......##..........#      
-      ###...###..##.....###      
-       #####.##..#..#.####       
-            #########   )";
-
-
-		if (isHurt == true)
-		{
-			screenPtr->RenderDrawing(Vector2(75, 3), pedrohurt);
-
-		}
-		else
-			screenPtr->RenderDrawing(Vector2(75, 3), pedro);
-	}
+	screenPtr->RenderDrawing(playerFramePosition, currentPlayerFrame);
 
 	//-----------------------------------------------------------------------------------------------
 
@@ -1027,4 +987,22 @@ void GameStateBattle::ClearConsole()
 std::string GameStateBattle::GetConsoleText()
 {
 	return currentConsoleText;
+}
+
+
+
+void GameStateBattle::PlayAnimationSet(std::vector<std::string> frames, bool resetToIdle)
+{
+	for (int i = 0; i < frames.size(); i++) {
+		currentPlayerFrame = frames[i];
+		this->RenderScreen();
+		Sleep(playerFrameInterval);
+	}
+
+	if (resetToIdle)
+	{
+		currentPlayerFrame = playerFrame_idle;
+		this->RenderScreen();
+		Sleep(playerFrameInterval);
+	}
 }

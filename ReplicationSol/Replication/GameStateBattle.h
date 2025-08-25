@@ -64,6 +64,12 @@ private:
 
 	int selectedEnemy;
 
+	const float playerFrameInterval = 300;
+	const Vector2 playerFramePosition = Vector2(75, 3);
+	std::string currentPlayerFrame;
+	std::string playerFrame_idle;
+	std::vector<std::string> playerFrames_damaged, playerFrames_fight, playerFrames_items, playerFrames_abilities, playerFrames_flee, playerFrames_death, playerFrames_poisoned;
+
 public:
 	GameStateBattle(GameData* gameData);
 
@@ -84,5 +90,8 @@ public:
 	void ClearConsole();
 	void SetConsoleText(std::string targetText);
 	std::string GetConsoleText();
+
+	void SetBattleAnimations();
+	void PlayAnimationSet(std::vector<std::string> frames, bool resetToIdle);
 };
 
