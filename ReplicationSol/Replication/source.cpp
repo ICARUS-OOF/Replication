@@ -5,6 +5,8 @@
 #include <conio.h>
 
 #include "Game.h"
+#include "Intro.h"
+#include "AudioHandler.h"
 
 /*
 1. ONLY PUT #include <iostream> in CPP FILES
@@ -57,7 +59,9 @@ void MaximiseConsole() {
 }
 
 int main(void) {
+	AudioHandler::Playsound("zapnoise");
 
+	_getch();
 	MaximiseConsole();
 
     Game* game = new Game();

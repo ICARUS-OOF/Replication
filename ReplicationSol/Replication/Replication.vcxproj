@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioHandler.cpp" />
     <ClCompile Include="BattleData.cpp" />
     <ClCompile Include="ButtonInteractable.cpp" />
     <ClCompile Include="DialogueInteractable.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="GameStateBattle.cpp" />
     <ClCompile Include="GameStateEnd.cpp" />
     <ClCompile Include="GameStateWorld.cpp" />
+    <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemUsage.cpp" />
     <ClCompile Include="NoteInteractable.cpp" />
@@ -154,6 +156,7 @@
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioHandler.h" />
     <ClInclude Include="BattleData.h" />
     <ClInclude Include="ButtonInteractable.h" />
     <ClInclude Include="DialogueInteractable.h" />
@@ -166,6 +169,7 @@
     <ClInclude Include="GameStateEnd.h" />
     <ClInclude Include="GAMESTATEVALUE.h" />
     <ClInclude Include="GameStateWorld.h" />
+    <ClInclude Include="Intro.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemUsage.h" />
     <ClInclude Include="NoteInteractable.h" />

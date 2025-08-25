@@ -1,13 +1,13 @@
 #include "AudioHandler.h"
-#include <windows.h>
 #include <iostream>
-
+#include <windows.h>
 #include <mmsystem.h>
-#pragma comment(lib, "Winmm.lib")
+#pragma comment(lib, "winmm.lib")
 #include <string>
 
 
 
 void AudioHandler::Playsound(std::string sfxID) {
-	PlaySound(TEXT("/Replication/audio/" , sfxID , ".wav"), NULL, SND_ASYNC);
+    std::string path = "audio\\" + sfxID + ".wav";
+    PlaySoundA(path.c_str(), NULL, SND_FILENAME | SND_ASYNC);
 }
