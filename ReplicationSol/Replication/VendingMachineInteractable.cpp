@@ -1,27 +1,107 @@
 #include "VendingMachineInteractable.h"
 #include "Screen.h"
 #include "Interactable.h"
+#include "GameData.h"
+#include "Item.h"
+#include <iostream>
+
 
 #include <conio.h>
 
-VendingMachineInteractable::VendingMachineInteractable(Screen* screenPtr, Interactable** gameInteractablePtr)
+VendingMachineInteractable::VendingMachineInteractable(Screen* screenPtr, Interactable** gameInteractablePtr, int vmIndex, GameData* gameDataptr)
 {
 	this->screenPtr = screenPtr;
 	this->gameInteractablePtr = gameInteractablePtr;
+	this->gameDataptr = gameDataptr;
 	this->currentInteractionIndex = 0;
+	this->isBuying = false;
+	this->vmIndex = vmIndex;
 }
+
 
 void VendingMachineInteractable::Interaction()
 {
-	currentInteractionIndex++;
-	if (currentInteractionIndex >= 3) {
+	//currentInteractionIndex++;
+	//if (currentInteractionIndex >= 3) {
 
+	if (!isBuying)
+		isBuying = true;
+	
+	if (isBuying){
+		char userInputvendingmachine = _getch();
+		if (vmIndex == 1) {
+			switch (userInputvendingmachine)
+			{
+			case '1':
+				if (gameDataptr->HasEnoughGcoins(2)) {
+					std::cout << "You bought a banana!" << std::endl;
+					gameDataptr->RemoveGcoins(2);
+				}
+				break;
+			case '2':
+				std::cout << "You bought a medkit!" << std::endl;
+				if (gameDataptr->HasEnoughGcoins(4)) {
+					std::cout << "You bought a medkit!" << std::endl;
+					gameDataptr->RemoveGcoins(4);
+				}
+				break;
+			case '3':
+				if (gameDataptr->HasEnoughGcoins(4)) {
+					std::cout << "You bought a riot shield!" << std::endl;
+					gameDataptr->RemoveGcoins(4);
+				}
+				break;
+			case '4':
+				if (gameDataptr->HasEnoughGcoins(2)) {
+					std::cout << "You bought a hardening soda!" << std::endl;
+					gameDataptr->RemoveGcoins(2);
+				}
+				break;
+			case 27:
+				isBuying = false;
+				break;
+			default:
+				break;
+			}
+		}
+		else if (vmIndex == 2) {
+			switch (userInputvendingmachine)
+			{
+			case '1':
+				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[0] == false) {
+					std::cout << "You bought a portable barricade!" << std::endl;
+					gameDataptr->RemoveGcoins(8);
+					hasBoughtItem[0] = true;
+				}
+				break;
+			case '2':
+				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[1] == false) {
+					std::cout << "You bought a pocket watch!" << std::endl;
+					gameDataptr->RemoveGcoins(8);
+					hasBoughtItem[1] = true;
+				}
+				break;
+			case '3':
+				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[2] == false) {
+					std::cout << "You bought an energy blaster!" << std::endl;
+					gameDataptr->RemoveGcoins(8);
+					hasBoughtItem[2] = true;
+				}
+				break;
+			case 27:
+				isBuying = false;
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
-
+	if (!isBuying) {
 		currentInteractionIndex = 0;
 		*gameInteractablePtr = nullptr;
 	}
-	_getch();
+	//}
 }
 
 void VendingMachineInteractable::Render()
@@ -85,6 +165,7 @@ void VendingMachineInteractable::Render()
 		//screenPtr->RenderTextWrap(Vector2(3, 6), "You found a vending machine!", 10);
 	}
 
+	if (vmIndex == 1)
 	{
 		std::string vendingmachine1frame = R"(          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    |     
           X                                                          X    |     
@@ -166,6 +247,7 @@ void VendingMachineInteractable::Render()
 		screenPtr->RenderText(Vector2(40, 23), "4. Hardening Soda (2G)");
 	}
 
+	else if (vmIndex == 2)
 	{
 		std::string vendingmachine2frame = R"(          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    |     
           X                                                          X    |     
@@ -192,6 +274,7 @@ void VendingMachineInteractable::Render()
           X                                                          X  / |     
           X                                                          X /  |     
           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/   |)";
+
 		screenPtr->RenderDrawing(Vector2(1, 0), vendingmachine2frame);
 		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    ()   ", 8);
 
@@ -200,8 +283,11 @@ void VendingMachineInteractable::Render()
   /|  BARRIER  ||  /   
  / |___________|/ /  
 /________________/)";
-        screenPtr->RenderDrawing(Vector2(17, 6), portablebarrier);
-        screenPtr->RenderText(Vector2(14, 11), "1. Portable barrier (8G)");
+
+		if (!hasBoughtItem[0]) {
+			screenPtr->RenderDrawing(Vector2(17, 6), portablebarrier);
+			screenPtr->RenderText(Vector2(14, 11), "1. Portable barrier (8G)");
+		}
 
 		std::string pocketwatch = R"(        ___  
        |___|    
@@ -213,8 +299,11 @@ void VendingMachineInteractable::Render()
   / ||       ||  /
  /    |||||||   /   
 /______________/)";
-		screenPtr->RenderDrawing(Vector2(46, 1), pocketwatch);
-		screenPtr->RenderText(Vector2(44, 11), "2. Pocket Watch (8G)");
+
+		if (!hasBoughtItem[1]) {
+			screenPtr->RenderDrawing(Vector2(46, 1), pocketwatch);
+			screenPtr->RenderText(Vector2(44, 11), "2. Pocket Watch (8G)");
+		}
 
 		std::string energyblaster = R"(                    __________________ 
                   _|                  |  
@@ -225,7 +314,10 @@ void VendingMachineInteractable::Render()
   ||        / \\ |__________________||                 /
  /||_______||                                         /
 /____________________________________________________/)";
-		screenPtr->RenderDrawing(Vector2(12, 14), energyblaster);
-		screenPtr->RenderText(Vector2(27, 23), "3. Energy blaster (8G)");
+
+		if (!hasBoughtItem[2]) {
+			screenPtr->RenderDrawing(Vector2(12, 14), energyblaster);
+			screenPtr->RenderText(Vector2(27, 23), "3. Energy blaster (8G)");
+		}
 	}
 }
