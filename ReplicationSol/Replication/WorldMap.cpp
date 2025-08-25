@@ -5,7 +5,10 @@
 #include "Prop.h"
 #include "VendingMachineInteractable.h"
 #include "NoteInteractable.h"
+#include "ButtonInteractable.h"
 #include "GAMESTATEVALUE.h"
+#include "BattleData.h"
+#include "EnemyData.h"
 
 #include <iostream>
 #include <chrono>
@@ -65,8 +68,16 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 
 	{
 		//------------------FOR BATTLE TRIGGERS-----------------
-		//                                                          health atk                 EnemyType              Player FLEE POINTS
-		battleDataArray[battleSetIndex] = new BattleData(new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"), nullptr, Vector2(0, 1), 2);
+		//                                                          
+		battleDataArray[battleSetIndex] = new BattleData(
+			//         health atk                 EnemyType              
+			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"),
+
+			//SECOND ENEMY (put nullptr for this entire line if single enemy)
+			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"), 
+			
+			//Player FLEE POINT, CGOINS
+			 Vector2(0, 1),        2);
 		//													      room | top-left position | scale
 		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(15, 5), Vector2(5, 5), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
 		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
@@ -865,6 +876,12 @@ _________|__________|_________|
 |_|______|
 )";
 
+
+
+
+
+
+
 			SpawnProp(new Prop(screenPtr,
 				5, //Step 2. Define which Room the prop will be in
 				Vector2(55, 9), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
@@ -872,7 +889,7 @@ _________|__________|_________|
 				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				new DialogueInteractable(
+				new ButtonInteractable(
 					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
 					{ "Nothing in here", "Wait... What's that panel inside?" }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
@@ -881,6 +898,9 @@ _________|__________|_________|
 				&armorylockerright, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
+
+
+
 
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
@@ -1432,35 +1452,6 @@ ___________|
 		}
 
 		{
-			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
-			//        And define the string in this format
-			std::string exit =
-				R"(                    |                  ||                  |                    
-                    |                  ||                  |                    
-                    |__________________||__________________|                    
-
-
-)";
-
-			SpawnProp(new Prop(screenPtr,
-				10, //Step 2. Define which Room the prop will be in
-				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
-
-				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				new DialogueInteractable(
-					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "Finally..." }, //Step 5. Define the lines
-					screenPtr, &currentInteractable,
-					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
-
-
-				&exit, //Step 7. Include the string variable name from step 1 here with the & in front
-				nullptr));
-		}
-
-		{
 			//FOR LEVEL TRANSITIONS
 			//															roomIndex  position top-left	scale														//player emerging position
 			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(0, 1), Vector2(1, 8), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(77, 10)));
@@ -1580,6 +1571,40 @@ ___________|
 			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 10, Vector2(31, 24), Vector2(18, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(40, 2)));
 			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(9); // Target room to go to
 		}
+
+
+
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string exit =
+				R"(                    |                  ||                  |                    
+                    |                  ||                  |                    
+                    |__________________||__________________|                    
+
+
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				10, //Step 2. Define which Room the prop will be in
+				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new DialogueInteractable(
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Finally..." }, //Step 5. Define the lines
+					screenPtr, &currentInteractable,
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+
+
+				&exit, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+
 	}
 
 
@@ -1634,4 +1659,24 @@ I just hope that this war ends before Christmas.)"),
 &yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
 nullptr));
 	}
+
+
+	{
+		//------------------FOR BATTLE TRIGGERS-----------------
+		//                                                          
+		battleDataArray[battleSetIndex] = new BattleData(
+			//         health atk                 EnemyType              
+			new EnemyData(1, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"),
+
+			//SECOND ENEMY (put nullptr for this entire line if single enemy)
+			new EnemyData(1, 5, EnemyData::ENEMYTYPE::MUTANT, "DESC", "SPRITE"),
+
+			//Player FLEE POINT, CGOINS
+			Vector2(0, 1), 2);
+		//													      room | top-left position | scale
+		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(15, 5), Vector2(5, 5), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
+		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
+		battleSetIndex++;
+	}
+
 }

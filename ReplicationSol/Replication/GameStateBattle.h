@@ -50,12 +50,18 @@ private:
 	int abilities_poisonTurnsLeft;
 	int abilities_armourTurnsLeft;
 
-	static const int enemyPoisonWeight = 1;
+	static const int enemyPoisonWeight = 2;
+	static const int enemyHealWeight = 3;
+	static const int enemyArmourWeight = 5;
 
 	static const int poisonWeight = 1;
 	static const int armourWeight = 5;
 
+	bool isEnemyGuarding = false;
+
 	int turnNumber;
+
+	int selectedEnemy;
 
 public:
 	GameStateBattle(GameData* gameData);

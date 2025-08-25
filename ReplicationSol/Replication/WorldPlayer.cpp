@@ -95,6 +95,11 @@ WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 			currentDecision = PLAYERDECISION::RUN_TESTBATTLE;
 			break;
 
+		case 'g':
+		case 'G':
+			currentDecision = PLAYERDECISION::SWAP_PUZZLEROOMS;
+			break;
+
 		case ' ':
 			currentDecision = PLAYERDECISION::INTERACT;
 			break;

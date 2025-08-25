@@ -49,6 +49,7 @@ public:
 
 	void AddAbility(EnemyData::ENEMYTYPE ability);
 	std::vector<EnemyData::ENEMYTYPE> GetAbilities();
+	bool HasAbility(EnemyData::ENEMYTYPE targetType);
 
 	void AddGcoins(int amt);
 	void RemoveGcoins(int amt);

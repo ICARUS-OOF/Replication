@@ -116,6 +116,17 @@ std::vector<EnemyData::ENEMYTYPE> GameData::GetAbilities()
 	return enemyAbilitiesCopied;
 }
 
+bool GameData::HasAbility(EnemyData::ENEMYTYPE targetType)
+{
+	for (int i = 0; i < enemyAbilitiesCopied.size(); i++)
+	{
+		if (targetType == enemyAbilitiesCopied[i])
+			return true;
+	}
+
+	return false;
+}
+
 void GameData::AddGcoins(int amt)
 {
 	gcoins += amt;

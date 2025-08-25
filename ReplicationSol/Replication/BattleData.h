@@ -27,10 +27,12 @@ public:
 	EnemyData* GetSecondEnemy();
 
 	bool IsSingleBattle();
+	bool IsDoubleBattle();
 
 	void SetBattleEndState(BATTLEEND targetBattleEndState);
 	BATTLEEND GetBattleEndState();
 
 	Vector2 GetPlayerFleePoint();
+	int GetGCoinsReward();
 };
 

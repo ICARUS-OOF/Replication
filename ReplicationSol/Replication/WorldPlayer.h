@@ -14,7 +14,8 @@ public:
 		NONE,
 		MOVE,
 		INTERACT,
-		RUN_TESTBATTLE
+		RUN_TESTBATTLE,
+		SWAP_PUZZLEROOMS
 	};
 
 	Vector2 targetPosition;

@@ -42,6 +42,14 @@ bool EnemyData::DamageEnemy(int amt)
 	return false;
 }
 
+void EnemyData::HealEnemy(int amt)
+{
+	health += amt;
+	if (health >= maxhealth) {
+		health = maxhealth;
+	}
+}
+
 EnemyData::ENEMYTYPE EnemyData::GetEnemyType()
 {
 	return enemyType;
@@ -55,6 +63,11 @@ std::string EnemyData::GetEnemyName()
 bool EnemyData::IsDead()
 {
 	return health <= 0;
+}
+
+bool EnemyData::IsAlive()
+{
+	return health > 0;
 }
 
 std::string EnemyData::GetEnemyDescription()

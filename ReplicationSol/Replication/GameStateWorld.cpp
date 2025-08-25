@@ -169,6 +169,12 @@ void GameStateWorld::Loop()
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::RUN_TESTBATTLE) {
 			DEBUG_BATTLETEST();
 		}
+		else if (playerDecision == WorldPlayer::PLAYERDECISION::SWAP_PUZZLEROOMS) {
+			if (currentRoomIndex == 5)
+				currentRoomIndex = 10;
+			else
+				currentRoomIndex = 5;
+		}
 	}
 	else {
 		if (currentInteractable != nullptr) {
@@ -254,8 +260,8 @@ void GameStateWorld::DEBUG_BATTLETEST()
 )";
 
 	gameData->SetCurrentBattleData(new BattleData(
-		new EnemyData(15, 4, EnemyData::ENEMYTYPE::MUTANT, "", enemySprite_Mutant),
-		new EnemyData(15, 4, EnemyData::ENEMYTYPE::HEALER, "", enemySprite_Healer),
+		new EnemyData(1, 4, EnemyData::ENEMYTYPE::MUTANT, "", enemySprite_Healer),
+		new EnemyData(1, 4, EnemyData::ENEMYTYPE::GUARD, "", enemySprite_Mutant),
 
 		Vector2(16, 9), 100));
 }

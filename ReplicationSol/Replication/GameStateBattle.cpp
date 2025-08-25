@@ -8,6 +8,7 @@
 #include <string>
 #include <sstream>
 #include <windows.h>
+#include <vector>
 
 
 GameStateBattle::GameStateBattle(GameData* gameData)
@@ -24,7 +25,9 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->abilities_poisonTurnsLeft = -1;
 	this->abilities_armourTurnsLeft = -1;
 	this->abilities_hasUsedRestore = false;
+	this->isEnemyGuarding = false;
 	this->turnNumber = 0;
+	this->selectedEnemy = 0;
 	this->itemUsages.clear();
 }
 
@@ -36,11 +39,13 @@ void GameStateBattle::OnStateEnter()
 	this->currentAbilitySelected = 0;
 	this->currentBattleData = gameData->GetCurrentBattleData();
 	this->turnNumber = 0;
+	this->selectedEnemy = 0;
 
 
 	this->abilities_poisonTurnsLeft = -1;
 	this->abilities_armourTurnsLeft = -1;
 	this->abilities_hasUsedRestore = false;
+	this->isEnemyGuarding = false;
 
 	gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
 	gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
@@ -69,25 +74,7 @@ void GameStateBattle::Loop()
 			//ATTACK
 			if (option == '1')
 			{
-				//SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM);
-				// 
-				// 
-				//Calculate target damage
-				int targetDamage = playerStatsPtr->GetBaseDamage() + playerStatsPtr->GetAttack();
-				//Implement the damage to the enemy
-				currentBattleData->GetFirstEnemy()->DamageEnemy(targetDamage);
-				//Display text
-				SetConsoleText("Enemy damaged by " + std::to_string(targetDamage));
-
-				//If enemy is dead, go to game won state
-				if (currentBattleData->GetFirstEnemy()->IsDead()) {
-					SetBattleEvent(BATTLEEVENT::GAME_WON);
-				}
-				//If still alive, enemy will attack
-				else {
-					SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
-				}
-
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_FIGHT_SELECTENEMY);
 				hasSelectedValidOption = true;
 			}
 
@@ -117,15 +104,125 @@ void GameStateBattle::Loop()
 		} while (!hasSelectedValidOption);
 	}
 
+
+	//----SELECT ENEMY
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_SELECTENEMY) {
+
+		screenPtr->RenderText(Vector2(3, 30), "Select an enemy to attack...");
+		if (!currentBattleData->GetFirstEnemy()->IsDead())
+			screenPtr->RenderText(Vector2(3, 32), "1. " + currentBattleData->GetFirstEnemy()->GetEnemyName());
+		if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetSecondEnemy()->IsDead())
+			screenPtr->RenderText(Vector2(3, 33), "2. " + currentBattleData->GetSecondEnemy()->GetEnemyName());
+		this->RenderScreen();
+
+
+		bool hasSelectedValidOption = false;
+		do {
+			int option = _getch();
+
+			switch (option)
+			{
+			case '1':
+				if (!currentBattleData->GetFirstEnemy()->IsDead()) {
+					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM);
+					this->selectedEnemy = 1;
+					hasSelectedValidOption = true;
+				}
+				break;
+
+			case '2':
+				if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetSecondEnemy()->IsDead()) {
+					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM);
+					this->selectedEnemy = 2;
+					hasSelectedValidOption = true;
+				}
+				break;
+
+
+			case 27:
+				SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
+				hasSelectedValidOption = true;
+				break;
+
+			default:
+				break;
+			}
+		} while (!hasSelectedValidOption);
+
+
+
+	}
+
 	//---PLAYER FIGHT ANIMATION
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM) {
+		//Calculate target damage
+		int targetDamage = playerStatsPtr->GetBaseDamage() + playerStatsPtr->GetAttack();
 
+		if (isEnemyGuarding) {
+			targetDamage -= enemyArmourWeight;
+		}
+
+		if (targetDamage < 0)
+			targetDamage = 0;
+
+		bool isWon = false;
+
+
+		if (selectedEnemy == 1) {
+			//Implement the damage to the enemy
+			currentBattleData->GetFirstEnemy()->DamageEnemy(targetDamage);
+
+			bool winPreventedBySecondEnemy = false;
+			if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetSecondEnemy()->IsDead())
+				winPreventedBySecondEnemy = true;
+
+			//If enemy is dead, go to game won state
+			if (currentBattleData->GetFirstEnemy()->IsDead() && !winPreventedBySecondEnemy) {
+				isWon = true;
+			}
+			//If still alive, enemy will attack
+			else {
+				SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
+			}
+		}
+		else if (selectedEnemy == 2) {
+			//Implement the damage to the enemy
+			currentBattleData->GetSecondEnemy()->DamageEnemy(targetDamage);
+
+			bool winPreventedByFirstEnemy = false;
+			if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetFirstEnemy()->IsDead())
+				winPreventedByFirstEnemy = true;
+
+			//If enemy is dead, go to game won state
+			if (currentBattleData->GetSecondEnemy()->IsDead() && !winPreventedByFirstEnemy) {
+				isWon = true;
+			}
+			//If still alive, enemy will attack
+			else {
+				SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
+			}
+		}
+
+
+		std::string enemyThatWasAttackedName;
+		if (selectedEnemy == 1) enemyThatWasAttackedName = currentBattleData->GetFirstEnemy()->GetEnemyName();
+		else if (selectedEnemy == 2) enemyThatWasAttackedName = currentBattleData->GetSecondEnemy()->GetEnemyName();
+
+		screenPtr->RenderText(Vector2(3, 30), enemyThatWasAttackedName + " was damaged by " + std::to_string(targetDamage));
+
+		this->RenderScreen();
+
+		Sleep(2000);
+
+		if (isWon)
+			SetBattleEvent(BATTLEEVENT::GAME_WON);
+		else
+			SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
 	}
 
 	///-------ENEMY ATTACKING------
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
 		
-		bool enemyUsePoison = true;
 		/*
 		{
 			system("cls");
@@ -139,37 +236,185 @@ void GameStateBattle::Loop()
 		UpdateItemUsages();
 		UpdateAbilitiesUsage();
 
+
+
+		//-----POISONING THE ENEMY----
 		if (abilities_poisonTurnsLeft > 0) {
-			if (currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0)
+			if (currentBattleData->GetFirstEnemy()->IsAlive() && currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0) {
 				currentBattleData->GetFirstEnemy()->DamageEnemy(poisonWeight);
+
+				SetConsoleText("Player's poison damaged " + currentBattleData->GetFirstEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight));
+				this->RenderScreen();
+				Sleep(2000);
+			}
+
+			if (currentBattleData->IsDoubleBattle()) {
+				if (currentBattleData->GetSecondEnemy()->IsAlive() && currentBattleData->GetSecondEnemy()->GetHealth() - poisonWeight > 0) {
+					currentBattleData->GetSecondEnemy()->DamageEnemy(poisonWeight);
+
+					SetConsoleText("Player's poison damaged " + currentBattleData->GetSecondEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight));
+					this->RenderScreen();
+					Sleep(2000);
+				}
+			}
 		}
 
-		if (turnNumber > 0 && currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT) {
-			if (gameData->GetPlayerStats()->GetHealth() - poisonWeight > 0)
-				gameData->GetPlayerStats()->DamagePlayer(poisonWeight);
+
+
+
+		//-----DAMAGING PLAYER----
+
+		if (currentBattleData->GetFirstEnemy()->IsAlive()) {
+			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
+			if (targetDamage <= 0)
+				targetDamage = 0;
+			playerStatsPtr->DamagePlayer(targetDamage);
+			SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " damaged player by " + std::to_string(targetDamage));
+			this->RenderScreen();
+			Sleep(2000);
+		}
+
+		if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->IsAlive()) {
+			int targetDamage = currentBattleData->GetSecondEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
+			if (targetDamage <= 0)
+				targetDamage = 0;
+			playerStatsPtr->DamagePlayer(targetDamage);
+			SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " damaged player by " + std::to_string(targetDamage));
+			this->RenderScreen();
+			Sleep(2000);
 		}
 
 
-		//_getch();
-		this->RenderScreen();
 
-		Sleep(1000);
+		//-----------ENEMY ABILITIES--------
+		if (turnNumber > 0) {
+			//--------POISON-------
+			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT && currentBattleData->GetFirstEnemy()->IsAlive()) {
+				if (gameData->GetPlayerStats()->GetHealth() - enemyPoisonWeight > 0) {
+					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
 
-		int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
-		if (targetDamage <= 0)
-			targetDamage = 0;
-		playerStatsPtr->DamagePlayer(targetDamage);
-		SetConsoleText("Player damaged by " + std::to_string(targetDamage) + " With Poison by 1");
+					SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " poisoned the player by " + std::to_string(enemyPoisonWeight));
+					this->RenderScreen();
+					Sleep(2000);
+				}
+
+
+			}
+			if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT && currentBattleData->GetSecondEnemy()->IsAlive()) {
+				if (gameData->GetPlayerStats()->GetHealth() - enemyPoisonWeight > 0) {
+					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
+
+					SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " poisoned the player by " + std::to_string(enemyPoisonWeight));
+					this->RenderScreen();
+					Sleep(2000);
+				}
+			}
+
+
+			//---------HEALING---------
+			if (currentBattleData->IsSingleBattle()) {
+				if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetFirstEnemy()->GetMaxHealth() && currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER) {
+					currentBattleData->GetFirstEnemy()->HealEnemy(enemyHealWeight);
+
+					SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " healed themselves by " + std::to_string(enemyHealWeight));
+					this->RenderScreen();
+					Sleep(2000);
+				}
+			}
+			else {
+				int healEnemySource = 0;
+
+				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER && currentBattleData->GetFirstEnemy()->IsAlive())
+					healEnemySource = 1;
+				else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER && currentBattleData->GetSecondEnemy()->IsAlive())
+					healEnemySource = 2;
+
+				if (healEnemySource != 0) {
+					//Heal first enemy
+					if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetSecondEnemy()->GetHealth()) {
+						currentBattleData->GetFirstEnemy()->HealEnemy(enemyHealWeight);
+
+						SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " healed " + currentBattleData->GetFirstEnemy()->GetEnemyName() + " by " + std::to_string(enemyHealWeight));
+						this->RenderScreen();
+						Sleep(2000);
+					}
+					//Heal second enemy
+					else {
+						currentBattleData->GetSecondEnemy()->HealEnemy(enemyHealWeight);
+
+						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " healed " + currentBattleData->GetSecondEnemy()->GetEnemyName() + " by " + std::to_string(enemyHealWeight));
+						this->RenderScreen();
+						Sleep(2000);
+					}
+				}
+			}
+
+
+
+			//---------DEFENCE-------------
+			if (currentBattleData->IsSingleBattle()) {
+				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD) {
+
+					isEnemyGuarding = !isEnemyGuarding;
+
+					if (isEnemyGuarding) {
+						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " guards!");
+						this->RenderScreen();
+						Sleep(2000);
+					}
+					else {
+						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " put their guard down!");
+						this->RenderScreen();
+						Sleep(2000);
+					}
+				}
+			}
+			else {
+				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD && currentBattleData->GetFirstEnemy()->IsAlive()) {
+
+					isEnemyGuarding = !isEnemyGuarding;
+
+					if (isEnemyGuarding) {
+						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " guards!");
+						this->RenderScreen();
+						Sleep(2000);
+					}
+					else {
+						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " put their guard down!");
+						this->RenderScreen();
+						Sleep(2000);
+					}
+				}
+				else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD && currentBattleData->GetSecondEnemy()->IsAlive()) {
+					isEnemyGuarding = !isEnemyGuarding;
+
+					if (isEnemyGuarding) {
+						SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " guards!");
+						this->RenderScreen();
+						Sleep(2000);
+					}
+					else {
+						SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " put their guard down!");
+						this->RenderScreen();
+						Sleep(2000);
+					}
+				}
+			}
+
+		}
+
+
+
 
 
 		if (gameData->GetPlayerStats()->GetHealth() <= 0)
 		{
 			SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
+			return;
 		}
 
 		this->RenderScreen();
 
-		Sleep(1000);
 		turnNumber++;
 		SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE);
 		ClearConsole();
@@ -178,6 +423,7 @@ void GameStateBattle::Loop()
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES) {
 		
 		bool validOptionSelected = false;
+
 
 		do {
 			int option = _getch();
@@ -206,47 +452,51 @@ void GameStateBattle::Loop()
 			//----------USE ABILITY----------
 			else if (option == ' ')
 			{
-				//POISON
-				if (currentAbilitySelected == 0 && abilities_poisonTurnsLeft == -1)
-				{
-					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
-					SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
+				if (gameData->GetAbilities().size() > 0) {
+					EnemyData::ENEMYTYPE abilityType = gameData->GetAbilities()[currentAbilitySelected];
 
-					bool usePoison = gameData->RollDice(25);
+					//POISON
+					if (abilityType == EnemyData::ENEMYTYPE::MUTANT && abilities_poisonTurnsLeft == -1)
+					{
+						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
+						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-					if (usePoison) {
-						SetConsoleText("Poison is Successfully applied");
-						abilities_poisonTurnsLeft = 4;
+						bool usePoison = gameData->RollDice(25);
+
+						if (usePoison) {
+							SetConsoleText("Poison is Successfully applied");
+							abilities_poisonTurnsLeft = 4;
+						}
+						else {
+							SetConsoleText("Poison is Unsuccessful");
+						}
+
+						validOptionSelected = true;
 					}
-					else {
-						SetConsoleText("Poison is Unsuccessful");
+
+					//RESTORE
+					else if (abilityType == EnemyData::ENEMYTYPE::HEALER && !abilities_hasUsedRestore)
+					{
+						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
+						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
+
+						gameData->GetPlayerStats()->HealPlayer(6);
+						abilities_hasUsedRestore = true;
+
+						validOptionSelected = true;
 					}
 
-					validOptionSelected = true;
-				}
+					//ARMOUR
+					else if (abilityType == EnemyData::ENEMYTYPE::GUARD && abilities_armourTurnsLeft == -1)
+					{
+						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
+						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-				//RESTORE
-				else if (currentAbilitySelected == 1 && !abilities_hasUsedRestore)
-				{
-					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
-					SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
+						gameData->GetPlayerStats()->AddDefence(armourWeight);
+						abilities_armourTurnsLeft = 2;
 
-					gameData->GetPlayerStats()->HealPlayer(6);
-					abilities_hasUsedRestore = true;
-
-					validOptionSelected = true;
-				}
-
-				//ARMOUR
-				else if (currentAbilitySelected == 2 && abilities_armourTurnsLeft == -1)
-				{
-					SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
-					SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
-
-					gameData->GetPlayerStats()->AddDefence(armourWeight);
-					abilities_armourTurnsLeft = 2;
-
-					validOptionSelected = true;
+						validOptionSelected = true;
+					}
 				}
 			}
 		} while (!validOptionSelected);
@@ -302,6 +552,8 @@ void GameStateBattle::Loop()
 
 		SetConsoleText("Player used item: " + lastItemUsed.GetItemName());
 
+		this->RenderScreen();
+
 		Sleep(2000);
 		SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
 
@@ -319,32 +571,49 @@ void GameStateBattle::Loop()
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
+		SetConsoleText("Player is Dead!");
 
-		Sleep(1000);
+		this->RenderScreen();
+
+		Sleep(2000);
 
 
 		ClearConsole();
-		SetBattleEvent(BATTLEEVENT::PLAYER_DEATH);
-		gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
+		//gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
 
 	}
 
 	else if (currentEvent == BATTLEEVENT::GAME_WON) {
 		SetConsoleText("Enemies have been defeated! Pedro is victorious!");
+		this->RenderScreen();
 		Sleep(2000);
 
+		//-----REWARDS----
+		gameData->AddGcoins(currentBattleData->GetGCoinsReward());
+		SetConsoleText("Player has gained " + std::to_string(currentBattleData->GetGCoinsReward()) + " GCoins!");
 		this->RenderScreen();
-
-		ClearConsole();
-		SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
 		Sleep(2000);
 
-		this->RenderScreen();
 
-		gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
+		//-------ABILITY GAINING--------
+		if (!gameData->HasAbility(currentBattleData->GetFirstEnemy()->GetEnemyType())) {
+			gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
+			ClearConsole();
+			SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
+			this->RenderScreen();
+			Sleep(2000);
+		}
+		if (currentBattleData->IsDoubleBattle()) {
+			if (!gameData->HasAbility(currentBattleData->GetSecondEnemy()->GetEnemyType())) {
+				gameData->AddAbility(currentBattleData->GetSecondEnemy()->GetEnemyType());
+				ClearConsole();
+				SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetSecondEnemy()->GetEnemyType()));
+				this->RenderScreen();
+				Sleep(2000);
+			}
+		}
 
-		Sleep(3000);
-		ClearConsole();
+
 		currentBattleData->SetBattleEndState(BattleData::BATTLEEND::WON);
 		gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
 	}
@@ -415,6 +684,11 @@ void GameStateBattle::RenderBaseUI()
 
 	}
 
+	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM)
+	{
+
+	}
+
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES)
 	{
 		if (gameData->GetAbilities().size() > 0) {
@@ -426,27 +700,29 @@ void GameStateBattle::RenderBaseUI()
 			const int maxCharactersDescriptionPerLine = 30;
 			//screenPtr->RenderText(Vector2(9, 30), std::to_string(currentAbilitySelected));
 
+			EnemyData::ENEMYTYPE abilityType = gameData->GetAbilities()[currentAbilitySelected];
+
+
 			//POISON
-			if (currentAbilitySelected == 0)
-			{
+			if (abilityType == EnemyData::ENEMYTYPE::MUTANT) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Poison");
 				screenPtr->RenderTextWrap(abilityDescriptionPosition, "25% chance to apply poison to the enemy (The skill can be used repeatedly until poison is successfully applied.)", 70);
 
 				if (abilities_poisonTurnsLeft > -1)
 					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
 			}
-			//RECOVER
-			else if (currentAbilitySelected == 1)
-			{
+			
+			//HEALER
+			else if (abilityType == EnemyData::ENEMYTYPE::HEALER) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Recover");
 				screenPtr->RenderText(abilityDescriptionPosition, "Heal self for 6HP (Use once per Battle)");
 
 				if (abilities_hasUsedRestore)
 					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
 			}
-			//ARMOUR
-			else if (currentAbilitySelected == 2)
-			{
+
+			//GUARD
+			else if(abilityType == EnemyData::ENEMYTYPE::GUARD) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Armour");
 				screenPtr->RenderText(abilityDescriptionPosition, "Reduce damage taken by 4 (Use once per Battle)");
 
@@ -515,7 +791,7 @@ void GameStateBattle::RenderBaseUI()
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
-		SetConsoleText("Player has been Defeated");
+
 	}
 
 
@@ -596,38 +872,33 @@ void GameStateBattle::RenderBaseUI()
 	//-----------------------------------------------------------------------------------------------
 
 
-	screenPtr->RenderDrawing(Vector2(0, 0), currentBattleData->GetFirstEnemy()->GetEnemySprite());
-	
-	screenPtr->RenderDrawing(Vector2(30, 0), currentBattleData->GetSecondEnemy()->GetEnemySprite());
+	if (currentBattleData->GetFirstEnemy()->IsAlive()) {
+		screenPtr->RenderDrawing(Vector2(0, 0), currentBattleData->GetFirstEnemy()->GetEnemySprite());
 
-	screenPtr->RenderCharacter('+', 6, 24);
-	//screenPtr->RenderCharacter('+', 6, 22);
-	screenPtr->RenderCharacter('+', 23, 24);
-	//screenPtr->RenderCharacter('+', 23, 22);
-	// Mutant Stats bar
-	for (int i = 7; i < 23; i++)
-		screenPtr->RenderCharacter('-', i, 24);
-	for (int i = 25; i < 28; i++)
-		screenPtr->RenderCharacter('|', 6, i);
-	for (int i = 25; i < 28; i++)
-		screenPtr->RenderCharacter('|', 23, i);
-	//for (int i = 7; i < 23; i++)
-		//screenPtr->RenderCharacter('-', i, );
+		screenPtr->RenderCharacter('+', 6, 24);
+		screenPtr->RenderCharacter('+', 23, 24);
 
-	for (int i = 25; i < 28; i++)
-		for (int j = 7; j < 23; j++)
-			screenPtr->RenderCharacter(' ', j, i);
+		for (int i = 7; i < 23; i++)
+			screenPtr->RenderCharacter('-', i, 24);
+		for (int i = 25; i < 28; i++)
+			screenPtr->RenderCharacter('|', 6, i);
+		for (int i = 25; i < 28; i++)
+			screenPtr->RenderCharacter('|', 23, i);
 
-	screenPtr->RenderText(Vector2(9, 25), currentBattleData->GetFirstEnemy()->GetEnemyName());
-	screenPtr->RenderText(Vector2(9, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
-	screenPtr->RenderText(Vector2(9, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
-	screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
-	//screenPtr->RenderText(Vector2(6, 23), "ABT: 25% Chance to");
-	//screenPtr->RenderText(Vector2(6, 24), "poison the player");
+		for (int i = 25; i < 28; i++)
+			for (int j = 7; j < 23; j++)
+				screenPtr->RenderCharacter(' ', j, i);
+
+		screenPtr->RenderText(Vector2(9, 25), currentBattleData->GetFirstEnemy()->GetEnemyName());
+		screenPtr->RenderText(Vector2(9, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
+		screenPtr->RenderText(Vector2(9, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
+		screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
+	}
 	
 
-	if (!currentBattleData->IsSingleBattle())
+	if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->IsAlive())
 	{
+		screenPtr->RenderDrawing(Vector2(30, 0), currentBattleData->GetSecondEnemy()->GetEnemySprite());
 
 		// Healer Stats bar
 		for (int i = 38; i < 54; i++)

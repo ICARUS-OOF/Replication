@@ -6,7 +6,7 @@
 
 class DialogueInteractable : public Interactable
 {
-private:
+protected:
 	std::string* dialogueArray;
 
 	Screen* screenPtr;

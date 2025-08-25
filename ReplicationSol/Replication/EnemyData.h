@@ -27,9 +27,11 @@ public:
 	int GetAttack();
 	int GetMaxHealth();
 	bool DamageEnemy(int amt);
+	void HealEnemy(int amt);
 	ENEMYTYPE GetEnemyType();
 	std::string GetEnemyName();
 	bool IsDead();
+	bool IsAlive();
 	std::string GetEnemyDescription();
 	static std::string EnemyTypeToString(ENEMYTYPE enemyType);
 	static std::string EnemyTypeToAbilityString(ENEMYTYPE enemyType);

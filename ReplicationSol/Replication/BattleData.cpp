@@ -38,6 +38,11 @@ bool BattleData::IsSingleBattle()
 	return this->secondEnemy == nullptr;
 }
 
+bool BattleData::IsDoubleBattle()
+{
+	return this->secondEnemy != nullptr;
+}
+
 void BattleData::SetBattleEndState(BATTLEEND targetBattleEndState)
 {
 	battleEndState = targetBattleEndState;
@@ -51,4 +56,9 @@ BattleData::BATTLEEND BattleData::GetBattleEndState()
 Vector2 BattleData::GetPlayerFleePoint()
 {
 	return playerFleePoint;
+}
+
+int BattleData::GetGCoinsReward()
+{
+	return AddGcoins;
 }
