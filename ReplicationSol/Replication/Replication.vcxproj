@@ -144,6 +144,7 @@
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="VendingMachineInteractable.cpp" />
     <ClCompile Include="WorldEntity.cpp" />
+    <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="WorldPlayer.cpp" />
     <ClCompile Include="SHIZECODE.cpp" />
     <ClCompile Include="source.cpp" />

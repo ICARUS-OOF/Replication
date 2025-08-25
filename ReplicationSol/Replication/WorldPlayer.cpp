@@ -90,6 +90,11 @@ WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 			currentDecision = PLAYERDECISION::MOVE;
 			break;
 
+		case 'f':
+		case 'F':
+			currentDecision = PLAYERDECISION::RUN_TESTBATTLE;
+			break;
+
 		case ' ':
 			currentDecision = PLAYERDECISION::INTERACT;
 			break;

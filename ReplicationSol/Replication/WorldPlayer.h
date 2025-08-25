@@ -13,7 +13,8 @@ public:
 	enum PLAYERDECISION {
 		NONE,
 		MOVE,
-		INTERACT
+		INTERACT,
+		RUN_TESTBATTLE
 	};
 
 	Vector2 targetPosition;

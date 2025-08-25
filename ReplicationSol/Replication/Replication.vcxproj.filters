@@ -78,6 +78,15 @@
     <ClCompile Include="ItemUsage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NoteInteractable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VendingMachineInteractable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -132,6 +141,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ItemUsage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoteInteractable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VendingMachineInteractable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
