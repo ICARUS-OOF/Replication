@@ -58,6 +58,7 @@ private:
 	static const int armourWeight = 5;
 
 	bool isEnemyGuarding = false;
+	bool poisonHitPlayer = false;
 
 	int turnNumber;
 

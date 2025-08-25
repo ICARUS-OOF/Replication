@@ -223,6 +223,7 @@ void GameStateBattle::Loop()
 	///-------ENEMY ATTACKING------
 	else if (currentEvent == BATTLEEVENT::ENEMY_ATTACK) {
 		
+		
 		/*
 		{
 			system("cls");
@@ -235,7 +236,6 @@ void GameStateBattle::Loop()
 
 		UpdateItemUsages();
 		UpdateAbilitiesUsage();
-
 
 
 		//-----POISONING THE ENEMY----
@@ -285,7 +285,6 @@ void GameStateBattle::Loop()
 		}
 
 
-
 		//-----------ENEMY ABILITIES--------
 		if (turnNumber > 0) {
 			//--------POISON-------
@@ -293,6 +292,7 @@ void GameStateBattle::Loop()
 				if (gameData->GetPlayerStats()->GetHealth() - enemyPoisonWeight > 0) {
 					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
 
+					poisonHitPlayer = true;
 					SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " poisoned the player by " + std::to_string(enemyPoisonWeight));
 					this->RenderScreen();
 					Sleep(2000);
@@ -304,11 +304,14 @@ void GameStateBattle::Loop()
 				if (gameData->GetPlayerStats()->GetHealth() - enemyPoisonWeight > 0) {
 					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
 
+					poisonHitPlayer = true;
 					SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " poisoned the player by " + std::to_string(enemyPoisonWeight));
 					this->RenderScreen();
 					Sleep(2000);
 				}
 			}
+
+			
 
 
 			//---------HEALING---------
@@ -536,7 +539,7 @@ void GameStateBattle::Loop()
 			}
 
 			//----------USE ITEM----------
-			else if (option == ' ')
+			else if (option == ' ' && gameData->GetInventory().size() > 0 )
 			{
 				lastItemUsed = gameData->GetInventoryItem(currentItemSelected);
 				ApplyItemUsage(lastItemUsed);
@@ -702,7 +705,6 @@ void GameStateBattle::RenderBaseUI()
 
 			EnemyData::ENEMYTYPE abilityType = gameData->GetAbilities()[currentAbilitySelected];
 
-
 			//POISON
 			if (abilityType == EnemyData::ENEMYTYPE::MUTANT) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Poison");
@@ -724,7 +726,8 @@ void GameStateBattle::RenderBaseUI()
 			//GUARD
 			else if(abilityType == EnemyData::ENEMYTYPE::GUARD) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Armour");
-				screenPtr->RenderText(abilityDescriptionPosition, "Reduce damage taken by 4 (Use once per Battle)");
+				screenPtr->RenderText(abilityDescriptionPosition, "Reduce damage taken by " + std::to_string(armourWeight));
+				screenPtr->RenderText(Vector2(27, 31), "(Use once per Battle)");
 
 				if (abilities_armourTurnsLeft > -1)
 					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
@@ -755,30 +758,33 @@ void GameStateBattle::RenderBaseUI()
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ITEMS) 
 	{
-		Item currentItem = gameData->GetInventoryItem(currentItemSelected);
-		
-		std::string LeftArrow = R"(   __     _    
+		if (gameData->GetInventory().size() > 0) {
+
+			Item currentItem = gameData->GetInventoryItem(currentItemSelected);
+
+			std::string LeftArrow = R"(   __     _    
   / /    / \   
  / /    / _ \  
  \ \   / ___ \ 
   \_\ /_/   \_\
       )";
-		screenPtr->RenderDrawing(Vector2(79, 29), LeftArrow);
+			screenPtr->RenderDrawing(Vector2(79, 29), LeftArrow);
 
-		screenPtr->RenderText(Vector2(2, 30), std::to_string(currentItemSelected + 1) + " / " + std::to_string(gameData->GetInventorySize()));
-		screenPtr->RenderText(Vector2(10, 30), currentItem.GetItemName());
-		screenPtr->RenderTextWrap(Vector2(2, 31), currentItem.GetDescription(), 70);
+			screenPtr->RenderText(Vector2(2, 30), std::to_string(currentItemSelected + 1) + " / " + std::to_string(gameData->GetInventorySize()));
+			screenPtr->RenderText(Vector2(10, 30), currentItem.GetItemName());
+			screenPtr->RenderTextWrap(Vector2(2, 31), currentItem.GetDescription(), 70);
 
-		std::string RightArrow = R"(  ____   __  
+			std::string RightArrow = R"(  ____   __  
  |  _ \  \ \ 
  | | | |  \ \
  | |_| |  / /
  |____/  /_/ 
              
 	)";
-		screenPtr->RenderDrawing(Vector2(96, 29), RightArrow);
+			screenPtr->RenderDrawing(Vector2(96, 29), RightArrow);
 
-	}
+		}
+		}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE)
 	{
@@ -806,6 +812,12 @@ void GameStateBattle::RenderBaseUI()
 	screenPtr->RenderText(Vector2(87, 25), "Health:  " + std::to_string(playerStatsPtr->GetHealth()) + " / " + std::to_string(playerStatsPtr->GetMaxHealth()));
 	screenPtr->RenderText(Vector2(87, 26), "Attack:  " + std::to_string(playerStatsPtr->GetAttack()));
 	screenPtr->RenderText(Vector2(87, 27), "Defense: " + std::to_string(playerStatsPtr->GetDefence()));
+
+	if (poisonHitPlayer)
+	{
+		screenPtr->RenderText(Vector2(104, 25), "(Ps)");
+	}
+	
 
 	//JUNSHEN - Pedro DISPLAY ASCII Art
 	{
@@ -878,6 +890,7 @@ void GameStateBattle::RenderBaseUI()
 		screenPtr->RenderCharacter('+', 6, 24);
 		screenPtr->RenderCharacter('+', 23, 24);
 
+		// Enemy Health Stats bar (Single Battle)
 		for (int i = 7; i < 23; i++)
 			screenPtr->RenderCharacter('-', i, 24);
 		for (int i = 25; i < 28; i++)
@@ -893,6 +906,12 @@ void GameStateBattle::RenderBaseUI()
 		screenPtr->RenderText(Vector2(9, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
 		screenPtr->RenderText(Vector2(9, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
 		screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
+
+		if (abilities_poisonTurnsLeft > 0) {
+			if (currentBattleData->GetFirstEnemy()->IsAlive() && currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0) {
+				screenPtr->RenderText(Vector2(17, 25), "(Ps)");
+			}
+		}
 	}
 	
 
@@ -900,26 +919,31 @@ void GameStateBattle::RenderBaseUI()
 	{
 		screenPtr->RenderDrawing(Vector2(30, 0), currentBattleData->GetSecondEnemy()->GetEnemySprite());
 
-		// Healer Stats bar
+		screenPtr->RenderCharacter('+',37, 24);
+		screenPtr->RenderCharacter('+', 54, 24);
+
+		// Enemy Health Stats bar (Double Battle)
 		for (int i = 38; i < 54; i++)
-			screenPtr->RenderCharacter('-', i, 18);
-		for (int i = 19; i < 22; i++)
+			screenPtr->RenderCharacter('-', i, 24);
+		for (int i = 25; i < 28; i++)
 			screenPtr->RenderCharacter('|', 37, i);
-		for (int i = 19; i < 22; i++)
+		for (int i = 25; i < 28; i++)
 			screenPtr->RenderCharacter('|', 54, i);
-		for (int i = 38; i < 54; i++)
-			screenPtr->RenderCharacter('-', i, 22);
 
 
-		for (int i = 19; i < 22; i++)
+		for (int i = 25; i < 28; i++)
 			for (int j = 38; j < 54; j++)
 				screenPtr->RenderCharacter(' ', j, i);
 
-		screenPtr->RenderText(Vector2(40, 19), "Healer");
-		screenPtr->RenderText(Vector2(40, 20), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
-		screenPtr->RenderText(Vector2(40, 21), "Atk: " + std::to_string(currentBattleData->GetSecondEnemy()->GetAttack()));
-		screenPtr->RenderText(Vector2(37, 23), "ABT: Heals 3 hp to lowest");
-		screenPtr->RenderText(Vector2(37, 24), "enemy hp every turn");
+		screenPtr->RenderText(Vector2(40, 25), currentBattleData->GetSecondEnemy()->GetEnemyName());
+		screenPtr->RenderText(Vector2(40, 26), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
+		screenPtr->RenderText(Vector2(40, 27), "Atk: " + std::to_string(currentBattleData->GetSecondEnemy()->GetAttack()));
+
+		if (abilities_poisonTurnsLeft > 0) {
+			if (currentBattleData->GetSecondEnemy()->IsAlive() && currentBattleData->GetSecondEnemy()->GetHealth() - poisonWeight > 0) {
+				screenPtr->RenderText(Vector2(48, 25), "(Ps)");
+			}
+		}
 	}
 
 }

@@ -152,7 +152,7 @@ void GameStateWorld::Loop()
 			for (int i = 0; i < MAX_PROPS && !hasFoundInteractable; i++)
 			{
 				if (propArray[i] != nullptr && propArray[i]->GetRoomIndex() == currentRoomIndex) {
-					if (propArray[i]->GetInteractable() != nullptr) {
+					if (propArray[i]->GetInteractable() != nullptr && propArray[i]->GetInteractable()->canInteract) {
 						for (int j = 0; j < worldPlayerPtr->INTERACTIVE_POINTS_SIZE; j++)
 						{
 							if (propArray[i]->IsOverlapping(playerInteractivePoints[j], false)) {
@@ -260,8 +260,8 @@ void GameStateWorld::DEBUG_BATTLETEST()
 )";
 
 	gameData->SetCurrentBattleData(new BattleData(
-		new EnemyData(1, 4, EnemyData::ENEMYTYPE::MUTANT, "", enemySprite_Healer),
-		new EnemyData(1, 4, EnemyData::ENEMYTYPE::GUARD, "", enemySprite_Mutant),
+		new EnemyData(1, 4, EnemyData::ENEMYTYPE::GUARD, "", enemySprite_Healer),
+		//new EnemyData(6, 4, EnemyData::ENEMYTYPE::MUTANT, "", enemySprite_Mutant),
 
 		Vector2(16, 9), 100));
 }

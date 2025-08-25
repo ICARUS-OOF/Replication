@@ -143,6 +143,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemUsage.cpp" />
     <ClCompile Include="NoteInteractable.cpp" />
+    <ClCompile Include="PickUpInteractable.cpp" />
     <ClCompile Include="PlayerStats.cpp" />
     <ClCompile Include="Prop.cpp" />
     <ClCompile Include="Interactable.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemUsage.h" />
     <ClInclude Include="NoteInteractable.h" />
+    <ClInclude Include="PickUpInteractable.h" />
     <ClInclude Include="PlayerStats.h" />
     <ClInclude Include="Prop.h" />
     <ClInclude Include="Interactable.h" />
