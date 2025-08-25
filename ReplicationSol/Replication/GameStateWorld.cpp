@@ -22,7 +22,7 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	gameStateScreenSize = Vector2(80, 25);
 
-	this->currentRoomIndex = 2;
+	this->currentRoomIndex = 0;
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 

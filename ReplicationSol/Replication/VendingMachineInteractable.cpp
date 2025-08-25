@@ -57,6 +57,30 @@ void VendingMachineInteractable::Render()
 			screenPtr->RenderCharacter(' ', j, i);
 
 
+	{
+		////----RENDER CHARACTER---
+		//screenPtr->RenderCharacter('X', Vector2(5, 10));
+
+		////---SERIES OF CHARACTERS---
+		//for (int i = 5; i < 11; i++)
+		//{
+		//	screenPtr->RenderCharacter('X', Vector2(i, 10));
+		//}
+
+		////----RENDERING DRAWING---
+		//std::string myDrawing = R"(    ______________
+  //|              |
+  //|   [====]     |
+  //|   [====]     |
+  //|   [====]     |
+  //|   [====]     |
+  //|______________|)";
+		//screenPtr->RenderDrawing(Vector2(40, 6), myDrawing);
+
+		////------RENDER TEXT------
+		//screenPtr->RenderText(Vector2(3, 3), "You found a vending machine!");
+		//screenPtr->RenderTextWrap(Vector2(3, 6), "You found a vending machine!", 10);
+	}
 
 
 
