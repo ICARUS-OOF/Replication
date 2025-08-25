@@ -59,9 +59,9 @@ void MaximiseConsole() {
 }
 
 int main(void) {
-	AudioHandler::Playsound("zapnoise");
+	//AudioHandler::Playsound("zapnoise");
 
-	_getch();
+	//_getch();
 	MaximiseConsole();
 
     Game* game = new Game();
