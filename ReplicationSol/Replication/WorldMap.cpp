@@ -490,7 +490,7 @@ nullptr));
 				Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				nullptr,
+				new VendingMachineInteractable(screenPtr, &currentInteractable, 1, gameData),
 
 				&vendingmachine1, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
@@ -1242,7 +1242,7 @@ nullptr));
 				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				nullptr,
+				new VendingMachineInteractable(screenPtr, &currentInteractable, 2, gameData),
 
 
 				&vendingmachine2, //Step 7. Include the string variable name from step 1 here with the & in front
@@ -1626,7 +1626,7 @@ ___________|
 			Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-			new VendingMachineInteractable(screenPtr, &currentInteractable),
+			new VendingMachineInteractable(screenPtr, &currentInteractable, 1, gameData),
 
 			& yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
 			nullptr));
