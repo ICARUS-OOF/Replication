@@ -23,9 +23,9 @@ void VendingMachineInteractable::Interaction()
 
 void VendingMachineInteractable::Render()
 {
-	const int top = 1;
-	const int left = 1;
-	const int right = 79 - 1;
+	const int top = 0;
+	const int left = 0;
+	const int right = 79;
 	const int bottom = 25 - 1;
 
 	screenPtr->RenderCharacter('+', left, top);
@@ -82,7 +82,147 @@ void VendingMachineInteractable::Render()
 		//screenPtr->RenderTextWrap(Vector2(3, 6), "You found a vending machine!", 10);
 	}
 
+	{
+		std::string vendingmachine1frame = R"(          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X   /|     
+          X                                                          X  / |     
+          X                                                          X /  |     
+          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/   |)";
+		screenPtr->RenderDrawing(Vector2(1, 0), vendingmachine1frame);
+		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    ()   ", 8);
 
+		std::string banana = R"(                &&  
+               &&&&    
+              &&  &   
+            &&&  &&    
+     _____&&&   &&___   
+   /    &&&    &&   /   
+  /  &&&&   &&&&   /  
+ /    &&&&&&&     /    
+/_______________ /   )";
+		screenPtr->RenderDrawing(Vector2(18, 2), banana);
+		screenPtr->RenderText(Vector2(21, 11), "1. Banana (2G)");
 
+		std::string medkit = R"(    ________________     
+   /_______________/|    
+   |              | |   
+   |     |--|     | | 
+   |   ---  ---   | |
+   |   |      |   |_|_ 
+   |   ---  ---   | | /   
+  /|     |--|     |/ /  
+ / |______________| /   
+/__________________/   )";
+		screenPtr->RenderDrawing(Vector2(40, 1), medkit);
+		screenPtr->RenderText(Vector2(43, 11), "2. Medkit (4G)");
 
+		std::string riotshield = R"(     --------------    
+     |            |
+     |            |
+     |------------|
+     |    RIOT    |
+    _|------------|____
+   / |            |   /  
+  /  |            |  / 
+ /   -------------- /
+/__________________/)";
+		screenPtr->RenderDrawing(Vector2(17, 13), riotshield);
+		screenPtr->RenderText(Vector2(18, 23), "3. Riot shield (4G)");
+
+		std::string hardeningsoda = R"(     ----------     
+    /          \   
+    |__________|  
+    |          |   
+    |    []    |   
+    |__________|____  
+   /|          |   /  
+  / \          /  / 
+ /   ----------  /   
+/_______________/)";
+		screenPtr->RenderDrawing(Vector2(41, 13), hardeningsoda);
+		screenPtr->RenderText(Vector2(40, 23), "4. Hardening Soda (2G)");
+	}
+
+	{
+		std::string vendingmachine2frame = R"(          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X    |     
+          X                                                          X   /|     
+          X                                                          X  / |     
+          X                                                          X /  |     
+          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/   |)";
+		screenPtr->RenderDrawing(Vector2(1, 0), vendingmachine2frame);
+		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    ()   ", 8);
+
+        std::string portablebarrier = R"(    ____________   
+   /===========/|__    
+  /|  BARRIER  ||  /   
+ / |___________|/ /  
+/________________/)";
+        screenPtr->RenderDrawing(Vector2(17, 6), portablebarrier);
+        screenPtr->RenderText(Vector2(14, 11), "1. Portable barrier (8G)");
+
+		std::string pocketwatch = R"(        ___  
+       |___|    
+        | |  
+      |||||||  
+    ||   |   ||
+   |     |__   | 
+   |           |__ 
+  / ||       ||  /
+ /    |||||||   /   
+/______________/)";
+		screenPtr->RenderDrawing(Vector2(46, 1), pocketwatch);
+		screenPtr->RenderText(Vector2(44, 11), "2. Pocket Watch (8G)");
+
+		std::string energyblaster = R"(                    __________________ 
+                  _|                  |  
+                 | |  ||  ||  || ||  ||_______________  
+      ___________| ||||  ||  ||  ||||||              |   
+   ___|             |________________| ==============O___ 
+  ||         _____                   ||______________|  /
+  ||        / \\ |__________________||                 /
+ /||_______||                                         /
+/____________________________________________________/)";
+		screenPtr->RenderDrawing(Vector2(12, 14), energyblaster);
+		screenPtr->RenderText(Vector2(27, 23), "3. Energy blaster (8G)");
+	}
 }
