@@ -90,6 +90,12 @@
     <ClCompile Include="ButtonInteractable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExitInteractable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateEnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -154,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="ButtonInteractable.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitInteractable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateEnd.h">
+      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

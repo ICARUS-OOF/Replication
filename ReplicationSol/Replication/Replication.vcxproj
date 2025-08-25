@@ -131,10 +131,12 @@
     <ClCompile Include="ButtonInteractable.cpp" />
     <ClCompile Include="DialogueInteractable.cpp" />
     <ClCompile Include="EnemyData.cpp" />
+    <ClCompile Include="ExitInteractable.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateBattle.cpp" />
+    <ClCompile Include="GameStateEnd.cpp" />
     <ClCompile Include="GameStateWorld.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemUsage.cpp" />
@@ -156,10 +158,12 @@
     <ClInclude Include="ButtonInteractable.h" />
     <ClInclude Include="DialogueInteractable.h" />
     <ClInclude Include="EnemyData.h" />
+    <ClInclude Include="ExitInteractable.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateBattle.h" />
+    <ClInclude Include="GameStateEnd.h" />
     <ClInclude Include="GAMESTATEVALUE.h" />
     <ClInclude Include="GameStateWorld.h" />
     <ClInclude Include="Item.h" />

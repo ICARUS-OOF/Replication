@@ -21,7 +21,7 @@ protected:
 public:
 	DialogueInteractable(std::string* dialogue, Screen* screenPtr, Interactable** gameInteractablePtr, int NumberOfLines);
 
-	void Interaction();
-	void Render();
+	virtual void Interaction();
+	virtual void Render();
 };
 

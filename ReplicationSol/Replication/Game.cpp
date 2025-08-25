@@ -18,7 +18,8 @@ Game::Game() :
 	screenPtr(new Screen(80, 25)),
 	gameData(new GameData(screenPtr, GAMESTATEVALUE::WORLDSTATE, new PlayerStats(20, 0, 0, 4), screenPtr->GetScreenSize(), screenPtr->GetConsoleViewportSize())),
 	gameStateWorld(GameStateWorld(gameData)),
-	gameStateBattle(GameStateBattle(gameData))
+	gameStateBattle(GameStateBattle(gameData)),
+	gameStateEnd(GameStateEnd(gameData))
 {
 	srand(time(0));
 
@@ -66,6 +67,9 @@ void Game::UpdateGameStateValue()
 		break;
 	case BATTLESTATE:
 		targetState = &gameStateBattle;
+		break;
+	case ENDSTATE:
+		targetState = &gameStateEnd;
 		break;
 	default:
 		targetState = &gameStateWorld;

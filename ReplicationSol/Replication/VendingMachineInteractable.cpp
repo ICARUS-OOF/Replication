@@ -15,6 +15,9 @@ void VendingMachineInteractable::Interaction()
 {
 	currentInteractionIndex++;
 	if (currentInteractionIndex >= 3) {
+
+
+
 		currentInteractionIndex = 0;
 		*gameInteractablePtr = nullptr;
 	}

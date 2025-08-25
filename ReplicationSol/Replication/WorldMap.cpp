@@ -9,6 +9,7 @@
 #include "GAMESTATEVALUE.h"
 #include "BattleData.h"
 #include "EnemyData.h"
+#include "ExitInteractable.h"
 
 #include <iostream>
 #include <chrono>
@@ -92,6 +93,10 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 ///OFFICIAL SETTING OF LEVEL PROP DATA
 void GameStateWorld::SetLevelData()
 {
+	ExitInteractable* finalExit = new ExitInteractable(new std::string[2] //Step 4. Define the NUMBER OF LINES in []
+		{ "It's locked", "Perhaps you need to go back and activate something..." }, //Step 5. Define the lines
+		screenPtr, &currentInteractable,
+		2, gameData);
 
 	{
 		{
@@ -890,10 +895,10 @@ _________|__________|_________|
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new ButtonInteractable(
-					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
-					{ "Nothing in here", "Wait... What's that panel inside?" }, //Step 5. Define the lines
+					new std::string[4] //Step 4. Define the NUMBER OF LINES in []
+					{ "Nothing in here", "Wait... What's that panel inside?", "You click something in the panel.", "Something seems to have opened." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
-					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+					4, finalExit), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 				&armorylockerright, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
@@ -1575,37 +1580,35 @@ ___________|
 
 
 
-		{
-			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
-			//        And define the string in this format
-			std::string exit =
-				R"(                    |                  ||                  |                    
+
+	}
+
+
+	//--------EXIT---------
+	{
+		//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+		//        And define the string in this format
+		std::string exit =
+			R"(                    |                  ||                  |                    
                     |                  ||                  |                    
                     |__________________||__________________|                    
 
 
 )";
 
-			SpawnProp(new Prop(screenPtr,
-				10, //Step 2. Define which Room the prop will be in
-				Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+		SpawnProp(new Prop(screenPtr,
+			10, //Step 2. Define which Room the prop will be in
+			Vector2(0, 0), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+			Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+			Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
-				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-				new DialogueInteractable(
-					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "Finally..." }, //Step 5. Define the lines
-					screenPtr, &currentInteractable,
-					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+			finalExit,
 
 
-				&exit, //Step 7. Include the string variable name from step 1 here with the & in front
-				nullptr));
+			& exit, //Step 7. Include the string variable name from step 1 here with the & in front
+			nullptr));
 		}
-
-
-	}
 
 
 	{

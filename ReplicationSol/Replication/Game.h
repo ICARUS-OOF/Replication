@@ -9,6 +9,7 @@
 #include "GameState.h"
 #include "GameStateBattle.h"
 #include "GameStateWorld.h"
+#include "GameStateEnd.h"
 #include "PlayerStats.h"
 #include "GameData.h"
 #include "GAMESTATEVALUE.h"
@@ -23,6 +24,7 @@ private:
 	GameState* currentGameState;
 	GameStateWorld gameStateWorld;
 	GameStateBattle gameStateBattle;
+	GameStateEnd gameStateEnd;
 
 public:
 	Game();
