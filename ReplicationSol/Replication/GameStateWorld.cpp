@@ -22,7 +22,7 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	gameStateScreenSize = Vector2(80, 25);
 
-	this->currentRoomIndex = 5;
+	this->currentRoomIndex = 2;
 	//Create player
 	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 
@@ -458,6 +458,33 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
+			std::string canteennote =
+				R"([]
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				2, //Step 2. Define which Room the prop will be in
+				Vector2(24, 20), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new NoteInteractable(screenPtr, &currentInteractable, R"(We just got a big contract from the government, and it's the biggest so far. I'm not sure what connections the senior execs have, but they managed to convince the government to pay a massive fortune for our latest supersoldier project.
+
+They're desperate and losing it, I know they are. They just lost all the territory they had gained early in the war, and are just throwing money at whatever they think is going to be their saving grace. They're sending one of their best to be our lab rat, some guy named Pedro.
+
+To be perfectly honest, I'm done with this company. It was only a couple days ago that they sent me the letter that my love was killed in an enemy assault. "She died for our country", they said. Screw that!
+
+They started this war, and they're the ones who are gonna pay for the cost. They just accepted me into the project earlier, and it's going to be their last mistake.
+)"),
+
+&canteennote, //Step 7. Include the string variable name from step 1 here with the & in front
+nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
 			std::string  vendingmachine1 =
 				R"(| |          | |
 | |          | |
@@ -506,8 +533,8 @@ Security incident logs:
 07:00: Subject 0 breaches containment.
 )"),
 
-				&loungeTV, //Step 7. Include the string variable name from step 1 here with the & in front
-				nullptr));
+&loungeTV, //Step 7. Include the string variable name from step 1 here with the & in front
+nullptr));
 		}
 
 		{
@@ -757,6 +784,33 @@ Security incident logs:
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
+			std::string officenote =
+				R"([]
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				4, //Step 2. Define which Room the prop will be in
+				Vector2(30, 21), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT,  //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new NoteInteractable(screenPtr, &currentInteractable, R"(It's done. They're finished.
+
+I sabotaged the cloning process, cranked up their production of stress hormones. I've even damaged the transformer so that they'll have an easier time breaking down doors.
+
+Of course that means the whole site is in maximum lockdown now. The others are rushing to the escapes and shelters, but not me. Even if I wanted to, my route is blocked by the riots. Destroying the project was suicide, but by then I've already accepted it.
+
+I can hear them getting closer. I'll die here, with the company, and the government.
+)"),
+
+&officenote, //Step 7. Include the string variable name from step 1 here with the & in front
+nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
 			std::string armorylockerleft =
 				R"( ________________________________________________                
 |        |               
@@ -844,10 +898,10 @@ _________|__________|_________|
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
-					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-					{ "Nothing in here" }, //Step 5. Define the lines
+					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
+					{ "Nothing in here", "Wait... What's that panel inside?"}, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
-					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 				&armorylockerright, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
@@ -879,8 +933,8 @@ Those Frankensteins caused this. I'm sure of it.
 
 )"),
 
-				&armorynote, //Step 7. Include the string variable name from step 1 here with the & in front
-				nullptr));
+&armorynote, //Step 7. Include the string variable name from step 1 here with the & in front
+nullptr));
 		}
 
 		{
@@ -1215,7 +1269,7 @@ Those Frankensteins caused this. I'm sure of it.
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
 					new std::string[2] //Step 4. Define the NUMBER OF LINES in []
-					{ "Can't use the lifts because the power is out", "Doesn't matter anyways, it appears I'm on the top floor"}, //Step 5. Define the lines
+					{ "Can't use the lifts because the power is out", "Doesn't matter anyways, it appears I'm on the top floor" }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
 					2), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
@@ -1332,7 +1386,7 @@ ___________|
 				new DialogueInteractable(
 					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
 					{ "I'm so tired, but the exit is right there..." }, //Step 5. Define the lines
-					screenPtr, & currentInteractable,
+					screenPtr, &currentInteractable,
 					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 
@@ -1541,7 +1595,7 @@ ___________|
 			Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-			new VendingMachineInteractable(screenPtr, & currentInteractable),
+			new VendingMachineInteractable(screenPtr, &currentInteractable),
 
 			& yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
 			nullptr));
@@ -1566,7 +1620,7 @@ ___________|
 			Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
 
 			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-			new NoteInteractable(screenPtr, & currentInteractable, R"(It's been roughly 84 days since war broke out. Things have only gotten worse.
+			new NoteInteractable(screenPtr, &currentInteractable, R"(It's been roughly 84 days since war broke out. Things have only gotten worse.
 
 Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they've sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the "greater good".
 
@@ -1574,8 +1628,8 @@ Can’t say I enjoy working for a soulless corporation that actively engages in 
 
 I just hope that this war ends before Christmas.)"),
 
-			& yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
-			nullptr));
+&yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
+nullptr));
 	}
 }
 
@@ -1674,7 +1728,7 @@ void GameStateWorld::Loop()
 		}
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
 
-			DEBUG_BATTLETEST();
+			/*DEBUG_BATTLETEST();*/
 
 
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
