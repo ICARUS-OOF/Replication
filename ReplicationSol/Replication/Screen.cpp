@@ -25,6 +25,10 @@ Screen::Screen(const int rows, const int cols)
 	//Create the columns of chars
 	for (int i = 0; i < rows; i++)
 		chars[i] = new char[cols];
+
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	this->secondaryText = "";
 }
 
 /// <summary>
@@ -58,7 +62,6 @@ void Screen::ResizeScreen(Vector2 targetSize)
 void Screen::DisplayScreen(Vector2 lastScreenSize, Vector2 lastViewportSize)
 {
 	//Clear the previous screen
-
 	Vector2 screenSize = GetScreenSize();
 	int cols = screenSize.Getx();
 	int rows = screenSize.Gety();
@@ -111,6 +114,16 @@ void Screen::DisplayScreen(Vector2 lastScreenSize, Vector2 lastViewportSize)
 			ss << '-';
 		ss << '+';
 
+		ss << std::endl;
+		std::string _secondaryTextFinal;
+		for (int i = 0; i < 80; i++)
+		{
+			if (i < secondaryText.size())
+				_secondaryTextFinal += secondaryText[i];
+			else
+				_secondaryTextFinal += ' ';
+		}
+		ss << _secondaryTextFinal;
 		ss << std::endl;
 
 		HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -230,6 +243,11 @@ void Screen::RenderTextWrapManual(Vector2 StartingPos, std::string Text, const i
 			currentCharacterCol = 0;
 		}
 	}
+}
+
+void Screen::RenderSecondaryText(std::string secondaryText)
+{
+	this->secondaryText = secondaryText;
 }
 
 /// <summary>
