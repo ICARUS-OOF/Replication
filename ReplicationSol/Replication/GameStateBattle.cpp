@@ -115,7 +115,7 @@ void GameStateBattle::Loop()
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_SELECTENEMY) {
 
 		screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
-		screenPtr->RenderText(Vector2(2, 31), "Select an enemy to attack...");
+		screenPtr->RenderText(Vector2(2, 31), "Select an enemy to attack... (Press the corresponding number)");
 		if (!currentBattleData->GetFirstEnemy()->IsDead())
 			screenPtr->RenderText(Vector2(2, 33), "1. " + currentBattleData->GetFirstEnemy()->GetEnemyName());
 		if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetSecondEnemy()->IsDead())
@@ -622,14 +622,14 @@ void GameStateBattle::Loop()
 		PlayAnimationSet(playerFrames_death, false);
 
 		SetConsoleText("Player is Dead!");
-
+		
 		this->RenderScreen();
 
 		Sleep(2000);
 
 
 		ClearConsole();
-		//gameData->SetGameStateValue(GAMESTATEVALUE::WORLDSTATE);
+		gameData->SetGameStateValue(GAMESTATEVALUE::ENDSTATE);
 
 	}
 
@@ -907,6 +907,13 @@ void GameStateBattle::RenderBaseUI()
 				screenPtr->RenderText(Vector2(17, 25), "(Ps)");
 			}
 		}
+
+		else if (isEnemyGuarding) {
+			if (currentBattleData->GetFirstEnemy()->IsAlive()) {
+				screenPtr->RenderText(Vector2(17, 25), "(Gd)");
+			}
+		}
+
 	}
 	
 
@@ -937,6 +944,11 @@ void GameStateBattle::RenderBaseUI()
 		if (abilities_poisonTurnsLeft > 0) {
 			if (currentBattleData->GetSecondEnemy()->IsAlive() && currentBattleData->GetSecondEnemy()->GetHealth() - poisonWeight > 0) {
 				screenPtr->RenderText(Vector2(48, 25), "(Ps)");
+			}
+		}
+		else if (isEnemyGuarding) {
+			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
+				screenPtr->RenderText(Vector2(48, 25), "(Gd)");
 			}
 		}
 	}
