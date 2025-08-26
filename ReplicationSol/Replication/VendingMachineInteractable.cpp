@@ -16,7 +16,6 @@ VendingMachineInteractable::VendingMachineInteractable(Screen* screenPtr, Intera
 	this->currentInteractionIndex = 0;
 	this->isBuying = false;
 	this->vmIndex = vmIndex;
-	gameDataptr->AddGcoins(40);
 }
 
 

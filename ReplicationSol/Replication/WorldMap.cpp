@@ -478,8 +478,8 @@ nullptr));
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
 			std::string  vendingmachine1 =
-				R"(| |          | |
-| |          | |
+				R"(| |  Vending | |
+| | Machine  | |
 | |__________| |
 |______________|
 )";
@@ -1199,7 +1199,7 @@ nullptr));
 |  _____
 | |     
 | |     
-| |     
+| |  VM   
 | |     
 | |_____
 |_______
