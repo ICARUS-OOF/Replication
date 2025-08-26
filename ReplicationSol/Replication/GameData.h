@@ -63,5 +63,7 @@ public:
 	void UpdateScreenAndViewportSizes(Vector2 lastScreenSize, Vector2 lastViewportSize);
 	Vector2 GetLastScreenSize() const;
 	Vector2 GetLastViewportSize() const;
+
+	bool hasLost = false;
 };
 

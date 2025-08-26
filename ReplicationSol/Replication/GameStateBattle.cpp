@@ -655,6 +655,8 @@ void GameStateBattle::Loop()
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
 		PlayAnimationSet(playerFrames_death, false);
+		
+		gameData->hasLost = true;
 
 		MusicHandler::StopMusic();
 
