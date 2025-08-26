@@ -7,6 +7,19 @@
 #include <algorithm>
 #include <cstdlib>
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Constructor for GameData
+/// Prob the most useful file in the entire game
+/// Passes around necessary information for classes to access  such as the:
+/// player inventory, player stats, gcoins and screen pointer
+/// </summary>
+/// <param name="screenPtr"></param>
+/// <param name="gameStateValue"></param>
+/// <param name="playerStats"></param>
+/// <param name="startingScreenSize"></param>
+/// <param name="startingViewportSize"></param>
 GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize)
 {
 	this->screenPtr = screenPtr;
@@ -45,26 +58,31 @@ GameData::~GameData()
 	delete playerStats;
 }
 
+//Getter for last battleData that was set
 BattleData* GameData::GetCurrentBattleData()
 {
 	return currentBattleData;
 }
 
+//Setter for last battleData
 void GameData::SetCurrentBattleData(BattleData* currentBattleData)
 {
 	this->currentBattleData = currentBattleData;
 }
 
+//Getter for player stats
 PlayerStats* GameData::GetPlayerStats()
 {
 	return playerStats;
 }
 
+//Function to directly add an item to the inventory
 void GameData::AddItem(Item item)
 {
 	inventory.push_back(item);
 }
 
+//Remove the item using that stupid iterator
 void GameData::RemoveItem(std::string itemName)
 {
 	auto iterator = std::find_if(inventory.begin(), inventory.end(),
@@ -78,6 +96,7 @@ void GameData::RemoveItem(std::string itemName)
 	}
 }
 
+//Returns if inventory contains an item of matching name
 bool GameData::HasItem(std::string itemName)
 {
 	auto iterator = std::find_if(inventory.begin(), inventory.end(),
@@ -89,46 +108,62 @@ bool GameData::HasItem(std::string itemName)
 	return iterator != inventory.end();
 }
 
+//Getter for inventory vector of items
 std::vector<Item> GameData::GetInventory()
 {
 	return inventory;
 }
 
+//Getter for an item at index "i"
 Item GameData::GetInventoryItem(int i)
 {
 	return inventory.at(i);
 }
 
+//Getter for the number of items in the inventory
 int GameData::GetInventorySize()
 {
 	return inventory.size();
 }
 
+
+/// <summary>
+/// KAYDEN
+/// 
+/// Adds an ability to the abilities vector
+/// </summary>
+/// <param name="ability"></param>
 void GameData::AddAbility(EnemyData::ENEMYTYPE ability)
 {
+	//If ability is to be pushed to the vector, this is set to true
 	bool add = true;
 	for (int i = 0; i < enemyAbilitiesCopied.size(); i++)
 	{
+		//If ability was already unlocked, then do not add
 		if (enemyAbilitiesCopied[i] == ability) {
 			add = false;
 			break;
 		}
 	}
 
+	//If add was true, then push to vector
 	if (add) {
 		enemyAbilitiesCopied.push_back(ability);
 	}
 }
 
+//Getter for abilities
 std::vector<EnemyData::ENEMYTYPE> GameData::GetAbilities()
 {
 	return enemyAbilitiesCopied;
 }
 
+//Checks if player already has ability
 bool GameData::HasAbility(EnemyData::ENEMYTYPE targetType)
 {
 	for (int i = 0; i < enemyAbilitiesCopied.size(); i++)
 	{
+		//If ability already unlocked, return true
 		if (targetType == enemyAbilitiesCopied[i])
 			return true;
 	}
@@ -136,24 +171,46 @@ bool GameData::HasAbility(EnemyData::ENEMYTYPE targetType)
 	return false;
 }
 
+/// <summary>
+/// YU HENG
+/// 
+/// Adds GCoins
+/// </summary>
+/// <param name="amt"></param>
 void GameData::AddGcoins(int amt)
 {
 	gcoins += amt;
 }
 
+/// <summary>
+/// YU HENG
+/// 
+/// Removes GCoins
+/// </summary>
+/// <param name="amt"></param>
 void GameData::RemoveGcoins(int amt)
 {
 	gcoins -= amt;
+
+	//Cap at 0 GCoins
 	if (gcoins < 0) {
 		gcoins = 0;
 	}
 }
 
+/// <summary>
+/// YU HENG
+/// 
+/// Checks if gcoins is sufficient for "amt"
+/// </summary>
+/// <param name="amt"></param>
+/// <returns></returns>
 bool GameData::HasEnoughGcoins(int amt)
 {
 	return gcoins >= amt;
 }
 
+//Getter for GCoins
 int GameData::GetGCoins()
 {
 	return gcoins;
@@ -170,32 +227,38 @@ bool GameData::RollDice(int percentage)
 	return num <= percentage;
 }
 
+//Getter for the last screenPtr rows and cols sizes
 Vector2 GameData::GetLastScreenSize() const
 {
 	return lastScreenSize;
 }
 
+//Getter for the last entire viewport size
 Vector2 GameData::GetLastViewportSize() const
 {
 	return lastViewportSize;
 }
 
+//Align the screen and viewport sizes to latest sizes
 void GameData::UpdateScreenAndViewportSizes(Vector2 lastScreenSize, Vector2 lastViewportSize)
 {
 	this->lastScreenSize = lastScreenSize;
 	this->lastViewportSize = lastViewportSize;
 }
 
+//Return a pointer to the screen
 Screen* GameData::GetScreenPtr()
 {
 	return screenPtr;
 }
 
+//Getter for the current game state in enum form
 GAMESTATEVALUE GameData::GetGameStateValue()
 {
 	return this->gameStateValue;
 }
 
+//Directly transitions game state
 void GameData::SetGameStateValue(GAMESTATEVALUE gameStateValue)
 {
 	this->gameStateValue = gameStateValue;

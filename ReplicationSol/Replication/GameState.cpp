@@ -2,6 +2,13 @@
 #include "Vector2.h"
 #include "GameData.h"
 
+/// <summary>
+/// KAYDEN
+/// 
+/// CONSTRUCTOR
+/// ABSTRACT class for GameStates
+/// </summary>
+/// <param name="clearScreen"></param>
 void GameState::RenderScreen(bool clearScreen)
 {
 	RenderBaseObjects();
@@ -13,6 +20,11 @@ void GameState::RenderScreen(bool clearScreen)
 		ClearScreen();
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Clears the screen entirely
+/// </summary>
 void GameState::ClearScreen()
 {
 	screenPtr->ClearScreen();

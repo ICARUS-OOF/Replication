@@ -4,7 +4,17 @@
 
 #include <conio.h>
 
-
+/// <summary>
+/// KAYDEN
+/// 
+/// Constructor for dialogue interactable
+/// 
+/// Takes in a dialogue string array (in the form of a pointer)
+/// </summary>
+/// <param name="dialogue"></param>
+/// <param name="screenPtr"></param>
+/// <param name="gameInteractablePtr"></param>
+/// <param name="NumberOfLines"></param>
 DialogueInteractable::DialogueInteractable(std::string* dialogue, Screen* screenPtr, Interactable** gameInteractablePtr, int NumberOfLines)
 {
 	this->dialogueArray = dialogue;
@@ -14,9 +24,15 @@ DialogueInteractable::DialogueInteractable(std::string* dialogue, Screen* screen
 	this->currentInteractionIndex = 0;
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Interaction with dialogue, increases index every time
+/// </summary>
 void DialogueInteractable::Interaction()
 {
 	currentInteractionIndex++;
+	//If exceeded, head out of interactable by setting the game interactable to nullptr
 	if (currentInteractionIndex >= NumberOfLines) {
 		currentInteractionIndex = 0;
 		*gameInteractablePtr = nullptr;
@@ -30,7 +46,8 @@ void DialogueInteractable::Render()
 	const int right = 76 - 1;
 	const int top = 19;
 	const int bottom = 25 - 1;
-
+	
+	//Dialogue box
 	screenPtr->RenderCharacter('+', left, top);
 
 	for (int i = left + 1; i < right; i++)
@@ -59,6 +76,7 @@ void DialogueInteractable::Render()
 		for (int j = dialogueStartLeft - 1; j < dialogueStartRight; j++)
 			screenPtr->RenderCharacter(' ', j, i);
 
+	//Dialogue rendering
 	for (int j = 0; j < dialogueArray[currentInteractionIndex].length(); j++)
 		screenPtr->RenderCharacter(dialogueArray[currentInteractionIndex].at(j), dialogueStartLeft + j, dialogueStartTop);
 }

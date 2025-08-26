@@ -69,7 +69,7 @@ int main(void) {
 	MaximiseConsole();
 
 
-	//PlayIntro();
+	PlayIntro();
 
     Game* game = new Game();
 
