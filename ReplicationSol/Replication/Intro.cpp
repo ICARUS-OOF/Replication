@@ -12,7 +12,6 @@
 
 
 void Intro::PlayIntro() {
-	PlaySound(TEXT("./audio/zapnoise.wav"), NULL, SND_ASYNC);
 
 
 
@@ -32,7 +31,6 @@ std::cout << R"(
 
         Sleep(50);
         system("cls");
-        PlaySound(TEXT("./audio/TADAJUMPSCARE.wav"), NULL, SND_ASYNC);
 
 
         std::cout << R"(

@@ -102,4 +102,26 @@ void GameStateWorld::SetLevelDataBattles() {
 
 
 
+
+
+
+	{
+		//------------------FOR BATTLE TRIGGERS-----------------
+		//    BOSS BATTLE                                                      
+		battleDataArray[battleSetIndex] = new BattleData(
+			//         health atk                 EnemyType              
+			new EnemyData(40, 1, EnemyData::ENEMYTYPE::BOSS),
+
+			nullptr,
+
+			//Player FLEE POINT, CGOINS
+			Vector2(40, 13), 0);
+		//													      room | top-left position | scale
+		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 10, Vector2(0, 10), Vector2(100, 1), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
+		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
+		battleSetIndex++;
+	}
+
+
+
 }

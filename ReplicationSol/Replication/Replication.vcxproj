@@ -144,6 +144,7 @@
     <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemUsage.cpp" />
+    <ClCompile Include="MusicHandler.cpp" />
     <ClCompile Include="NoteInteractable.cpp" />
     <ClCompile Include="PickUpInteractable.cpp" />
     <ClCompile Include="PlayerStats.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Intro.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemUsage.h" />
+    <ClInclude Include="MusicHandler.h" />
     <ClInclude Include="NoteInteractable.h" />
     <ClInclude Include="PickUpInteractable.h" />
     <ClInclude Include="PlayerStats.h" />

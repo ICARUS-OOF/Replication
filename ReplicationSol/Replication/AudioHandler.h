@@ -3,7 +3,6 @@
 class AudioHandler
 {
 public:
-
-	static void Playsound(std::string sfxID);
+	static void PlaySFX(std::string sfxID);
 };
 

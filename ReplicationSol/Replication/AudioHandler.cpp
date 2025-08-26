@@ -7,7 +7,12 @@
 
 
 
-void AudioHandler::Playsound(std::string sfxID) {
-    std::string path = "audio\\" + sfxID + ".wav";
-    PlaySoundA(path.c_str(), NULL, SND_FILENAME | SND_ASYNC);
+void AudioHandler::PlaySFX(std::string sfxID) {
+    std::wstring base = L"play audio\\";
+    std::wstring fileName(sfxID.begin(), sfxID.end());
+    std::wstring extension = L".wav";
+
+    std::wstring result = base + fileName + extension;
+
+    mciSendString(result.c_str(), NULL, 0, NULL);
 }

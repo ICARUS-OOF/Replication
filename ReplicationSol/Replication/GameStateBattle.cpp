@@ -3,6 +3,7 @@
 #include "Item.h"
 #include "ItemUsage.h"
 #include "EnemyData.h"
+#include "MusicHandler.h"
 #include <conio.h>
 #include <iostream>
 #include <string>
@@ -26,8 +27,10 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->abilities_armourTurnsLeft = -1;
 	this->abilities_hasUsedRestore = false;
 	this->isEnemyGuarding = false;
+	this->poisonHitPlayer = false;
 	this->turnNumber = 0;
 	this->selectedEnemy = 0;
+	this->bossAdditionDamage = 0;
 	this->itemUsages.clear();
 
 	this->playerFrames_damaged = std::vector<std::string>(0);
@@ -44,12 +47,16 @@ void GameStateBattle::OnStateEnter()
 	this->currentBattleData = gameData->GetCurrentBattleData();
 	this->turnNumber = 0;
 	this->selectedEnemy = 0;
+	this->bossAdditionDamage = 0;
 
 
 	this->abilities_poisonTurnsLeft = -1;
 	this->abilities_armourTurnsLeft = -1;
 	this->abilities_hasUsedRestore = false;
 	this->isEnemyGuarding = false;
+	this->poisonHitPlayer = false;
+
+	MusicHandler::PlayMusic("03_Replicants");
 
 	//gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
 	//gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
@@ -57,6 +64,11 @@ void GameStateBattle::OnStateEnter()
 
 	gameData->GetPlayerStats()->ResetStats();
 	this->itemUsages.clear();
+
+
+	currentBattleData->GetFirstEnemy()->ResetEnemyHealth();
+	if (currentBattleData->IsDoubleBattle())
+		currentBattleData->GetSecondEnemy()->ResetEnemyHealth();
 
 	screenPtr->ResizeScreen(gameStateScreenSize);
 	ClearScreen();
@@ -293,6 +305,11 @@ void GameStateBattle::Loop()
 			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
 			if (targetDamage <= 0)
 				targetDamage = 0;
+			
+			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS) {
+				targetDamage += bossAdditionDamage;
+			}
+
 			playerStatsPtr->DamagePlayer(targetDamage);
 			SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " damaged player by " + std::to_string(targetDamage));
 			this->RenderScreen();
@@ -442,6 +459,19 @@ void GameStateBattle::Loop()
 						Sleep(2000);
 					}
 				}
+			}
+
+
+
+
+
+			//---------DAMAGE STACKING FOR BOSS--------
+			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS) {
+				bossAdditionDamage++;
+				PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
+				SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " strengthens himself by 1!");
+				this->RenderScreen();
+				Sleep(2000);
 			}
 
 		}
@@ -646,10 +676,12 @@ void GameStateBattle::Loop()
 
 
 		//-------ABILITY GAINING--------
-		if (!gameData->HasAbility(currentBattleData->GetFirstEnemy()->GetEnemyType())) {
+		if (!gameData->HasAbility(currentBattleData->GetFirstEnemy()->GetEnemyType()) && 
+			currentBattleData->GetFirstEnemy()->GetEnemyType() != EnemyData::ENEMYTYPE::BOSS) {
+
 			gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
 			ClearConsole();
-			SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
+			SetConsoleText("You have obtained a ability: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
 			this->RenderScreen();
 			Sleep(2000);
 		}
@@ -900,7 +932,7 @@ void GameStateBattle::RenderBaseUI()
 		screenPtr->RenderText(Vector2(9, 25), currentBattleData->GetFirstEnemy()->GetEnemyName());
 		screenPtr->RenderText(Vector2(9, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
 		screenPtr->RenderText(Vector2(9, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
-		screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
+		//screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
 
 		if (abilities_poisonTurnsLeft > 0) {
 			if (currentBattleData->GetFirstEnemy()->IsAlive() && currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0) {

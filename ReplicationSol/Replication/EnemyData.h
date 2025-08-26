@@ -8,7 +8,8 @@ public:
 	enum ENEMYTYPE {
 		MUTANT,
 		HEALER,
-		GUARD
+		GUARD,
+		BOSS
 	};
 
 private:
@@ -33,6 +34,7 @@ public:
 	std::string GetEnemyName();
 	bool IsDead();
 	bool IsAlive();
+	void ResetEnemyHealth();
 	std::string GetEnemyDescription();
 	static std::string EnemyTypeToString(ENEMYTYPE enemyType);
 	static std::string EnemyTypeToAbilityString(ENEMYTYPE enemyType);

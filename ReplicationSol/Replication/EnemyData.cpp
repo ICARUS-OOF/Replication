@@ -72,6 +72,11 @@ bool EnemyData::IsAlive()
 	return health > 0;
 }
 
+void EnemyData::ResetEnemyHealth()
+{
+	health = maxhealth;
+}
+
 std::string EnemyData::GetEnemyDescription()
 {
 	return enemyDescription;
@@ -89,6 +94,9 @@ std::string EnemyData::EnemyTypeToString(ENEMYTYPE enemyType)
 		break;
 	case EnemyData::GUARD:
 		return "Guard";
+		break;
+	case EnemyData::BOSS:
+		return "Nikolai Warden";
 		break;
 	default:
 		return "ERROR";

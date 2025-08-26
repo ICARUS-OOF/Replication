@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "Intro.h"
 #include "AudioHandler.h"
+#include "MusicHandler.h"
 
 /*
 1. ONLY PUT #include <iostream> in CPP FILES
@@ -58,11 +59,17 @@ void MaximiseConsole() {
 		ShowWindow(owner, SW_MAXIMIZE); //If owner is authorised, maximise using owner
 }
 
-int main(void) {
-	//AudioHandler::Playsound("zapnoise");
+void PlayIntro() {
+	Intro intro;
+	MusicHandler::PlayMusic("01_4999");
+	intro.PlayInCut();
+}
 
-	//_getch();
+int main(void) {
 	MaximiseConsole();
+
+
+	//PlayIntro();
 
     Game* game = new Game();
 

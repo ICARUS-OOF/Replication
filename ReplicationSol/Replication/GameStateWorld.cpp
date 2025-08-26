@@ -13,6 +13,7 @@
 #include <windows.h>
 #include <thread>
 #include "GameData.h"
+#include "MusicHandler.h"
 
 
 GameStateWorld::GameStateWorld(GameData* gameData)
@@ -69,6 +70,8 @@ void GameStateWorld::OnStateEnter()
 			worldPlayerPtr->MovePlayer(gameData->GetCurrentBattleData()->GetPlayerFleePoint());
 		}
 	}
+
+	MusicHandler::PlayMusic("02_Prisoner");
 
 	screenPtr->ResizeScreen(gameStateScreenSize);
 	gameData->UpdateScreenAndViewportSizes(screenPtr->GetScreenSize(), screenPtr->GetConsoleViewportSize());

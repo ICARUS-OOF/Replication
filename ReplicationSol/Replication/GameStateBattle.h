@@ -50,12 +50,14 @@ private:
 	int abilities_poisonTurnsLeft;
 	int abilities_armourTurnsLeft;
 
-	static const int enemyPoisonWeight = 2;
+	static const int enemyPoisonWeight = 1;
 	static const int enemyHealWeight = 3;
 	static const int enemyArmourWeight = 5;
 
-	static const int poisonWeight = 1;
+	static const int poisonWeight = 4;
 	static const int armourWeight = 5;
+
+	int bossAdditionDamage;
 
 	bool isEnemyGuarding = false;
 	bool poisonHitPlayer = false;

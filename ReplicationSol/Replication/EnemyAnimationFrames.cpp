@@ -29,6 +29,13 @@ void EnemyData::SetAnimations() {
 		idleFrame = R"(GUARD IDLEEEE)";
 	}
 
+	
+
+
+	else if (enemyType == ENEMYTYPE::BOSS) {
+		idleFrame = R"(BOSS IDLEEE)";
+	}
+
 
 
 
