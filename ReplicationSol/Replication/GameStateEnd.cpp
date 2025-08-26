@@ -11,6 +11,7 @@ GameStateEnd::GameStateEnd(GameData* gameData)
 	currentFrame = 0;
 
 	CreateCredits();
+	std::reverse(creditLines.begin(), creditLines.end());
 }
 
 
