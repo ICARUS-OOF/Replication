@@ -742,9 +742,9 @@ void GameStateBattle::RenderBaseUI()
 	{
 		if (gameData->GetAbilities().size() > 0) {
 
-			screenPtr->RenderText(Vector2(2, 30), std::to_string(currentAbilitySelected + 1) + " / " + std::to_string(gameData->GetAbilities().size()));
-			const Vector2 abilityNamePosition = Vector2(8, 30);
-			const Vector2 abilityDescriptionPosition = Vector2(2, 31);
+			screenPtr->RenderText(Vector2(2, 31), std::to_string(currentAbilitySelected + 1) + " / " + std::to_string(gameData->GetAbilities().size()));
+			const Vector2 abilityNamePosition = Vector2(8, 31);
+			const Vector2 abilityDescriptionPosition = Vector2(2, 32);
 			const Vector2 abilityUsedAlrPosition = Vector2(2, 34);
 			const int maxCharactersDescriptionPerLine = 30;
 			//screenPtr->RenderText(Vector2(9, 30), std::to_string(currentAbilitySelected));
@@ -773,7 +773,7 @@ void GameStateBattle::RenderBaseUI()
 			else if(abilityType == EnemyData::ENEMYTYPE::GUARD) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Armour");
 				screenPtr->RenderText(abilityDescriptionPosition, "Reduce damage taken by " + std::to_string(armourWeight));
-				screenPtr->RenderText(Vector2(27, 31), "(Use once per Battle)");
+				screenPtr->RenderText(Vector2(27, 32), "(Use once per Battle)");
 
 				if (abilities_armourTurnsLeft > -1)
 					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
