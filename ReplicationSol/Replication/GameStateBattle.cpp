@@ -816,8 +816,11 @@ void GameStateBattle::RenderBaseUI()
 		}
 		
 		else
+		{
 			screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
 			screenPtr->RenderText(Vector2(2, 32), "No abilities unlocked yet!");
+		}
+			
 
 		std::string LeftArrow = R"(   __     _    
   / /    / \   
@@ -869,8 +872,11 @@ void GameStateBattle::RenderBaseUI()
 
 		}
 		else
+		{
 			screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
 			screenPtr->RenderText(Vector2(2, 32), "You have not collected any items yet!");
+		}
+		
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE)
