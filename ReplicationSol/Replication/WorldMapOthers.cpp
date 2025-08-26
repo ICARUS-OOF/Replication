@@ -102,4 +102,15 @@ void GameStateWorld::SetLevelDataOthers() {
 			Prop::PROPTYPE::WALL, nullptr,nullptr,nullptr));
 	}
 	
+
+
+
+	{
+		//----------ITEM PICKUP-----------
+		SpawnProp(new Prop(screenPtr,
+			10, //Step 2. Define which Room the prop will be in
+			Vector2(0, -1), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+			Vector2(80, 1), //SCALE
+			Prop::PROPTYPE::WALL, nullptr, nullptr, nullptr));
+	}
 }

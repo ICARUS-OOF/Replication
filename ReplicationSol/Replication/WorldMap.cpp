@@ -168,7 +168,6 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				&rubble, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
-
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -1567,13 +1566,13 @@ ___________|
 		{
 			//FOR LEVEL TRANSITIONS
 			//															roomIndex  position top-left  scale														//player emerging position
-			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 9, Vector2(31, 0), Vector2(18, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(40, 23)));
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 9, Vector2(0, 0), Vector2(80, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(40, 23)));
 			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(10); // Target room to go to
 		}
 		{
 			//FOR LEVEL TRANSITIONS
 			//															roomIndex  position top-left  scale														//player emerging position
-			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 10, Vector2(31, 24), Vector2(18, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(40, 2)));
+			Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 10, Vector2(12, 24), Vector2(68, 1), Prop::PROPTYPE::LEVEL_TRANSITION_TRIGGER, nullptr, nullptr, new Vector2(40, 2)));
 			levelTransitionTrigger->SetRoomTargetLevelTransitionTriggerIndex(9); // Target room to go to
 		}
 
