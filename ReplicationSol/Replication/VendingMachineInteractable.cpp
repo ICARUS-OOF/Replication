@@ -16,6 +16,7 @@ VendingMachineInteractable::VendingMachineInteractable(Screen* screenPtr, Intera
 	this->currentInteractionIndex = 0;
 	this->isBuying = false;
 	this->vmIndex = vmIndex;
+	gameDataptr->AddGcoins(40);
 }
 
 
@@ -26,16 +27,23 @@ void VendingMachineInteractable::Interaction()
 
 	if (!isBuying)
 		isBuying = true;
-	
-	if (isBuying){
+
+	if (isBuying) {
 		char userInputvendingmachine = _getch();
 		if (vmIndex == 1) {
 			switch (userInputvendingmachine)
 			{
+				//ATTACK, HEALING, DEFENCE
+				//Heal, don't need turnUSage
 			case '1':
 				if (gameDataptr->HasEnoughGcoins(2)) {
 					std::cout << "You bought a banana!" << std::endl;
 					gameDataptr->RemoveGcoins(2);
+					//                       Name      Cost         Item type  weight turnusage description
+					gameDataptr->AddItem(Item("Banana", 2, Item::ITEMTYPE::HEALING, 6, 1, "Nutritious. Ingest the potassium. Heals 6 hp."));
+				}
+				else {
+					std::cout << "Insufficient funds!" << std::endl;
 				}
 				break;
 			case '2':
@@ -43,18 +51,33 @@ void VendingMachineInteractable::Interaction()
 				if (gameDataptr->HasEnoughGcoins(4)) {
 					std::cout << "You bought a medkit!" << std::endl;
 					gameDataptr->RemoveGcoins(4);
+					//                       Name      Cost         Item type  weight turnusage description
+					gameDataptr->AddItem(Item("Medkit", 4, Item::ITEMTYPE::HEALING, 10, 1, "A First Aid Kit. Only the bandage and antiseptic spray is left inside. Heals 10 hp."));
+				}
+				else {
+					std::cout << "Insufficient funds!" << std::endl;
 				}
 				break;
 			case '3':
 				if (gameDataptr->HasEnoughGcoins(4)) {
 					std::cout << "You bought a riot shield!" << std::endl;
 					gameDataptr->RemoveGcoins(4);
+					//                       Name      Cost         Item type  weight turnusage description
+					gameDataptr->AddItem(Item("Riot shield", 4, Item::ITEMTYPE::DEFENCE, 4, 2, "Shield. Might not be strong enough against your enemies. Take 4 less damage for 2 turns."));
+				}
+				else {
+					std::cout << "Insufficient funds!" << std::endl;
 				}
 				break;
 			case '4':
 				if (gameDataptr->HasEnoughGcoins(2)) {
 					std::cout << "You bought a hardening soda!" << std::endl;
 					gameDataptr->RemoveGcoins(2);
+					//                       Name      Cost         Item type  weight turnusage description
+					gameDataptr->AddItem(Item("Hardening soda", 2, Item::ITEMTYPE::DEFENCE, 2, 3, "Concrete flavoured soda that somehow hardens your body. Take 2 less damage for 3 turns."));
+				}
+				else {
+					std::cout << "Insufficient funds!" << std::endl;
 				}
 				break;
 			case 27:
@@ -71,21 +94,45 @@ void VendingMachineInteractable::Interaction()
 				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[0] == false) {
 					std::cout << "You bought a portable barricade!" << std::endl;
 					gameDataptr->RemoveGcoins(8);
+					//                       Name      Cost         Item type  weight turnusage description
+					gameDataptr->AddItem(Item("Portable barricade", 8, Item::ITEMTYPE::DEFENCE, 8, 3, "A small device that materialises a barrier. It can't block all attacks though. Take 8 less damage for 3 turns"));
 					hasBoughtItem[0] = true;
+				}
+				else if (hasBoughtItem[0] == true) {
+					std::cout << "You already bought this item!" << std::endl;
+				}
+				else {
+					std::cout << "Insufficient funds!" << std::endl;
 				}
 				break;
 			case '2':
 				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[1] == false) {
 					std::cout << "You bought a pocket watch!" << std::endl;
 					gameDataptr->RemoveGcoins(8);
+					//                       Name      Cost         Item type  weight turnusage description
+					gameDataptr->AddItem(Item("Pocket watch", 8, Item::ITEMTYPE::HEALING, 20, 1, "Upon closer look, this unassuming pocket watch reverses the state of your body, bringing you back to being healthy. Heals you to maximum hp."));
 					hasBoughtItem[1] = true;
+				}
+				else if (hasBoughtItem[0] == true) {
+					std::cout << "You already bought this item!" << std::endl;
+				}
+				else {
+					std::cout << "Insufficient funds!" << std::endl;
 				}
 				break;
 			case '3':
 				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[2] == false) {
 					std::cout << "You bought an energy blaster!" << std::endl;
 					gameDataptr->RemoveGcoins(8);
+					//                       Name      Cost         Item type  weight turnusage description
+					gameDataptr->AddItem(Item("Energy blaster", 8, Item::ITEMTYPE::ATTACK, 8, 3, "Powerful looking piece of technology. It's even rechargeable! Too bad you don't have a charging cable... Increases attack by 8 for 3 turns."));
 					hasBoughtItem[2] = true;
+				}
+				else if (hasBoughtItem[0] == true) {
+					std::cout << "You already bought this item!" << std::endl;
+				}
+				else {
+					std::cout << "Insufficient funds!" << std::endl;
 				}
 				break;
 			case 27:
@@ -193,7 +240,7 @@ void VendingMachineInteractable::Render()
           X                                                          X /  |     
           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/   |)";
 		screenPtr->RenderDrawing(Vector2(1, 0), vendingmachine1frame);
-		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    ()   ", 8);
+		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    " + std::to_string(gameDataptr->GetGCoins()) + "    ", 8);
 
 		std::string banana = R"(                &&  
                &&&&    
@@ -276,9 +323,9 @@ void VendingMachineInteractable::Render()
           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/   |)";
 
 		screenPtr->RenderDrawing(Vector2(1, 0), vendingmachine2frame);
-		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    ()   ", 8);
+		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    " + std::to_string(gameDataptr->GetGCoins()) + "    ", 8);
 
-        std::string portablebarrier = R"(    ____________   
+		std::string portablebarrier = R"(    ____________   
    /===========/|__    
   /|  BARRIER  ||  /   
  / |___________|/ /  

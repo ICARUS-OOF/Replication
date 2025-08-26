@@ -1194,6 +1194,33 @@ nullptr));
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
+			std::string  vendingmachine2 =
+				R"( _______
+|  _____
+| |     
+| |     
+| |     
+| |     
+| |_____
+|_______
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				9, //Step 2. Define which Room the prop will be in
+				Vector2(72, 1), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new VendingMachineInteractable(screenPtr, &currentInteractable, 2, gameData),
+
+				&vendingmachine2, //Step 7. Include the string variable name from step 1 here with the & in front
+				nullptr));
+		}
+
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
 			std::string lobbyplant =
 				R"(  \|/
    |

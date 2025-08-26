@@ -54,6 +54,7 @@ public:
 	void AddGcoins(int amt);
 	void RemoveGcoins(int amt);
 	bool HasEnoughGcoins(int amt);
+	int GetGCoins();
 
 
 	bool RollDice(int percentage);

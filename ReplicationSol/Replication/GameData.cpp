@@ -149,6 +149,11 @@ bool GameData::HasEnoughGcoins(int amt)
 	return gcoins >= amt;
 }
 
+int GameData::GetGCoins()
+{
+	return gcoins;
+}
+
 /// <summary>
 /// "percentage" chance of being true
 /// </summary>
