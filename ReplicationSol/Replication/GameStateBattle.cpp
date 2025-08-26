@@ -57,7 +57,6 @@ void GameStateBattle::OnStateEnter()
 	this->isEnemyGuarding = false;
 	this->poisonHitPlayer = false;
 
-	MusicHandler::PlayMusic("03_Replicants");
 
 	//gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
 	//gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
@@ -70,6 +69,11 @@ void GameStateBattle::OnStateEnter()
 	currentBattleData->GetFirstEnemy()->ResetEnemyHealth();
 	if (currentBattleData->IsDoubleBattle())
 		currentBattleData->GetSecondEnemy()->ResetEnemyHealth();
+
+	if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
+		MusicHandler::PlayMusic("04_Nikolai");
+	else
+		MusicHandler::PlayMusic("03_Replicants");
 
 	screenPtr->ResizeScreen(gameStateScreenSize);
 	ClearScreen();
@@ -652,6 +656,8 @@ void GameStateBattle::Loop()
 	else if (currentEvent == BATTLEEVENT::PLAYER_DEATH) {
 		PlayAnimationSet(playerFrames_death, false);
 
+		MusicHandler::StopMusic();
+
 		SetConsoleText("Player is Dead!");
 		
 		this->RenderScreen();
@@ -666,6 +672,7 @@ void GameStateBattle::Loop()
 
 	else if (currentEvent == BATTLEEVENT::GAME_WON) {
 		SetConsoleText("Enemies have been defeated! Pedro is victorious!");
+		MusicHandler::StopMusic();
 		this->RenderScreen();
 		Sleep(2000);
 

@@ -29,6 +29,7 @@ private:
 	Vector2 lastViewportSize;
 public:
 	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize);
+	~GameData();
 
 	Screen* GetScreenPtr();
 

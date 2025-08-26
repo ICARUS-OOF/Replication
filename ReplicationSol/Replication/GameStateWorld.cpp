@@ -25,7 +25,7 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	this->currentRoomIndex = 0;
 	//Create player
-	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(60, 14));
+	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
 
 	// Initialize all props to Nullptr at first
 	for (int i = 0; i < MAX_PROPS; i++)
@@ -42,6 +42,14 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 	SetLevelDataBattles();
 	SetLevelDataOthers();
 	SetLevelDataItemPickups();
+}
+
+GameStateWorld::~GameStateWorld()
+{
+	for (int i = 0; i < MAX_PROPS; i++)
+	{
+		delete propArray[propSpawnIndex];
+	}
 }
 
 

@@ -29,6 +29,7 @@ private:
 
 public:
 	GameStateWorld(GameData* gameData);
+	~GameStateWorld();
 	void DOCUMENTATION_DONOTCALL();
 	void SetLevelData();
 	void SetLevelDataBattles();

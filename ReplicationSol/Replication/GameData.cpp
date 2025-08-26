@@ -40,6 +40,11 @@ GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats
 	*/
 }
 
+GameData::~GameData()
+{
+	delete playerStats;
+}
+
 BattleData* GameData::GetCurrentBattleData()
 {
 	return currentBattleData;
