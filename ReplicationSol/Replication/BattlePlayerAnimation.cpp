@@ -73,6 +73,754 @@ void GameStateBattle::SetBattleAnimations() {
 -----------------------------------)";
      currentPlayerFrame = playerFrame_idle;
 
+     {
+		 //POISONED ANIMATION
+         playerFrames_damaged.push_back(
+             R"(
+-----------------------------------
+|                         ##      |
+|         ####################    |
+|    ##########################   |
+|    #########################    |
+|   ###########################   |
+|   ###########################   |
+| #############################   |
+| #############################   |
+|##########..######..#..##########|
+|#....##..####....#..####..##....#|
+|#.....###.....#..##.....###.....#|
+|#.....###..#...#.....#..###.....#|
+|###...##.......##........##...###|
+|    ###...................###    |
+|      #.......##..........#      |
+|      ###...###..##.....###      |
+|       #####.##..#..#.####       |
+|            #########            |
+-----------------------------------)");
+     }
+
+
+
+     {
+         //DEATH ANIMATION
+         playerFrames_death.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHHH    HH     HH    HHHHHHHH|
+|HHHHHH  HHHHHH     HHHHHH  HHHHHH|
+|HHHHH  HHHHHHH     HHHHHHH  HHHHH|
+|HHHH   HHHHHH  H H  HHHHHH   HHHH|
+|HHHH   HH     HH HH     HH   HHHH|
+|HHHH                         HHHH|
+|HHHHH     HHHHHHHHHHHHH     HHHHH|
+|HHHHHH  HH H H H H H H HH  HHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH HHH H H H H H HHH HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHHH HHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+         playerFrames_death.push_back(
+             R"(
+-----------------------------------
+|           HHHHHHHHHHH           |
+|        HHHH  HHHHH  HHHH        |
+|      HH      HHHHH      HH      |
+|     HH       HHHHH       HH     |
+|    HHH      HH H HH      HHH    |
+|    HHH  HHHHH  H  HHHHH  HHH    |
+|    HHHHHHHHHHHHHHHHHHHHHHHHH    |
+|     HHHHH             HHHHH     |
+|      HH                 HH      |
+|       HH               HH       |
+|       H HHHHHHHHHHHHHHH H       |
+|       H HHHHHHHHHHHHHHH H       |
+|       H HHHHHHHHHHHHHHH H       |
+|       HH               HH       |
+|       H                 H       |
+|       HH                H       |
+|        HHHHHHHHHHHHHHHHH        |
+|                                 |
+-----------------------------------)");
+
+
+         playerFrames_death.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHHH    HH     HH    HHHHHHHH|
+|HHHHHH  HHHHHH     HHHHHH  HHHHHH|
+|HHHHH  HHHHHHH     HHHHHHH  HHHHH|
+|HHHH   HHHHHH  H H  HHHHHH   HHHH|
+|HHHH   HH     HH HH     HH   HHHH|
+|HHHH                         HHHH|
+|HHHHH     HHHHHHHHHHHHH     HHHHH|
+|HHHHHH  HH H H H H H H HH  HHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH HHH H H H H H HHH HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHHH HHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+         playerFrames_death.push_back(
+             R"(
+-----------------------------------
+|           HHHHHHHHHHH           |
+|        HHHH  HHHHH  HHHH        |
+|      HH      HHHHH      HH      |
+|     HH       HHHHH       HH     |
+|    HHH      HH H HH      HHH    |
+|    HHH  HHHHH  H  HHHHH  HHH    |
+|    HHHHHHHHHHHHHHHHHHHHHHHHH    |
+|     HHHHH             HHHHH     |
+|      HH                 HH      |
+|       HH               HH       |
+|       H HHHHHHHHHHHHHHH H       |
+|       H HHHHHHHHHHHHHHH H       |
+|       H HHHHHHHHHHHHHHH H       |
+|       HH               HH       |
+|       H                 H       |
+|       HH                H       |
+|        HHHHHHHHHHHHHHHHH        |
+|                                 |
+-----------------------------------)");
+
+
+         playerFrames_death.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHHH    HH     HH    HHHHHHHH|
+|HHHHHH  HHHHHH     HHHHHH  HHHHHH|
+|HHHHH  HHHHHHH     HHHHHHH  HHHHH|
+|HHHH   HHHHHH  H H  HHHHHH   HHHH|
+|HHHH   HH     HH HH     HH   HHHH|
+|HHHH                         HHHH|
+|HHHHH     HHHHHHHHHHHHH     HHHHH|
+|HHHHHH  HH H H H H H H HH  HHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH HHH H H H H H HHH HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHHH HHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+         playerFrames_death.push_back(
+             R"(
+-----------------------------------
+|           HHHHHHHHHHH           |
+|        HHHH  HHHHH  HHHH        |
+|      HH      HHHHH      HH      |
+|     HH       HHHHH       HH     |
+|    HHH      HH H HH      HHH    |
+|    HHH  HHHHH  H  HHHHH  HHH    |
+|    HHHHHHHHHHHHHHHHHHHHHHHHH    |
+|     HHHHH             HHHHH     |
+|      HH                 HH      |
+|       HH               HH       |
+|       H HHHHHHHHHHHHHHH H       |
+|       H HHHHHHHHHHHHHHH H       |
+|       H HHHHHHHHHHHHHHH H       |
+|       HH               HH       |
+|       H                 H       |
+|       HH                H       |
+|        HHHHHHHHHHHHHHHHH        |
+|                                 |
+-----------------------------------)");
+
+         playerFrames_death.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHHH    HH     HH    HHHHHHHH|
+|HHHHHH  HHHHHH     HHHHHH  HHHHHH|
+|HHHHH  HHHHHHH     HHHHHHH  HHHHH|
+|HHHH   HHHHHH  H H  HHHHHH   HHHH|
+|HHHH   HH     HH HH     HH   HHHH|
+|HHHH                         HHHH|
+|HHHHH     HHHHHHHHHHHHH     HHHHH|
+|HHHHHH  HH H H H H H H HH  HHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH H               H HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHH  HHHHHHH|
+|HHHHHHH HHH H H H H H HHH HHHHHHH|
+|HHHHHHH  HHHHHHHHHHHHHHHH HHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+     }
+
+
+
+
+     {
+         //ITEM ANIMATION
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHH ########################  HHH|
+|HHH ######################### HHH|
+|HHH###########################HHH|
+|HHH###########################HHH|
+|HHH###########################HHH|
+|HHH###########################HHH|
+|HHH#######....####.....#######HHH|
+|HHH..##..######..#######..##..HHH|
+|HHH...#.....#....#..#.....#...HHH|
+|HHH...#.....#..#....#.....#...HHH|
+|HHH...#........##.........#...HHH|
+|HHH ###...................### HHH|
+|HHH   #...................#   HHH|
+|HHH   ###......###......###   HHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHH#####################HHHHHH|
+|HHHHHH#####################HHHHHH|
+|HHHHHH#####################HHHHHH|
+|HHHHHH#####################HHHHHH|
+|HHHHHH####....####.....####HHHHHH|
+|HHHHHH#..######..#######..#HHHHHH|
+|HHHHHH#.....#....#..#.....#HHHHHH|
+|HHHHHH#.....#..#....#.....#HHHHHH|
+|HHHHHH#........##.........#HHHHHH|
+|HHHHHH#...................#HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH#################HHHHHHHH|
+|HHHHHHHH#################HHHHHHHH|
+|HHHHHHHH##....####.....##HHHHHHHH|
+|HHHHHHHH.######..#######.HHHHHHHH|
+|HHHHHHHH....#....#..#....HHHHHHHH|
+|HHHHHHHH....#..#....#....HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH#HHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH....####.....HHHHHHHHHH|
+|HHHHHHHHHH#####..######HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH                HHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHHH HHHHHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHH   HHHHH HHHHHHHHH|
+|HHHHHHHHH HHHH     HHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHH     HHHH HHHHHHHHH|
+|HHHHHHHHH HHHHH   HHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH   HHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH   HHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH   HHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH   HHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH   HHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH   HHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH   HHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+|HHHHH                       HHHHH|
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHHHHHHHH HHHHHHHHHHHHH HHHHHHHHH|
+|HHH                           HHH|
+|HHH                           HHH|
+|HHH                           HHH|
+|HHH                           HHH|
+|HHH                           HHH|
+|HHH                           HHH|
+|HHH                           HHH|
+-----------------------------------)");
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+-----------------------------------)");
+
+
+
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+         playerFrames_items.push_back(
+             R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+
+     }
+
+
 
 
      {

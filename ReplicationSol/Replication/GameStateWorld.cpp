@@ -225,7 +225,8 @@ GAMESTATEVALUE GameStateWorld::GetGameStateValue()
 void GameStateWorld::DEBUG_BATTLETEST()
 {
 	gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
-	std::string enemySprite_Mutant = R"(             |HHHHHHHH|
+	std::string enemySprite_Mutant = R"(             
+			|HHHHHHHH|
      |HHHH####H∙∙∙∙∙##H|
     |HH#∙∙∙∙∙∙∙∙∙ ∙∙∙∙∙##|
    |HH∙∙∙ ∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙##|
@@ -272,13 +273,10 @@ void GameStateWorld::DEBUG_BATTLETEST()
                      ######H 
 
 )";
-
 	gameData->SetCurrentBattleData(new BattleData(
 		//           Hp atk            enemy type: GUARD MUTANT HEALER
-		new EnemyData(20, 4, EnemyData::ENEMYTYPE::GUARD),
-
-
-		//new EnemyData(6, 4, EnemyData::ENEMYTYPE::MUTANT, "", enemySprite_Mutant),
+		//new EnemyData(20, 4, EnemyData::ENEMYTYPE::GUARD),
+		new EnemyData(10, 4, EnemyData::ENEMYTYPE::HEALER),
 
 		Vector2(16, 9), 
 		

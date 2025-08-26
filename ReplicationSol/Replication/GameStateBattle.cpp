@@ -212,10 +212,16 @@ void GameStateBattle::Loop()
 		bool isWon = false;
 
 
+
+
 		if (selectedEnemy == 1) {
+			PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_damaged, true);
+
+			if (currentBattleData->GetFirstEnemy()->GetHealth() - targetDamage <= 0)
+				PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_death, false);
+
 			//Implement the damage to the enemy
 			currentBattleData->GetFirstEnemy()->DamageEnemy(targetDamage);
-			PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_damaged, true);
 
 			bool winPreventedBySecondEnemy = false;
 			if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetSecondEnemy()->IsDead())
@@ -234,9 +240,13 @@ void GameStateBattle::Loop()
 			}
 		}
 		else if (selectedEnemy == 2) {
+			PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_damaged, true);
+
+			if (currentBattleData->GetSecondEnemy()->GetHealth() - targetDamage <= 0)
+				PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_death, false);
+
 			//Implement the damage to the enemy
 			currentBattleData->GetSecondEnemy()->DamageEnemy(targetDamage);
-			PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_damaged, true);
 
 			bool winPreventedByFirstEnemy = false;
 			if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetFirstEnemy()->IsDead())
