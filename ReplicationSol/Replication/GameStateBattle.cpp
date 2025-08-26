@@ -49,6 +49,7 @@ void GameStateBattle::OnStateEnter()
 	this->selectedEnemy = 0;
 	this->bossAdditionDamage = 0;
 
+	currentPlayerFrame = playerFrame_idle;
 
 	this->abilities_poisonTurnsLeft = -1;
 	this->abilities_armourTurnsLeft = -1;
