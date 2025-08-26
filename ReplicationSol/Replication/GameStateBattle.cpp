@@ -12,6 +12,12 @@
 #include <vector>
 
 
+/// <summary>
+/// KAYDEN 
+/// 
+/// Constructor which INSITIALISE varibles which are in gamedata
+/// </summary>
+/// <param name="gameData"></param>
 GameStateBattle::GameStateBattle(GameData* gameData)
 {
 	this->gameData = gameData;
@@ -38,6 +44,11 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	SetBattleAnimations();
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Reset the varibles
+/// </summary>
 void GameStateBattle::OnStateEnter()
 {
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
@@ -65,21 +76,29 @@ void GameStateBattle::OnStateEnter()
 	gameData->GetPlayerStats()->ResetStats();
 	this->itemUsages.clear();
 
-
+	// reset the health of the first or second enemy depending on if its single or double enemy
 	currentBattleData->GetFirstEnemy()->ResetEnemyHealth();
 	if (currentBattleData->IsDoubleBattle())
 		currentBattleData->GetSecondEnemy()->ResetEnemyHealth();
+	
 
+	// check if it boss enemy then play boss music if not, play normal enemy music
 	if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
 		MusicHandler::PlayMusic("04_Nikolai");
 	else
 		MusicHandler::PlayMusic("03_Replicants");
 
+	//Set the screen size and render screen
 	screenPtr->ResizeScreen(gameStateScreenSize);
 	ClearScreen();
 	this->RenderScreen();
 }
 
+/// <summary>
+/// AHMAD
+/// 
+/// The main loop that runs he battle with player actions and enemy attacking
+/// </summary>
 void GameStateBattle::Loop()
 {
 	currentPlayerFrame = playerFrame_idle;
@@ -87,8 +106,6 @@ void GameStateBattle::Loop()
 	//----PLAYER CHOICE----
 	if (currentEvent == BATTLEEVENT::PLAYER_CHOICE) {
 		ClearConsole();
-
-
 
 		bool hasSelectedValidOption = false;
 		do {
@@ -379,20 +396,24 @@ void GameStateBattle::Loop()
 				}
 			}
 			else {
-				int healEnemySource = 0;
+
+				EnemyData* healEnemySource = nullptr;
 
 				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER && currentBattleData->GetFirstEnemy()->IsAlive())
-					healEnemySource = 1;
+					healEnemySource = currentBattleData->GetFirstEnemy();
 				else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER && currentBattleData->GetSecondEnemy()->IsAlive())
-					healEnemySource = 2;
+					healEnemySource = currentBattleData->GetSecondEnemy();
 
-				if (healEnemySource != 0) {
+
+
+				if (healEnemySource != nullptr) {
 					//Heal first enemy
 					if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetSecondEnemy()->GetHealth()) {
 						PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 						currentBattleData->GetFirstEnemy()->HealEnemy(enemyHealWeight);
 
-						SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " healed " + currentBattleData->GetFirstEnemy()->GetEnemyName() + " by " + std::to_string(enemyHealWeight));
+
+						SetConsoleText(healEnemySource->GetEnemyName() + " healed " + currentBattleData->GetFirstEnemy()->GetEnemyName() + " by " + std::to_string(enemyHealWeight));
 						this->RenderScreen();
 						Sleep(2000);
 					}
@@ -401,7 +422,7 @@ void GameStateBattle::Loop()
 						PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_ability, true);
 						currentBattleData->GetSecondEnemy()->HealEnemy(enemyHealWeight);
 
-						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " healed " + currentBattleData->GetSecondEnemy()->GetEnemyName() + " by " + std::to_string(enemyHealWeight));
+						SetConsoleText(healEnemySource->GetEnemyName() + " healed " + currentBattleData->GetSecondEnemy()->GetEnemyName() + " by " + std::to_string(enemyHealWeight));
 						this->RenderScreen();
 						Sleep(2000);
 					}
@@ -724,6 +745,12 @@ void GameStateBattle::RenderBaseObjects()
 {
 }
 
+
+/// <summary>
+/// AHMAD
+/// 
+/// Renders the ui for the battle actions 
+/// </summary>
 void GameStateBattle::RenderBaseUI()
 {
 	Vector2 screenSize = screenPtr->GetScreenSize();
@@ -1003,11 +1030,19 @@ void GameStateBattle::RenderBaseUI()
 
 }
 
+
+// Get which state the gamestate will be either it be the battle or world 
 GAMESTATEVALUE GameStateBattle::GetGameStateValue()
 {
 	return GAMESTATEVALUE::BATTLESTATE;
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Apply the item effect on to the player 
+/// </summary>
+/// <param name="item"></param>
 void GameStateBattle::ApplyItemUsage(Item item)
 {
 	if (item.GetItemType() == Item::ATTACK) {
@@ -1019,6 +1054,12 @@ void GameStateBattle::ApplyItemUsage(Item item)
 		gameData->GetPlayerStats()->AddDefence(item.GetItemWeight());
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Removes the item effect on the player
+/// </summary>
+/// <param name="item"></param>
 void GameStateBattle::RemoveItemUsage(Item item)
 {
 	if (item.GetItemType() == Item::ATTACK) {
@@ -1028,6 +1069,11 @@ void GameStateBattle::RemoveItemUsage(Item item)
 		gameData->GetPlayerStats()->RemoveDefence(item.GetItemWeight());
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Update the item Usage left by -1 and when it reachs 0 remove the item
+/// </summary>
 void GameStateBattle::UpdateItemUsages()
 {
 	for (auto iterator = itemUsages.begin(); iterator != itemUsages.end();)
@@ -1044,6 +1090,11 @@ void GameStateBattle::UpdateItemUsages()
 	}
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// updates the ability effect usage by -1 and when it reachs 0 remove the ability effect
+/// </summary>
 void GameStateBattle::UpdateAbilitiesUsage()
 {
 	if (abilities_armourTurnsLeft > 0) {
@@ -1064,6 +1115,7 @@ void GameStateBattle::UpdateAbilitiesUsage()
 	}
 }
 
+// Set the 
 void GameStateBattle::SetBattleEvent(BATTLEEVENT targetEvent)
 {
 	currentEvent = targetEvent;

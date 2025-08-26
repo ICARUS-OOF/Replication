@@ -21,6 +21,7 @@ bool inputgotten = false;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+//Logo animation
 std::cout << R"(
                                           ______          
                                    . '   /\  == \   ' .   

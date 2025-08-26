@@ -56,6 +56,12 @@ void GameStateEnd::CreateCredits()
 	creditLines.push_back(CreditName(14, ""));
 	creditLines.push_back(CreditName(14, ""));
 	creditLines.push_back(CreditName(14, ""));
+	creditLines.push_back(CreditName(8, R"(   ______   ______   ______    )"));
+	creditLines.push_back(CreditName(8, R"(  /\  == \ /\  == \ /\  == \   )"));
+	creditLines.push_back(CreditName(8, R"(  \ \  __< \ \  __< \ \  __<   )"));
+	creditLines.push_back(CreditName(8, R"(   \ \_\ \_\\ \_\ \_\\ \_\ \_\ )"));
+	creditLines.push_back(CreditName(8, R"(    \/_/ /_/ \/_/ /_/ \/_/ /_/ )"));
+	creditLines.push_back(CreditName(14, ""));
 	creditLines.push_back(CreditName(14, ""));
 	creditLines.push_back(CreditName(14, "Thank you for Playing!"));
 	creditLines.push_back(CreditName(14, ""));
