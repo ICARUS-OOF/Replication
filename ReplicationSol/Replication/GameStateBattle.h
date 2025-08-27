@@ -67,7 +67,7 @@ private:
 	int selectedEnemy;
 
 	const float playerFrameInterval = 60;
-	const Vector2 playerFramePosition = Vector2(75, 3);
+	const Vector2 playerFramePosition = Vector2(89, 3);
 	std::string currentPlayerFrame;
 	std::string playerFrame_idle;
 	std::vector<std::string> playerFrames_damaged, playerFrames_fight, playerFrames_items, playerFrames_abilities, playerFrames_flee, playerFrames_death, playerFrames_poisoned;

@@ -129,7 +129,7 @@ std::string EnemyData::EnemyTypeToString(ENEMYTYPE enemyType)
 		return "Guard";
 		break;
 	case EnemyData::BOSS:
-		return "Nikolai Warden";
+		return "Nikolai";
 		break;
 	default:
 		return "ERROR";

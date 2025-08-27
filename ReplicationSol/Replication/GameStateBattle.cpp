@@ -23,7 +23,7 @@ GameStateBattle::GameStateBattle(GameData* gameData)
 	this->gameData = gameData;
 	this->currentBattleData = nullptr;
 	this->screenPtr = gameData->GetScreenPtr();
-	this->gameStateScreenSize = Vector2(110, 35);
+	this->gameStateScreenSize = Vector2(125, 36);
 	this->playerStatsPtr = gameData->GetPlayerStats();
 	this->currentEvent = BATTLEEVENT::PLAYER_CHOICE;
 	this->currentConsoleText = "";
@@ -70,8 +70,8 @@ void GameStateBattle::OnStateEnter()
 
 
 	gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
-	//gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
-	//gameData->AddAbility(EnemyData::ENEMYTYPE::GUARD);
+	gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
+	gameData->AddAbility(EnemyData::ENEMYTYPE::GUARD);
 
 	gameData->GetPlayerStats()->ResetStats();
 	this->itemUsages.clear();
@@ -144,16 +144,15 @@ void GameStateBattle::Loop()
 		} while (!hasSelectedValidOption);
 	}
 
-
 	//----SELECT ENEMY
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_SELECTENEMY) {
 
-		screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
-		screenPtr->RenderText(Vector2(2, 31), "Select an enemy to attack... (Press the corresponding number)");
+		screenPtr->RenderText(Vector2(2, 30), "Press 'ESC' to go back");
+		screenPtr->RenderText(Vector2(2, 32), "Select an enemy to attack... (Press the corresponding number)");
 		if (!currentBattleData->GetFirstEnemy()->IsDead())
-			screenPtr->RenderText(Vector2(2, 33), "1. " + currentBattleData->GetFirstEnemy()->GetEnemyName());
+			screenPtr->RenderText(Vector2(2, 34), "1. " + currentBattleData->GetFirstEnemy()->GetEnemyName());
 		if (currentBattleData->IsDoubleBattle() && !currentBattleData->GetSecondEnemy()->IsDead())
-			screenPtr->RenderText(Vector2(15, 33), "2. " + currentBattleData->GetSecondEnemy()->GetEnemyName());
+			screenPtr->RenderText(Vector2(15, 34), "2. " + currentBattleData->GetSecondEnemy()->GetEnemyName());
 		this->RenderScreen();
 
 
@@ -270,7 +269,7 @@ void GameStateBattle::Loop()
 		if (selectedEnemy == 1) enemyThatWasAttackedName = currentBattleData->GetFirstEnemy()->GetEnemyName();
 		else if (selectedEnemy == 2) enemyThatWasAttackedName = currentBattleData->GetSecondEnemy()->GetEnemyName();
 
-		screenPtr->RenderText(Vector2(3, 30), enemyThatWasAttackedName + " was damaged by " + std::to_string(targetDamage));
+		screenPtr->RenderText(Vector2(3, 31), enemyThatWasAttackedName + " was damaged by " + std::to_string(targetDamage));
 
 		this->RenderScreen();
 
@@ -334,13 +333,15 @@ void GameStateBattle::Loop()
 			PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_attack, true);
 			PlayAnimationSet(playerFrames_damaged, true);
 
-			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
-			if (targetDamage <= 0)
-				targetDamage = 0;
+			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack();
 			
 			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS) {
 				targetDamage += bossAdditionDamage;
 			}
+
+			targetDamage -= gameData->GetPlayerStats()->GetDefence();
+			if (targetDamage <= 0)
+				targetDamage = 0;
 
 			playerStatsPtr->DamagePlayer(targetDamage);
 			SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " damaged player by " + std::to_string(targetDamage));
@@ -352,9 +353,12 @@ void GameStateBattle::Loop()
 			PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_attack, true);
 			PlayAnimationSet(playerFrames_damaged, true);
 
-			int targetDamage = currentBattleData->GetSecondEnemy()->GetAttack() - gameData->GetPlayerStats()->GetDefence();
+			int targetDamage = currentBattleData->GetSecondEnemy()->GetAttack();
+
+			targetDamage -= gameData->GetPlayerStats()->GetDefence();
 			if (targetDamage <= 0)
 				targetDamage = 0;
+
 			playerStatsPtr->DamagePlayer(targetDamage);
 			SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " damaged player by " + std::to_string(targetDamage));
 			this->RenderScreen();
@@ -768,46 +772,46 @@ void GameStateBattle::RenderBaseUI()
 	Vector2 screenSize = screenPtr->GetScreenSize();
 
 	for (int i = 0; i < screenSize.Getx(); i++)
-		screenPtr->RenderCharacter('_', i, 28);
+		screenPtr->RenderCharacter('_', i, 29);
 
 	if (currentEvent == BATTLEEVENT::PLAYER_CHOICE)
 	{
 		const int optionBoxLength = 11;
 		// Attack
-		for (int i = 34; i < 34 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 29);
-		screenPtr->RenderCharacter('|', 33, 29 + 1);
-		screenPtr->RenderText(Vector2(35, 30), "1:ATTACK");
-		screenPtr->RenderCharacter('|', 45, 29 + 1);
-		for (int i = 34; i < 34 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 31);
+		for (int i = 44; i < 44 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 30);
+		screenPtr->RenderCharacter('|', 43, 30 + 1);
+		screenPtr->RenderText(Vector2(45, 31), "1:ATTACK");
+		screenPtr->RenderCharacter('|', 55, 30 + 1);
+		for (int i = 44; i < 44 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 32);
 
 		// Item
-		for (int i = 34; i < 34 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 32);
-		screenPtr->RenderCharacter('|', 33, 32 + 1);
-		screenPtr->RenderText(Vector2(35, 33), "3:ITEM");
-		screenPtr->RenderCharacter('|', 45, 32 + 1);
-		for (int i = 34; i < 34 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 34);
+		for (int i = 44; i < 44 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 33);
+		screenPtr->RenderCharacter('|', 43, 33 + 1);
+		screenPtr->RenderText(Vector2(45, 34), "3:ITEM");
+		screenPtr->RenderCharacter('|', 55, 33 + 1);
+		for (int i = 44; i < 44 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 35);
 
 		// Ability
-		for (int i = 65; i < 65 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 29);
-		screenPtr->RenderCharacter('|', 64, 29 + 1);
-		screenPtr->RenderText(Vector2(66, 30), "2:ABILITY");
-		screenPtr->RenderCharacter('|', 76, 29 + 1);
-		for (int i = 65; i < 65 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 31);
+		for (int i = 75; i < 75 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 30);
+		screenPtr->RenderCharacter('|', 74, 30 + 1);
+		screenPtr->RenderText(Vector2(76, 31), "2:ABILITY");
+		screenPtr->RenderCharacter('|', 86, 30 + 1);
+		for (int i = 75; i < 75 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 32);
 
 		// Flee
-		for (int i = 65; i < 65 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 32);
-		screenPtr->RenderCharacter('|', 64, 32 + 1);
-		screenPtr->RenderText(Vector2(66, 33), "4:FLEE");
-		screenPtr->RenderCharacter('|', 76, 32 + 1);
-		for (int i = 65; i < 65 + optionBoxLength; i++)
-			screenPtr->RenderCharacter('-', i, 34);
+		for (int i = 75; i < 75 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 33);
+		screenPtr->RenderCharacter('|', 74, 33 + 1);
+		screenPtr->RenderText(Vector2(76, 34), "4:FLEE");
+		screenPtr->RenderCharacter('|', 86, 33 + 1);
+		for (int i = 75; i < 75 + optionBoxLength; i++)
+			screenPtr->RenderCharacter('-', i, 35);
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM)
@@ -824,11 +828,11 @@ void GameStateBattle::RenderBaseUI()
 	{
 		if (gameData->GetAbilities().size() > 0) {
 
-			screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
-			screenPtr->RenderText(Vector2(2, 31), std::to_string(currentAbilitySelected + 1) + " / " + std::to_string(gameData->GetAbilities().size()));
-			const Vector2 abilityNamePosition = Vector2(8, 31);
-			const Vector2 abilityDescriptionPosition = Vector2(2, 32);
-			const Vector2 abilityUsedAlrPosition = Vector2(2, 34);
+			screenPtr->RenderText(Vector2(2, 30), "Press 'ESC' to go back");
+			screenPtr->RenderText(Vector2(2, 32), std::to_string(currentAbilitySelected + 1) + " / " + std::to_string(gameData->GetAbilities().size()));
+			const Vector2 abilityNamePosition = Vector2(8, 32);
+			const Vector2 abilityDescriptionPosition = Vector2(2, 33);
+			const Vector2 abilityUsedAlrPosition = Vector2(2, 35);
 			const int maxCharactersDescriptionPerLine = 30;
 			//screenPtr->RenderText(Vector2(9, 30), std::to_string(currentAbilitySelected));
 
@@ -856,7 +860,7 @@ void GameStateBattle::RenderBaseUI()
 			else if(abilityType == EnemyData::ENEMYTYPE::GUARD) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Armour");
 				screenPtr->RenderText(abilityDescriptionPosition, "Reduce damage taken by " + std::to_string(armourWeight));
-				screenPtr->RenderText(Vector2(27, 32), "(Use once per Battle)");
+				screenPtr->RenderText(Vector2(27, 33), "(Use once per Battle)");
 
 				if (abilities_armourTurnsLeft > -1)
 					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
@@ -865,8 +869,8 @@ void GameStateBattle::RenderBaseUI()
 		
 		else
 		{
-			screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
-			screenPtr->RenderText(Vector2(2, 32), "No abilities unlocked yet!");
+			screenPtr->RenderText(Vector2(2, 30), "Press 'ESC' to go back");
+			screenPtr->RenderText(Vector2(2, 33), "No abilities unlocked yet!");
 		}
 			
 
@@ -876,7 +880,7 @@ void GameStateBattle::RenderBaseUI()
  \ \   / ___ \ 
   \_\ /_/   \_\
       )";
-		screenPtr->RenderDrawing(Vector2(79, 29), LeftArrow);
+		screenPtr->RenderDrawing(Vector2(92, 30), LeftArrow);
 
 		std::string RightArrow = R"(  ____   __  
  |  _ \  \ \ 
@@ -885,7 +889,7 @@ void GameStateBattle::RenderBaseUI()
  |____/  /_/ 
              
 	)";
-		screenPtr->RenderDrawing(Vector2(96, 29), RightArrow);
+		screenPtr->RenderDrawing(Vector2(110, 30), RightArrow);
 
 	}
 
@@ -895,10 +899,10 @@ void GameStateBattle::RenderBaseUI()
 
 			Item currentItem = gameData->GetInventoryItem(currentItemSelected);
 
-			screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
-			screenPtr->RenderText(Vector2(2, 31), std::to_string(currentItemSelected + 1) + " / " + std::to_string(gameData->GetInventorySize()));
-			screenPtr->RenderText(Vector2(10, 31), currentItem.GetItemName());
-			screenPtr->RenderTextWrap(Vector2(2, 32), currentItem.GetDescription(), 70);
+			screenPtr->RenderText(Vector2(2, 30), "Press 'ESC' to go back");
+			screenPtr->RenderText(Vector2(2, 32), std::to_string(currentItemSelected + 1) + " / " + std::to_string(gameData->GetInventorySize()));
+			screenPtr->RenderText(Vector2(10, 32), currentItem.GetItemName());
+			screenPtr->RenderTextWrap(Vector2(2, 33), currentItem.GetDescription(), 75);
 
 
 			std::string LeftArrow = R"(   __     _    
@@ -907,7 +911,7 @@ void GameStateBattle::RenderBaseUI()
  \ \   / ___ \ 
   \_\ /_/   \_\
       )";
-			screenPtr->RenderDrawing(Vector2(79, 29), LeftArrow);
+			screenPtr->RenderDrawing(Vector2(92, 30), LeftArrow);
 
 			std::string RightArrow = R"(  ____   __  
  |  _ \  \ \ 
@@ -916,13 +920,13 @@ void GameStateBattle::RenderBaseUI()
  |____/  /_/ 
              
 	)";
-			screenPtr->RenderDrawing(Vector2(96, 29), RightArrow);
+			screenPtr->RenderDrawing(Vector2(110, 30), RightArrow);
 
 		}
 		else
 		{
-			screenPtr->RenderText(Vector2(2, 29), "Press 'ESC' to go back");
-			screenPtr->RenderText(Vector2(2, 32), "You have not collected any items yet!");
+			screenPtr->RenderText(Vector2(2, 30), "Press 'ESC' to go back");
+			screenPtr->RenderText(Vector2(2, 33), "You have not collected any items yet!");
 		}
 		
 	}
@@ -942,17 +946,20 @@ void GameStateBattle::RenderBaseUI()
 	}
 
 
-	screenPtr->RenderText(Vector2(3, 30), GetConsoleText());
+	screenPtr->RenderText(Vector2(3, 31), GetConsoleText());
 
 
 	// Player Stats bar
-	for (int i = 80; i < 110; i++)
+	screenPtr->RenderCharacter('+', 94, 24);
+
+	for (int i = 95; i < 125; i++)
 		screenPtr->RenderCharacter('-', i, 24);
-	for (int i = 25; i < 28; i++)
-		screenPtr->RenderCharacter('|', 80, i);
-	screenPtr->RenderText(Vector2(87, 25), "Health:  " + std::to_string(playerStatsPtr->GetHealth()) + " / " + std::to_string(playerStatsPtr->GetMaxHealth()));
-	screenPtr->RenderText(Vector2(87, 26), "Attack:  " + std::to_string(playerStatsPtr->GetAttack()));
-	screenPtr->RenderText(Vector2(87, 27), "Defense: " + std::to_string(playerStatsPtr->GetDefence()));
+	for (int i = 25; i < 29; i++)
+		screenPtr->RenderCharacter('|', 94, i);
+	screenPtr->RenderText(Vector2(97, 25), "PEDRO");
+	screenPtr->RenderText(Vector2(97, 26), "Health:  " + std::to_string(playerStatsPtr->GetHealth()) + " / " + std::to_string(playerStatsPtr->GetMaxHealth()));
+	screenPtr->RenderText(Vector2(97, 27), "Attack:  " + std::to_string(playerStatsPtr->GetAttack()));
+	screenPtr->RenderText(Vector2(97, 28), "Defense: " + std::to_string(playerStatsPtr->GetDefence()));
 
 	if (poisonHitPlayer)
 	{
@@ -967,34 +974,34 @@ void GameStateBattle::RenderBaseUI()
 	if (currentBattleData->GetFirstEnemy()->IsAlive()) {
 
 
-		screenPtr->RenderDrawing(Vector2(0, 0), currentBattleData->GetFirstEnemy()->currentFrame);
+		screenPtr->RenderDrawing(Vector2(1, 1), currentBattleData->GetFirstEnemy()->currentFrame);
 
-		screenPtr->RenderCharacter('+', 6, 24);
-		screenPtr->RenderCharacter('+', 23, 24);
+		screenPtr->RenderCharacter('+', 11, 25);
+		screenPtr->RenderCharacter('+', 29, 25);
 
 		// Enemy Health Stats bar (Single Battle)
-		for (int i = 7; i < 23; i++)
-			screenPtr->RenderCharacter('-', i, 24);
-		for (int i = 25; i < 28; i++)
-			screenPtr->RenderCharacter('|', 6, i);
-		for (int i = 25; i < 28; i++)
-			screenPtr->RenderCharacter('|', 23, i);
+		for (int i = 12; i < 29; i++)
+			screenPtr->RenderCharacter('-', i, 25);
+		for (int i = 26; i < 29; i++)
+			screenPtr->RenderCharacter('|', 11, i);
+		for (int i = 26; i < 29; i++)
+			screenPtr->RenderCharacter('|', 29, i);
 
-		for (int i = 25; i < 28; i++)
+		/*for (int i = 25; i < 28; i++)
 			for (int j = 7; j < 23; j++)
-				screenPtr->RenderCharacter(' ', j, i);
+				screenPtr->RenderCharacter('X', j, i);*/
 
-		screenPtr->RenderText(Vector2(8, 25), currentBattleData->GetFirstEnemy()->GetEnemyName());
-		screenPtr->RenderText(Vector2(8, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
-		screenPtr->RenderText(Vector2(8, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
+		screenPtr->RenderText(Vector2(13, 26), currentBattleData->GetFirstEnemy()->GetEnemyName());
+		screenPtr->RenderText(Vector2(13, 27), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
+		screenPtr->RenderText(Vector2(13, 28), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
 		//screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
 
 		if (abilities_poisonTurnsLeft > 0) {
-			screenPtr->RenderText(Vector2(15, 25), "(Ps)");
+			screenPtr->RenderText(Vector2(20, 26), "(Ps)");
 		}
 
 		if (isEnemyGuarding) {
-			screenPtr->RenderText(Vector2(19, 25), "(Gd)");
+			screenPtr->RenderText(Vector2(24, 26), "(Gd)");
 		}
 
 	}
@@ -1002,36 +1009,36 @@ void GameStateBattle::RenderBaseUI()
 
 	if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->IsAlive())
 	{
-		screenPtr->RenderDrawing(Vector2(30, 0), currentBattleData->GetSecondEnemy()->currentFrame);
+		screenPtr->RenderDrawing(Vector2(38, 0), currentBattleData->GetSecondEnemy()->currentFrame);
 
-		screenPtr->RenderCharacter('+',37, 24);
-		screenPtr->RenderCharacter('+', 54, 24);
+		screenPtr->RenderCharacter('+',56, 25);
+		screenPtr->RenderCharacter('+', 74, 25);
 
 		// Enemy Health Stats bar (Double Battle)
-		for (int i = 38; i < 54; i++)
-			screenPtr->RenderCharacter('-', i, 24);
-		for (int i = 25; i < 28; i++)
-			screenPtr->RenderCharacter('|', 37, i);
-		for (int i = 25; i < 28; i++)
-			screenPtr->RenderCharacter('|', 54, i);
+		for (int i = 57; i < 74; i++)
+			screenPtr->RenderCharacter('-', i, 25);
+		for (int i = 26; i < 29; i++)
+			screenPtr->RenderCharacter('|', 56, i);
+		for (int i = 26; i < 29; i++)
+			screenPtr->RenderCharacter('|', 74, i);
 
 
-		for (int i = 25; i < 28; i++)
+		/*for (int i = 25; i < 28; i++)
 			for (int j = 38; j < 54; j++)
-				screenPtr->RenderCharacter(' ', j, i);
+				screenPtr->RenderCharacter(' ', j, i);*/
 
-		screenPtr->RenderText(Vector2(39, 25), currentBattleData->GetSecondEnemy()->GetEnemyName());
-		screenPtr->RenderText(Vector2(39, 26), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetSecondEnemy()->GetMaxHealth()));
-		screenPtr->RenderText(Vector2(39, 27), "Atk: " + std::to_string(currentBattleData->GetSecondEnemy()->GetAttack()));
+		screenPtr->RenderText(Vector2(58, 26), currentBattleData->GetSecondEnemy()->GetEnemyName());
+		screenPtr->RenderText(Vector2(58, 27), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetSecondEnemy()->GetMaxHealth()));
+		screenPtr->RenderText(Vector2(58, 28), "Atk: " + std::to_string(currentBattleData->GetSecondEnemy()->GetAttack()));
 
 		if (abilities_poisonTurnsLeft > 0) {
 			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
-				screenPtr->RenderText(Vector2(46, 25), "(Ps)");
+				screenPtr->RenderText(Vector2(65, 26), "(Ps)");
 			}
 		}
 		if (isEnemyGuarding) {
 			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
-				screenPtr->RenderText(Vector2(50, 25), "(Gd)");
+				screenPtr->RenderText(Vector2(69, 26), "(Gd)");
 			}
 		}
 	}
