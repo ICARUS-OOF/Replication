@@ -59,6 +59,7 @@ void MaximiseConsole() {
 		ShowWindow(owner, SW_MAXIMIZE); //If owner is authorised, maximise using owner
 }
 
+
 void PlayIntro() {
 	Intro intro;
 	MusicHandler::PlayMusic("01_4999");
@@ -69,9 +70,12 @@ int main(void) {
 	MaximiseConsole();
 
 
-	//PlayIntro();
+	bool debugModeEnabled = true;
+	
+	if (!debugModeEnabled)
+		PlayIntro();
 
-    Game* game = new Game();
+    Game* game = new Game(debugModeEnabled);
 
 
 

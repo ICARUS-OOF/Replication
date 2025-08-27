@@ -14,13 +14,15 @@
 
 
 
-Game::Game() :
+Game::Game(bool debugModeEnabled) :
 	screenPtr(new Screen(80, 25)),
 	gameData(new GameData(screenPtr, GAMESTATEVALUE::WORLDSTATE, new PlayerStats(20, 0, 0, 9), screenPtr->GetScreenSize(), screenPtr->GetConsoleViewportSize())),
 	gameStateWorld(GameStateWorld(gameData)),
 	gameStateBattle(GameStateBattle(gameData)),
 	gameStateEnd(GameStateEnd(gameData))
 {
+	this->debugModeEnabled = debugModeEnabled;
+
 	srand(time(0));
 
 	//hide the cursor
@@ -29,6 +31,7 @@ Game::Game() :
 	GetConsoleCursorInfo(hOut, &cursorInfo);
 	cursorInfo.bVisible = FALSE;
 	SetConsoleCursorInfo(hOut, &cursorInfo);
+
 
 	UpdateGameStateValue();
 }

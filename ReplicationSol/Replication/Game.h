@@ -26,8 +26,10 @@ private:
 	GameStateBattle gameStateBattle;
 	GameStateEnd gameStateEnd;
 
+	bool debugModeEnabled;
+
 public:
-	Game();
+	Game(bool debugModeEnabled);
 	~Game();
 
 	void GameLoop();
