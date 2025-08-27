@@ -572,7 +572,7 @@ void GameStateBattle::Loop()
 						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
 						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-						bool usePoison = gameData->RollDice(25);
+						bool usePoison = gameData->RollDice(100);
 
 						if (usePoison) {
 							SetConsoleText("Poison is Successfully applied");
@@ -990,11 +990,11 @@ void GameStateBattle::RenderBaseUI()
 		//screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
 
 		if (abilities_poisonTurnsLeft > 0) {
-			screenPtr->RenderText(Vector2(17, 25), "(Ps)");
+			screenPtr->RenderText(Vector2(15, 25), "(Ps)");
 		}
 
-		else if (isEnemyGuarding) {
-			screenPtr->RenderText(Vector2(17, 25), "(Gd)");
+		if (isEnemyGuarding) {
+			screenPtr->RenderText(Vector2(19, 25), "(Gd)");
 		}
 
 	}
@@ -1026,15 +1026,12 @@ void GameStateBattle::RenderBaseUI()
 
 		if (abilities_poisonTurnsLeft > 0) {
 			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
-				screenPtr->RenderText(Vector2(48, 25), "(Ps)");
+				screenPtr->RenderText(Vector2(46, 25), "(Ps)");
 			}
 		}
-		else if (isEnemyGuarding) {
+		if (isEnemyGuarding) {
 			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
-				screenPtr->RenderText(Vector2(48, 25), "(Gd)");
-			}
-			else if (currentBattleData->GetSecondEnemy()->IsAlive()) {
-				screenPtr->RenderText(Vector2(48, 25), "(Ps)");
+				screenPtr->RenderText(Vector2(50, 25), "(Gd)");
 			}
 		}
 	}
@@ -1049,7 +1046,7 @@ GAMESTATEVALUE GameStateBattle::GetGameStateValue()
 }
 
 /// <summary>
-/// KAYDEN
+/// AHMAD
 /// 
 /// Apply the item effect on to the player 
 /// </summary>
@@ -1066,7 +1063,7 @@ void GameStateBattle::ApplyItemUsage(Item item)
 }
 
 /// <summary>
-/// KAYDEN
+/// AHMAD
 /// 
 /// Removes the item effect on the player
 /// </summary>
