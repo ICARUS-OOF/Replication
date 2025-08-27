@@ -395,7 +395,9 @@ void GameStateBattle::Loop()
 
 			//---------HEALING---------
 			if (currentBattleData->IsSingleBattle()) {
-				if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetFirstEnemy()->GetMaxHealth() && currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER) {
+				if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetFirstEnemy()->GetMaxHealth() && 
+					currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER &&
+					currentBattleData->GetFirstEnemy()->IsAlive()) {
 
 					PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 					currentBattleData->GetFirstEnemy()->HealEnemy(enemyHealWeight);
@@ -418,7 +420,7 @@ void GameStateBattle::Loop()
 
 				if (healEnemySource != nullptr) {
 					//Heal first enemy
-					if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetSecondEnemy()->GetHealth()) {
+					if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetSecondEnemy()->GetHealth() && currentBattleData->GetFirstEnemy()->IsAlive()) {
 						PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 						currentBattleData->GetFirstEnemy()->HealEnemy(enemyHealWeight);
 
@@ -428,7 +430,7 @@ void GameStateBattle::Loop()
 						Sleep(2000);
 					}
 					//Heal second enemy
-					else {
+					else if (currentBattleData->GetSecondEnemy()->IsAlive() ){
 						PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_ability, true);
 						currentBattleData->GetSecondEnemy()->HealEnemy(enemyHealWeight);
 
@@ -570,7 +572,7 @@ void GameStateBattle::Loop()
 						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
 						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-						bool usePoison = gameData->RollDice(100);
+						bool usePoison = gameData->RollDice(25);
 
 						if (usePoison) {
 							SetConsoleText("Poison is Successfully applied");
@@ -1030,6 +1032,9 @@ void GameStateBattle::RenderBaseUI()
 		else if (isEnemyGuarding) {
 			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
 				screenPtr->RenderText(Vector2(48, 25), "(Gd)");
+			}
+			else if (currentBattleData->GetSecondEnemy()->IsAlive()) {
+				screenPtr->RenderText(Vector2(48, 25), "(Ps)");
 			}
 		}
 	}
