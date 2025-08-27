@@ -215,7 +215,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 
 Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they've sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the "greater good".
 
-Can’t say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
+Can't say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
 
 I just hope that this war ends before Christmas.)"),
 
