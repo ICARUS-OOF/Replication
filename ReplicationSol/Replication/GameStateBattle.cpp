@@ -69,7 +69,7 @@ void GameStateBattle::OnStateEnter()
 	this->poisonHitPlayer = false;
 
 
-	//gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
+	gameData->AddAbility(EnemyData::ENEMYTYPE::MUTANT);
 	//gameData->AddAbility(EnemyData::ENEMYTYPE::HEALER);
 	//gameData->AddAbility(EnemyData::ENEMYTYPE::GUARD);
 
@@ -570,7 +570,7 @@ void GameStateBattle::Loop()
 						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
 						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-						bool usePoison = gameData->RollDice(25);
+						bool usePoison = gameData->RollDice(100);
 
 						if (usePoison) {
 							SetConsoleText("Poison is Successfully applied");
@@ -988,15 +988,11 @@ void GameStateBattle::RenderBaseUI()
 		//screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
 
 		if (abilities_poisonTurnsLeft > 0) {
-			if (currentBattleData->GetFirstEnemy()->IsAlive() && currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0) {
-				screenPtr->RenderText(Vector2(17, 25), "(Ps)");
-			}
+			screenPtr->RenderText(Vector2(17, 25), "(Ps)");
 		}
 
 		else if (isEnemyGuarding) {
-			if (currentBattleData->GetFirstEnemy()->IsAlive()) {
-				screenPtr->RenderText(Vector2(17, 25), "(Gd)");
-			}
+			screenPtr->RenderText(Vector2(17, 25), "(Gd)");
 		}
 
 	}
@@ -1027,7 +1023,7 @@ void GameStateBattle::RenderBaseUI()
 		screenPtr->RenderText(Vector2(40, 27), "Atk: " + std::to_string(currentBattleData->GetSecondEnemy()->GetAttack()));
 
 		if (abilities_poisonTurnsLeft > 0) {
-			if (currentBattleData->GetSecondEnemy()->IsAlive() && currentBattleData->GetSecondEnemy()->GetHealth() - poisonWeight > 0) {
+			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
 				screenPtr->RenderText(Vector2(48, 25), "(Ps)");
 			}
 		}
