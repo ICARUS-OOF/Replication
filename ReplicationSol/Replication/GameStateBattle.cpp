@@ -1125,29 +1125,38 @@ void GameStateBattle::UpdateAbilitiesUsage()
 	}
 }
 
-// Set the 
+// Set the battle event to the current targetevent madde by the player
 void GameStateBattle::SetBattleEvent(BATTLEEVENT targetEvent)
 {
 	currentEvent = targetEvent;
 }
 
+// Set the console text to whatever that haas been pass through
 void GameStateBattle::SetConsoleText(std::string targetText)
 {
 	currentConsoleText = targetText;
 }
 
+// Clears the console with empty spaces
 void GameStateBattle::ClearConsole()
 {
 	currentConsoleText = "";
 }
 
+// Get the set console text
 std::string GameStateBattle::GetConsoleText()
 {
 	return currentConsoleText;
 }
 
 
-
+/// <summary>
+/// KAYDEN
+/// 
+/// Play the player animation frame when being called and reseting back to idle animation
+/// </summary>
+/// <param name="frames"></param>
+/// <param name="resetToIdle"></param>
 void GameStateBattle::PlayAnimationSet(std::vector<std::string> frames, bool resetToIdle)
 {
 	for (int i = 0; i < frames.size(); i++) {
@@ -1164,6 +1173,14 @@ void GameStateBattle::PlayAnimationSet(std::vector<std::string> frames, bool res
 	}
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Play the enemy animation when being called and reseting back to idle animation
+/// </summary>
+/// <param name="targetEnemy"></param>
+/// <param name="frameSet"></param>
+/// <param name="resetToIdle"></param>
 void GameStateBattle::PlayEnemyAnimationSet(EnemyData* targetEnemy, std::vector<std::string> frameSet, bool resetToIdle)
 {
 	for (int i = 0; i < frameSet.size(); i++) {
