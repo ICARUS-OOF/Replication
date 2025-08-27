@@ -984,9 +984,9 @@ void GameStateBattle::RenderBaseUI()
 			for (int j = 7; j < 23; j++)
 				screenPtr->RenderCharacter(' ', j, i);
 
-		screenPtr->RenderText(Vector2(9, 25), currentBattleData->GetFirstEnemy()->GetEnemyName());
-		screenPtr->RenderText(Vector2(9, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
-		screenPtr->RenderText(Vector2(9, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
+		screenPtr->RenderText(Vector2(8, 25), currentBattleData->GetFirstEnemy()->GetEnemyName());
+		screenPtr->RenderText(Vector2(8, 26), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
+		screenPtr->RenderText(Vector2(8, 27), "Atk: " + std::to_string(currentBattleData->GetFirstEnemy()->GetAttack()));
 		//screenPtr->RenderTextWrap(Vector2(7, 23), currentBattleData->GetFirstEnemy()->GetEnemyDescription(), 17);
 
 		if (abilities_poisonTurnsLeft > 0) {
@@ -1020,9 +1020,9 @@ void GameStateBattle::RenderBaseUI()
 			for (int j = 38; j < 54; j++)
 				screenPtr->RenderCharacter(' ', j, i);
 
-		screenPtr->RenderText(Vector2(40, 25), currentBattleData->GetSecondEnemy()->GetEnemyName());
-		screenPtr->RenderText(Vector2(40, 26), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetSecondEnemy()->GetMaxHealth()));
-		screenPtr->RenderText(Vector2(40, 27), "Atk: " + std::to_string(currentBattleData->GetSecondEnemy()->GetAttack()));
+		screenPtr->RenderText(Vector2(39, 25), currentBattleData->GetSecondEnemy()->GetEnemyName());
+		screenPtr->RenderText(Vector2(39, 26), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetSecondEnemy()->GetMaxHealth()));
+		screenPtr->RenderText(Vector2(39, 27), "Atk: " + std::to_string(currentBattleData->GetSecondEnemy()->GetAttack()));
 
 		if (abilities_poisonTurnsLeft > 0) {
 			if (currentBattleData->GetSecondEnemy()->IsAlive()) {
