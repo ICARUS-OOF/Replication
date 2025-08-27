@@ -76,10 +76,10 @@ void GameStateWorld::DOCUMENTATION_DONOTCALL()
 			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT),
 
 			//SECOND ENEMY (put nullptr for this entire line if single enemy)
-			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT), 
-			
+			new EnemyData(15, 5, EnemyData::ENEMYTYPE::MUTANT),
+
 			//Player FLEE POINT, CGOINS
-			 Vector2(0, 1),        2);
+			Vector2(0, 1), 2);
 		//													      room | top-left position | scale
 		Prop* levelTransitionTrigger = SpawnProp(new Prop(screenPtr, 0, Vector2(15, 5), Vector2(5, 5), Prop::PROPTYPE::BATTLE_TRIGGER, nullptr, nullptr, new Vector2(0, 0)));
 		levelTransitionTrigger->SetBattleIndex(battleSetIndex);
@@ -100,6 +100,7 @@ void GameStateWorld::SetLevelData()
 		2, gameData);
 
 	{
+		// Room 0: Prison cells
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -196,6 +197,32 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				&brkdoor, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
+		{
+			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
+			//        And define the string in this format
+			std::string prisonnote =
+				R"([]
+)";
+
+			SpawnProp(new Prop(screenPtr,
+				0, //Step 2. Define which Room the prop will be in
+				Vector2(25, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
+				Vector2(1, 1), //NO NEED WORRY ABOUT THIS
+				Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
+
+				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
+				new NoteInteractable(screenPtr, &currentInteractable, R"(It's been roughly 84 days since war broke out. Things have only gotten worse.
+
+Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they've sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the "greater good".
+
+Can’t say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
+
+I just hope that this war ends before Christmas.)"),
+
+&prisonnote, //Step 7. Include the string variable name from step 1 here with the & in front
+nullptr));
+		}
+		// Room 1: Laboratory
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -337,7 +364,7 @@ XXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXXXXXXXX        XXXXXXXXXXX
 				&cells, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
-
+		// Room 2: Canteen
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -472,7 +499,7 @@ They started this war, and they're the ones who are gonna pay for the cost. They
 &canteennote, //Step 7. Include the string variable name from step 1 here with the & in front
 nullptr));
 		}
-
+		// Room 3: Lounge
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -614,7 +641,7 @@ nullptr));
 				&loungesofas, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
-
+		// Room 5: Office
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -798,7 +825,7 @@ I can hear them getting closer. I'll die here, with the company, and the governm
 &officenote, //Step 7. Include the string variable name from step 1 here with the & in front
 nullptr));
 		}
-
+		//Room 6: Armory
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -881,12 +908,6 @@ _________|__________|_________|
 |_|______|
 )";
 
-
-
-
-
-
-
 			SpawnProp(new Prop(screenPtr,
 				5, //Step 2. Define which Room the prop will be in
 				Vector2(55, 9), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
@@ -903,9 +924,6 @@ _________|__________|_________|
 				&armorylockerright, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
-
-
-
 
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
@@ -960,7 +978,7 @@ nullptr));
 				&armoryhallway, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
-
+		// Room 7: Office to warehouse hallway.
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -1004,6 +1022,7 @@ nullptr));
 				&verticalhallway, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
+		// Room 8: Warehouse
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -1155,6 +1174,7 @@ GA-1M: Affirmative.
 &warehousenote, //Step 7. Include the string variable name from step 1 here with the & in front
 nullptr));
 		}
+		// Room 9: Warehouse to lobby hallway
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -1189,7 +1209,7 @@ nullptr));
 				&horizontalhallway, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
-
+		// Room 10: Lobby
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -1333,7 +1353,7 @@ nullptr));
 				&lobbycarpet, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
 		}
-
+		// Room 11: Foyer
 		{
 			//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
 			//        And define the string in this format
@@ -1607,37 +1627,5 @@ ___________|
 
 			& exit, //Step 7. Include the string variable name from step 1 here with the & in front
 			nullptr));
-	}
-
-
-
-
-
-
-
-	{
-		//Step 1. Create the prop display as a string (for e.g std::string rubble (the name of your prop))
-		//        And define the string in this format
-		std::string yourPropDesign =
-			R"([]
-)";
-
-		SpawnProp(new Prop(screenPtr,
-			0, //Step 2. Define which Room the prop will be in
-			Vector2(25, 5), //Step 3. Define Position(X, Y) OF THE TOP-LEFT OF PROP
-			Vector2(1, 1), //NO NEED WORRY ABOUT THIS
-			Prop::PROPTYPE::MAP_LAYOUT, //If have collision, use: MAP_LAYOUT    No collision: MAP_LAYOUT_NONSOLID
-
-			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
-			new NoteInteractable(screenPtr, &currentInteractable, R"(It's been roughly 84 days since war broke out. Things have only gotten worse.
-
-Since our oh-so-beloved government decided that it's best to channel everything - and I mean literally everything - into the war effort, they've sacked the economy and forced thousands into the uniform. Inflation and unemployment is at an all time high, families are starving on the streets, and it's all for the "greater good".
-
-Can’t say I enjoy working for a soulless corporation that actively engages in war profiteering and gets big government contracts and funding often. As much as I hate them, it's the only job I have that gets me out of conscription and puts food on the table.
-
-I just hope that this war ends before Christmas.)"),
-
-&yourPropDesign, //Step 7. Include the string variable name from step 1 here with the & in front
-nullptr));
 	}
 }
