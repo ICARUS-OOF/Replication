@@ -23,25 +23,37 @@ void VendingMachineInteractable::Interaction()
 {
 	//currentInteractionIndex++;
 	//if (currentInteractionIndex >= 3) {
-
+	
+	//If not buying yet, then set buying to true
 	if (!isBuying)
 		isBuying = true;
 
 	if (isBuying) {
 		char userInputvendingmachine = _getch();
+		//First vending machine
 		if (vmIndex == 1) {
 			switch (userInputvendingmachine)
 			{
 				//ATTACK, HEALING, DEFENCE
 				//Heal, don't need turnUSage
+
+
+
+			//All of the purchases follow this format
 			case '1':
+				//If enough coins
 				if (gameDataptr->HasEnoughGcoins(2)) {
+					//Render secondary text below the screen to show what they bought
 					screenPtr->RenderSecondaryText("You bought a banana!");
+					//Remove the gcoins
 					gameDataptr->RemoveGcoins(2);
+
+					//Add item to inventory
 					//                       Name      Cost         Item type  weight turnusage description
 					gameDataptr->AddItem(Item("Banana", 2, Item::ITEMTYPE::HEALING, 6, 1, "Nutritious. Ingest the potassium. Heals 6 hp."));
 				}
 				else {
+					//If not enough coins, state insufficient funds
 					screenPtr->RenderSecondaryText("Insufficient funds!");
 				}
 				break;
@@ -85,10 +97,14 @@ void VendingMachineInteractable::Interaction()
 				break;
 			}
 		}
+
+
+		//Second vending machine
 		else if (vmIndex == 2) {
 			switch (userInputvendingmachine)
 			{
 			case '1':
+				//One-time bought items
 				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[0] == false) {
 					screenPtr->RenderSecondaryText("You bought a portable barricade!");
 					gameDataptr->RemoveGcoins(8);
@@ -149,13 +165,14 @@ void VendingMachineInteractable::Interaction()
 	//}
 }
 
+
 void VendingMachineInteractable::Render()
 {
 	const int top = 0;
 	const int left = 0;
 	const int right = 79;
 	const int bottom = 25 - 1;
-
+	//Box to overlap with the world
 	screenPtr->RenderCharacter('+', left, top);
 
 	for (int i = left + 1; i < right; i++)
@@ -210,6 +227,7 @@ void VendingMachineInteractable::Render()
 		//screenPtr->RenderTextWrap(Vector2(3, 6), "You found a vending machine!", 10);
 	}
 
+	//First vending machine rendering
 	if (vmIndex == 1)
 	{
 		std::string vendingmachine1frame = R"(          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    |     
@@ -240,6 +258,7 @@ void VendingMachineInteractable::Render()
 		screenPtr->RenderDrawing(Vector2(1, 0), vendingmachine1frame);
 		screenPtr->RenderTextWrap(Vector2(2, 20), "   Ur   G-coins:    " + std::to_string(gameDataptr->GetGCoins()) + "    ", 8);
 
+		//Render items
 		std::string banana = R"(                &&  
                &&&&    
               &&  &   
@@ -329,6 +348,9 @@ void VendingMachineInteractable::Render()
  / |___________|/ /  
 /________________/)";
 
+
+
+		//One-teim bought item checks. If bought already, do not render
 		if (!hasBoughtItem[0]) {
 			screenPtr->RenderDrawing(Vector2(17, 6), portablebarrier);
 			screenPtr->RenderText(Vector2(14, 11), "1. Portable barrier (8G)");

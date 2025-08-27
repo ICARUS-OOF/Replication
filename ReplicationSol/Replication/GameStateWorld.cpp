@@ -16,6 +16,14 @@
 #include "MusicHandler.h"
 
 
+/// <summary>
+/// KAYDEN
+/// 
+/// CONSTRUCTOR
+/// Concrete state inheriting from GameState
+/// This class is to handle all logic for the world
+/// </summary>
+/// <param name="gameData"></param>
 GameStateWorld::GameStateWorld(GameData* gameData)
 {
 	this->gameData = gameData;
@@ -37,26 +45,33 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 
 
-
+	//Call all functions to lay out levels
 	SetLevelData();
 	SetLevelDataBattles();
 	SetLevelDataOthers();
 	SetLevelDataItemPickups();
 }
 
+//Destructor, simply destroys all battles
 GameStateWorld::~GameStateWorld()
 {
 	for (int i = 0; i < MAX_PROPS; i++)
-	{
 		delete propArray[propSpawnIndex];
-	}
+	for (int i = 0; i < MAX_BATTLES; i++)
+		delete battleDataArray[i];
 }
 
 
 
 
 
-
+/// <summary>
+/// KAYDEN
+/// 
+/// Registers a prop to the game for rendering an interaction
+/// </summary>
+/// <param name="propPtr"></param>
+/// <returns></returns>
 Prop* GameStateWorld::SpawnProp(Prop* propPtr)
 {
 	if (propSpawnIndex >= MAX_PROPS) {
@@ -71,6 +86,11 @@ Prop* GameStateWorld::SpawnProp(Prop* propPtr)
 	return propPtr;
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// When entering this new game state
+/// </summary>
 void GameStateWorld::OnStateEnter()
 {
 	if (gameData->GetCurrentBattleData() != nullptr) {
@@ -87,8 +107,14 @@ void GameStateWorld::OnStateEnter()
 	this->RenderScreen();
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// MAIN CALLING LOOP FOR THE WORLD
+/// </summary>
 void GameStateWorld::Loop()
 {
+	//If there isnt an interactable that player interacts with right now
 	if (currentInteractable == nullptr) {
 		//Get the player's desired position based on input
 		WorldPlayer::PLAYERDECISION playerDecision = worldPlayerPtr->GetPlayerInput();
@@ -122,8 +148,11 @@ void GameStateWorld::Loop()
 
 								return;
 							}
+
+							//Triggering a battle
 							else if (propType == Prop::PROPTYPE::BATTLE_TRIGGER) {
 
+								//If battle has not been won yet, then trigger the battle
 								if (battleDataArray[propArray[i]->GetBattleIndex()]->GetBattleEndState() != BattleData::BATTLEEND::WON) {
 									gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);
 									gameData->SetCurrentBattleData(battleDataArray[propArray[i]->GetBattleIndex()]);
@@ -132,6 +161,7 @@ void GameStateWorld::Loop()
 								}
 							}
 							else {
+								//If the player is overlapping with a prop that is not any of the above triggers, interact with the prop
 								isPlayerOverlappingWithProp = true;
 
 								break;
@@ -147,10 +177,11 @@ void GameStateWorld::Loop()
 				worldPlayerPtr->MovePlayer(desiredPlayerPos);
 			}
 		}
+		//-----IF INTERACTION KEY IS PRESSED
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::INTERACT) {
 
 
-
+			//-------
 			Vector2* playerInteractivePoints = worldPlayerPtr->GetInteractivePoints(worldPlayerPtr->GetPosition());
 
 			/*
@@ -169,9 +200,11 @@ void GameStateWorld::Loop()
 					if (propArray[i]->GetInteractable() != nullptr && propArray[i]->GetInteractable()->canInteract) {
 						for (int j = 0; j < worldPlayerPtr->INTERACTIVE_POINTS_SIZE; j++)
 						{
+							//More specific interaction
 							if (propArray[i]->IsOverlapping(playerInteractivePoints[j], false)) {
 
 								currentInteractable = propArray[i]->GetInteractable();
+								//Mark as has found interactable to break
 								hasFoundInteractable = true;
 								break;
 							}
@@ -180,6 +213,12 @@ void GameStateWorld::Loop()
 				}
 			}
 		}
+
+
+
+
+
+		//----------DEBUGGING PURPOSES---------
 		else if (playerDecision == WorldPlayer::PLAYERDECISION::RUN_TESTBATTLE) {
 			DEBUG_BATTLETEST();
 		}
@@ -191,6 +230,7 @@ void GameStateWorld::Loop()
 		}
 	}
 	else {
+		//If player is currently interacting with something, play the interaction
 		if (currentInteractable != nullptr) {
 			currentInteractable->Interaction();
 		}
@@ -201,11 +241,10 @@ void GameStateWorld::Loop()
 
 void GameStateWorld::RenderBaseObjects()
 {
+	//Prop rendering if room corresponds
 	for (int i = 0; i < MAX_PROPS; i++)
-	{
 		if (propArray[i] != nullptr && propArray[i]->GetRoomIndex() == currentRoomIndex)
 			propArray[i]->RenderCharacterDisplay();
-	}
 
 	worldPlayerPtr->RenderCharacterDisplay();
 }
@@ -213,15 +252,23 @@ void GameStateWorld::RenderBaseObjects()
 void GameStateWorld::RenderBaseUI()
 {
 	if (currentInteractable != nullptr) {
+		//Just renders the interactable's drawing
 		currentInteractable->Render();
 	}
 }
 
+/// <summary>
+/// Return GameState in enum value form
+/// </summary>
+/// <returns></returns>
 GAMESTATEVALUE GameStateWorld::GetGameStateValue()
 {
 	return GAMESTATEVALUE::WORLDSTATE;
 }
 
+
+
+//-------- DEBUGGING ONLY -------
 void GameStateWorld::DEBUG_BATTLETEST()
 {
 	gameData->SetGameStateValue(GAMESTATEVALUE::BATTLESTATE);

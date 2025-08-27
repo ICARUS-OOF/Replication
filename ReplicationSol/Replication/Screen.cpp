@@ -59,16 +59,24 @@ void Screen::ResizeScreen(Vector2 targetSize)
 	system("cls");
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Main function to display the entire screen
+/// </summary>
+/// <param name="lastScreenSize"></param>
+/// <param name="lastViewportSize"></param>
 void Screen::DisplayScreen(Vector2 lastScreenSize, Vector2 lastViewportSize)
 {
-	//Clear the previous screen
 	Vector2 screenSize = GetScreenSize();
 	int cols = screenSize.Getx();
 	int rows = screenSize.Gety();
 
+	//If screen size was resized, then clear screen
 	if (!lastScreenSize.IsEqualTo(screenSize))
 		system("cls");
 
+	//If viewport size was last changed, then clear screen
 	Vector2 currentViewportSize = GetConsoleViewportSize();
 	if (!lastViewportSize.IsEqualTo(currentViewportSize))
 		system("cls");
@@ -114,6 +122,7 @@ void Screen::DisplayScreen(Vector2 lastScreenSize, Vector2 lastViewportSize)
 			ss << '-';
 		ss << '+';
 
+		//Secondary text rendering
 		ss << std::endl;
 		std::string _secondaryTextFinal;
 		for (int i = 0; i < 80; i++)
@@ -126,6 +135,7 @@ void Screen::DisplayScreen(Vector2 lastScreenSize, Vector2 lastViewportSize)
 		ss << _secondaryTextFinal;
 		ss << std::endl;
 
+		//Resetting cursor to 0,0 for printing over
 		HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleCursorPosition(hOut, { 0, 0 });
 		std::cout << ss.str();
@@ -192,23 +202,47 @@ char** Screen::GetChars()
 /// <param name="targetY"></param>
 void Screen::RenderCharacter(const char targetChar, const int targetX, const int targetY)
 {
+	//If not within the screen size, do not render
 	if (targetX < 0 || targetX >= cols || targetY < 0 || targetY >= rows)
 		return;
 
 	chars[targetY][targetX] = targetChar;
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Overload for RenderCharacter, taking a Vector2 pos for character rendering instead
+/// </summary>
+/// <param name="targetChar"></param>
+/// <param name="pos"></param>
 void Screen::RenderCharacter(const char targetChar, const Vector2 pos)
 {
 	RenderCharacter(targetChar, pos.Getx(), pos.Gety());
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// At "StartingPos", start rendering text towards the right
+/// </summary>
+/// <param name="StartingPos"></param>
+/// <param name="Text"></param>
 void Screen::RenderText(Vector2 StartingPos, std::string Text)
 {
+	//For every text character, move to the right by 1 to render the characters
 	for (int i = 0; i < Text.length(); i++)
 		RenderCharacter(Text.at(i), StartingPos.Getx() + i, StartingPos.Gety());
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Render text but capping at a max num characters per line with a space
+/// </summary>
+/// <param name="StartingPos"></param>
+/// <param name="Text"></param>
+/// <param name="maxCharactersPerLine"></param>
 void Screen::RenderTextWrap(Vector2 StartingPos, std::string Text, const int maxCharactersPerLine)
 {
 	int currentCharacterCol = 0;
@@ -216,9 +250,11 @@ void Screen::RenderTextWrap(Vector2 StartingPos, std::string Text, const int max
 
 	for (int i = 0; i < Text.length(); i++)
 	{
+		//Render characters with the offset of currentCharacterCol
 		RenderCharacter(Text[i], StartingPos.Getx() + currentCharacterCol, StartingPos.Gety() + currentRow);
 		currentCharacterCol++;
 
+		//If the column exceeds maxCharactersPerLine and if the current character is a space, move down by 1 row and reset to the left
 		if (currentCharacterCol >= maxCharactersPerLine && Text[i] == ' ') {
 			currentRow++;
 			currentCharacterCol = 0;
@@ -226,6 +262,15 @@ void Screen::RenderTextWrap(Vector2 StartingPos, std::string Text, const int max
 	}
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Similar to RenderTextWrap
+/// However, text can include the character '\n' to signify a new line manually
+/// </summary>
+/// <param name="StartingPos"></param>
+/// <param name="Text"></param>
+/// <param name="maxCharactersPerLine"></param>
 void Screen::RenderTextWrapManual(Vector2 StartingPos, std::string Text, const int maxCharactersPerLine)
 {
 	int currentCharacterCol = 0;
@@ -233,11 +278,13 @@ void Screen::RenderTextWrapManual(Vector2 StartingPos, std::string Text, const i
 
 	for (int i = 0; i < Text.length(); i++)
 	{
+		//If character isn't a new line yet, render the character
 		if (Text[i] != '\n') {
 			RenderCharacter(Text[i], StartingPos.Getx() + currentCharacterCol, StartingPos.Gety() + currentRow);
 			currentCharacterCol++;
 		}
 
+		//(If the character is detected to be a new line '\n') OR (if column exceeds maxCharactersPerLine and if current character is a space)
 		if (Text[i] == '\n' || (currentCharacterCol >= maxCharactersPerLine && Text[i] == ' ')) {
 			currentRow++;
 			currentCharacterCol = 0;
@@ -245,6 +292,12 @@ void Screen::RenderTextWrapManual(Vector2 StartingPos, std::string Text, const i
 	}
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Set Secondary text
+/// </summary>
+/// <param name="secondaryText"></param>
 void Screen::RenderSecondaryText(std::string secondaryText)
 {
 	this->secondaryText = secondaryText;
@@ -276,6 +329,7 @@ void Screen::RenderDrawing(Vector2 StartingPos, const std::string text)
 		lines.push_back(line);
 	}
 
+	//Manually draw the lines utilising text
 	for (int i = 0; i < lines.size(); i++)
 	{
 		RenderText(Vector2(StartingPos.Getx(), StartingPos.Gety() + i), lines.at(i));

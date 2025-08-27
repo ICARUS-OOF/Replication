@@ -58,6 +58,12 @@ void PlayerStats::AddDefence(int amt)
 	defence += amt;
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Subtract attack points, capping at 0
+/// </summary>
+/// <param name="amt"></param>
 void PlayerStats::RemoveAttack(int amt)
 {
 	attack -= amt;
@@ -66,6 +72,12 @@ void PlayerStats::RemoveAttack(int amt)
 		attack = 0;
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Subtract defence points, capping at 0
+/// </summary>
+/// <param name="amt"></param>
 void PlayerStats::RemoveDefence(int amt)
 {
 	defence -= amt;
@@ -73,31 +85,39 @@ void PlayerStats::RemoveDefence(int amt)
 		defence = 0;
 }
 
+//Getter for health
 int PlayerStats::GetHealth() const
 {
 	return health;
 }
 
+//Getter for attack points
 int PlayerStats::GetAttack() const
 {
 	return attack;
 }
 
+//Getter for defence points
 int PlayerStats::GetDefence() const
 {
 	return defence;
 }
 
+//Getter for max health
 int PlayerStats::GetMaxHealth() const
 {
 	return maxhealth;
 }
 
+//Getter for the base damage
 int PlayerStats::GetBaseDamage() const
 {
 	return baseDamage;
 }
 
+/// <summary>
+/// Resets attack and defence to 0, and health to maxHealth
+/// </summary>
 void PlayerStats::ResetStats()
 {
 	health = maxhealth;
