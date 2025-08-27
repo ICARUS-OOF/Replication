@@ -16,7 +16,7 @@ private:
 		CreditName(int xOffset, std::string text);
 
 		std::string GetText();
-		int GetYOffset();
+		int GetXOffset();
 	};
 
 	int currentFrame;

@@ -5,6 +5,12 @@
 #include <conio.h>
 #include <iostream>
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Display the end credit display box in the Game state end
+/// </summary>
+/// <param name="gameData"></param>
 GameStateEnd::GameStateEnd(GameData* gameData)
 {
 	this->gameData = gameData;
@@ -12,21 +18,32 @@ GameStateEnd::GameStateEnd(GameData* gameData)
 	this->gameStateScreenSize = Vector2(50, 35);
 	currentFrame = 0;
 
-	CreateCredits();
-	std::reverse(creditLines.begin(), creditLines.end());
 }
 
-
+/// <summary>
+/// KAYDEN
+/// 
+/// When entering the Game State End start playing the music and clears the previous screen
+/// </summary>
 void GameStateEnd::OnStateEnter()
 {
 	screenPtr->ResizeScreen(gameStateScreenSize);
 
 	MusicHandler::PlayMusic("05_Freedom");
 
+
+	CreateCredits();
+	std::reverse(creditLines.begin(), creditLines.end());
+
 	ClearScreen();
 	this->RenderScreen(true);
 }
 
+/// <summary>
+/// KAYDEN
+/// 
+/// Increase the number of the currentframe by 1
+/// </summary>
 void GameStateEnd::Loop()
 {
 	currentFrame++;
@@ -36,21 +53,28 @@ void GameStateEnd::Loop()
 	this->RenderScreen(true);
 }
 
+//OBSOLETE
 void GameStateEnd::RenderBaseObjects()
 {
 
 }
 
+// Render the text to the desire location at the display box 
 void GameStateEnd::RenderBaseUI()
 {
 	for (int i = currentFrame; i >= 0; i--)
 	{
-		screenPtr->RenderText(Vector2(creditLines[i].GetYOffset(), currentFrame - i), creditLines[i].GetText());
+		screenPtr->RenderText(Vector2(creditLines[i].GetXOffset(), currentFrame - i), creditLines[i].GetText());
 	}
 }
 
 
 
+/// <summary>
+/// AHMAD
+/// 
+/// Render the text and draw in the display box for the End Credit
+/// </summary>
 void GameStateEnd::CreateCredits()
 {
 	creditLines.push_back(CreditName(14, ""));
@@ -188,24 +212,21 @@ GAMESTATEVALUE GameStateEnd::GetGameStateValue()
 	return GAMESTATEVALUE::ENDSTATE;
 }
 
-
-
-
-
-
-
+// Initialize the varable of the text and its x offset
 GameStateEnd::CreditName::CreditName(int xOffset, std::string text)
 {
 	this->text = text;
 	this->xOffset = xOffset;
 }
 
+// Get the text from Credit name and return the string
 std::string GameStateEnd::CreditName::GetText()
 {
 	return text;
 }
 
-int GameStateEnd::CreditName::GetYOffset()
+// Get the X offset and returns the varables
+int GameStateEnd::CreditName::GetXOffset()
 {
 	return xOffset;
 }

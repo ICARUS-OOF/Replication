@@ -10,7 +10,11 @@
 
 
 
-
+/// <summary>
+/// JUN SHEN
+/// 
+/// Play the game logo animation after the story animation and waits for player input
+/// </summary>
 void Intro::PlayIntro() {
 
 
@@ -1113,6 +1117,11 @@ std::cout << R"(
 		system("cls");
     }
 
+    /// <summary>
+    /// JUN SHEN
+    /// 
+    /// Plays the story animation at the start of the game and waits for player input
+    /// </summary>
     void Intro::PlayInCut() {
 
         std::cout << R"(
