@@ -194,7 +194,7 @@ void GameStateWorld::SetLevelDataItemPickups() {
 			//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 			new PickUpInteractable(
 				new std::string[1] //Step 4. Define the NUMBER OF LINES in []
-				{ "Riot shield obtained" }, //Step 5. Define the lines
+				{ "Pistol obtained" }, //Step 5. Define the lines
 				screenPtr, &currentInteractable,
 				1, //Num of lines AGAIN
 				//   	 Name       Cost         Item type     weight turnusage

@@ -410,10 +410,10 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 				//If there is NO DIALOGUE, replace following 5 lines with nullptr,
 				new DialogueInteractable(
-					new std::string[3] //Step 4. Define the NUMBER OF LINES in []
-					{ "Eugh, gross.", "Although I gotta take what I can get...", "Slop obtained" }, //Step 5. Define the lines
+					new std::string[1] //Step 4. Define the NUMBER OF LINES in []
+					{ "Eugh, gross." }, //Step 5. Define the lines
 					screenPtr, &currentInteractable,
-					3), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
+					1), //Step 6. Define the NUMBER OF LINES AGAIN (Be sure that the number in step 4 is the same as in here)
 
 				&slop, //Step 7. Include the string variable name from step 1 here with the & in front
 				nullptr));
