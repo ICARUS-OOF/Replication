@@ -3613,14 +3613,5449 @@ void EnemyData::SetAnimations() {
 
 
 	else if (enemyType == ENEMYTYPE::GUARD) {
-		idleFrame = R"(GUARD IDLEEEE)";
+		idleFrame = R"(
+-----------------------------------
+|        |###############|        |
+|     |###---------------###|     |
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|        |#####:::::####|         |
+|            |#######|            |
+-----------------------------------)";
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHH|               |HHHHHHHH|
+|HHHHH|   HHHHHHHHHHHHHHH   |HHHHH|
+|HHHH|  HHHHHHHHHHHHHHHHHHH  HHHHH|
+|HHH|  HHHHHHHHHHHHHHHHHHHHH |HHHH|
+|HH|  HHHHHHHHHHHHHHHHHHHHHH  |HHH|
+|HH| HHHHHHHHHHHHHHHHHHHHHHHH   |H|
+|H|    HHHHHHHHHHHHHHHHHHH|  HH |H|
+|H| HH    HHHHHHHHHHH|      HHH |H|
+|H| HHHHH     HHHHH|   +   +#HH |H|
+|H| HHHHHHHHHH        ++++++ HH |H|
+|H| HHHHHHHHHHHHHHH  ++  ++++   HH|
+|H|   HHHHHHHHHHHHH +    +     |HH|
+|HHH|    HHHHHHHHHHH##   +     |HH|
+|HHH| HH    HHHHHHHHHH     |HH |HH|
+|HHH|  HHHH            |HHHHH  |HH|
+|HHHH|  HHHHHH|     |HHHHHH##|HHHH|
+|HHHHH|  HHHH| HHHHH |HHHH##|HHHHH|
+|HHHHHH|   HH| HHHHH |H   |HHHHHHH|
+|HHHHHHHH|     HHHHH    |HHHHHHHHH|
+|HHHHHHHHHHHH|       |HHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |###############|        |
+|     |###---------------###|     |
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|        |#####:::::####|         |
+|            |#######|            |
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHH|               |HHHHHHHH|
+|HHHHH|   HHHHHHHHHHHHHHH   |HHHHH|
+|HHHH|  HHHHHHHHHHHHHHHHHHH  HHHHH|
+|HHH|  HHHHHHHHHHHHHHHHHHHHH |HHHH|
+|HH|  HHHHHHHHHHHHHHHHHHHHHH  |HHH|
+|HH| HHHHHHHHHHHHHHHHHHHHHHHH   |H|
+|H|    HHHHHHHHHHHHHHHHHHH|  HH |H|
+|H| HH    HHHHHHHHHHH|      HHH |H|
+|H| HHHHH     HHHHH|   +   +#HH |H|
+|H| HHHHHHHHHH        ++++++ HH |H|
+|H| HHHHHHHHHHHHHHH  ++  ++++   HH|
+|H|   HHHHHHHHHHHHH +    +     |HH|
+|HHH|    HHHHHHHHHHH##   +     |HH|
+|HHH| HH    HHHHHHHHHH     |HH |HH|
+|HHH|  HHHH            |HHHHH  |HH|
+|HHHH|  HHHHHH|     |HHHHHH##|HHHH|
+|HHHHH|  HHHH| HHHHH |HHHH##|HHHHH|
+|HHHHHH|   HH| HHHHH |H   |HHHHHHH|
+|HHHHHHHH|     HHHHH    |HHHHHHHHH|
+|HHHHHHHHHHHH|       |HHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |###############|        |
+|     |###---------------###|     |
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|        |#####:::::####|         |
+|            |#######|            |
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHH|               |HHHHHHHH|
+|HHHHH|   HHHHHHHHHHHHHHH   |HHHHH|
+|HHHH|  HHHHHHHHHHHHHHHHHHH  HHHHH|
+|HHH|  HHHHHHHHHHHHHHHHHHHHH |HHHH|
+|HH|  HHHHHHHHHHHHHHHHHHHHHH  |HHH|
+|HH| HHHHHHHHHHHHHHHHHHHHHHHH   |H|
+|H|    HHHHHHHHHHHHHHHHHHH|  HH |H|
+|H| HH    HHHHHHHHHHH|      HHH |H|
+|H| HHHHH     HHHHH|   +   +#HH |H|
+|H| HHHHHHHHHH        ++++++ HH |H|
+|H| HHHHHHHHHHHHHHH  ++  ++++   HH|
+|H|   HHHHHHHHHHHHH +    +     |HH|
+|HHH|    HHHHHHHHHHH##   +     |HH|
+|HHH| HH    HHHHHHHHHH     |HH |HH|
+|HHH|  HHHH            |HHHHH  |HH|
+|HHHH|  HHHHHH|     |HHHHHH##|HHHH|
+|HHHHH|  HHHH| HHHHH |HHHH##|HHHHH|
+|HHHHHH|   HH| HHHHH |H   |HHHHHHH|
+|HHHHHHHH|     HHHHH    |HHHHHHHHH|
+|HHHHHHHHHHHH|       |HHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |####HHH########|        |
+|     |###-+++++HHH-+++--###|     |
+|    |##HH-++HHHHHH++-HHHHH##     |
+|   |##-+HHHHH--+HHHHHH++---#|    |
+|  |##---++++----+H+HH--+++-##|   |
+|  |#----+-------+HHH+++-----###| |
+| |####---------++HH++-+--|##==#| |
+| |#==####------+HHH+|######===#| |
+| |HHH==H#####-+HHH|##[[|]] #==#| |
+| |#=HHHH=====##HH##[[H   H ]==#| |
+| |#===HHHHH====HH=#[[HH  H]]###  |
+| |###HH========HH=#[    HH]]##|  |
+|   |####=======HH==# HHH]H####|  |
+|   |#--####====H====HHHHHH|--#|  |
+|   |##----#####H#####HHHHH--##|  |
+|    |##------|#####|--HHH-##|    |
+|     |##----|#:::::#|-H--##|     |
+|      |###--|#::::H#|-###|       |
+|        |#####:HHHH####|         |
+|            |####HH#|            |
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |####HHH########|        |
+|     |###-+++++HHH-+++--###|     |
+|    |##HH-++HHHHHH++-HHHHH##     |
+|   |##-+HHHHH--+HHHHHH++---#|    |
+|  |##---++++----+H+HH--+++-##|   |
+|  |#----+-------+HHH+++-----###| |
+| |####---------++HH++-+--|##==#| |
+| |#==####------+HHH+|######===#| |
+| |HHH==H#####-+HHH|##[[|]] #==#| |
+| |#=HHHH=====##HH##[[H   H ]==#| |
+| |#===HHHHH====HH=#[[HH  H]]###  |
+| |###HH========HH=#[    HH]]##|  |
+|   |####=======HH==# HHH]H####|  |
+|   |#--####====H====HHHHHH|--#|  |
+|   |##----#####H#####HHHHH--##|  |
+|    |##------|#####|--HHH-##|    |
+|     |##----|#:::::#|-H--##|     |
+|      |###--|#::::H#|-###|       |
+|        |#####:HHHH####|         |
+|            |####HH#|            |
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |####HHH########|        |
+|     |###-+++++HHH-+++--###|     |
+|    |##HH-++HHHHHH++-HHHHH##     |
+|   |##-+HHHHH--+HHHHHH++---#|    |
+|  |##---++++----+H+HH--+++-##|   |
+|  |#----+-------+HHH+++-----###| |
+| |####---------++HH++-+--|##==#| |
+| |#==####------+HHH+|######===#| |
+| |HHH==H#####-+HHH|##[[|]] #==#| |
+| |#=HHHH=====##HH##[[H   H ]==#| |
+| |#===HHHHH====HH=#[[HH  H]]###  |
+| |###HH========HH=#[    HH]]##|  |
+|   |####=======HH==# HHH]H####|  |
+|   |#--####====H====HHHHHH|--#|  |
+|   |##----#####H#####HHHHH--##|  |
+|    |##------|#####|--HHH-##|    |
+|     |##----|#:::::#|-H--##|     |
+|      |###--|#::::H#|-###|       |
+|        |#####:HHHH####|         |
+|            |####HH#|            |
+-----------------------------------)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |####HHH########|        |
+|     |###-+++++HHH-+++--###|     |
+|    |##HH-++HHHHHH++-HHHHH##     |
+|   |##-+HHHHH--+HHHHHH++---#|    |
+|  |##---++++----+H+HH--+++-##|   |
+|  |#----+-------+HHH+++-----###| |
+| |####---------++HH++-+--|##==#| |
+| |#==####------+HHH+|######===#| |
+| |HHH==H#####-+HHH|##[[|]] #==#| |
+| |#=HHHH=====##HH##[[H   H ]==#| |
+| |#===HHHHH====HH=#[[HH  H]]###  |
+| |###HH========HH=#[    HH]]##|  |
+|   |####=======HH==# HHH]H####|  |
+|   |#--####====H====HHHHHH|--#|  |
+|   |##----#####H#####HHHHH--##|  |
+|    |##------|#####|--HHH-##|    |
+|     |##----|#:::::#|-H--##|     |
+|      |###--|#::::H#|-###|       |
+|        |#####:HHHH####|         |
+|            |####HH#|            |
+-----------------------------------)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |####HHH########|        |
+|     |###-+++++HHH-+++--###|     |
+|    |##HH-++HHHHHH++-HHHHH##     |
+|   |##-+HHHHH--+HHHHHH++---#|    |
+|  |##---++++----+H+HH--+++-##|   |
+|  |#----+-------+HHH+++-----###| |
+| |####---------++HH++-+--|##==#| |
+| |#==####------+HHH+|######===#| |
+| |HHH==H#####-+HHH|##[[|]] #==#| |
+| |#=HHHH=====##HH##[[H   H ]==#| |
+| |#===HHHHH====HH=#[[HH  H]]###  |
+| |###HH========HH=#[    HH]]##|  |
+|   |####=======HH==# HHH]H####|  |
+|   |#--####====H====HHHHHH|--#|  |
+|   |##----#####H#####HHHHH--##|  |
+|    |##------|#####|--HHH-##|    |
+|     |##----|#:::::#|-H--##|     |
+|      |###--|#::::H#|-###|       |
+|        |#####:HHHH####|         |
+|            |####HH#|            |
+-----------------------------------)");
+
+		enemyFrames_death.push_back(
+			R"(
+-----------------------------------
+|        |####HHH########|        |
+|     |###-+++++HHH-+++--###|     |
+|    |##HH-++HHHHHH++-HHHHH##     |
+|   |##-+HHHHH--+HHHHHH++---#|    |
+|  |##---++++----+H+HH--+++-##|   |
+|  |#----+-------+HHH+++-----###| |
+| |####---------++HH++-+--|##==#| |
+| |#==####------+HHH+|######===#| |
+| |HHH==H#####-+HHH|##[[|]] #==#| |
+| |#=HHHH=====##HH##[[H   H ]==#| |
+| |#===HHHHH====HH=#[[HH  H]]###  |
+| |###HH========HH=#[    HH]]##|  |
+|   |####=======HH==# HHH]H####|  |
+|   |#--####====H====HHHHHH|--#|  |
+|   |##----#####H#####HHHHH--##|  |
+|    |##------|#####|--HHH-##|    |
+|     |##----|#:::::#|-H--##|     |
+|      |###--|#::::H#|-###|       |
+|        |#####:HHHH####|         |
+|            |####HH#|            |
+-----------------------------------)");
+
+		enemyFrames_damaged.push_back(
+			R"(
+-----------------------------------
+|        |###############|        |
+|     |###---------------###|     |
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|        |#####:::::####|         |
+|            |#######|            |
+-----------------------------------)");
+
+
+		enemyFrames_damaged.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHH|               |HHHHHHHH|
+|HHHHH|   HHHHHHHHHHHHHHH   |HHHHH|
+|HHHH|  HHHHHHHHHHHHHHHHHHH  HHHHH|
+|HHH|  HHHHHHHHHHHHHHHHHHHHH |HHHH|
+|HH|  HHHHHHHHHHHHHHHHHHHHHH  |HHH|
+|HH| HHHHHHHHHHHHHHHHHHHHHHHH   |H|
+|H|    HHHHHHHHHHHHHHHHHHH|  HH |H|
+|H| HH    HHHHHHHHHHH|      HHH |H|
+|H| HHHHH     HHHHH|   +   +#HH |H|
+|H| HHHHHHHHHH        ++++++ HH |H|
+|H| HHHHHHHHHHHHHHH  ++  ++++   HH|
+|H|   HHHHHHHHHHHHH +    +     |HH|
+|HHH|    HHHHHHHHHHH##   +     |HH|
+|HHH| HH    HHHHHHHHHH     |HH |HH|
+|HHH|  HHHH            |HHHHH  |HH|
+|HHHH|  HHHHHH|     |HHHHHH##|HHHH|
+|HHHHH|  HHHH| HHHHH |HHHH##|HHHHH|
+|HHHHHH|   HH| HHHHH |H   |HHHHHHH|
+|HHHHHHHH|     HHHHH    |HHHHHHHHH|
+|HHHHHHHHHHHH|       |HHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_damaged.push_back(
+			R"(
+-----------------------------------
+|        |###############|        |
+|     |###---------------###|     |
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|        |#####:::::####|         |
+|            |#######|            |
+-----------------------------------)");
+
+
+		enemyFrames_damaged.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHH|               |HHHHHHHH|
+|HHHHH|   HHHHHHHHHHHHHHH   |HHHHH|
+|HHHH|  HHHHHHHHHHHHHHHHHHH  HHHHH|
+|HHH|  HHHHHHHHHHHHHHHHHHHHH |HHHH|
+|HH|  HHHHHHHHHHHHHHHHHHHHHH  |HHH|
+|HH| HHHHHHHHHHHHHHHHHHHHHHHH   |H|
+|H|    HHHHHHHHHHHHHHHHHHH|  HH |H|
+|H| HH    HHHHHHHHHHH|      HHH |H|
+|H| HHHHH     HHHHH|   +   +#HH |H|
+|H| HHHHHHHHHH        ++++++ HH |H|
+|H| HHHHHHHHHHHHHHH  ++  ++++   HH|
+|H|   HHHHHHHHHHHHH +    +     |HH|
+|HHH|    HHHHHHHHHHH##   +     |HH|
+|HHH| HH    HHHHHHHHHH     |HH |HH|
+|HHH|  HHHH            |HHHHH  |HH|
+|HHHH|  HHHHHH|     |HHHHHH##|HHHH|
+|HHHHH|  HHHH| HHHHH |HHHH##|HHHHH|
+|HHHHHH|   HH| HHHHH |H   |HHHHHHH|
+|HHHHHHHH|     HHHHH    |HHHHHHHHH|
+|HHHHHHHHHHHH|       |HHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_damaged.push_back(
+			R"(
+-----------------------------------
+|        |###############|        |
+|     |###---------------###|     |
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|        |#####:::::####|         |
+|            |#######|            |
+-----------------------------------)");
+
+
+		enemyFrames_damaged.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHH|               |HHHHHHHH|
+|HHHHH|   HHHHHHHHHHHHHHH   |HHHHH|
+|HHHH|  HHHHHHHHHHHHHHHHHHH  HHHHH|
+|HHH|  HHHHHHHHHHHHHHHHHHHHH |HHHH|
+|HH|  HHHHHHHHHHHHHHHHHHHHHH  |HHH|
+|HH| HHHHHHHHHHHHHHHHHHHHHHHH   |H|
+|H|    HHHHHHHHHHHHHHHHHHH|  HH |H|
+|H| HH    HHHHHHHHHHH|      HHH |H|
+|H| HHHHH     HHHHH|   +   +#HH |H|
+|H| HHHHHHHHHH        ++++++ HH |H|
+|H| HHHHHHHHHHHHHHH  ++  ++++   HH|
+|H|   HHHHHHHHHHHHH +    +     |HH|
+|HHH|    HHHHHHHHHHH##   +     |HH|
+|HHH| HH    HHHHHHHHHH     |HH |HH|
+|HHH|  HHHH            |HHHHH  |HH|
+|HHHH|  HHHHHH|     |HHHHHH##|HHHH|
+|HHHHH|  HHHH| HHHHH |HHHH##|HHHHH|
+|HHHHHH|   HH| HHHHH |H   |HHHHHHH|
+|HHHHHHHH|     HHHHH    |HHHHHHHHH|
+|HHHHHHHHHHHH|       |HHHHHHHHHHHH|
+-----------------------------------)");
+
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+------------------------------------
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHH HHHHH|
+|HHHHHH HH               H   HHHHH|
+|HHHHHHH                   HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHH HHHHH               HHHHHHHHH|
+|HHH  HHHH               HHHHH HHH|
+|HHHH HHHH               HHHHH HHH|
+|HHHH HHHH               HHHHH HHH|
+|HHHH  HHH               HHHH  HHH|
+|HHHHH   H               HHH HHHHH|
+|HHHHHH                  H   HHHHH|
+|HHH                            HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HH HHHHHH               HHHHH HHH|
+|HH  HHHHH               HHHHHH HH|
+|HH  HHHHH               HHHHHH HH|
+|HH  HHHHH               HHHHHH HH|
+|HH   HHHH               HHHHH  HH|
+|HHHH HHHH               HHHHH HHH|
+|HHHH HHHH               HHHHH HHH|
+|HHHH  HHH               HHHH  HHH|
+|HHHHH   H               HHH HHHHH|
+|HHHHHH HH               HHHHHHHHH|
+|H     HHH               HHHHH  HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HH HHHHHH               HHHHH HHH|
+|HH  HHHHH               HHHHHH HH|
+|HH  HHHHH               HHHHHH HH|
+|HH  HHHHH               HHHHHHHHH|
+|HHH  HHHH               HHHHHH HH|
+|HHHH HHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|H   HHHHH               HHHHHH HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HH HHHHHH               HHHHH HHH|
+|HH HHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHH  H               H  HHHHHH|
+|HHHHHH  H               H  HHHHHH|
+|HHHHHH  H               H  HHHHHH|
+|HHHHHH  H               H  HHHHHH|
+|HHHHHH  H               H  HHHHHH|
+|HHHHHH  H               H  HHHHHH|
+|HHHHHH  H               H  HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHH    H               H    HHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HH HHHHHH               HHHHHH HH|
+|HH H    H               H    H HH|
+|HH H    H               H    H HH|
+|HH H    H               H    H HH|
+|HH H    H               H    H HH|
+|HH H    H               H    H HH|
+|HH H    H               H    H HH|
+|HH H    H               H    H HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+| HHHHHHHH               HHHHHHHH |
+|  HHHHHHH               HHHHHHH  |
+|   HHHHHH               HHHHHH   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|H  H    H               H    H  H|
+|HH H    H               H    H HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+| HHHHHHHH               HHHHHHHH |
+|  HHHHHHH               HHHHHHH  |
+|   HHHHHH               HHHHHH   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|H  H    H               H    H  H|
+|HH H    H               H    H HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+| HHHHHHHH               HHHHHHHH |
+|  HHHHHHH               HHHHHHH  |
+|   HHHHHH               HHHHHH   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|   H    H               H    H   |
+|H  H    H               H    H  H|
+|HH H    H               H    H HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+| HHHHHHHH               HHHHHHHH |
+|  HHHHHHH               HHHHHHH  |
+|   HHHHHH               HHHHHH   |
+|   H    H               H    H   |
+|   H    H       H       H    H   |
+|   H    H      H H      H    H   |
+|   H    H    HH   HH    H    H   |
+|   H    H   H       HH  H    H   |
+|H  H    H  H          H H    H  H|
+|HH H    HHH            HH    H HH|
+|HHHHHHHHH                HHHHHHHH|
+-------- -------------- -----------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+| HHHHHHHH               HHHHHHHH |
+|  HHHHHHH       H       HHHHHHH  |
+|   HHHHHH     HH HH     HHHHHH   |
+|   H    H   HH     HH   H    H   |
+|   H    H  H         HH H    H   |
+|   H    HHH            HH    H   |
+|   H   HH               HHH  H   |
+|   H  H                    HHH   |
+|H  HHH                       HH H|
+|HHHH                         H HH|
+|HH                               H
+-------- -------------- -----------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH       H       HHHHHHHHH|
+| HHHHHHHH     HH HH     HHHHHHHH |
+|  HHHHHHH   HH     HH   HHHHHHH  |
+|   HHHHHH HH         HH HHHHHH   |
+|   H    HH             HH    H   |
+|   H  HH                 HH  H   |
+|   HHH                     HHH   |
+|  HH                         HH  |
+|HH                             HH|
+H                                 H
+                                   
+                                   
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHH  HHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHH    HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHH|      |HHHHHHHHHHHH|
+|HHHHHHHHHHHH|         HHHHHHHHHHH|
+|HHHHHHHHHHH            HHHHHHHHHH|
+| HHHHHHHH               HHHHHHHH |
+|  HHHHHH                  HHHHH  |
+|   HHHH                    HHH   |
+|    H                       H    |
+|   H                         HH  |
+| HH                            H |
+|H                               H|
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHH       HHHHHHHHHHHHH|
+|HHHHHHHHHHHH         HHHHHHHHHHHH|
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHH                   HHHHHHH|
+|HHHHHHH                   HHHHHHH|
+| HHHHH                     HHHHH |
+|  HHH                       HHH  |
+|   H                         H   |
+|  H                           H  |
+|  H                           H  |
+| H                             H |
+|H                               H|
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHHHHHH                   HHHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHHH                       HHHHH|
+|HHHH                         HHHH|
+|HHHH                         HHHH|
+|HHH                           HHH|
+|HHH                           HHH|
+|HH                             HH|
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|HHH                           HHH|
+|HHH                           HHH|
+|HHH                           HHH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|HH                             HH|
+|H                               H|
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+		enemyFrames_ability.push_back(
+			R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|    |##-------------------##     |
+|   |##---------------------#|    |
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|     |##----|#:::::#|----##|     |
+|      |###--|#:::::#|-###|       |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|  |##----------------------##|   |
+|  |#------------------------###| |
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|   |##----############|-----##|  |
+|    |##------|#####|------##|    |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+| |####-------------------|##==#| |
+| |#==####-----------|######===#| |
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|   |####===========##[[|]]####|  |
+|   |#--####==========#####|--#|  |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+| |#=====#####-----|##[[|]]##==#| |
+| |#==========######[[.....]]==#| |
+| |#===============#[[..O..]]###  |
+| |###=============#[[.....]]##|  |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH   HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH     HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH   HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH       HHHHHH|
+|HHHHHHHHHHHHHHHHHHH         HHHHH|
+|HHHHHHHHHHHHHHHHHH           HHHH|
+|HHHHHHHHHHHHHHHHHHH         HHHHH|
+|HHHHHHHHHHHHHHHHHHHH       HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH       HHHHHH|
+|HHHHHHHHHHHHHHH                 H|
+|HHHHHHHHHHHHHH                   |
+|HHHHHHHHHHHHHHHH                H|
+|HHHHHHHHHHHHHHHHHHHH       HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHH               HH|
+|HHHHHHHHHHHH                     |
+|HHHHHHHHHHH                      |
+|HHHHHHHHHHHH                     |
+|HHHHHHHHHHHHHHHH               HH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH         HHHHH|
+|HHHH                             |
+|HHHHHHHHHHHHHHHHHHH         HHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|                  HHHHHHHH       |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|      HHHHHHHHHHHHHHHHHHHHHHHHH  |
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH   HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH     HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH   HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH   HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH     HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH       HHHHH|
+|HHHHHHHHHHHHHHHHHHHH         HHHH|
+|HHHHHHHHHHHHHHHHHHHHH       HHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH     HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH   HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH   HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH  H  HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH  HHH  HHHHH|
+|HHHHHHHHHHHHHHHHHHHH  HHHHH  HHHH|
+|HHHHHHHHHHHHHHHHHHHHH  HHH  HHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH  H  HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH   HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH H HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH HHH HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHH HHHHH|
+|HHHHHHHHHHHHHHHHHHHH HHHHHHH HHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHH HHHHH|
+|HHHHHHHHHHHHHHHHHHHHHH HHH HHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHH H HHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHH       HHHHHHHHHHHHHHHHHHH|
+|HHHHHH         HHHHHHHHHHHHHHHHHH|
+|HHHHHHH       HHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHH         HHHHHHHHHHHHHHHHHH|
+|HHHHH           HHHHHHHHHHHHHHHHH|
+|HHHH             HHHHHHHHHHHHHHHH|
+|HHHHH           HHHHHHHHHHHHHHHHH|
+|HHHHHH         HHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHH   HHHHHHH     HHHHHHHHH|
+|HHHHHHHH     HHHHHHH   HHHHHHHHHH|
+|HHHHHHHH     HHHHHHHH HHHHHHHHHHH|
+|HHHHHH    H    HHHHHHHHHHHHHHHHHH|
+|HHHHH    HHH    HHHHHHHHHHHHHHHHH|
+|HHHH    HHHHH    HHHHHHHHHHHHHHHH|
+|HHHHH    HHH    HHHHHHHHHHHHHHHHH|
+|HHHHHH    H    HHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHH HHHHHHH       HHHHHHHH|
+|HHHHHHHHH   HHHHH         HHHHHHH|
+|HHHHHHHH     HHHHH       HHHHHHHH|
+|HHHHHHHH  H  HHHHHH     HHHHHHHHH|
+|HHHHHH   HHH   HHHHHH HHHHHHHHHHH|
+|HHHHH   HHHHH   HHHHHHHHHHHHHHHHH|
+|HHHH   HHHHHHH   HHHHHHHHHHHHHHHH|
+|HHHHH   HHHHH   HHHHHHHHHHHHHHHHH|
+|HHHHHH   HHH   HHHHHHHHHHHHHHHHHH|
+|HHHHHHHH  H  HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH     HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHH       HHHHHHHH|
+|HHHHHHHHHH HHHHHH         HHHHHHH|
+|HHHHHHHHH   HHHH           HHHHHH|
+|HHHHHHHH  H  HHHH         HHHHHHH|
+|HHHHHHHH HHH HHHHH       HHHHHHHH|
+|HHHHHH  HHHHH  HHHHH   HHHHHHHHHH|
+|HHHHH  HHHHHHH  HHHHH HHHHHHHHHHH|
+|HHHH  HHHHHHHHH  HHHHHHHHHHHHHHHH|
+|HHHHH  HHHHHHH  HHHHHHHHHHHHHHHHH|
+|HHHHHH  HHHHH  HHHHHHHHHHHHHHHHHH|
+|HHHHHHHH HHH HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHH  H  HHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHH   HHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHH         HHHHHHH|
+|HHHHHHHHHHHHHHHH           HHHHHH|
+|HHHHHHHHHHHHHHH             HHHHH|
+|HHHHHHHHHHHHHHHH           HHHHHH|
+|HHHHHHHHHHHHHHHHH         HHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHH           HHHHHH|
+|HHHHHHHHHHHHHHH             HHHHH|
+|HHHHHHHHHHHHHH               HHHH|
+|HHHHHHHHHHHHHHH             HHHHH|
+|HHHHHHHHHHHHHHHH           HHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHH     H     HHHHHH|
+|HHHHHHHHHHHHHHH     HHH     HHHHH|
+|HHHHHHHHHHHHHH     HHHHH     HHHH|
+|HHHHHHHHHHHHHHH     HHH     HHHHH|
+|HHHHHHHHHHHHHHHH     H     HHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH     HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH   HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH H HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH HHH HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHH HHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHH  HHHHHHH  HHHHHH|
+|HHHHHHHHHHHHHHH  HHHHHHHHH  HHHHH|
+|HHHHHHHHHHHHHH  HHHHHHHHHHH  HHHH|
+|HHHHHHHHHHHHHHH  HHHHHHHHH  HHHHH|
+|HHHHHHHHHHHHHHHH  HHHHHHH  HHHHHH|
+|HHHHHHHHHHHHHHHHHH HHHHH HHHHHHHH|
+|HHHHHHHHHHHHHHHHHHH HHH HHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHH H HHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHH          HHHHHHHHHHHHH|
+|HHHHHHHHHH HH       HHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHH          HHHHHHHHHHHHH|
+|HHHHHHHHHH HH       HHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHH          HHHHHHHHHHHHH|
+|HHHHHHHHHH HH       HHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHH          HHHHHHHHHHHHH|
+|HHHHHHHHHH HH       HHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHH          HHHHHHHHHHHHH|
+|HHHHHHHHHH HH       HHHHHHHHHHHHH|
+|HHHHHHHHHHHHHH     HHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHHH                 HHHHHHHH|
+|HHHHHHHHH               HHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHHHHHHH           HHHHHHHHHHH|
+-----------------------------------)");
+
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHH           HHHHHHHHHHH|
+|HHHHHHH                   HHHHHHH|
+|HHHH                         HHHH|
+|HHH                           HHH|
+|HH                             HH|
+|H                               H|
+|H                               H|
+|H                               H|
+|H                               H|
+|H                               H|
+|H                               H|
+|H                               H|
+|H                               H|
+|H                               H|
+|H                               H|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHH             HHHHHHHHHH|
+|HHHHHH                     HHHHHH|
+|HHHH                         HHHH|
+|HH                             HH|
+|H                               H|
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+|HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH|
+-----------------------------------)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+-----------------------------------
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+|                                 |
+-----------------------------------)");
 	}
 
 	
 
 
 	else if (enemyType == ENEMYTYPE::BOSS) {
-		idleFrame = R"(BOSS IDLEEE)";
+		idleFrame = R"(
+]=========================================[
+]               NNNNN###N#I               [
+]           N#N#############NI            [
+]          N#################HNHHNHHN N   [
+]         N#########################H#### [
+]         N###########I##I###########NNNN [
+]   NNNNNNXX##########I##I##N#####NH      [
+]NNN##X############HHH     HHHHNNH        [
+]N#################H   ( )   HH#          [
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]          I##########II#######I          [
+]           I#################            [
+]             ###############I            [
+]              #############I             [
+]              ############I              [
+]                I########I               [
+]        IHHHH#################H          [
+]        HH#####################HHH       [
+]=========================================[)";
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHH H HH HHH HH HHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHH HHH  HHH    HHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH ( ) HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHIHHHHHHHHHH[
+]HHHHHHHHHHHIHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHH H HH HHH HH HHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHH HHH  HHH    HHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH   ()HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHIHHHHHHHHHH[
+]HHHHHHHHHHHIHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHH H HH HHH HH HHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHH HHH  HHH    HHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH    HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH()   HHHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHIHHHHHHHHHH[
+]HHHHHHHHHHHIHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHH HH HH   HHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHH  H HH H HHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHH H  HH   HHHHHHHHHHHHHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHH H HH HHH HH HHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHH HHH  HHH    HHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHH  H HH   HHH[
+]HHHHHHHHHHHHHHHHHH    HHHHHHH H  HH H HHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHH #H HH   HHH[
+]HHNHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH ()  HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHIHHHHHHHHHH[
+]HHHHHHHHHHHIHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHH HH HH   HHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHH  H HH H HHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHH H  HH   HHHHHHHHHHHHHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHH H HH HHH HH HHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHH HHH  HHH    HHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHH  H HH   HHH[
+]HHH HH H    HHHHHH    HHHHHHH H  HH H HHH[
+]HHH  H H H  HHHHHH     HHHHHH #H HH   HHH[
+]HHN HH H    HHHHHH   ()HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHIHHHHHHHHHH[
+]HHHHHHHHHHHIHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHH HH HH   HHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHH  H HH H HHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHH H  HH   HHHHHHHHHHHHHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHH  HH HH   HHHH[
+]HHHHHHH H HH HHH HH HHHHHHH H H NH H HHHH[
+]HHHHHHH HHH  HHH    HHHHHHH HH  HH   HHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHH  H HH   HHH[
+]HHH HH H    HHHHHH    HHHHHHH H  HH H HHH[
+]HHH  H H H  HHHHHH     HHHHHH #H HH   HHH[
+]HHN HH H    HHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHIHHHHHHH()   HHHHHHHIHHHHHHHHHH[
+]HHHHHHHHHHHIHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHH HH HH   HHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHH  H HH H HHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHH H  HH   HHHHHHHHHHHHHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHH  HH HH   HHHH[
+]HHHHHHH H HH HHH HH HHHHHHH H H NH H HHHH[
+]HHHHHHH HHH  HHH    HHHHHHH HH  HH   HHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHH  H HH   HHH[
+]HHH HH H    HHHHHH () HHHHHHH H  HH H HHH[
+]HHH  H H H  HHHHHH     HHHHHH #H HH   HHH[
+]HHN HH H    HHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHH HI HH  HH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHH  I H    H     HHHHHHHIHHHHHHHHHH[
+]HHHHHHHH H  H   HHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHH HH HH   HHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHH  H HH H HHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHH H  HH   HHHHHHHHHHHHHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHH  HH HH   HHHH[
+]HHHHHHH H HH HHH HH HHHHHHH H H NH H HHHH[
+]HHHHHHH HHH  HHH    HHHHHHH HH  HH   HHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHH  H HH   HHH[
+]HHH HH H    HHHHHH    HHHHHHH H  HH H HHH[
+]HHH  H H H  HHHHHH     HHHHHH #H HH   HHH[
+]HHN HH H    HHHHHH  () HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHH  H H   [
+]HHHHHHHH HI HH  HH     HHHHHHHHHH H  H H [
+]HHHHHHHH  I H    H     HHHHHHHIHH HH H   [
+]HHHHHHHH H  H   HHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHH HH HH   HHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHH  H HH H HHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHH H  HH   HHHHHHHHHHHHHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHH  HHN HHH    HHHHHHH  HH HH   HHHH[
+]HHHHHHH H HH HHH HH HHHHHHH H H NH H HHHH[
+]HHHHHHH HHH  HHH    HHHHHHH HH  HH   HHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHH  H HH   HHH[
+]HHH HH H    HHHHHH    HHHHHHH H  HH H HHH[
+]HHH  H H H  HHHHHH     HHHHHH #H HH   HHH[
+]HHN HH H    HHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH()   HHH HH  HH  H H   [
+]HHHHHHHH HI HH  HH     HHH  H   H H  H H [
+]HHHHHHHH  I H    H     HHH H HIHH HH H   [
+]HHHHHHHH H  H   HHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHH  HHHHHHH[
+]HHH HH HH   HHHHHHHHHHHHHH  H HH   HHHHHH[
+]HHH  H HH H HHHHHHHHHHHHHH H  HH H HHHHHH[
+]HHH H  HH   HHH  H H   HHH HH HH   HHHHHH[
+]HHHHHHHHIHHHHHH H  H H HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH HH H   HHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHNHHHHHHHHHHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH  ( )  HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHNHHHHHHHHHHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH  ( )  HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H   H HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH  HH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHNHHHHHHHHHHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH  ( )  HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H   H HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H  HH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH HHH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH HHH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHIHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHNHHHHHHHHHHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH  ( )  HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H   H HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H  HH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H HHH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H HHH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHIHHHHHHHHHH HHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHIHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHNHHHHHHHHHHHHHHHHIHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHNHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH  ( )  HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H   H HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H  HH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H HHH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH H HHH HHHHHHHHHHHHHHHHH[
+]HHHHHHHHIHHHHHHHHHH HHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHH       HIHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHNHHHHH       HHHHIHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHNHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHH#HHHHHHHHHH[
+]HHNHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHIHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH       HHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHN                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHNHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 H#HHHHHHHHHH[
+]HHNHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]HHHHHHHHIHHH                 HHHHHHHHHHHH[
+]HHHHHHHHHHHH                 HHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHNHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]HH                                     HH[
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+		enemyFrames_death.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+		enemyFrames_damaged.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_damaged.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+
+		enemyFrames_damaged.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_damaged.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_damaged.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_damaged.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_damaged.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHNNNNN   N IHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHN N             NIHHHHHHHHHHHH[
+]HHHHHHHHHHN                 HNHHNHHNHNHHH[
+]HHHHHHHHHN                         H####H[
+]HHHHHHHHHN          H               NNNNH[
+]HHHNNNNNN          H H             HHHHHH[
+]NNN               H   H          HHHHHHHH[
+]N                H     H      #HHHHHHHHHH[
+]HHN              H     H      HHHHHHHHHHH[
+]HHHHHNNHNNN      H ( ) H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      HHHHHHHHHHH[
+]HHHHHHHHHHI      H     H      IHHHHHHHHHH[
+]HHHHHHHHHHHI      H   H       HHHHHHHHHHH[
+]HHHHHHHHHHHHH      H H       HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH      H        HHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            IHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH            HHHHHHHHHHHHHH[
+]HHHHHHHHIHHHH                 HHHHHHHHHHH[
+]HHHHHHHHHH                     HHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]          N#################HNHHNHHN N   [
+]         N#########################H#### [
+]         N###########I##I###########NNNN [
+]   NNNNNNXX##########I##I##N#####NH      [
+]NNN##X############HHH     HHHHNNH        [
+]N#################H   ( )   HH#          [
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]          I##########II#######I          [
+]           I#################            [
+]             ###############I            [
+]              #############I             [
+]              ############I              [
+]                I########I               [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]         N###########I##I###########NNNN [
+]   NNNNNNXX##########I##I##N#####NH      [
+]NNN##X############HHH     HHHHNNH        [
+]N#################H   ( )   HH#          [
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]          I##########II#######I          [
+]           I#################            [
+]             ###############I            [
+]              #############I             [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]NNN##X############HHH     HHHHNNH        [
+]N#################H   ( )   HH#          [
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]          I##########II#######I          [
+]           I#################            [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]          N#################HNHHNHHN N   [
+]         N#########################H#### [
+]         N###########I##I###########NNNN [
+]   NNNNNNXX##########I##I##N#####NH      [
+]NNN##X############HHH     HHHHNNH        [
+]N#################H   ( )   HH#          [
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]          I##########II#######I          [
+]           I#################            [
+]             ###############I            [
+]              #############I             [
+]              ############I              [
+]                I########I               [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]         N###########I##I###########NNNN [
+]   NNNNNNXX##########I##I##N#####NH      [
+]NNN##X############HHH     HHHHNNH        [
+]N#################H   ( )   HH#          [
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]          I##########II#######I          [
+]           I#################            [
+]             ###############I            [
+]              #############I             [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]NNN##X############HHH     HHHHNNH        [
+]N#################H   ( )   HH#          [
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]          I##########II#######I          [
+]           I#################            [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]  N###H##########NNHI     IH##H          [
+]     NNHNNN#NN#N#N##HIIIII####H          [
+]          I###########I#######H          [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH       ( )       HHHHHHHHHHHHH[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH           HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH           HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHH                    HHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH          HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHH                    HHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHH        HHHHHHH         HHHHHHHHH[
+]HHHHHHH        HHHHHHHHH         HHHHHHHH[
+]HHHHHH         HHH   HHH          HHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH          HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHH                    HHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHH        HHHHHHH         HHHHHHHHH[
+]HHHHHHH        HHHHHHHHH         HHHHHHHH[
+]HHHHHH        HHH     HHH         HHHHHHH[
+]HHHHH         HH  ( )  HH          HHHHHH[
+]HHHH          HHH     HHH           HHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH          HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHH                    HHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHH        HHHHHHH         HHHHHHHHH[
+]HHHHHHH        HHHHHHHHH         HHHHHHHH[
+]HHHHHH        HHH     HHH         HHHHHHH[
+]HHHHH         HH  ( )  HH          HHHHHH[
+]HHHH          HHH     HHH           HHHHH[
+]HHH           HHHHHHHHHHH            HHHH[
+]HH              HHHHHHH               HHH[
+]=========================================[)");
+
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH          HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHH                    HHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHH        HHHHHHH         HHHHHHHHH[
+]HHHHHHH        HHHHHHHHH         HHHHHHHH[
+]HHHHHH        HHH     HHH         HHHHHHH[
+]HHHHH         HH  ( )  HH          HHHHHH[
+]HHHH          HHH     HHH           HHHHH[
+]HHH           HHHHHHHHHHH            HHHH[
+]HH              HHHHHHH               HHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH          HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHH                    HHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHH        HHHHHHH         HHHHHHHHH[
+]HHHHHHH        HHHHHHHHH         HHHHHHHH[
+]HHHHHH        HHH     HHH         HHHHHHH[
+]HHHHH         HH  ( )  HH          HHHHHH[
+]HHHH          HHH     HHH           HHHHH[
+]HHH           HHHHHHHHHHH            HHHH[
+]HH              HHHHHHH               HHH[
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHH               HHHHHHHHHHHHHH[
+]HHHHHHHHHHH                 HHHHHHHHHHHHH[
+]HHHHHHHHHHHH      ( )      HHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH         HHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHH          HHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH              HHHHHHHHHHHHHH[
+]HHHHHHHHHHHH                HHHHHHHHHHHHH[
+]HHHHHHHHHHH                  HHHHHHHHHHHH[
+]HHHHHHHHHH                    HHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHH        HHHHHHH         HHHHHHHHH[
+]HHHHHHH        HHHHHHHHH         HHHHHHHH[
+]HHHHHH        HHH     HHH         HHHHHHH[
+]HHHHH         HH  ( )  HH          HHHHHH[
+]HHHH          HHH     HHH           HHHHH[
+]HHH           HHHHHHHHHHH            HHHH[
+]HH              HHHHHHH               HHH[
+]=========================================[)");
+
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]            ###############              [
+]           #################             [
+]            ######(#)######              [
+]               #########                 [
+]                                         [
+]               ##########                [
+]              ############               [
+]             ##############              [
+]            ################             [
+]           ##################            [
+]          ####################           [
+]         ######################          [
+]        ########HHHHHHH#########         [
+]       ########HHHHHHHHH#########        [
+]      ########HHH     HHH#########       [
+]     #########HH  ( )  HH##########      [
+]    ##########HHH     HHH###########     [
+]   ###########HHHHHHHHHHH############    [
+]  ##############HHHHHHH###############   [
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]            ###############              [
+]           #################             [
+]            ######(#)######              [
+]               #########                 [
+]                                         [
+]               ##########                [
+]              ############               [
+]             ##############              [
+]            ################             [
+]           ##################            [
+]          ####################           [
+]         ######################          [
+]        ########HHHHHHH#########         [
+]       ########HHHHHHHHH#########        [
+]      ########HHH     HHH#########       [
+]     #########HH  ( )  HH##########      [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]            ###############              [
+]           #################             [
+]            ######(#)######              [
+]               #########                 [
+]                                         [
+]               ##########                [
+]              ############               [
+]             ##############              [
+]            ################             [
+]           ##################            [
+]          ####################           [
+]         ######################          [
+]        ########HHHHHHH#########         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]            ###############              [
+]           #################             [
+]            ######(#)######              [
+]               #########                 [
+]                                         [
+]               ##########                [
+]              ############               [
+]             ##############              [
+]            ################             [
+]           ##################            [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]            ###############              [
+]           #################             [
+]            ######(#)######              [
+]               #########                 [
+]                                         [
+]               ##########                [
+]              ############               [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]            ###############              [
+]           #################             [
+]            ######(#)######              [
+]               #########                 [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]                                         [
+]           #################             [
+]            ######(#)######              [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_ability.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHH     HHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHH            HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHH                       HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHH                               HHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHH                                   HHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]                                         [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]                                         [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHH                                 HHHH[
+]                                         [
+]HHHH                                 HHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHH                                 HHHH[
+]                                         [
+]HHHH                                 HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHH                                 HHHH[
+]                                         [
+]HHHH                                 HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHH                                 HHHH[
+]                    H                    [
+]HHHH                                 HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH             H             HHHHHHH[
+]HHHH               HHH               HHHH[
+]                  HHHHH                  [
+]HHHH               HHH               HHHH[
+]HHHHHHH             H             HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH            HHH            HHHHHHH[
+]HHHH             HHH HHH             HHHH[
+]                HHH   HHH                [
+]HHHH             HHH HHH             HHHH[
+]HHHHHHH            HHH            HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH             HHH      HHHHHHHHH[
+]HHHHHHH              HHH HHH      HHHHHHH[
+]HHHH                HHH   HHH        HHHH[
+]                     HHH HHH             [
+]HHHH                   HHH           HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                HHH   HHHHHHHHH[
+]HHHHHHH                 HHH HHH   HHHHHHH[
+]HHHH                   HHH   HHH     HHHH[
+]                        HHH HHH          [
+]HHHH                      HHH        HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                HHH   HHHHHHHHH[
+]HHHHHHH                 HHH HHH   HHHHHHH[
+]HHHH                   HHH   HHH     HHHH[
+]                        HHH HHH          [
+]HHHH                      HHH        HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                HHH   HHHHHHHHH[
+]HHHHHHH                 HHH HHH   HHHHHHH[
+]HHHH                   HHH   HHH     HHHH[
+]                        HHH HHH          [
+]HHHH                      HHH        HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH              HHH          HHHHHHH[
+]HHHH               HHH HHH           HHHH[
+]                  HHH   HHH              [
+]HHHH               HHH HHH           HHHH[
+]HHHHHHH              HHH          HHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHH        HHH                      HHHH[
+]          HHH HHH                        [
+]HHHH     HHH   HHH                   HHHH[
+]HHHHHHH   HHH HHH                 HHHHHHH[
+]HHHHHHHHH   HHH                 HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHH        HHH                      HHHH[
+]          HHH HHH                        [
+]HHHH     HHH   HHH                   HHHH[
+]HHHHHHH   HHH HHH                 HHHHHHH[
+]HHHHHHHHH   HHH                 HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+		
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHH        HHH                      HHHH[
+]          HHH HHH                        [
+]HHHH     HHH   HHH                   HHHH[
+]HHHHHHH   HHH HHH                 HHHHHHH[
+]HHHHHHHHH   HHH                 HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH    HHH               HHHHHHHHH[
+]HHHHHHH     HHH HHH               HHHHHHH[
+]HHHH       HHH   HHH                 HHHH[
+]            HHH HHH                      [
+]HHHH          HHH                    HHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHHH                       HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHH                      HHHHHHHHH[
+]HHHHHHH            HHH            HHHHHHH[
+]HHHH             HHH HHH             HHHH[
+]                HHH   HHH                [
+]HHHH             HHH HHH             HHHH[
+]HHHHHHH            HHH            HHHHHHH[
+]HHHHHHHHH                       HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHH                      HHHHHHHHHH[
+]HHHHHHHH                          HHHHHHH[
+]HHHHH              HHH               HHHH[
+]                 HHH HHH                 [
+]                HHH   HHH                [
+]                 HHH HHH                 [
+]HHHHH              HHH              HHHHH[
+]HHHHHHH                           HHHHHHH[
+]HHHHHHHH                        HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHH                              HHHHHH[
+]HH                                     HH[
+]                                         [
+]                   HHH                   [
+]                 HHH HHH                 [
+]                HHH   HHH                [
+]                 HHH HHH                 [
+]                   HHH                   [
+]HH                                     HH[
+]HHHHHH                             HHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHH                               HHHHH[
+]HH                                     HH[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                   HHH                   [
+]                 HHH HHH                 [
+]                HHH   HHH                [
+]                 HHH HHH                 [
+]                   HHH                   [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]HH                                     HH[
+]HHHH                                HHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                   HHH                   [
+]                 HHH HHH                 [
+]                HHH   HHH                [
+]                 HHH HHH                 [
+]                   HHH                   [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]            HHHH   HHH                   [
+]               HHHHH HHH                 [
+]                HHH   HHH                [
+]                 HHH HHH                 [
+]                   HHH HHHH              [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]          HHHHHH   HHH                   [
+]          H    HHHHH HHHHHHH             [
+]       HHHHH    HHH   HHH                [
+]                HHHH HHH                 [
+]               HH  HHH HHHHH   HH        [
+]              H             HHHH         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                        H                [
+]   HH                   HH               [
+]    HH               HHHH                [
+]     H    HHHHHH   HHH         HH        [
+]     HH   H    HHHHH HHHHHHHHHHH         [
+]       HHHHH    HHH   HHH                [
+]                HHHH HHH                 [
+]              HHH  HHH HHHHH   HHH       [
+]              H             HHHH HH      [
+]              HH                  HH     [
+]       HHHHHHHH                    H     [
+]       H                                 [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]      HH                                 [
+]       H                   HHHHHH        [
+]    HHHH                HHHH             [
+]    H                   H                [
+]   HH                   HH           H   [
+]    HH               HHHH           HH   [
+]     H    HHHHHH   HHH         HHHHHH    [
+]     HH   H    HHHHH HHHHHHHHHHH         [
+]       HHHHH    HHH   HHH                [
+]                HHHH HHH                 [
+]              HHH  HHH HHHHH   HHH       [
+]              H             HHHH HH      [
+]              HH                  HH     [
+]       HHHHHHHH                    H     [
+]       HH                          H     [
+]        H                       HHH      [
+]       HH                       HH       [
+]     HHH                                 [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]      HHH                        HH      [
+]      HH                        HH       [
+]       H                   HHHHHH        [
+]    HHHH                HHHH             [
+]    H                   H                [
+]   HH                   HH           HHHH[
+]    HH               HHHH           HH   [
+]     H    HHHHHH   HHH         HHHHHH    [
+]     HH   H    HHHHH HHHHHHHHHHH         [
+]       HHHHH    HHH   HHH                [
+]                HHHH HHH                 [
+]              HHH  HHH HHHHH   HHH       [
+]              H             HHHH HH      [
+]              HH                  HH     [
+]       HHHHHHHH                    H     [
+]       HH                          H     [
+]        H                       HHH      [
+]       HH                       HH       [
+]  HHHHHH                         HH      [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]========H================================[
+]HHHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHH                     HHHHHHHHH[
+]HHHH   H                   HHHHHH    HHHH[
+]HH  HHHH                HHHH            H[
+]H   H                   H               H[
+]H  HH                   HH           HHHH[
+]H   HH               HHHH           HH   [
+]H    H    HHHHHH   HHH         HHHHHH    [
+]H    HH   H    HHHHH HHHHHHHHHHH         [
+]       HHHHH    HHH   HHH                [
+]                HHHH HHH                 [
+]              HHH  HHH HHHHH   HHH       [
+]              H             HHHH HH      [
+]              HH                  HH     [
+]H      HHHHHHHH                    H   HH[
+]HH     HH                          H   HH[
+]HH      H                       HHH   HHH[
+]HHHHH  HH                       HHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHH       HHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]========H================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHH HHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHH  H    H              HHHHHH   HHHHH[
+]HHHHHHHH                HHHH          HHH[
+]HH  H                   H              HH[
+]HH HH                   HH           HHHH[
+]H   HH               HHHH           HH  H[
+]HH   H    HHHHHH   HHH         HHHHHH   H[
+]HH   HH   H    HHHHH HHHHHHHHHHH        H[
+]HH     HHHHH    HHH   HHH               H[
+]HHH             HHHH HHH                H[
+]HHH           HHH  HHH HHHHH   HHH      H[
+]HHH           H             HHHH HH     H[
+]HH            HH                  HH   H [
+]HHH    HHHHHHHH                    H  HHH[
+]HHHH   HH                          H HHHH[
+]HHHHH   H                       HHH HHHHH[
+]HHHHHHHHHHH    HHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHHHH[
+]HHHHHHHH HHH            HHHH      HHHHHHH[
+]HHHHHHH                 H            HHHH[
+]HHHHHH                  HH           HHHH[
+]HHHHHH               HHHH           HH HH[
+]HHH  H    HHHHHH   HHH         HHHHHH  HH[
+]HH   HH   H    HHHHH HHHHHHHHHHH       HH[
+]HH     HHHHH    HHH   HHH             HHH[
+]HHH             HHHH HHH              H H[
+]HHH           HHH  HHH HHHHH   HHH   HHHH[
+]HHH           H             HHHH HH  HHHH[
+]HH HH         HH                  HH HHH [
+]HHHHHH HHHHHHHH                    HHHHHH[
+]HHHHHHHHH                          HHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHH HH HHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHH HHHHHHHHH      HHHHHHHHHHHHHHHHH[
+]HHHHHHHHH               H        HHH HHHH[
+]HHHHHHH                 HH         HHHHHH[
+]HHHHHH               HHHH           HH HH[
+]HHHH H    HHHHHH   HHH         HHHHHHHHHH[
+]HH H HH   H    HHHHH HHHHHHHHHHH      HHH[
+]HH H   HHHHH    HHH   HHH             HHH[
+]HHHH            HHHH HHH             HH H[
+]HHHHH         HHH  HHH HHHHH   HHH  HHHHH[
+]HHH HH        H             HHHH HH HHHHH[
+]HH HH         HH                  HHHHHH [
+]HHHHHH HHHHHHHH                  HHHHHHHH[
+]HHHHHHHHH HHHHHHHHHHHHHHHH   HHHHH HHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHH    HHHH HHHHHHHHHHHHHHHH HHHH[
+]HHHHHHHHHHH             HH    H HHHHHHHHH[
+]HHHHHHHHHH           HHHH         HHHH HH[
+]HHHHHH HH HHHHHH   HHH         HHHHHHHHHH[
+]HHHHHHHH  H    HHHHH HHHHHHHHHHH    HHHHH[
+]HHHHHHHHHHHH    HHH   HHH           HHHHH[
+]HHHHHH          HHHH HHH            HHH H[
+]HHHHHHHH      HHH  HHH HHHHH   HHH HHHHHH[
+]HHHHHHH HH    H             HHHH HH HHHHH[
+]HHHHHHHH HHHHHHH               HHHHHHHHH [
+]HHHHHHHHHHHHHHHHHHHHHHHHH   HHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHH   HHH    HHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHH  HHHHH HHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHH    HHH   HHH     HHHHHHHHHHH[
+]HHHHHHHHHH H    HHHH HHH      HHHHHHHHHHH[
+]HHHHHHHHHHHH  HHH  HHH HHHHH HHHHHHHHHHHH[
+]HHHHHHHHHHHHH H             HHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHHHHHHHHHHHHHHHHHHHH  HHHHHHH[
+]HHHHH  HHHHHHHHHHHHHHHHHHHHHHHHHHH  HHHHH[
+]HHH  HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH  HHH[
+]HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH[
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+] HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH [
+] HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH [
+] HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH [
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+]HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH[
+]HHH  HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH  HHH[
+]HHHHH  HHHHHHHHHHHHHHHHHHHHHHHHHHH  HHHHH[
+]HHHHHHH  HHHHHHHHHHHHHHHHHHHHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHH  HH   HHHHHHHHHHHHHHHHHHHHH   HH  HHH[
+]HH HHH HHHHHHHHHHHHHHHHHHHHHHHHHHH HHH HH[
+]H HHH HHHHHHHHHHHHHHHHHHHHHHHHHHHHH HHH H[
+]H HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH H[
+] HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH [
+] HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH [
+] HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH [
+]H HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH H[
+]H HHH HHHHHHHHHHHHHHHHHHHHHHHHHHHHH HHH H[
+]HH HHH HHHHHHHHHHHHHHHHHHHHHHHHHHH HHH HH[
+]HHH  HH   HHHHHHHHHHHHHHHHHHHHH   HH  HHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]H HHH HH   HHHHHHHHHHHHHHHHHHH   HH HHH H[
+]H HH HH HHHHHHHHHHHHHHHHHHHHHHHHH HH HH H[
+] HH HH HHHHHHHHHHHHHHHHHHHHHHHHHHH HH HH [
+] HH HH HHHHHHHHHHHHHHHHHHHHHHHHHHH HH HH [
+] HH HH HHHHHHHHHHHHHHHHHHHHHHHHHHH HH HH [
+]H HH HH HHHHHHHHHHHHHHHHHHHHHHHHH HH HH H[
+]H HHH HH   HHHHHHHHHHHHHHHHHHH   HH HHH H[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]H HHH HH   HHHH           HHHH   HH HHH H[
+]H HH HH HHHH   HHHHHHHHHHH   HHHH HH HH H[
+] HH HH HHHH HHHHHHHHHHHHHHHHH HHHH HH HH [
+] HH HH HHH HHHHHHHHHHHHHHHHHHH HHH HH HH [
+] HH HH HHHH HHHHHHHHHHHHHHHHH HHHH HH HH [
+]H HH HH HHHH   HHHHHHHHHHH   HHHH HH HH H[
+]H HHH HH   HHHH           HHHH   HH HHH H[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]H HHH HH   HHHH           HHHH   HH HHH H[
+]H HH HH HHHH   HHHHHHHHHHH   HHHH HH HH H[
+] HH HH HHHH HHHHHHH   HHHHHHH HHHH HH HH [
+] HH HH HHH HHHHHHH     HHHHHHH HHH HH HH [
+] HH HH HHHH HHHHHHH   HHHHHHH HHHH HH HH [
+]H HH HH HHHH   HHHHHHHHHHH   HHHH HH HH H[
+]H HHH HH   HHHH           HHHH   HH HHH H[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]H HHH HH   HHHH           HHHH   HH HHH H[
+]H HH HH HHHH   HHHHHHHHHHH   HHHH HH HH H[
+] HH HH HHHH HHHHHHHHHHHHHHHHH HHHH HH HH [
+] HH HH HHH HHHHHHHHHHHHHHHHHHH HHH HH HH [
+] HH HH HHHH HHHHHHHHHHHHHHHHH HHHH HH HH [
+]H HH HH HHHH   HHHHHHHHHHH   HHHH HH HH H[
+]H HHH HH   HHHH           HHHH   HH HHH H[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]H HHH HH   HHHHHHHHHHHHHHHHHHH   HH HHH H[
+]H HH HH HHHHHHHHHHHHHHHHHHHHHHHHH HH HH H[
+] HH HH HHHHHHHHHHHHHHHHHHHHHHHHHHH HH HH [
+] HH HH HHHHHHHHHHHHHHHHHHHHHHHHHHH HH HH [
+] HH HH HHHHHHHHHHHHHHHHHHHHHHHHHHH HH HH [
+]H HH HH HHHHHHHHHHHHHHHHHHHHHHHHH HH HH H[
+]H HHH HH   HHHHHHHHHHHHHHHHHHH   HH HHH H[
+]HH HHH HHHH   HHHHHHHHHHHHH   HHHH HHH HH[
+]HHH  HH   HHHH             HHHH   HH  HHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHH  HH   HHHHHHHHHHHHHHHHHHHHH   HH  HHH[
+]HH HHH HHHHHHHHHHHHHHHHHHHHHHHHHHH HHH HH[
+]H HHH HHHHHHHHHHHHHHHHHHHHHHHHHHHHH HHH H[
+]H HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH H[
+] HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH [
+] HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH [
+] HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH [
+]H HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH H[
+]H HHH HHHHHHHHHHHHHHHHHHHHHHHHHHHHH HHH H[
+]HH HHH HHHHHHHHHHHHHHHHHHHHHHHHHHH HHH HH[
+]HHH  HH   HHHHHHHHHHHHHHHHHHHHH   HH  HHH[
+]HHHHH  HHH    HHHHHHHHHHHHH    HHH  HHHHH[
+]HHHHHHH  HHHHH             HHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHH  HHHHHHHHHHHHHHHHHHHHHHH  HHHHHHH[
+]HHHHH  HHHHHHHHHHHHHHHHHHHHHHHHHHH  HHHHH[
+]HHH  HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH  HHH[
+]HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH[
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+] HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH [
+] HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH [
+] HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH [
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+]H HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH H[
+]HH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH HH[
+]HHH  HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH  HHH[
+]HHHHH  HHHHHHHHHHHHHHHHHHHHHHHHHHH  HHHHH[
+]HHHHHHH  HHHHHHHHHHHHHHHHHHHHHHH  HHHHHHH[
+]HHHHHHHHH     HHHHHHHHHHHHH     HHHHHHHHH[
+]HHHHHHHHHHHHHH             HHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]                                         [
+]                                         [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH[
+]=========================================[)");
+
+
+		enemyFrames_attack.push_back(
+			R"(
+]=========================================[
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]                                         [
+]=========================================[)");
+
+
+
 	}
 
 
