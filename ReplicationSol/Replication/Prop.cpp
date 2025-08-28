@@ -53,7 +53,7 @@ void Prop::RenderCharacterDisplay()
 	switch (propType)
 	{
 	case PROPTYPE::WALL:
-
+		/*
 		screenPtr->RenderCharacter('+', left, top);
 
 		for (int i = left + 1; i < right; i++)
@@ -72,7 +72,7 @@ void Prop::RenderCharacterDisplay()
 
 		for (int i = bottom - 1; i > top; i--)
 			screenPtr->RenderCharacter('|', left, i);
-
+			*/
 		break;
 
 	case PROPTYPE::RIGHT_WALL:
@@ -108,6 +108,7 @@ void Prop::RenderCharacterDisplay()
 
 	case PROPTYPE::BATTLE_TRIGGER:
 	case PROPTYPE::LEVEL_TRANSITION_TRIGGER:
+		/*
 		screenPtr->RenderCharacter('+', left, top);
 
 		for (int i = left + 1; i < right; i++)
@@ -125,7 +126,7 @@ void Prop::RenderCharacterDisplay()
 		screenPtr->RenderCharacter('+', left, bottom);
 
 		for (int i = bottom - 1; i > top; i--)
-			screenPtr->RenderCharacter('|', left, i);
+			screenPtr->RenderCharacter('|', left, i);*/
 		break;
 
 
