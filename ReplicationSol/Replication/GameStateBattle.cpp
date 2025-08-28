@@ -312,7 +312,7 @@ void GameStateBattle::Loop()
 		if (selectedEnemy == 1) enemyThatWasAttackedName = currentBattleData->GetFirstEnemy()->GetEnemyName();
 		else if (selectedEnemy == 2) enemyThatWasAttackedName = currentBattleData->GetSecondEnemy()->GetEnemyName();
 
-		screenPtr->RenderText(Vector2(3, 31), enemyThatWasAttackedName + " was damaged by " + std::to_string(targetDamage));
+		screenPtr->RenderText(Vector2(3, 31), enemyThatWasAttackedName + " was damaged by " + std::to_string(targetDamage) + "!");
 
 		this->RenderScreen();
 
@@ -363,7 +363,7 @@ void GameStateBattle::Loop()
 				PlayAnimationSet(playerFrames_poisoned, true);
 				currentBattleData->GetFirstEnemy()->DamageEnemy(poisonWeight);
 
-				SetConsoleText("Player's poison damaged " + currentBattleData->GetFirstEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight));
+				SetConsoleText("Pedro's poison damaged " + currentBattleData->GetFirstEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight) + "!");
 				this->RenderScreen();
 				Sleep(2000);
 			}
@@ -391,7 +391,7 @@ void GameStateBattle::Loop()
 
 					currentBattleData->GetSecondEnemy()->DamageEnemy(poisonWeight);
 
-					SetConsoleText("Player's poison damaged " + currentBattleData->GetSecondEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight));
+					SetConsoleText("Pedro's poison damaged " + currentBattleData->GetSecondEnemy()->GetEnemyName() + " by " + std::to_string(poisonWeight) + "!");
 					this->RenderScreen();
 					Sleep(2000);
 				}
@@ -404,10 +404,21 @@ void GameStateBattle::Loop()
 		//-----DAMAGING PLAYER----
 
 		if (currentBattleData->GetFirstEnemy()->IsAlive()) {
-			AudioHandler::PlaySFX("attack");
+			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT)
+				AudioHandler::PlaySFX("attack_mutant");
+			else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER)
+				AudioHandler::PlaySFX("attack_healer");
+			else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD)
+				AudioHandler::PlaySFX("attack_gaurd");
+			else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
+				AudioHandler::PlaySFX("attack_nikolai");
+
+
+
+
 			PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_attack, true);
-			PlayAnimationSet(playerFrames_damaged, true);
 			AudioHandler::PlaySFX("playerdamage");
+			PlayAnimationSet(playerFrames_damaged, true);
 
 			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack();
 			
@@ -420,16 +431,24 @@ void GameStateBattle::Loop()
 				targetDamage = 0;
 
 			playerStatsPtr->DamagePlayer(targetDamage);
-			SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " damaged player by " + std::to_string(targetDamage));
+			SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " damaged Pedro by " + std::to_string(targetDamage) + "!");
 			this->RenderScreen();
 			Sleep(2000);
 		}
 
 		if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->IsAlive()) {
-			AudioHandler::PlaySFX("attack");
+			if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT)
+				AudioHandler::PlaySFX("attack_mutant");
+			else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER)
+				AudioHandler::PlaySFX("attack_healer");
+			else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD)
+				AudioHandler::PlaySFX("attack_gaurd");
+			else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
+				AudioHandler::PlaySFX("attack_nikolai");
+
 			PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_attack, true);
-			PlayAnimationSet(playerFrames_damaged, true);
 			AudioHandler::PlaySFX("playerdamage");
+			PlayAnimationSet(playerFrames_damaged, true);
 
 			int targetDamage = currentBattleData->GetSecondEnemy()->GetAttack();
 
@@ -438,7 +457,7 @@ void GameStateBattle::Loop()
 				targetDamage = 0;
 
 			playerStatsPtr->DamagePlayer(targetDamage);
-			SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " damaged player by " + std::to_string(targetDamage));
+			SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " damaged Pedro by " + std::to_string(targetDamage) + "!");
 			this->RenderScreen();
 			Sleep(2000);
 		}
@@ -454,7 +473,7 @@ void GameStateBattle::Loop()
 					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
 
 					poisonHitPlayer = true;
-					SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " poisoned the player by " + std::to_string(enemyPoisonWeight));
+					SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " poisoned Pedro by " + std::to_string(enemyPoisonWeight) + "!");
 					this->RenderScreen();
 					Sleep(2000);
 				}
@@ -468,7 +487,7 @@ void GameStateBattle::Loop()
 					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
 
 					poisonHitPlayer = true;
-					SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " poisoned the player by " + std::to_string(enemyPoisonWeight));
+					SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " poisoned Pedro by " + std::to_string(enemyPoisonWeight) + "!");
 					this->RenderScreen();
 					Sleep(2000);
 				}
@@ -762,7 +781,7 @@ void GameStateBattle::Loop()
 
 		PlayAnimationSet(playerFrames_items, true);
 
-		SetConsoleText("Player used item: " + lastItemUsed.GetItemName());
+		SetConsoleText("Pedro used an item: " + lastItemUsed.GetItemName());
 
 		this->RenderScreen();
 
@@ -792,7 +811,7 @@ void GameStateBattle::Loop()
 
 		MusicHandler::StopMusic();
 
-		SetConsoleText("Player is Dead!");
+		SetConsoleText("Pedro is Dead!");
 		
 		this->RenderScreen();
 
@@ -812,7 +831,7 @@ void GameStateBattle::Loop()
 
 		//-----REWARDS----
 		gameData->AddGcoins(currentBattleData->GetGCoinsReward());
-		SetConsoleText("Player has gained " + std::to_string(currentBattleData->GetGCoinsReward()) + " GCoins!");
+		SetConsoleText("Pedro gained " + std::to_string(currentBattleData->GetGCoinsReward()) + " GCoins!");
 		this->RenderScreen();
 		Sleep(2000);
 
@@ -823,7 +842,7 @@ void GameStateBattle::Loop()
 
 			gameData->AddAbility(currentBattleData->GetFirstEnemy()->GetEnemyType());
 			ClearConsole();
-			SetConsoleText("You have obtained a ability: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
+			SetConsoleText("Pedro obtained an ability: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetFirstEnemy()->GetEnemyType()));
 			this->RenderScreen();
 			Sleep(2000);
 		}
@@ -831,7 +850,7 @@ void GameStateBattle::Loop()
 			if (!gameData->HasAbility(currentBattleData->GetSecondEnemy()->GetEnemyType())) {
 				gameData->AddAbility(currentBattleData->GetSecondEnemy()->GetEnemyType());
 				ClearConsole();
-				SetConsoleText("You have obtained a skill: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetSecondEnemy()->GetEnemyType()));
+				SetConsoleText("Pedro obtained an ability: " + EnemyData::EnemyTypeToAbilityString(currentBattleData->GetSecondEnemy()->GetEnemyType()));
 				this->RenderScreen();
 				Sleep(2000);
 			}

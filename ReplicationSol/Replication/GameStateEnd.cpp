@@ -197,10 +197,10 @@ void GameStateEnd::CreateCredits()
 	creditLines.push_back(CreditName(13, "_____________________"));
 	creditLines.push_back(CreditName(13, ""));
 	if (gameData->hasLost) {
-		creditLines.push_back(CreditName(13, "You have Lost the game"));
+		creditLines.push_back(CreditName(11, "You have lost the game..."));
 	}
 	else {
-		creditLines.push_back(CreditName(15, "You have escape!"));
+		creditLines.push_back(CreditName(15, "You have escaped!"));
 	}
 }
 
