@@ -686,7 +686,7 @@ void GameStateBattle::Loop()
 						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
 						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-						bool usePoison = gameData->RollDice(100);
+						bool usePoison = gameData->RollDice(25);
 
 						if (usePoison) {
 							SetConsoleText("Poison is Successfully applied");
