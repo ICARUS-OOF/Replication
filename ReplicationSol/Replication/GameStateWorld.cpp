@@ -325,8 +325,7 @@ void GameStateWorld::DEBUG_BATTLETEST()
 )";
 	gameData->SetCurrentBattleData(new BattleData(
 		//           Hp atk            enemy type: GUARD MUTANT HEALER
-		new EnemyData(100, 5, EnemyData::ENEMYTYPE::GUARD),
-		new EnemyData(1, 2, EnemyData::ENEMYTYPE::HEALER),
+		new EnemyData(60, 2, EnemyData::ENEMYTYPE::BOSS),
 
 		Vector2(16, 9), 
 		
