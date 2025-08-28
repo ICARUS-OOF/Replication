@@ -824,7 +824,7 @@ std::cout << R"(
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
             AudioHandler::PlaySFX("typing");
-            std::this_thread::sleep_for(std::chrono::milliseconds(40));
+            std::this_thread::sleep_for(std::chrono::milliseconds(14));
         }
         std::cout << "Press any key to continue..." << std::endl;
         std::cout << "Press 'F' to skip intro..." << std::endl;
@@ -873,7 +873,7 @@ std::cout << R"(
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
             AudioHandler::PlaySFX("typing");
-            std::this_thread::sleep_for(std::chrono::milliseconds(40));
+            std::this_thread::sleep_for(std::chrono::milliseconds(14));
         }
         std::cout << "Press any key to continue..." << std::endl;
         std::cout << "Press 'F' to skip intro..." << std::endl;
@@ -922,7 +922,7 @@ std::cout << R"(
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
             AudioHandler::PlaySFX("typing");
-            std::this_thread::sleep_for(std::chrono::milliseconds(40));
+            std::this_thread::sleep_for(std::chrono::milliseconds(14));
         }
         std::cout << "Press any key to continue..." << std::endl;
         std::cout << "Press 'F' to skip intro..." << std::endl;
@@ -970,7 +970,7 @@ std::cout << R"(
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
             AudioHandler::PlaySFX("typing");
-            std::this_thread::sleep_for(std::chrono::milliseconds(40));
+            std::this_thread::sleep_for(std::chrono::milliseconds(14));
         }
         std::cout << "Press any key to continue..." << std::endl;
         std::cout << "Press 'F' to skip intro..." << std::endl;
@@ -987,7 +987,7 @@ std::cout << R"(
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
             AudioHandler::PlaySFX("typing");
-            std::this_thread::sleep_for(std::chrono::milliseconds(70));
+            std::this_thread::sleep_for(std::chrono::milliseconds(30));
         }
         std::cout << "Press any key to continue...";
 

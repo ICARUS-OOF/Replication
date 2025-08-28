@@ -56,6 +56,7 @@ private:
 
 	static const int poisonWeight = 4;
 	static const int armourWeight = 5;
+	static const int recoverWeight = 10;
 
 	int bossAdditionDamage;
 

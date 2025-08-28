@@ -691,7 +691,7 @@ void GameStateBattle::Loop()
 						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
 						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-						bool usePoison = gameData->RollDice(25);
+						bool usePoison = gameData->RollDice(50);
 
 						if (usePoison) {
 							SetConsoleText("Poison is Successfully applied");
@@ -710,7 +710,7 @@ void GameStateBattle::Loop()
 						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
 						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-						gameData->GetPlayerStats()->HealPlayer(6);
+						gameData->GetPlayerStats()->HealPlayer(recoverWeight);
 						abilities_hasUsedRestore = true;
 
 						validOptionSelected = true;
@@ -960,7 +960,7 @@ void GameStateBattle::RenderBaseUI()
 			//POISON
 			if (abilityType == EnemyData::ENEMYTYPE::MUTANT) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Poison");
-				screenPtr->RenderTextWrap(abilityDescriptionPosition, "25% chance to apply poison to the enemy (The skill can be used repeatedly until poison is successfully applied.)", 70);
+				screenPtr->RenderTextWrap(abilityDescriptionPosition, "50% chance to apply poison to the enemy (The skill can be used repeatedly until poison is successfully applied.)", 70);
 
 				if (abilities_poisonTurnsLeft > -1)
 					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
@@ -969,7 +969,7 @@ void GameStateBattle::RenderBaseUI()
 			//HEALER
 			else if (abilityType == EnemyData::ENEMYTYPE::HEALER) {
 				screenPtr->RenderText(abilityNamePosition, "Ability: Recover");
-				screenPtr->RenderText(abilityDescriptionPosition, "Heal self for 6HP (Use once per Battle)");
+				screenPtr->RenderText(abilityDescriptionPosition, "Heal self for 10HP (Use once per Battle)");
 
 				if (abilities_hasUsedRestore)
 					screenPtr->RenderText(abilityUsedAlrPosition, "Ability has been used already!");
