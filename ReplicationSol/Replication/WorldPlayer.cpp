@@ -1,5 +1,6 @@
 #include "WorldPlayer.h"
 #include "WorldEntity.h"
+#include "GameData.h"
 #include "Vector2.h"
 #include <iostream>
 #include <conio.h>
@@ -93,17 +94,18 @@ WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 
 		case 'f':
 		case 'F':
-			currentDecision = PLAYERDECISION::RUN_TESTBATTLE;
+			if (GameData::GetSingleton()->IsDebugModeEnabled())
+				currentDecision = PLAYERDECISION::RUN_TESTBATTLE;
 			break;
 
 		case 'g':
 		case 'G':
-			currentDecision = PLAYERDECISION::SWAP_PUZZLEROOMS;
+			if (GameData::GetSingleton()->IsDebugModeEnabled())
+				currentDecision = PLAYERDECISION::SWAP_PUZZLEROOMS;
 			break;
 
 		case ' ':
 			currentDecision = PLAYERDECISION::INTERACT;
-			AudioHandler::PlaySFX("item");
 			break;
 
 

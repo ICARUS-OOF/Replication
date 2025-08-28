@@ -1,4 +1,5 @@
 #include "Prop.h"
+#include "GameData.h"
 #include "Screen.h"
 #include <iostream>
 #include <sstream>
@@ -53,26 +54,26 @@ void Prop::RenderCharacterDisplay()
 	switch (propType)
 	{
 	case PROPTYPE::WALL:
-		/*
-		screenPtr->RenderCharacter('+', left, top);
+		if (GameData::GetSingleton()->IsDebugModeEnabled()) {
+			screenPtr->RenderCharacter('+', left, top);
 
-		for (int i = left + 1; i < right; i++)
-			screenPtr->RenderCharacter('-', i, top);
-		screenPtr->RenderCharacter('+', right, top);
-
-
-		for (int i = top + 1; i < bottom; i++)
-			screenPtr->RenderCharacter('|', right, i);
-		screenPtr->RenderCharacter('+', right, bottom);
+			for (int i = left + 1; i < right; i++)
+				screenPtr->RenderCharacter('-', i, top);
+			screenPtr->RenderCharacter('+', right, top);
 
 
-		for (int i = right - 1; i > left; i--)
-			screenPtr->RenderCharacter('-', i, bottom);
-		screenPtr->RenderCharacter('+', left, bottom);
+			for (int i = top + 1; i < bottom; i++)
+				screenPtr->RenderCharacter('|', right, i);
+			screenPtr->RenderCharacter('+', right, bottom);
 
-		for (int i = bottom - 1; i > top; i--)
-			screenPtr->RenderCharacter('|', left, i);
-			*/
+
+			for (int i = right - 1; i > left; i--)
+				screenPtr->RenderCharacter('-', i, bottom);
+			screenPtr->RenderCharacter('+', left, bottom);
+
+			for (int i = bottom - 1; i > top; i--)
+				screenPtr->RenderCharacter('|', left, i);
+		}
 		break;
 
 	case PROPTYPE::RIGHT_WALL:
@@ -108,25 +109,26 @@ void Prop::RenderCharacterDisplay()
 
 	case PROPTYPE::BATTLE_TRIGGER:
 	case PROPTYPE::LEVEL_TRANSITION_TRIGGER:
-		/*
-		screenPtr->RenderCharacter('+', left, top);
+		if (GameData::GetSingleton()->IsDebugModeEnabled()) {
+			screenPtr->RenderCharacter('+', left, top);
 
-		for (int i = left + 1; i < right; i++)
-			screenPtr->RenderCharacter('-', i, top);
-		screenPtr->RenderCharacter('+', right, top);
-
-
-		for (int i = top + 1; i < bottom; i++)
-			screenPtr->RenderCharacter('|', right, i);
-		screenPtr->RenderCharacter('+', right, bottom);
+			for (int i = left + 1; i < right; i++)
+				screenPtr->RenderCharacter('-', i, top);
+			screenPtr->RenderCharacter('+', right, top);
 
 
-		for (int i = right - 1; i > left; i--)
-			screenPtr->RenderCharacter('-', i, bottom);
-		screenPtr->RenderCharacter('+', left, bottom);
+			for (int i = top + 1; i < bottom; i++)
+				screenPtr->RenderCharacter('|', right, i);
+			screenPtr->RenderCharacter('+', right, bottom);
 
-		for (int i = bottom - 1; i > top; i--)
-			screenPtr->RenderCharacter('|', left, i);*/
+
+			for (int i = right - 1; i > left; i--)
+				screenPtr->RenderCharacter('-', i, bottom);
+			screenPtr->RenderCharacter('+', left, bottom);
+
+			for (int i = bottom - 1; i > top; i--)
+				screenPtr->RenderCharacter('|', left, i);
+		}
 		break;
 
 

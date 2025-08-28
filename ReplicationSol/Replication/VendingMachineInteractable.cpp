@@ -52,7 +52,7 @@ void VendingMachineInteractable::Interaction()
 
 					//Add item to inventory
 					//                       Name      Cost         Item type  weight turnusage description
-					gameDataptr->AddItem(Item("Banana", 2, Item::ITEMTYPE::HEALING, 6, 1, "Nutritious. Ingest the potassium. Heals 6 hp."));
+					gameDataptr->AddItem(Item("Banana", 2, Item::ITEMTYPE::HEALING, 8, 1, "Nutritious. Ingest the potassium. Heals 8 hp."));
 				}
 				else {
 					//If not enough coins, state insufficient funds
@@ -65,7 +65,7 @@ void VendingMachineInteractable::Interaction()
 					screenPtr->RenderSecondaryText("You bought a medkit!");
 					gameDataptr->RemoveGcoins(4);
 					//                       Name      Cost         Item type  weight turnusage description
-					gameDataptr->AddItem(Item("Medkit", 4, Item::ITEMTYPE::HEALING, 10, 1, "A First Aid Kit. Only the bandage and antiseptic spray is left inside. Heals 10 hp."));
+					gameDataptr->AddItem(Item("First Aid Kit", 4, Item::ITEMTYPE::HEALING, 12, 1, "A First Aid Kit. Only the bandage and antiseptic spray is left inside. Heals 12 hp."));
 				}
 				else {
 					screenPtr->RenderSecondaryText("Insufficient funds!");

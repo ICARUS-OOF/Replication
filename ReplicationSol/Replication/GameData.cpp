@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <cstdlib>
 
+GameData* GameData::SINGLETON = nullptr;
+
 /// <summary>
 /// KAYDEN
 /// 
@@ -20,8 +22,9 @@
 /// <param name="playerStats"></param>
 /// <param name="startingScreenSize"></param>
 /// <param name="startingViewportSize"></param>
-GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize)
+GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize, bool debugModeEnabled)
 {
+	this->SINGLETON = this;
 	this->screenPtr = screenPtr;
 	this->currentBattleData = nullptr;
 	this->gameStateValue = gameStateValue;
@@ -31,8 +34,9 @@ GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats
 	this->gcoins = 0;
 	this->lastScreenSize = startingScreenSize;
 	this->lastViewportSize = startingViewportSize;
+	this->debugModeEnabled = debugModeEnabled;
 
-	/*
+	if (debugModeEnabled)
 	{
 		// Player attack boost items
 		AddItem(Item("Metal Bar", 0, Item::ITEMTYPE::ATTACK, 3, 5, "A rusty metal bar. Could be useful in a fight. Increases attack by 3 for 5 turns"));
@@ -50,7 +54,6 @@ GameData::GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats
 		AddItem(Item("Riot Shield", 6, Item::ITEMTYPE::DEFENCE, 4, 2, "Shield. Might not be strong enough against your enemies. Take 4 less damage for 2 turns."));
 		AddItem(Item("Portable Barrier", 20, Item::ITEMTYPE::DEFENCE, 8, 3, "A small device that materialises a barrier. It can't block all attacks though. Take 8 less damage for 3 turns"));
 	}
-	*/
 }
 
 GameData::~GameData()
@@ -237,6 +240,16 @@ Vector2 GameData::GetLastScreenSize() const
 Vector2 GameData::GetLastViewportSize() const
 {
 	return lastViewportSize;
+}
+
+bool GameData::IsDebugModeEnabled()
+{
+	return debugModeEnabled;
+}
+
+GameData* GameData::GetSingleton()
+{
+	return SINGLETON;
 }
 
 //Align the screen and viewport sizes to latest sizes

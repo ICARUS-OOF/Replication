@@ -27,8 +27,12 @@ private:
 
 	Vector2 lastScreenSize;
 	Vector2 lastViewportSize;
+
+	bool debugModeEnabled;
+	static GameData* SINGLETON;
 public:
-	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize);
+
+	GameData(Screen* screenPtr, GAMESTATEVALUE gameStateValue, PlayerStats* playerStats, Vector2 startingScreenSize, Vector2 startingViewportSize, bool debugModeEnabled);
 	~GameData();
 
 	Screen* GetScreenPtr();
@@ -63,6 +67,10 @@ public:
 	void UpdateScreenAndViewportSizes(Vector2 lastScreenSize, Vector2 lastViewportSize);
 	Vector2 GetLastScreenSize() const;
 	Vector2 GetLastViewportSize() const;
+
+	bool IsDebugModeEnabled();
+
+	static GameData* GetSingleton();
 
 	bool hasLost = false;
 };

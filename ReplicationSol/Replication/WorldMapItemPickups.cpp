@@ -53,10 +53,10 @@ void GameStateWorld::SetLevelDataItemPickups() {
 				screenPtr, &currentInteractable,
 				1, //Num of lines AGAIN
 				//   	 Name       Cost         Item type     weight turnusage
-				Item("Slop", 0, Item::ITEMTYPE::HEALING, 2, 1,
+				Item("Slop", 0, Item::ITEMTYPE::HEALING, 5, 1,
 
 					//   description
-					"Unappetising food. Still edible, though. Heals 2 hp."), gameData),
+					"Unappetising food. Still edible, though. Heals 5 hp."), gameData),
 
 
 
@@ -82,10 +82,10 @@ void GameStateWorld::SetLevelDataItemPickups() {
 				screenPtr, &currentInteractable,
 				1, //Num of lines AGAIN
 				//   	 Name       Cost         Item type     weight turnusage
-				Item("Banana", 0, Item::ITEMTYPE::HEALING, 6, 1,
+				Item("Banana", 0, Item::ITEMTYPE::HEALING, 8, 1,
 
 					//   description
-					"Nutritious. Ingest the potassium. Heals 6 hp."), gameData),
+					"Nutritious. Ingest the potassium. Heals 8 hp."), gameData),
 
 
 

@@ -64,19 +64,87 @@ void PlayIntro() {
 	Intro intro;
 	MusicHandler::PlayMusic("01_4999");
 	intro.PlayInCut();
+	intro.PlayBootupScreen();
 }
 
 int main(void) {
 	MaximiseConsole();
 
 
+	//-------------------------------------
+	//-------IF FALSE, CHOICE PROMPT TO ENABLE DEBUG MODE IS ENABLED------
+	bool releaseMode = false;
+	//------------DO NOT EDIT THESE-------------
 	bool debugModeEnabled = true;
-	
-	if (!debugModeEnabled)
+	bool willPlayIntro = true;
+	//-------------------------------------
+
+
+	if (!releaseMode) {
+
+
+		{
+			bool validOptionSelected = false;
+			char option = ' ';
+
+			std::cout << "Press '1' to enter normal mode" << std::endl;
+			std::cout << "Press '2' to enter debug mode" << std::endl;
+
+			do {
+				option = _getch();
+				if (option == '1')
+					validOptionSelected = true;
+				else if (option == '2')
+					validOptionSelected = true;
+			} while (!validOptionSelected);
+
+			if (option == '1')
+				debugModeEnabled = false;
+			else if (option == '2')
+				debugModeEnabled = true;
+
+			system("cls");
+		}
+
+
+
+
+
+		if (!debugModeEnabled)
+			willPlayIntro = true;
+		else {
+			bool validOptionSelected = false;
+			char option = ' ';
+
+			std::cout << "Press '1' to play intro" << std::endl;
+			std::cout << "Press '2' to skip" << std::endl;
+
+			do {
+				option = _getch();
+				if (option == '1')
+					validOptionSelected = true;
+				else if (option == '2')
+					validOptionSelected = true;
+			} while (!validOptionSelected);
+
+			if (option == '1')
+				willPlayIntro = true;
+			else if (option == '2')
+				willPlayIntro = false;
+
+			system("cls");
+		}
+
+	}
+	else {
+		debugModeEnabled = false;
+		willPlayIntro = true;
+	}
+
+	if (willPlayIntro)
 		PlayIntro();
 
     Game* game = new Game(debugModeEnabled);
-
 
 
 	game->GameLoop();

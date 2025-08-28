@@ -14,6 +14,7 @@
 #include <thread>
 #include "GameData.h"
 #include "MusicHandler.h"
+#include "AudioHandler.h"
 
 
 /// <summary>
@@ -202,6 +203,7 @@ void GameStateWorld::Loop()
 						{
 							//More specific interaction
 							if (propArray[i]->IsOverlapping(playerInteractivePoints[j], false)) {
+								AudioHandler::PlaySFX("item");
 
 								currentInteractable = propArray[i]->GetInteractable();
 								//Mark as has found interactable to break
@@ -322,8 +324,8 @@ void GameStateWorld::DEBUG_BATTLETEST()
 )";
 	gameData->SetCurrentBattleData(new BattleData(
 		//           Hp atk            enemy type: GUARD MUTANT HEALER
-		new EnemyData(100, 4, EnemyData::ENEMYTYPE::MUTANT),
-		new EnemyData(100, 4, EnemyData::ENEMYTYPE::HEALER),
+		new EnemyData(100, 5, EnemyData::ENEMYTYPE::GUARD),
+		new EnemyData(1, 2, EnemyData::ENEMYTYPE::HEALER),
 
 		Vector2(16, 9), 
 		
