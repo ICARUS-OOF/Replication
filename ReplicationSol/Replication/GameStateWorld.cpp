@@ -34,7 +34,7 @@ GameStateWorld::GameStateWorld(GameData* gameData)
 
 	this->currentRoomIndex = 0;
 	//Create player
-	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(35, 14));
+	worldPlayerPtr = new WorldPlayer(screenPtr, Vector2(65, 14));
 
 	// Initialize all props to Nullptr at first
 	for (int i = 0; i < MAX_PROPS; i++)
@@ -60,6 +60,7 @@ GameStateWorld::~GameStateWorld()
 		delete propArray[propSpawnIndex];
 	for (int i = 0; i < MAX_BATTLES; i++)
 		delete battleDataArray[i];
+	delete worldPlayerPtr;
 }
 
 
@@ -324,8 +325,7 @@ void GameStateWorld::DEBUG_BATTLETEST()
 )";
 	gameData->SetCurrentBattleData(new BattleData(
 		//           Hp atk            enemy type: GUARD MUTANT HEALER
-		new EnemyData(100, 5, EnemyData::ENEMYTYPE::GUARD),
-		new EnemyData(1, 2, EnemyData::ENEMYTYPE::HEALER),
+		new EnemyData(60, 2, EnemyData::ENEMYTYPE::BOSS),
 
 		Vector2(16, 9), 
 		

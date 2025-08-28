@@ -247,6 +247,8 @@ void GameStateBattle::Loop()
 				winPreventedBySecondEnemy = true;
 
 			if (currentBattleData->GetFirstEnemy()->IsDead()) {
+				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::MUTANT)
+					poisonHitPlayer = false;
 				AudioHandler::PlaySFX("enemydeath");
 				PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_death, true);
 			}
@@ -293,6 +295,9 @@ void GameStateBattle::Loop()
 				winPreventedByFirstEnemy = true;
 
 			if (currentBattleData->GetSecondEnemy()->IsDead()) {
+				if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::MUTANT)
+					poisonHitPlayer = false;
+
 				AudioHandler::PlaySFX("enemydeath");
 				PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_death, true);
 			}
@@ -618,7 +623,7 @@ void GameStateBattle::Loop()
 
 			//---------DAMAGE STACKING FOR BOSS--------
 			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS) {
-				bossAdditionDamage++;
+				bossAdditionDamage += 1;
 				AudioHandler::PlaySFX("ability");
 				PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 				SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " strengthens himself by 1!");
@@ -686,7 +691,7 @@ void GameStateBattle::Loop()
 						SetBattleEvent(BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE);
 						SetConsoleText("Pedro used " + EnemyData::EnemyTypeToAbilityString(gameData->GetAbilities()[currentAbilitySelected]));
 
-						bool usePoison = gameData->RollDice(100);
+						bool usePoison = gameData->RollDice(25);
 
 						if (usePoison) {
 							SetConsoleText("Poison is Successfully applied");

@@ -110,7 +110,7 @@ void GameStateWorld::SetLevelDataBattles() {
 		//    BOSS BATTLE                                                      
 		battleDataArray[battleSetIndex] = new BattleData(
 			//         health atk                 EnemyType              
-			new EnemyData(40, 3, EnemyData::ENEMYTYPE::BOSS),
+			new EnemyData(60, 2, EnemyData::ENEMYTYPE::BOSS),
 
 			nullptr,
 
