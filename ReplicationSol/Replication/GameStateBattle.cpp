@@ -618,7 +618,7 @@ void GameStateBattle::Loop()
 
 			//---------DAMAGE STACKING FOR BOSS--------
 			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS) {
-				bossAdditionDamage++;
+				bossAdditionDamage += 2;
 				AudioHandler::PlaySFX("ability");
 				PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 				SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " strengthens himself by 1!");
