@@ -1,6 +1,7 @@
 #include "NoteInteractable.h"
 #include "Screen.h"
 #include "Interactable.h"
+#include "AudioHandler.h"
 
 #include <conio.h>
 
@@ -28,6 +29,7 @@ NoteInteractable::NoteInteractable(Screen* screenPtr, Interactable** gameInterac
 /// </summary>
 void NoteInteractable::Interaction()
 {
+	AudioHandler::PlaySFX("paper");
 	//Toggle interaction
 	isInteracting != isInteracting;
 	//If not interacting, set the game's interactable to nullptr

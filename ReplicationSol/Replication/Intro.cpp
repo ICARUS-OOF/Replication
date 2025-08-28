@@ -775,6 +775,7 @@ std::cout << R"(
             system("cls");
 
             if (_kbhit()) {
+                AudioHandler::PlaySFX("item");
                 _getch();
                 inputgotten = true;
             }
@@ -1159,6 +1160,7 @@ std::cout << R"(
         const char* text = "\nIn the outskirts of a bustling city.\n";
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
+            AudioHandler::PlaySFX("typing");
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
         }
         std::cout << "Press any key to continue...";
@@ -1201,6 +1203,7 @@ std::cout << R"(
         text = "\nWhere hidden from public eyes.\n";
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
+            AudioHandler::PlaySFX("typing");
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
         }
         std::cout << "Press any key to continue...";
@@ -1243,6 +1246,7 @@ std::cout << R"(
         text = "\nDeep inside a secret brews... A conspiracy slowly unravels.\n";
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
+            AudioHandler::PlaySFX("typing");
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
         }
         std::cout << "Press any key to continue...";
@@ -1284,6 +1288,7 @@ std::cout << R"(
         text = "\nInside a labatory where your journey begins... A journey about....\n";
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
+            AudioHandler::PlaySFX("typing");
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
         }
         std::cout << "Press any key to continue...";
@@ -1294,6 +1299,7 @@ std::cout << R"(
             text = "\nUNCOVERING  THE  TRUTH  AND  FACING  YOUR  DESTINY .\n";
         for (const char* p = text; *p; ++p) {
             std::cout << *p << std::flush;
+            AudioHandler::PlaySFX("typing");
             std::this_thread::sleep_for(std::chrono::milliseconds(70));
         }
         std::cout << "Press any key to continue...";

@@ -4,6 +4,7 @@
 #include "GameData.h"
 #include "Item.h"
 #include <iostream>
+#include "AudioHandler.h"
 
 
 #include <conio.h>
@@ -44,6 +45,7 @@ void VendingMachineInteractable::Interaction()
 				//If enough coins
 				if (gameDataptr->HasEnoughGcoins(2)) {
 					//Render secondary text below the screen to show what they bought
+					AudioHandler::PlaySFX("buy");
 					screenPtr->RenderSecondaryText("You bought a banana!");
 					//Remove the gcoins
 					gameDataptr->RemoveGcoins(2);
@@ -59,6 +61,7 @@ void VendingMachineInteractable::Interaction()
 				break;
 			case '2':
 				if (gameDataptr->HasEnoughGcoins(4)) {
+					AudioHandler::PlaySFX("buy");
 					screenPtr->RenderSecondaryText("You bought a medkit!");
 					gameDataptr->RemoveGcoins(4);
 					//                       Name      Cost         Item type  weight turnusage description
@@ -70,6 +73,7 @@ void VendingMachineInteractable::Interaction()
 				break;
 			case '3':
 				if (gameDataptr->HasEnoughGcoins(4)) {
+					AudioHandler::PlaySFX("buy");
 					screenPtr->RenderSecondaryText("You bought a riot shield!");
 					gameDataptr->RemoveGcoins(4);
 					//                       Name      Cost         Item type  weight turnusage description
@@ -81,6 +85,7 @@ void VendingMachineInteractable::Interaction()
 				break;
 			case '4':
 				if (gameDataptr->HasEnoughGcoins(2)) {
+					AudioHandler::PlaySFX("buy");
 					screenPtr->RenderSecondaryText("You bought a hardening soda!");
 					gameDataptr->RemoveGcoins(2);
 					//                       Name      Cost         Item type  weight turnusage description
@@ -106,6 +111,7 @@ void VendingMachineInteractable::Interaction()
 			case '1':
 				//One-time bought items
 				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[0] == false) {
+					AudioHandler::PlaySFX("buy");
 					screenPtr->RenderSecondaryText("You bought a portable barricade!");
 					gameDataptr->RemoveGcoins(8);
 					//                       Name      Cost         Item type  weight turnusage description
@@ -121,6 +127,7 @@ void VendingMachineInteractable::Interaction()
 				break;
 			case '2':
 				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[1] == false) {
+					AudioHandler::PlaySFX("buy");
 					screenPtr->RenderSecondaryText("You bought a pocket watch!");
 					gameDataptr->RemoveGcoins(8);
 					//                       Name      Cost         Item type  weight turnusage description
@@ -136,6 +143,7 @@ void VendingMachineInteractable::Interaction()
 				break;
 			case '3':
 				if (gameDataptr->HasEnoughGcoins(8) && hasBoughtItem[2] == false) {
+					AudioHandler::PlaySFX("buy");
 					screenPtr->RenderSecondaryText("You bought an energy blaster!");
 					gameDataptr->RemoveGcoins(8);
 					//                       Name      Cost         Item type  weight turnusage description

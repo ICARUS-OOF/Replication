@@ -4,6 +4,7 @@
 #include "ItemUsage.h"
 #include "EnemyData.h"
 #include "MusicHandler.h"
+#include "AudioHandler.h"
 #include <conio.h>
 #include <iostream>
 #include <string>
@@ -195,7 +196,7 @@ void GameStateBattle::Loop()
 
 	//---PLAYER FIGHT ANIMATION
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FIGHT_ANIM) {
-
+		AudioHandler::PlaySFX("attack");
 		PlayAnimationSet(playerFrames_fight, true);
 
 		//Calculate target damage
@@ -212,8 +213,25 @@ void GameStateBattle::Loop()
 
 
 
-
+		// Play the enemy animation that is on the number 1 spot when player select it
+		// And damages the enemy 
 		if (selectedEnemy == 1) {
+			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT)
+			{
+				AudioHandler::PlaySFX("damage_mutant");
+			}
+			else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER)
+			{
+				AudioHandler::PlaySFX("damage_healer");
+			}
+			else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD)
+			{
+				AudioHandler::PlaySFX("damage_gaurd");
+			}
+			else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
+			{
+				AudioHandler::PlaySFX("damage_nikolai");
+			}
 			PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_damaged, true);
 
 			if (currentBattleData->GetFirstEnemy()->GetHealth() - targetDamage <= 0)
@@ -238,7 +256,26 @@ void GameStateBattle::Loop()
 				SetBattleEvent(BATTLEEVENT::ENEMY_ATTACK);
 			}
 		}
+
+		// Play the enemy animation that is on the number 2 spot when player select it
+		// And damages the enemy 
 		else if (selectedEnemy == 2) {
+			if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT)
+			{
+				AudioHandler::PlaySFX("damage_mutant");
+			}
+			else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER)
+			{
+				AudioHandler::PlaySFX("damage_healer");
+			}
+			else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD)
+			{
+				AudioHandler::PlaySFX("damage_gaurd");
+			}
+			else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
+			{
+				AudioHandler::PlaySFX("damage_nikolai");
+			}
 			PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_damaged, true);
 
 			if (currentBattleData->GetSecondEnemy()->GetHealth() - targetDamage <= 0)
@@ -300,6 +337,22 @@ void GameStateBattle::Loop()
 		//-----POISONING THE ENEMY----
 		if (abilities_poisonTurnsLeft > 0) {
 			if (currentBattleData->GetFirstEnemy()->IsAlive() && currentBattleData->GetFirstEnemy()->GetHealth() - poisonWeight > 0) {
+				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT)
+				{
+					AudioHandler::PlaySFX("damage_mutant");
+				}
+				else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER)
+				{
+					AudioHandler::PlaySFX("damage_healer");
+				}
+				else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD)
+				{
+					AudioHandler::PlaySFX("damage_gaurd");
+				}
+				else if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
+				{
+					AudioHandler::PlaySFX("damage_nikolai");
+				}
 				PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_damaged, true);
 				PlayAnimationSet(playerFrames_poisoned, true);
 				currentBattleData->GetFirstEnemy()->DamageEnemy(poisonWeight);
@@ -310,6 +363,22 @@ void GameStateBattle::Loop()
 			}
 
 			if (currentBattleData->IsDoubleBattle()) {
+				if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT)
+				{
+					AudioHandler::PlaySFX("damage_mutant");
+				}
+				else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER)
+				{
+					AudioHandler::PlaySFX("damage_healer");
+				}
+				else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD)
+				{
+					AudioHandler::PlaySFX("damage_gaurd");
+				}
+				else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS)
+				{
+					AudioHandler::PlaySFX("damage_nikolai");
+				}
 				if (currentBattleData->GetSecondEnemy()->IsAlive() && currentBattleData->GetSecondEnemy()->GetHealth() - poisonWeight > 0) {
 					PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_damaged, true);
 					PlayAnimationSet(playerFrames_poisoned, true);
@@ -329,9 +398,10 @@ void GameStateBattle::Loop()
 		//-----DAMAGING PLAYER----
 
 		if (currentBattleData->GetFirstEnemy()->IsAlive()) {
-
+			AudioHandler::PlaySFX("attack");
 			PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_attack, true);
 			PlayAnimationSet(playerFrames_damaged, true);
+			AudioHandler::PlaySFX("playerdamage");
 
 			int targetDamage = currentBattleData->GetFirstEnemy()->GetAttack();
 			
@@ -350,8 +420,10 @@ void GameStateBattle::Loop()
 		}
 
 		if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->IsAlive()) {
+			AudioHandler::PlaySFX("attack");
 			PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_attack, true);
 			PlayAnimationSet(playerFrames_damaged, true);
+			AudioHandler::PlaySFX("playerdamage");
 
 			int targetDamage = currentBattleData->GetSecondEnemy()->GetAttack();
 
@@ -371,6 +443,7 @@ void GameStateBattle::Loop()
 			//--------POISON-------
 			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT && currentBattleData->GetFirstEnemy()->IsAlive()) {
 				if (gameData->GetPlayerStats()->GetHealth() - enemyPoisonWeight > 0) {
+					AudioHandler::PlaySFX("ability");
 					PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
 
@@ -384,6 +457,7 @@ void GameStateBattle::Loop()
 			}
 			if (currentBattleData->IsDoubleBattle() && currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::MUTANT && currentBattleData->GetSecondEnemy()->IsAlive()) {
 				if (gameData->GetPlayerStats()->GetHealth() - enemyPoisonWeight > 0) {
+					AudioHandler::PlaySFX("ability");
 					PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_ability, true);
 					gameData->GetPlayerStats()->DamagePlayer(enemyPoisonWeight);
 
@@ -403,6 +477,7 @@ void GameStateBattle::Loop()
 					currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::HEALER &&
 					currentBattleData->GetFirstEnemy()->IsAlive()) {
 
+					AudioHandler::PlaySFX("ability");
 					PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 					currentBattleData->GetFirstEnemy()->HealEnemy(enemyHealWeight);
 
@@ -425,6 +500,7 @@ void GameStateBattle::Loop()
 				if (healEnemySource != nullptr) {
 					//Heal first enemy
 					if (currentBattleData->GetFirstEnemy()->GetHealth() < currentBattleData->GetSecondEnemy()->GetHealth() && currentBattleData->GetFirstEnemy()->IsAlive()) {
+						AudioHandler::PlaySFX("ability");
 						PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 						currentBattleData->GetFirstEnemy()->HealEnemy(enemyHealWeight);
 
@@ -435,6 +511,7 @@ void GameStateBattle::Loop()
 					}
 					//Heal second enemy
 					else if (currentBattleData->GetSecondEnemy()->IsAlive() ){
+						AudioHandler::PlaySFX("ability");
 						PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_ability, true);
 						currentBattleData->GetSecondEnemy()->HealEnemy(enemyHealWeight);
 
@@ -448,18 +525,21 @@ void GameStateBattle::Loop()
 
 
 			//---------DEFENCE-------------
+			//Single battle
 			if (currentBattleData->IsSingleBattle()) {
 				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD) {
 
 					isEnemyGuarding = !isEnemyGuarding;
 
 					if (isEnemyGuarding) {
+						AudioHandler::PlaySFX("ability");
 						PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " guards!");
 						this->RenderScreen();
 						Sleep(2000);
 					}
 					else {
+						AudioHandler::PlaySFX("ability");
 						PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " put their guard down!");
 						this->RenderScreen();
@@ -467,12 +547,15 @@ void GameStateBattle::Loop()
 					}
 				}
 			}
+			// double battle
 			else {
 				if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD && currentBattleData->GetFirstEnemy()->IsAlive()) {
 
 					isEnemyGuarding = !isEnemyGuarding;
 
+					// check if the guard is guarding or not
 					if (isEnemyGuarding) {
+						AudioHandler::PlaySFX("ability");
 						PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 						SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " guards!");
 						this->RenderScreen();
@@ -488,7 +571,9 @@ void GameStateBattle::Loop()
 				else if (currentBattleData->GetSecondEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::GUARD && currentBattleData->GetSecondEnemy()->IsAlive()) {
 					isEnemyGuarding = !isEnemyGuarding;
 
+					// check if the guard is guarding or not
 					if (isEnemyGuarding) {
+						AudioHandler::PlaySFX("ability");
 						PlayEnemyAnimationSet(currentBattleData->GetSecondEnemy(), currentBattleData->GetSecondEnemy()->enemyFrames_ability, true);
 						SetConsoleText(currentBattleData->GetSecondEnemy()->GetEnemyName() + " guards!");
 						this->RenderScreen();
@@ -505,11 +590,10 @@ void GameStateBattle::Loop()
 
 
 
-
-
 			//---------DAMAGE STACKING FOR BOSS--------
 			if (currentBattleData->GetFirstEnemy()->GetEnemyType() == EnemyData::ENEMYTYPE::BOSS) {
 				bossAdditionDamage++;
+				AudioHandler::PlaySFX("ability");
 				PlayEnemyAnimationSet(currentBattleData->GetFirstEnemy(), currentBattleData->GetFirstEnemy()->enemyFrames_ability, true);
 				SetConsoleText(currentBattleData->GetFirstEnemy()->GetEnemyName() + " strengthens himself by 1!");
 				this->RenderScreen();
@@ -618,6 +702,7 @@ void GameStateBattle::Loop()
 	}
 
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_ABILITIES_USAGE) {
+		AudioHandler::PlaySFX("ability");
 		PlayAnimationSet(playerFrames_abilities, true);
 
 		Sleep(1000);
@@ -655,6 +740,7 @@ void GameStateBattle::Loop()
 			//----------USE ITEM----------
 			else if (option == ' ' && gameData->GetInventory().size() > 0 )
 			{
+				AudioHandler::PlaySFX("item");
 				lastItemUsed = gameData->GetInventoryItem(currentItemSelected);
 				ApplyItemUsage(lastItemUsed);
 				itemUsages.push_back(ItemUsage(lastItemUsed, lastItemUsed.GetUsesLeft()));
@@ -679,6 +765,7 @@ void GameStateBattle::Loop()
 	}
 	
 	else if (currentEvent == BATTLEEVENT::PLAYER_CHOICE_FLEE) {
+		AudioHandler::PlaySFX("flee");
 		PlayAnimationSet(playerFrames_flee, false);
 
 		Sleep(1000);
@@ -987,9 +1074,11 @@ void GameStateBattle::RenderBaseUI()
 		for (int i = 26; i < 29; i++)
 			screenPtr->RenderCharacter('|', 29, i);
 
-		/*for (int i = 25; i < 28; i++)
-			for (int j = 7; j < 23; j++)
-				screenPtr->RenderCharacter('X', j, i);*/
+		// Y axis
+		for (int i = 26; i < 29; i++)
+			// X axis
+			for (int j = 12; j < 29; j++)
+				screenPtr->RenderCharacter(' ', j, i);
 
 		screenPtr->RenderText(Vector2(13, 26), currentBattleData->GetFirstEnemy()->GetEnemyName());
 		screenPtr->RenderText(Vector2(13, 27), "Hp:  " + std::to_string(currentBattleData->GetFirstEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetFirstEnemy()->GetMaxHealth()));
@@ -1022,10 +1111,11 @@ void GameStateBattle::RenderBaseUI()
 		for (int i = 26; i < 29; i++)
 			screenPtr->RenderCharacter('|', 74, i);
 
-
-		/*for (int i = 25; i < 28; i++)
-			for (int j = 38; j < 54; j++)
-				screenPtr->RenderCharacter(' ', j, i);*/
+		// Y axis
+		for (int i = 26; i < 29; i++)
+			//X axis
+			for (int j = 57; j < 74; j++)
+				screenPtr->RenderCharacter(' ', j, i);
 
 		screenPtr->RenderText(Vector2(58, 26), currentBattleData->GetSecondEnemy()->GetEnemyName());
 		screenPtr->RenderText(Vector2(58, 27), "Hp:  " + std::to_string(currentBattleData->GetSecondEnemy()->GetHealth()) + " / " + std::to_string(currentBattleData->GetSecondEnemy()->GetMaxHealth()));

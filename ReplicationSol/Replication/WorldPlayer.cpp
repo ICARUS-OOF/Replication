@@ -4,6 +4,7 @@
 #include <iostream>
 #include <conio.h>
 #include <string>
+#include "AudioHandler.h"
 
 /// <summary>
 /// 
@@ -102,11 +103,12 @@ WorldPlayer::PLAYERDECISION WorldPlayer::GetPlayerInput()
 
 		case ' ':
 			currentDecision = PLAYERDECISION::INTERACT;
+			AudioHandler::PlaySFX("item");
 			break;
 
 
 		default:
-			std::cout << "Invalid input!" << std::endl;
+			//std::cout << "Invalid input!" << std::endl;
 			currentDecision = PLAYERDECISION::NONE;
 			break;
 		}
