@@ -73,7 +73,7 @@ int main(void) {
 
 	//-------------------------------------
 	//-------IF FALSE, CHOICE PROMPT TO ENABLE DEBUG MODE IS ENABLED------
-	bool releaseMode = false;
+	bool releaseMode = true;
 	//------------DO NOT EDIT THESE-------------
 	bool debugModeEnabled = true;
 	bool willPlayIntro = true;
